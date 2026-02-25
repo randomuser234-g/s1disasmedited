@@ -22,7 +22,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Crab,	id_Crabmeat,	0,	0,	make_art_tile(ArtTile_Crabmeat,0,0)
 		dbug	Map_Buzz,	id_BuzzBomber,	0,	0,	make_art_tile(ArtTile_Buzz_Bomber,0,0)
 		dbug	Map_Chop,	id_Chopper,	0,	0,	make_art_tile(ArtTile_Chopper,0,0)
@@ -44,7 +44,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Spring,	id_Springs,	0,	0,	make_art_tile(ArtTile_Spring_Horizontal,0,0)
 		dbug	Map_Jaws,	id_Jaws,	8,	0,	make_art_tile(ArtTile_Jaws,1,0)
 		dbug	Map_Burro,	id_Burrobot,	0,	2,	make_art_tile(ArtTile_Burrobot,0,1)
@@ -79,7 +79,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Buzz,	id_BuzzBomber,	0,	0,	make_art_tile(ArtTile_Buzz_Bomber,0,0)
 		dbug	Map_Spike,	id_Spikes,	0,	0,	make_art_tile(ArtTile_Spikes,0,0)
 		dbug	Map_Spring,	id_Springs,	0,	0,	make_art_tile(ArtTile_Spring_Horizontal,0,0)
@@ -108,7 +108,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Elev,	id_Elevator,	0,	0,	make_art_tile(ArtTile_Level,2,0)
 		dbug	Map_CFlo,	id_CollapseFloor, 0,	2,	make_art_tile(ArtTile_SLZ_Collapsing_Floor,2,0)
 		dbug	Map_Plat_SLZ,	id_BasicPlatform, 0,	0,	make_art_tile(ArtTile_Level,2,0)
@@ -129,7 +129,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Spike,	id_Spikes,	0,	0,	make_art_tile(ArtTile_Spikes,0,0)
 		dbug	Map_Spring,	id_Springs,	0,	0,	make_art_tile(ArtTile_Spring_Horizontal,0,0)
 		dbug	Map_Roll,	id_Roller,	0,	0,	make_art_tile(ArtTile_Roller,0,0)
@@ -150,7 +150,7 @@ dbug:	macro map,object,subtype,frame,vram
 
 ;			mappings	object		subtype	frame	VRAM setting
 		dbug 	Map_Ring,	id_Rings,	0,	0,	make_art_tile(ArtTile_Ring,1,0)
-		dbug	Map_Monitor,	id_Monitor,	0,	0,	make_art_tile(ArtTile_Monitor,0,0)
+		dbug	Map_Monitor,	id_Monitor,	7,	9,	make_art_tile(ArtTile_Monitor,0,0)
 		dbug	Map_Bomb,	id_Bomb,	0,	0,	make_art_tile(ArtTile_Bomb,0,0)
 		dbug	Map_Orb,	id_Orbinaut,	0,	0,	make_art_tile(ArtTile_SBZ_Orbinaut,0,0)
 		dbug	Map_Cat,	id_Caterkiller,	0,	0,	make_art_tile(ArtTile_SBZ_Caterkiller,1,0)

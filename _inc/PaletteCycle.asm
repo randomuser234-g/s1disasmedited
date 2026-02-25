@@ -6,6 +6,7 @@
 
 
 PaletteCycle:
+		bsr.w	PalCycle_SuperSonic
 		moveq	#0,d2
 		moveq	#0,d0
 		move.b	(v_zone).w,d0	; get level number

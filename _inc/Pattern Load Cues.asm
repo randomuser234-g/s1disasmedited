@@ -39,6 +39,9 @@ ptr_PLC_Ending:		dc.w PLC_Ending-ArtLoadCues
 ptr_PLC_TryAgain:	dc.w PLC_TryAgain-ArtLoadCues
 ptr_PLC_EggmanSBZ2:	dc.w PLC_EggmanSBZ2-ArtLoadCues
 ptr_PLC_FZBoss:		dc.w PLC_FZBoss-ArtLoadCues
+ptr_PLC_MainTails:	dc.w PLC_MainTails-ArtLoadCues
+ptr_PLC_SSResultTails:	dc.w PLC_SSResultTails-ArtLoadCues
+ptr_PLC_EndingTails:	dc.w PLC_EndingTails-ArtLoadCues
 
 plcm:	macro gfx,vram
 		dc.l gfx
@@ -387,7 +390,45 @@ PLC_FZBoss:	dc.w ((PLC_FZBossend-PLC_FZBoss-2)/6)-1
 		plcm	Nem_Sbz2Eggman, ArtTile_FZ_Eggman_No_Vehicle ; Eggman without ship
 		plcm	Nem_Exhaust,    ArtTile_Eggman_Exhaust       ; exhaust flame
 PLC_FZBossend:
-
+; ---------------------------------------------------------------------------
+; Pattern load cues - standard block 1 but for Tails
+; ---------------------------------------------------------------------------
+PLC_MainTails:	dc.w ((PLC_Mainend-PLC_Main-2)/6)-1
+		plcm	Nem_Lamp,   ArtTile_Lamppost      ; lamppost
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
+		plcm	Nem_TailsLives,  ArtTile_Lives_Counter ; lives counter
+		plcm	Nem_Ring,   ArtTile_Ring          ; rings
+		plcm	Nem_Points, ArtTile_Points        ; points from enemy
+PLC_MainTailsend:
+; ---------------------------------------------------------------------------
+; Pattern load cues - special stage results screen with Tails' continue
+; ---------------------------------------------------------------------------
+PLC_SSResultTails:dc.w ((PLC_SpeStResultend-PLC_SSResult-2)/6)-1
+		plcm	Nem_ResultEm,  ArtTile_SS_Results_Emeralds ; emeralds
+		plcm	Nem_MiniTails, ArtTile_Mini_Sonic          ; mini Tails
+PLC_SpeStResultTailsend:
+; ---------------------------------------------------------------------------
+; Pattern load cues - ending sequence with Tails
+; ---------------------------------------------------------------------------
+PLC_EndingTails:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
+		plcm	Nem_GHZ_1st,   ArtTile_Level            ; GHZ main patterns
+		plcm	Nem_GHZ_2nd,   ArtTile_Level+$1CD       ; GHZ secondary patterns
+		plcm	Nem_Stalk,     ArtTile_GHZ_Flower_Stalk ; flower stalk
+		plcm	Nem_EndFlower, ArtTile_Ending_Flowers   ; flowers
+		plcm	Nem_EndEm,     ArtTile_Ending_Emeralds  ; emeralds
+		plcm	Nem_EndTails,  ArtTile_Ending_Sonic     ; Sonic
+	if Revision=0
+		plcm	Nem_EndEggman, ArtTile_Ending_Eggman    ; Eggman's death (unused)
+	endif
+		plcm	Nem_Rabbit,    ArtTile_Ending_Rabbit    ; rabbit
+		plcm	Nem_Chicken,   ArtTile_Ending_Chicken   ; chicken
+		plcm	Nem_Penguin,   ArtTile_Ending_Penguin   ; penguin
+		plcm	Nem_Seal,      ArtTile_Ending_Seal      ; seal
+		plcm	Nem_Pig,       ArtTile_Ending_Pig       ; pig
+		plcm	Nem_Flicky,    ArtTile_Ending_Flicky    ; flicky
+		plcm	Nem_Squirrel,  ArtTile_Ending_Squirrel  ; squirrel
+		plcm	Nem_EndStH,    ArtTile_Ending_STH       ; "SONIC THE HEDGEHOG"
+PLC_EndingTailsend:
 ; ---------------------------------------------------------------------------
 ; Pattern load cue IDs
 ; ---------------------------------------------------------------------------
@@ -423,3 +464,6 @@ plcid_Ending:		equ (ptr_PLC_Ending-ArtLoadCues)/2	; $1C
 plcid_TryAgain:		equ (ptr_PLC_TryAgain-ArtLoadCues)/2	; $1D
 plcid_EggmanSBZ2:	equ (ptr_PLC_EggmanSBZ2-ArtLoadCues)/2	; $1E
 plcid_FZBoss:		equ (ptr_PLC_FZBoss-ArtLoadCues)/2	; $1F
+plcid_MainTails:	equ (ptr_PLC_MainTails-ArtLoadCues)/2	; 20
+plcid_SSResultTails:	equ (ptr_PLC_SSResultTails-ArtLoadCues)/2; $21
+plcid_EndingTails:	equ (ptr_PLC_EndingTails-ArtLoadCues)/2	; $22

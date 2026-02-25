@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 LZWaterFeatures:
-		cmpi.b	#id_LZ,(v_zone).w ; check if level is LZ
+		cmpi.b	#1,(f_water).w	; is there water? (originally checking for Labyrinth)
 		bne.s	.notlabyrinth	; if not, branch
 	if Revision<>0
 		tst.b   (f_nobgscroll).w
@@ -12,7 +12,7 @@ LZWaterFeatures:
 		cmpi.b	#6,(v_player+obRoutine).w ; has Sonic just died?
 		bhs.s	.setheight	; if yes, skip other effects
 
-		bsr.w	LZWindTunnels
+		bsr.w	LZWindTunnels	;add labyrinth checks to these so currents and all that don't trigger
 		bsr.w	LZWaterSlides
 		bsr.w	LZDynamicWater
 
@@ -58,6 +58,8 @@ WaterHeight:	dc.w $B8	; Labyrinth 1
 ; ---------------------------------------------------------------------------
 
 LZDynamicWater:
+		cmpi.b	#id_LZ,(v_zone).w ; check if level is LZ
+		bne.s	.exit	; if not, branch
 		moveq	#0,d0
 		move.b	(v_act).w,d0
 		add.w	d0,d0
@@ -277,6 +279,8 @@ DynWater_SBZ3:
 
 
 LZWindTunnels:
+		cmpi.b	#id_LZ,(v_zone).w ; check if level is LZ
+		bne.w	.end	; if not, branch
 		tst.w	(v_debuguse).w	; is debug mode being used?
 		bne.w	.quit	; if yes, branch
 		lea	(LZWind_Data+8).l,a2
@@ -390,6 +394,8 @@ LZWind_Data:	dc.w $A80, $300, $C10,  $380 ; act 1 values (set 1)
 
 
 LZWaterSlides:
+		cmpi.b	#id_LZ,(v_zone).w ; check if level is LZ
+		bne.s	locret_3F7A	; if not, branch
 		lea	(v_player).w,a1
 		btst	#1,obStatus(a1)	; is Sonic jumping?
 		bne.s	loc_3F6A	; if not, branch
