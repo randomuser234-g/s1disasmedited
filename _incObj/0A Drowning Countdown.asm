@@ -188,6 +188,8 @@ Drown_Countdown:; Routine $A
 		bhs.w	.nocountdown
 		btst	#6,(v_player+obStatus).w ; is Sonic underwater?
 		beq.w	.nocountdown	; if not, branch
+		tst.b	(f_timecount).w	;is time stopped?
+		beq.w	.nocountdown	;if yes, branch
 
 		subq.w	#1,drown_time(a0)	; decrement timer
 		bpl.w	.nochange	; branch if time remains
@@ -229,6 +231,14 @@ Drown_Countdown:; Routine $A
 		; Sonic drowns here
 		bsr.w	ResumeMusic
 		move.b	#$81,(f_playerctrl).w ; lock controls and disable object interaction
+		move.b	#0,(v_invinc).w	; remove invincibility
+		move.b	#0,(v_shoes).w	; clear speed shoes
+		tst.b	(v_super).w	; is Sonic already Super?
+		beq.w	.dontremovesuper		; if not, branch
+		move.b	#2,(v_supersonpal).w	; Remove rotating palette
+		move.b	#$28,(v_supersonpalnum).w
+		.dontremovesuper:
+		move.b	#0,(v_super).w
 		move.w	#sfx_Drown,d0
 		jsr	(QueueSound2).l	; play drowning sound
 		move.b	#$A,objoff_34(a0)

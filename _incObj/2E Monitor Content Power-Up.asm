@@ -46,15 +46,17 @@ Pow_Checks:
 Pow_ChkEggman:
 		move.b	obAnim(a0),d0
 		cmpi.b	#1,d0		; does monitor contain Eggman?
-		bne.s	Pow_ChkSonic
-	if FixBugs
-		; Fix the Eggman monitor
-		; https://info.sonicretro.org/SCHG_How-to:Have_a_functional_Eggman_monitor_in_Sonic_1
-		move.w	obX(a0),spik_origX(a0)	; needed to display the icon properly
-		jmp	(Spik_Hurt).l		; use spikes to hurt Sonic
-	else
-		rts		; Eggman monitor does nothing
-	endif
+		bne.s	Pow_ChkSonic	;if not, move on
+
+		lea	(v_player).w,a0	;this line moves sonic to be hurt instead of eggman monitor
+		jsr	React_ChkHurt	; Eggman monitor hurts Sonic
+		btst	#6,obStatus(a0)	;is Sonic underwater?
+		beq.s	Eggman_rts	;if not, then do nothing
+		cmpi.w	#12,(v_air).w	;12 air remaining?
+		blt.s	Eggman_rts	; if air is already less than 12, do nothing
+		move.w	#12,(v_air).w	;lower sonic's air to 12, close to drowning
+Eggman_rts:
+		rts	
 ; ===========================================================================
 
 Pow_ChkSonic:
@@ -141,17 +143,32 @@ Pow_RingSound:
 
 Pow_ChkS:
 		cmpi.b	#7,d0		; does monitor contain 'S'?
-		bne.s	Pow_ChkGoggles
-		nop	
+		bne.s	Pow_ChkGogles
+		addi.w	#50,(v_rings).w	; add 50 rings to the number of rings you have
+		ori.b	#1,(f_ringcount).w ; update the ring counter
+		tst.b	(v_super).w	; is Sonic already Super?
+		bne.w	Pow_ChkEnd		; if yes, branch
+		lea	(v_player).w,a0	;move sonic as target so transform animation works
+		jmp	Sonic_GoSuper	;'S' monitor turns Sonic super
+		rts
+Pow_ChkGogles:
+		cmpi.b	#8,d0		; does monitor contain 'Goggles'?
+		bne.s	Pow_ChkTails
+		jmp	Pow_ChkEnd	
 
-Pow_ChkGoggles:
-; Uncomment these lines to set up the goggles monitor to work with it
-	;	cmpi.b	#8,d0		; does monitor contain goggles?
-	;	bne.s	Pow_ChkEnd
-	;	nop	
-	
+Pow_ChkTails:
+		cmpi.b	#$A,d0		; does monitor contain Tails?
+		bne.s	Pow_ChkEnd
+		jmp	ExtraLife2
+
+ExtraLife2:
+		addq.b	#1,(v_lives).w	; add 1 to the number of lives you have
+		addq.b	#1,(f_lifecount).w ; update the lives counter
+		move.w	#bgm_ExtraLife,d0
+		jmp	(QueueSound1).l	; play extra life music
+
 Pow_ChkEnd:
-		rts		; 'S' and goggles monitors do nothing
+		rts		;  goggles monitors do nothing
 ; ===========================================================================
 
 Pow_Delete:	; Routine 4

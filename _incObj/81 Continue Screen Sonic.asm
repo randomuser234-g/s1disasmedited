@@ -19,7 +19,15 @@ CSon_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.w	#$A0,obX(a0)
 		move.w	#$C0,obY(a0)
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmap		; if not, load Sonic's mappings
+		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		bra.s	.loadmap		; branch to rest of code
+
+	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
+
+	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		move.b	#4,obRender(a0)
 		move.b	#2,obPriority(a0)
@@ -51,7 +59,15 @@ CSon_Animate:	; Routine 4
 
 CSon_GetUp:
 		addq.b	#2,obRoutine(a0)
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmap		; if not, load Sonic's mappings
+		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		bra.s	.loadmap		; branch to rest of code
+
+	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
+
+	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		move.b	#id_Float4,obAnim(a0) ; use "getting up" animation
 		clr.w	obInertia(a0)

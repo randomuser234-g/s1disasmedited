@@ -93,6 +93,7 @@ loc_9BBA:
 		move.b	#$47,obColType(a1)
 		move.b	#8,obActWid(a1)
 		move.b	obRespawnNo(a0),obRespawnNo(a1)
+		beq.s	loc_9C02	; if ring was placed by debug, branch
 		move.b	d1,objoff_34(a1)
 
 loc_9C02:
@@ -121,6 +122,7 @@ Ring_Collect:	; Routine 4
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+		beq.s	Ring_Sparkle	; if ring was placed by debug, branch
 		move.b	objoff_34(a0),d1
 		bset	d1,2(a2,d0.w)
 

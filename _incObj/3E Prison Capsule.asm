@@ -72,6 +72,14 @@ Pri_BodyMain:	; Routine 2
 
 .open:
 		move.b	#2,obFrame(a0)	; use frame number 2 (destroyed prison)
+		cmpi.b	#6,(v_emeralds).w ; do you have 6 emeralds?
+		beq.w	.donothing	; if yes, branch
+		cmpi.w	#50,(v_rings).w	; does Sonic have at least 50 rings?
+		blo.w	.donothing		; if not, branch
+.ssact3:
+		move.b	#1,(f_bigring).w	; Sonic jumped into a giant ring
+		rts
+.donothing:
 		rts
 ; ===========================================================================
 

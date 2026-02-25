@@ -14,7 +14,7 @@ ReactToItem:
 		move.b	obHeight(a0),d5	; load Sonic's height
 		subq.b	#3,d5
 		sub.w	d5,d3
-		cmpi.b	#fr_Duck,obFrame(a0) ; is Sonic ducking?
+		cmpi.b	#id_Duck,obAnim(a0) ; is Sonic ducking?
 		bne.s	.notducking	; if not, branch
 		addi.w	#$C,d3
 		moveq	#$A,d5
@@ -167,6 +167,8 @@ React_Monitor:
 React_Enemy:
 		tst.b	(v_invinc).w	; is Sonic invincible?
 		bne.s	.donthurtsonic	; if yes, branch
+		cmpi.b	#id_SpinDash,obAnim(a0)	; is Tails Spin Dashing? 
+		beq.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
 		bne.w	React_ChkHurt	; if not, branch
 
@@ -272,7 +274,7 @@ HurtSonic:
 .hasshield:
 		move.b	#0,(v_shield).w	; remove shield
 		move.b	#4,obRoutine(a0)
-		bsr.w	Sonic_ResetOnFloor
+		bsr.w	.resetonfloor
 		bset	#1,obStatus(a0)
 		move.w	#-$400,obVelY(a0) ; make Sonic bounce away from the object
 		move.w	#-$200,obVelX(a0)
@@ -289,6 +291,8 @@ HurtSonic:
 		neg.w	obVelX(a0)	; if Sonic is right of the object, reverse
 
 .isleft:
+		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
+		clr.w	spindash_counter(a0)	; clear Spin Dash counter 
 		move.w	#0,obInertia(a0)
 		move.b	#id_Hurt,obAnim(a0)
 		move.w	#120,flashtime(a0)	; set temp invincible time to 2 seconds
@@ -313,6 +317,9 @@ HurtSonic:
 		jsr	(QueueSound2).l
 		moveq	#-1,d0
 		rts
+.resetonfloor:
+		jmp	Sonic_ResetOnFloor
+		rts
 ; ===========================================================================
 
 .norings:
@@ -330,8 +337,15 @@ KillSonic:
 		tst.w	(v_debuguse).w	; is debug mode active?
 		bne.s	.dontdie	; if yes, branch
 		move.b	#0,(v_invinc).w	; remove invincibility
+		move.b	#0,(v_shoes).w	; clear speed shoes
+		tst.b	(v_super).w	; is Sonic already Super?
+		beq.w	.dontremovesuper		; if not, branch
+		move.b	#2,(v_supersonpal).w	; Remove rotating palette
+		move.b	#$28,(v_supersonpalnum).w
+		.dontremovesuper:
+		move.b	#0,(v_super).w
 		move.b	#6,obRoutine(a0)
-		bsr.w	Sonic_ResetOnFloor
+		bsr.w	.resetonfloor
 		bset	#1,obStatus(a0)
 		move.w	#-$700,obVelY(a0)
 		move.w	#0,obVelX(a0)
@@ -365,6 +379,9 @@ KillSonic:
 
 .dontdie:
 		moveq	#-1,d0
+		rts
+.resetonfloor:
+		jmp	Sonic_ResetOnFloor
 		rts
 ; End of function KillSonic
 

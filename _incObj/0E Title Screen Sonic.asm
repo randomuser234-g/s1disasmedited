@@ -24,7 +24,15 @@ TSon_Main:	; Routine 0
 		move.w	#$F0,obX(a0)
 	endif
 		move.w	#$DE,obScreenY(a0) ; position is fixed to screen
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmaptitle		; if not, load Sonic's mappings
+		move.l	#Map_TTls,obMap(a0)
+		bra.s	.loadmaptitle		; branch to rest of code
+
+	.sonicmaptitle:
 		move.l	#Map_TSon,obMap(a0)
+
+	.loadmaptitle:
 		move.w	#make_art_tile(ArtTile_Title_Sonic,1,0),obGfx(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#29,obDelayAni(a0) ; set time delay to 0.5 seconds

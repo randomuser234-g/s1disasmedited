@@ -56,7 +56,15 @@ SSR_Loop:
 		moveq	#0,d0
 		cmpi.b	#6,d1		; do you have all chaos emeralds?
 		bne.s	loc_C842	; if not, branch
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicgot		; if not, load Sonic's life icon
+		moveq	#9,d0		; load "Tails got them all" text
+		bra.s	.loadgot		; branch to rest of code
+
+	.sonicgot:
 		moveq	#8,d0		; load "Sonic got them all" text
+
+	.loadgot:
 		move.w	#$18,obX(a0)
 		move.w	#$118,ssr_mainX(a0) ; change position of text
 

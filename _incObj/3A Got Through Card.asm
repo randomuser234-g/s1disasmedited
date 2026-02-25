@@ -31,7 +31,7 @@ Got_ChkPLC:	; Routine 0
 Got_Main:
 		movea.l	a0,a1
 		lea	(Got_Config).l,a2
-		moveq	#6,d1
+		moveq	#7,d1
 
 Got_Loop:
 		_move.b	#id_GotThroughCard,obID(a1)
@@ -41,7 +41,21 @@ Got_Loop:
 		move.w	(a2)+,obScreenY(a1) ; load y-position
 		move.b	(a2)+,obRoutine(a1)
 		move.b	(a2)+,d0
-		cmpi.b	#6,d0
+		cmpi.b	#1,d0
+		beq.s	.charactercheck
+		cmpi.b	#0,d0
+		bhi.s	Got_LoopActNum
+		add.b	(v_character).w,d0	; add character value to frame number
+		jmp	Got_LoopActNum
+.charactercheck:
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		bne.s	Got_LoopActNum		; if not, load Sonic's mappings
+		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		moveq	#0,d0		; load "Sonic has" text
+		move.b	d0,obFrame(a0)
+		
+Got_LoopActNum:
+		cmpi.b	#7,d0
 		bne.s	loc_C5CA
 		add.b	(v_act).w,d0	; add act number to frame number
 
@@ -253,21 +267,24 @@ loc_C766:	; Routine $10
 
 Got_Config:	dc.w 4,		$124,	$BC			; "SONIC HAS"
 		dc.b 				2,	0
-
-		dc.w -$120,	$120,	$D0			; "PASSED"
+		dc.w 4,		$124,	$BC			; "TAILS HAS"
 		dc.b 				2,	1
 
-		dc.w $40C,	$14C,	$D6			; "ACT" 1/2/3
-		dc.b 				2,	6
-
-		dc.w $520,	$120,	$EC			; score
+		dc.w -$120,	$120,	$D0			; "PASSED"
 		dc.b 				2,	2
 
-		dc.w $540,	$120,	$FC			; time bonus
+		dc.w $40C,	$14C,	$D6			; "ACT" 1/2/3
+		dc.b 				2,	7
+
+		dc.w $520,	$120,	$EC			; score
 		dc.b 				2,	3
 
-		dc.w $560,	$120,	$10C			; ring bonus
+		dc.w $540,	$120,	$FC			; time bonus
 		dc.b 				2,	4
 
-		dc.w $20C,	$14C,	$CC			; oval
+		dc.w $560,	$120,	$10C			; ring bonus
 		dc.b 				2,	5
+
+		dc.w $20C,	$14C,	$CC			; oval
+		dc.b 				2,	6
+

@@ -34,17 +34,28 @@ Sonic_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmap		; if not, load Sonic's mappings
+		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		bra.s	.loadmap		; branch to rest of code
+
+	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
+
+	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#$18,obActWid(a0)
 		move.b	#4,obRender(a0)
+		move.b	#0,(v_super).w	; turn off Super
+		move.b	#0,(v_shoes).w	; turn off speed shoes
 		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
 		move.w	#$C,(v_sonspeedacc).w ; Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; Sonic's deceleration
 
 ; Obj01_Control:
 Sonic_Control:	; Routine 2
+		bsr.w	Sonic_PanCamera		; Run extended camera panning calculations
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
 		beq.s	.nodebug	; if not, branch
 		btst	#bitB,(v_jpadpress1).w ; is button B pressed?
@@ -70,6 +81,7 @@ Sonic_Control:	; Routine 2
 
 .ignoremodes:
 		bsr.s	Sonic_Display
+		bsr.w	Sonic_Super
 		bsr.w	Sonic_RecordPosition
 		bsr.w	Sonic_Water
 		move.b	(v_anglebuffer).w,angleright(a0)
@@ -154,12 +166,24 @@ Sonic_Display:
 		beq.s	.exit		; if not, branch
 		tst.w	shoetime(a0)	; check time remaining
 		beq.s	.exit
+		tst.b	(v_super).w	; is Sonic already Super?
+		bne.s	.chkshoescont		; if yes, branch
 		subq.w	#1,shoetime(a0)	; subtract 1 from time
 		bne.s	.exit
+		btst	#6,obStatus(a0)	;is Sonic underwater?
+		beq.s	.normalshoes	;if not, then normal shoes speed restored
+	.normalshoeswater:
+		move.w	#$300,(v_sonspeedmax).w ; change Sonic's top speed
+		move.w	#6,(v_sonspeedacc).w ; change Sonic's acceleration
+		move.w	#$40,(v_sonspeeddec).w ; change Sonic's deceleration
+		bra.s	.chkshoescont
+	.normalshoes:
 		move.w	#$600,(v_sonspeedmax).w ; restore Sonic's speed
 		move.w	#$C,(v_sonspeedacc).w ; restore Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; restore Sonic's deceleration
+	.chkshoescont:
 		move.b	#0,(v_shoes).w	; cancel speed shoes
+		move.w	#0,(v_player+shoetime).w	;remove time limit for the power-up
 		move.w	#bgm_Slowdown,d0
 		jmp	(QueueSound1).l	; run music at normal speed
 
@@ -191,7 +215,7 @@ Sonic_RecordPosition:
 
 
 Sonic_Water:
-		cmpi.b	#id_LZ,(v_zone).w	; is level LZ?
+		cmpi.b	#1,(f_water).w	; is there water?
 		beq.s	.islabyrinth	; if yes, branch
 
 .exit:
@@ -208,9 +232,14 @@ Sonic_Water:
 		bsr.w	ResumeMusic
 		move.b	#id_DrownCount,(v_sonicbubbles).w ; load bubbles object from Sonic's mouth
 		move.b	#$81,(v_sonicbubbles+obSubtype).w
+		tst.b	(v_super).w	; is Sonic Super?
+		bne.s	.skipspeedslow		; if yes, branch
+		tst.b	(v_shoes).w	; does Sonic have speed shoes?
+		bne.s	.skipspeedslow		; if yes, branch
 		move.w	#$300,(v_sonspeedmax).w ; change Sonic's top speed
 		move.w	#6,(v_sonspeedacc).w ; change Sonic's acceleration
 		move.w	#$40,(v_sonspeeddec).w ; change Sonic's deceleration
+	.skipspeedslow:
 		asr	obVelX(a0)
 		asr	obVelY(a0)
 		asr	obVelY(a0)	; slow Sonic
@@ -225,9 +254,17 @@ Sonic_Water:
 		bclr	#6,obStatus(a0)
 		beq.s	.exit
 		bsr.w	ResumeMusic
+		tst.b	(v_super).w	; is Sonic Super?
+		bne.s	.speedshoesexitwater		; if yes, branch
+		tst.b	(v_shoes).w	; does Sonic have speed shoes?
+		bne.s	.speedshoesexitwater		; if yes, branch
 		move.w	#$600,(v_sonspeedmax).w ; restore Sonic's speed
 		move.w	#$C,(v_sonspeedacc).w ; restore Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; restore Sonic's deceleration
+		bra.s	.exitwatercont
+	.speedshoesexitwater:
+		nop
+	.exitwatercont:
 		asl	obVelY(a0)
 		beq.w	.exit
 		move.b	#id_Splash,(v_splash).w ; load splash object
@@ -247,6 +284,9 @@ Sonic_Water:
 
 ; Obj01_MdNormal:
 Sonic_MdNormal:
+		bsr.w	TailsHeight
+		bsr.w	Sonic_SpinDash
+		bsr.w	Sonic_Peelout
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
 		bsr.w	Sonic_Move
@@ -514,6 +554,9 @@ loc_1309A:
 		neg.w	d1
 		cmp.w	d1,d0
 		bgt.s	loc_130A6
+		add.w	d5,d0	; remove this frame's acceleration change
+		cmp.w	d1,d0	; compare speed with top speed
+		ble.s	loc_130A6; if speed was already greater than the maximum, branch
 		move.w	d1,d0
 
 loc_130A6:
@@ -560,6 +603,9 @@ loc_13104:
 		add.w	d5,d0
 		cmp.w	d6,d0
 		blt.s	loc_1310C
+		sub.w	d5,d0	; remove this frame's acceleration change
+		cmp.w	d1,d0	; compare speed with top speed
+		bge.s	loc_1310C; if speed was already greater than the maximum, branch
 		move.w	d6,d0
 
 loc_1310C:
@@ -600,8 +646,7 @@ locret_1314E:
 Sonic_RollSpeed:
 		move.w	(v_sonspeedmax).w,d6
 		asl.w	#1,d6
-		move.w	(v_sonspeedacc).w,d5
-		asr.w	#1,d5
+		moveq	#6,d5	; natural roll deceleration = 1/2 normal acceleration
 		move.w	(v_sonspeeddec).w,d4
 		asr.w	#2,d4
 		tst.b	(f_slidemode).w
@@ -643,9 +688,11 @@ loc_131AA:
 		bne.s	loc_131CC	; if yes, branch
 		bclr	#2,obStatus(a0)
 		move.b	#$13,obHeight(a0)
+		jsr	TailsHeight
 		move.b	#9,obWidth(a0)
 		move.b	#id_Wait,obAnim(a0) ; use "standing" animation
 		subq.w	#5,obY(a0)
+		jsr	Tails_HeightAfterLanding
 
 loc_131CC:
 		move.b	obAngle(a0),d0
@@ -738,6 +785,9 @@ Sonic_JumpDirection:
 		neg.w	d1
 		cmp.w	d1,d0
 		bgt.s	loc_13278
+		add.w	d5,d0	; remove this frame's acceleration change
+		cmp.w	d1,d0	; compare speed with top speed
+		ble.s	loc_13278; if speed was already greater than the maximum, branch
 		move.w	d1,d0
 
 loc_13278:
@@ -747,6 +797,9 @@ loc_13278:
 		add.w	d5,d0
 		cmp.w	d6,d0
 		blt.s	Obj01_JumpMove
+		sub.w	d5,d0			; +++ remove this frame's acceleration change
+		cmp.w	d6,d0			; +++ compare speed with top speed
+		bge.s	Obj01_JumpMove		; +++ if speed was already greater than the maximum, branch
 		move.w	d6,d0
 
 Obj01_JumpMove:
@@ -861,12 +914,17 @@ Sonic_LevelBound:
 ; Boundary_Bottom
 .bottom:
 		cmpi.w	#(id_SBZ<<8)+1,(v_zone).w ; is level SBZ2 ?
-		bne.w	KillSonic	; if not, kill Sonic
+		bne.w	.kill	; if not, kill Sonic
 		cmpi.w	#$2000,(v_player+obX).w
-		blo.w	KillSonic
+		blo.w	.kill
 		clr.b	(v_lastlamp).w	; clear lamppost counter
 		move.w	#1,(f_restart).w ; restart the level
 		move.w	#(id_LZ<<8)+3,(v_zone).w ; set level to SBZ3 (LZ4)
+		rts
+.dontkill:
+		rts
+.kill:
+		jsr	KillSonic
 		rts
 ; ===========================================================================
 
@@ -921,6 +979,7 @@ Sonic_ChkRoll:
 		move.b	#7,obWidth(a0)
 		move.b	#id_Roll,obAnim(a0) ; use "rolling" animation
 		addq.w	#5,obY(a0)
+		jsr	TailsRollHeight
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l	; play rolling sound
 		tst.w	obInertia(a0)
@@ -949,6 +1008,10 @@ Sonic_Jump:
 		cmpi.w	#6,d1
 		blt.w	.return
 		move.w	#$680,d2	; set initial jump force.
+		tst.b	(v_super).w
+		beq.s	.chkunderwater
+		move.w	#$800,d2	; set higher jump speed if super
+	.chkunderwater:
 		btst	#6,obStatus(a0)	; is Sonic underwater?
 		beq.s	.notunderwater	; if not, continue.
 		move.w	#$380,d2	; set underwater jump force.
@@ -972,6 +1035,7 @@ Sonic_Jump:
 		move.w	#sfx_Jump,d0
 		jsr	(QueueSound2).l	; play jumping sound
 		move.b	#$13,obHeight(a0)	; set Sonic's hitbox to standing size. This is a leftover from the victory animation in prototypes.
+		jsr	TailsHeight
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)	; is Sonic already in a ball state?
 		bne.s	.rolljump	; if so, branch.
@@ -979,13 +1043,16 @@ Sonic_Jump:
 		move.b	#7,obWidth(a0)
 		move.b	#id_Roll,obAnim(a0) ; use "jumping" animation
 		bset	#2,obStatus(a0)
-		addq.w	#5,obY(a0)
+		move.b	obHeight(a0),d0		;jump routine part grabbed from Sonic 3 (prototype), just without Obj_Height_2 and 3
+		sub.b	obHeight(a0),d0
+		ext.w	d0
+		sub.w	d0,obY(a0)
 
 .return:
 		rts
 
 .rolljump:
-		bset	#4,obStatus(a0)	; set roll-jump flag.
+		;bset	#4,obStatus(a0)	; set roll-jump flag.
 		rts
 ; End of function Sonic_Jump
 
@@ -1006,13 +1073,18 @@ Sonic_JumpHeight:
 
 .notunderwater:
 		cmp.w	obVelY(a0),d1	; get current y speed.
-		ble.s	.return
+		ble.s	.tails
 		move.b	(v_jpadhold2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		bne.s	.return	; if yes, branch
 		move.w	d1,obVelY(a0)
 
 .return:
+		rts
+.tails:
+		jsr	Sonic_CheckGoSuper
+		;jsr	Sonic_DropDash
+		jsr	Tails_Flight
 		rts
 
 .capyvel:
@@ -1216,6 +1288,7 @@ loc_1361E:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Sonic_ResetOnFloor
+		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
 		move.b	d3,d0
 		addi.b	#$20,d0
@@ -1395,6 +1468,7 @@ Sonic_ResetOnFloor:
 		move.b	#9,obWidth(a0)
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#5,obY(a0)	; raise Sonic up 5 pixels so he's not inside the ground.
+		jsr	Tails_HeightAfterLanding
 
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
@@ -1444,7 +1518,7 @@ Sonic_HurtStop:
 	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		blo.w	KillSonic
+		blo.w	.killsonic
 		bsr.w	Sonic_Floor
 		btst	#1,obStatus(a0)
 		bne.s	locret_13860
@@ -1452,9 +1526,16 @@ Sonic_HurtStop:
 		move.w	d0,obVelY(a0)
 		move.w	d0,obVelX(a0)
 		move.w	d0,obInertia(a0)
+		move.b	#$13,obHeight(a0)	; set Sonic's hitbox to standing.
+		jsr	TailsHeight		;check if tails, if yes then load his height
+		move.b	#9,obWidth(a0)	;set sonic's width
 		move.b	#id_Walk,obAnim(a0)
 		subq.b	#2,obRoutine(a0)
 		move.w	#120,flashtime(a0)	; set flash time to 2 seconds
+		jmp	locret_13860
+		rts
+.killsonic:
+		jmp	KillSonic
 
 locret_13860:
 		rts
@@ -1649,7 +1730,18 @@ Sonic_Loops:
 
 
 Sonic_Animate:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicani		; if not, load Sonic's animations
+		lea	(Ani_Tails).l,a1	; load Tails' animations
+		bra.s	.loadani		; branch to rest of code
+
+.sonicani:
 		lea	(Ani_Sonic).l,a1
+		tst.b	(v_super).w	; is Sonic Super?
+		beq.w	.loadani		; if not, branch
+.supersonani:
+		lea	(Ani_SuperSonic).l,a1
+.loadani:
 		moveq	#0,d0
 		move.b	obAnim(a0),d0
 		cmp.b	obPrevAni(a0),d0 ; has animation changed?
@@ -1677,7 +1769,8 @@ Sonic_Animate:
 		moveq	#0,d1
 		move.b	obAniFrame(a0),d1 ; load current frame number
 		move.b	1(a1,d1.w),d0	; read sprite number from script
-		bmi.s	.end_FF		; if animation is complete, branch
+		cmpi.b	#afChange,d0		; MJ: is it a flag from FD to FF?
+		bhs.s	.end_FF			; MJ: if so, branch to flag routines
 
 ; SAnim_Next:
 .next:
@@ -1722,6 +1815,10 @@ Sonic_Animate:
 
 ; SAnim_WalkRun:
 .walkrunroll:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		beq.w	.walkrunrolltails		; if not, load Sonic's animations
+		tst.b	(v_super).w	; is Sonic already Super?
+		bne.w	.walkrunrollsuper		; if yes, branch
 		subq.b	#1,obTimeFrame(a0) ; subtract 1 from frame duration
 		bpl.s	.delay		; if time remains, branch
 		addq.b	#1,d0		; is animation walking/running?
@@ -1752,6 +1849,12 @@ Sonic_Animate:
 		neg.w	d2		; modulus speed
 
 .nomodspeed:
+		cmpi.b	#1,(v_s1peelout).w	; check if s1 peelout flag to 1
+		beq.w	.skiptonormalrun	;intentionally skip so $1000 inertia doesn't do cd anim
+		lea	(SonAni_RunFast).l,a1 		;use fastest running animation
+		cmpi.w	#$A00,d2	; is Sonic at higher running speed?
+		bcc.s	.running	; if yes, branch
+	.skiptonormalrun:
 		lea	(SonAni_Run).l,a1 ; use running animation
 		cmpi.w	#$600,d2	; is Sonic at running speed?
 		bhs.s	.running	; if yes, branch
@@ -1775,21 +1878,164 @@ Sonic_Animate:
 		bsr.w	.loadframe
 		add.b	d3,obFrame(a0)	; modify frame number
 		rts
+;-----------------------------------------------------------------------------------------
+.walkrunrollsuper:
+		subq.b	#1,obTimeFrame(a0) ; subtract 1 from frame duration
+		bpl.w	.delay		; if time remains, branch
+		addq.b	#1,d0		; is animation walking/running?
+		bne.w	.rolljump	; if not, branch
+		moveq	#0,d1
+		move.b	obAngle(a0),d0	; get Sonic's angle
+		move.b	obStatus(a0),d2
+		andi.b	#1,d2		; is Sonic mirrored horizontally?
+		bne.s	.flipsuper		; if yes, branch
+		not.b	d0		; reverse angle
+
+.flipsuper:
+		addi.b	#$10,d0		; add $10 to angle
+		bpl.s	.noinvertsuper	; if angle is $0-$7F, branch
+		moveq	#3,d1
+
+.noinvertsuper:
+		andi.b	#$FC,obRender(a0)
+		eor.b	d1,d2
+		or.b	d2,obRender(a0)
+		btst	#5,obStatus(a0)	; is Sonic pushing something?
+		bne.w	.push		; if yes, branch
+
+		lsr.b	#4,d0		; divide angle by $10
+		andi.b	#6,d0		; angle must be 0, 2, 4 or 6
+		move.w	obInertia(a0),d2 ; get Sonic's speed
+		bpl.s	.nomodspeedsuper
+		neg.w	d2		; modulus speed
+
+.nomodspeedsuper:
+		lea	(SupSonAni_RunFast).l,a1 		;use fastest running animation
+		cmpi.w	#$A00,d2	; is Sonic at higher running speed?
+		bcc.s	.runningsuper	; if yes, branch
+		lea	(SupSonAni_Run).l,a1 ; use	running	animation
+		cmpi.w	#$600,d2	; is Sonic at running speed?
+		bcc.s	.runningsuper	; if yes, branch
+		lea	(SupSonAni_Walk).l,a1 ; use	walking	animation
+
+.loadani2super:
+		move.b	d0,d1
+		lsr.b	#1,d1
+		add.b	d1,d0
+
+.runningsuper:
+		add.b	d0,d0
+		move.b	d0,d3
+		neg.w	d2
+		addi.w	#$800,d2
+		bpl.s	.belowmaxsuper
+	.fastanimsuper:
+		moveq	#0,d2		; max animation speed
+
+.belowmaxsuper:
+		lsr.w	#8,d2
+		move.b	d2,obTimeFrame(a0) ; modify frame duration
+		bsr.w	.loadframe
+		add.b	d3,obFrame(a0)	; modify frame number
+		rts
+;----------------------------------------------------------------------------------------------------------
+.walkrunrolltails:
+		subq.b	#1,obTimeFrame(a0) ; subtract 1 from frame duration
+		bpl.w	.delay		; if time remains, branch
+		addq.b	#1,d0		; is animation walking/running?
+		bne.w	.rolljump	; if not, branch
+		moveq	#0,d1
+		move.b	obAngle(a0),d0	; get Sonic's angle
+		move.b	obStatus(a0),d2
+		andi.b	#1,d2		; is Sonic mirrored horizontally?
+		bne.s	.fliptails		; if yes, branch
+		not.b	d0		; reverse angle
+
+.fliptails:
+		addi.b	#$10,d0		; add $10 to angle
+		bpl.s	.noinverttails	; if angle is $0-$7F, branch
+		moveq	#3,d1
+
+.noinverttails:
+		andi.b	#$FC,obRender(a0)
+		eor.b	d1,d2
+		or.b	d2,obRender(a0)
+		btst	#5,obStatus(a0)	; is Sonic pushing something?
+		bne.w	.push		; if yes, branch
+
+		lsr.b	#4,d0		; divide angle by $10
+		andi.b	#6,d0		; angle must be 0, 2, 4 or 6
+		move.w	obInertia(a0),d2 ; get Sonic's speed
+		bpl.s	.nomodspeedtails
+		neg.w	d2		; modulus speed
+
+.nomodspeedtails:
+		lea	(TlsAni_RunFast).l,a1 ; use Tails' running animation
+		cmpi.w	#$A00,d2	; is Tails at higher running speed?
+		bcc.s	.runningtails	; if yes, branch
+		lea	(TlsAni_Run).l,a1 ; use Tails' running animation
+		cmpi.w	#$600,d2	; is Tails at running speed?
+		bcc.s	.runningtails	; if yes, branch
+		lea	(TlsAni_Walk).l,a1 ; use Tails' walking animation
+		add.b	d0,d0
+.runningtails:
+		cmpi.w	#$A00,d2	; is Tails at higher running speed?
+		bcc.s	.peeloutfasttails	; if yes, branch
+		add.b	d0,d0
+		move.b	d0,d3
+		neg.w	d2
+		addi.w	#$800,d2
+		bpl.s	.belowmaxtails
+	.fastanimtaiks:
+		moveq	#0,d2		; max animation speed
+
+.belowmaxtails:
+		lsr.w	#8,d2
+		move.b	d2,obTimeFrame(a0) ; modify frame duration
+		bsr.w	.loadframe
+		add.b	d3,obFrame(a0)	; modify frame number
+		rts
+.peeloutfasttails:
+		move.b	d0,d1	;move angle to d1
+		lsr.b	#1,d1	;half	value of d1
+		move.b	d1,d0	;move back to d0
+		add.b	d0,d0	;multiply by itself
+		move.b	d0,d3	;move to d3?
+		neg.w	d2
+		jsr	.belowmaxtails
+		rts
+
 ; ===========================================================================
 
 ; SAnim_RollJump:
 .rolljump:
 		addq.b	#1,d0		; is animation rolling/jumping?
-		bne.s	.push		; if not, branch
+		bne.s	.jumptopush		; if not, branch
 		move.w	obInertia(a0),d2 ; get Sonic's speed
 		bpl.s	.nomodspeed2
 		neg.w	d2
+		jmp	.nomodspeed2
+		rts
+.jumptopush:
+		jmp	.push
+		rts
 
 .nomodspeed2:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicani3		; if not, load Sonic's animations
+		lea	(TlsAni_Roll2).l,a1 ; use fast animation
+		cmpi.w	#$600,d2	; is Tails moving fast?
+		bcc.s	.rollfast	; if yes, branch
+		lea	(TlsAni_Roll).l,a1 ; use slower	animation
+		bra.s	.rollfast		; branch to rest of code
+
+.sonicani3:
 		lea	(SonAni_Roll2).l,a1 ; use fast animation
 		cmpi.w	#$600,d2	; is Sonic moving fast?
-		bhs.s	.rollfast	; if yes, branch
-		lea	(SonAni_Roll).l,a1 ; use slower animation
+		bcc.s	.rollfast	; if yes, branch
+		lea	(SonAni_Roll).l,a1 ; use slower	animation
+		jsr	.rollfast
+		rts
 
 .rollfast:
 		neg.w	d2
@@ -1821,7 +2067,19 @@ Sonic_Animate:
 .belowmax3:
 		lsr.w	#6,d2
 		move.b	d2,obTimeFrame(a0) ; modify frame duration
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicanipush		; if not, load Sonic's animations
+		lea	(TlsAni_Push).l,a1
+		bra.s	.loadanipush		; branch to rest of code
+
+.sonicanipush:
 		lea	(SonAni_Push).l,a1
+		tst.b	(v_super).w	; is Sonic Super?
+		beq.w	.loadanipush		; if not, branch
+.supersonpush:
+		lea	(SupSonAni_Push).l,a1
+.loadanipush:
+
 		move.b	obStatus(a0),d1
 		andi.b	#1,d1
 		andi.b	#$FC,obRender(a0)
@@ -1840,43 +2098,39 @@ Sonic_Animate:
 
 ; LoadSonicDynPLC:
 Sonic_LoadGfx:
-		moveq	#0,d0
-		move.b	obFrame(a0),d0	; load frame number
-		cmp.b	(v_sonframenum).w,d0 ; has frame changed?
-		beq.s	.nochange	; if not, branch
-
-		move.b	d0,(v_sonframenum).w
-		lea	(SonicDynPLC).l,a2 ; load PLC script
-		add.w	d0,d0
-		adda.w	(a2,d0.w),a2
-		moveq	#0,d1
-		move.b	(a2)+,d1	; read "number of entries" value
-		subq.b	#1,d1
-		bmi.s	.nochange	; if zero, branch
-		lea	(v_sgfx_buffer).w,a3
-		move.b	#1,(f_sonframechg).w ; set flag for Sonic graphics DMA
-
-; SPLC_ReadEntry:
-.readentry:
-		moveq	#0,d2
-		move.b	(a2)+,d2
-		move.w	d2,d0
-		lsr.b	#4,d0
-		lsl.w	#8,d2
-		move.b	(a2)+,d2
-		lsl.w	#5,d2
-		lea	(Art_Sonic).l,a1
-		adda.l	d2,a1
-
-; SPLC_LoadTile:
-.loadtile:
-		movem.l	(a1)+,d2-d6/a4-a6
-		movem.l	d2-d6/a4-a6,(a3)
-		lea	$20(a3),a3	; next tile
-		dbf	d0,.loadtile	; repeat for number of tiles
-
-		dbf	d1,.readentry	; repeat for number of entries
-
-.nochange:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonictestanimnull		; if not, load Sonic's minimum frame check
+		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
+		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
+		bra.s	.movefromanimtest		; branch to rest of code
+	.sonictestanimnull:
+		cmpi.b	#$A2,obFrame(a0) ; higher than $A2?
+		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
+		bra.s	.movefromanimtest		; branch to rest of code
+.nullanim
+		move.b	#0,obFrame(a0)	; load sprite number
 		rts
+	.movefromanimtest:
+		move.b	obFrame(a0),d0			; get Sonic's current frame
+		cmp.b	(v_sonframenum).w,d0		; has the frame changed?
+		beq.s	.end				; if not, nothing to do
+		move.b	d0,(v_sonframenum).w		; update cached frame number
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicplc		; if not, load Sonic's DPLC
+		lea	(MilesDynPLC).l,a2	; load Tails' DPLC
+		bra.s	.loadplc		; branch to rest of code
+	.sonicplc:
+		lea	(SonicDynPLC).l,a2		; load Sonic DPLC table
+	.loadplc:
+		move.w	#ArtTile_Sonic*tile_size,d4	; starting VRAM tile
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicart		; if not, load Sonic's art
+		move.l	#Art_Miles,d6
+		bra.s	.loadart		; branch to rest of code
+	.sonicart:
+		move.l	#Art_Sonic,d6			; base Sonic art pointer
+	.loadart:
+		jmp	(LoadDynPLC).l			; load DPLC
+.end:
+		rts					; return
 ; End of function Sonic_LoadGfx

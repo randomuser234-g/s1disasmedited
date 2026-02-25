@@ -27,6 +27,7 @@ Mon_Main:	; Routine 0
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+		beq.s	.notbroken	; if not, branch
 		bclr	#7,2(a2,d0.w)
 		btst	#0,2(a2,d0.w)	; has monitor been broken?
 		beq.s	.notbroken	; if not, branch
@@ -38,6 +39,22 @@ Mon_Main:	; Routine 0
 .notbroken:
 		move.b	#$46,obColType(a0)
 		move.b	obSubtype(a0),obAnim(a0)
+		cmpi.b	#3,(v_bonusfeat).w	; check if bonus feature flag to 3 (indicating eggman's traps)
+		beq.w	.eggmanstraps		;if yes, branch
+		cmpi.b	#$A,obAnim(a0)		; does monitor contain something above Tails?
+		bhi.s	.invalidmonitor		;branch to prevent invalid monitors
+		cmpi.b	#$A,obSubtype(a0)		; does monitor contain something above Tails?
+		bhi.s	.invalidmonitor		;branch to prevent invalid monitors
+		jsr	Mon_Solid
+		rts
+	.eggmanstraps:
+		move.b	#$1,obAnim(a0)		; apply eggman monitor over everything, this hurts the player and takes their air
+		move.b	#$1,obSubtype(a0)
+		jsr	Mon_Solid
+		rts
+.invalidmonitor:
+		move.b	#$A,obAnim(a0)		; apply tails monitor
+		move.b	#$A,obSubtype(a0)
 
 Mon_Solid:	; Routine 2
 		move.b	ob2ndRout(a0),d0 ; is monitor set to fall?
@@ -81,6 +98,10 @@ Mon_Solid:	; Routine 2
 		beq.w	loc_A25C
 		tst.w	obVelY(a1)
 		bmi.s	loc_A20A
+		cmpi.b	#1,spindash_flag(a1)	;is this a spindash?
+		beq.s	loc_A25C		;if yes, no colision
+		cmpi.b	#2,spindash_flag(a1)	;is this a peelout?
+		beq.s	loc_A25C		;if yes, no collision
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		beq.s	loc_A25C	; if yes, branch
 
@@ -129,6 +150,15 @@ loc_A26A:
 		bclr	#5,obStatus(a1)
 
 Mon_Animate:	; Routine 6
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.loadmap		; if not, load Sonic's mappings
+		cmpi.b	#2,obAnim(a0)		; does monitor contain Sonic?
+		bne.s	.loadmap
+
+	.tailsmap:
+		move.b	#$A,obAnim(a0)		; use 'Tails' icon
+
+	.loadmap:
 		lea	(Ani_Monitor).l,a1
 		bsr.w	AnimateSprite
 
@@ -139,6 +169,12 @@ Mon_Display:	; Routine 8
 ; ===========================================================================
 
 Mon_BreakOpen:	; Routine 4
+		move.b	obStatus(a0),d0
+		andi.b	#$78,d0					; is someone touching the monitor?
+		beq.s	.spawnicon			; if not, branch
+		andi.b	#5,(v_player+obStatus).w	;player on object -> player pushing
+		ori.b	#1,(v_player+obStatus).w	; in air flag, prevent Sonic from walking in the air
+.spawnicon:
 		addq.b	#2,obRoutine(a0)
 		move.b	#0,obColType(a0)
 		bsr.w	FindFreeObj
@@ -160,6 +196,8 @@ Mon_Explode:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+		beq.w	.dontpermbreak	; if not, branch
 		bset	#0,2(a2,d0.w)
+	.dontpermbreak:
 		move.b	#9,obAnim(a0)	; set monitor type to broken
 		bra.w	DisplaySprite
