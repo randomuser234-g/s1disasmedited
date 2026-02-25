@@ -34,7 +34,7 @@ one of Tails' diagonal frames are corrupted for some reason
 
 may be other issues I don't know
 
-try to view [old commits](https://github.com/randomuser234-g/s1disasmedited/commit/45fdd8e07dda5844e7b8f512f350e17d0c76a20e), it still kind of works if you keep viewing parent
+try to view [old commits](https://github.com/sonicretro/s1disasm/commit/f48cbbc167091fd49d76a2de9718e0cb9bec4069#diff-0797f287edabc701a0e46b035545aab8938ab840addb20a2661f13b40ecfe52e), it still kind of works if you keep viewing parent
 
 reformatted to use updated disassembly
 
