@@ -109,6 +109,8 @@ ptr_mus90:	dc.l Music90
 ptr_mus91:	dc.l Music91
 ptr_mus92:	dc.l Music92
 ptr_mus93:	dc.l Music93
+ptr_mus94:	dc.l Music94
+ptr_mus95:	dc.l Music95
 ptr_musend
 ; ---------------------------------------------------------------------------
 ; Priority of sound. New music or SFX must have a priority higher than or equal
@@ -259,8 +261,16 @@ UpdateMusic:
 		jsr	PSGUpdateTrack(pc)
 ; loc_71C44:
 DoStartZ80:
-		startZ80
-		rts
+     startZ80
+     btst #6,(v_megadrive).w ; is Megadrive PAL?
+     beq.s .end ; if not, branch
+     cmpi.b #$5,(v_palmuscounter).w ; 5th frame?
+     bne.s .end ; if not, branch
+     move.b #$0,(v_palmuscounter).w ; reset counter
+     bra.w UpdateMusic ; run sound driver again
+.end:
+     addq.b #$1,(v_palmuscounter).w ; add 1 to frame count
+     rts
 ; End of function UpdateMusic
 
 
@@ -2716,6 +2726,10 @@ Music91:	include "sound/music/Mus91 - Credits.asm"
 Music92:	include "sound/music/Mus92 - Drowning.asm"
 		even
 Music93:	include "sound/music/Mus93 - Get Emerald.asm"
+		even
+Music94:	include "sound/music/Mus94 - Level Select.asm"
+		even
+Music95:	include "sound/music/Mus95 - Super.asm"
 		even
 
 ; ---------------------------------------------------------------------------

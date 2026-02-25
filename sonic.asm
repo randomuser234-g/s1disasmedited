@@ -10,14 +10,14 @@
 
 ; ===========================================================================
 ; ASSEMBLY OPTIONS:
-
+;note- do not change Revision or FixBugs, the changes made rely on this, so music and other things may break if not enabled
 Revision = 1
 ; 	| If 0, build the original version of the game, dubbed REV00
 ; 	| If 1, build the later version, dubbed REV01, which includes various bugfixes and enhancements
 ; 	| If 2, build the hacked version from Sonic Mega Collection, dubbed REVXB,
 ;	|       which (sloppily) fixes the infamous "spike bug" -- not recommended
 
-FixBugs = 0
+FixBugs = 1
 ;	| If 1, enables various bugfixes across the game and sound driver
 ;	| See also FixMusicAndSFXDataBugs
 
@@ -386,7 +386,7 @@ GameInit:
 .clearRAM:
 		move.l	d7,(a6)+
 		dbf	d6,.clearRAM	; clear RAM ($0000-$FDFF)
-
+		jsr	(InitDMAQueue).l
 		bsr.w	VDPSetupGame
 		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
@@ -671,7 +671,7 @@ VBla_00:
 		bne.w	VBla_Music	; if not, branch
 
 .islevel:
-		cmpi.b	#id_LZ,(v_zone).w ; is level LZ ?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.w	VBla_Music	; if not, branch
 
 		move.w	(vdp_control_port).l,d0
@@ -781,13 +781,8 @@ VBla_08:
 
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		writeVRAM	v_spritetablebuffer,vram_sprites
-		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
-		beq.s	.nochg		; if not, branch
+		jsr	ProcessDMAQueue(pc)
 
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
 		startZ80
 		movem.l	(v_screenposx).w,d0-d7
 		movem.l	d0-d7,(v_screenposx_dup).w
@@ -842,13 +837,8 @@ VBla_0A:
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		startZ80
 		bsr.w	PalCycle_SS
-		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
-		beq.s	.nochg		; if not, branch
+		jsr	ProcessDMAQueue(pc)
 
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
 		tst.w	(v_generictimer).w	; is there time left on the demo?
 		beq.w	.end	; if not, return
 		subq.w	#1,(v_generictimer).w	; subtract 1 from time left in demo
@@ -878,12 +868,8 @@ VBla_18:
 		move.w	(v_hbla_hreg).w,(a5)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		writeVRAM	v_spritetablebuffer,vram_sprites
-		tst.b	(f_sonframechg).w
-		beq.s	.nochg
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
-		move.b	#0,(f_sonframechg).w
+		jsr	ProcessDMAQueue(pc)
 
-.nochg:
 		startZ80
 		movem.l	(v_screenposx).w,d0-d7
 		movem.l	d0-d7,(v_screenposx_dup).w
@@ -930,12 +916,8 @@ VBla_16:
 		writeVRAM	v_spritetablebuffer,vram_sprites
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		startZ80
-		tst.b	(f_sonframechg).w
-		beq.s	.nochg
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
-		move.b	#0,(f_sonframechg).w
+		jsr	ProcessDMAQueue(pc)
 
-.nochg:
 		tst.w	(v_generictimer).w
 		beq.w	.end
 		subq.w	#1,(v_generictimer).w
@@ -1120,6 +1102,7 @@ VDPSetupArray:	dc.w $8004		; 8-colour mode
 		dc.w $9100		; window horizontal position
 		dc.w $9200		; window vertical position
 VDPSetupArray_End:
+		include	"_inc/DMA-Queue.asm"
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to clear the screen
@@ -1147,7 +1130,7 @@ ClearScreen:
 		clearRAM v_spritetablebuffer,v_spritetablebuffer_end+4 ; Clears too much RAM, clearing the first 4 bytes of v_palette_water.
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end_padded+4 ; Clears too much RAM, clearing the first 4 bytes of v_objspace.
 	endif
-
+		ResetDMAQueue
 		rts
 ; End of function ClearScreen
 
@@ -1478,6 +1461,7 @@ Qplc_Loop:
 		include	"_inc/Kosinski Decompression.asm"
 
 		include	"_inc/PaletteCycle.asm"
+		include	"_inc/PalCycle_SuperSonic.asm"
 
 Pal_TitleCyc:	binclude	"palette/Cycle - Title Screen Water.bin"
 Pal_GHZCyc:	binclude	"palette/Cycle - GHZ.bin"
@@ -1552,7 +1536,7 @@ FadeIn_FromBlack:
 		bsr.s	FadeIn_AddColour ; increase colour
 		dbf	d0,.addcolour	; repeat for size of palette
 
-		cmpi.b	#id_LZ,(v_zone).w	; is level Labyrinth?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	.exit		; if not, branch
 
 		moveq	#0,d0
@@ -1741,7 +1725,7 @@ WhiteIn_FromWhite:
 		bsr.s	WhiteIn_DecColour ; decrease colour
 		dbf	d0,.decolour	; repeat for size of palette
 
-		cmpi.b	#id_LZ,(v_zone).w	; is level Labyrinth?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	.exit		; if not, branch
 		moveq	#0,d0
 		lea	(v_palette_water).w,a0
@@ -2246,7 +2230,15 @@ GM_Title:
 		lea	(Nem_TitleFg).l,a0 ; load title screen patterns
 		bsr.w	NemDec
 		locVRAM	ArtTile_Title_Sonic*tile_size
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonictitle		; if not, load Sonic's titlescreen
+		lea	(Nem_TitleTails).l,a0 ; load Tails title screen patterns
+		bra.s	.loadtitle		; branch to rest of code
+
+	.sonictitle:
 		lea	(Nem_TitleSonic).l,a0 ; load Sonic title screen patterns
+
+	.loadtitle:
 		bsr.w	NemDec
 		locVRAM	ArtTile_Title_Trademark*tile_size
 		lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
@@ -2263,7 +2255,6 @@ Tit_LoadText:
 		move.b	#0,(v_lastlamp).w ; clear lamppost counter
 		move.w	#0,(v_debuguse).w ; disable debug item placement mode
 		move.w	#0,(f_demo).w	; disable debug mode
-		move.w	#0,(v_unused2).w ; unused variable
 		move.w	#(id_GHZ<<8),(v_zone).w	; set level to GHZ (00)
 		move.w	#0,(v_pcyc_time).w ; disable palette cycling
 		bsr.w	LevelSizeLoad
@@ -2342,6 +2333,20 @@ Tit_LoadText:
 		move.w	#0,(v_title_ccount).w
 		enable_display
 		bsr.w	PaletteFadeIn
+		jmp	Tit_MainLoop
+		rts
+LifeIcon:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicplc		; if not, load Sonic's life icon
+		moveq	#plcid_MainTails,d0	;
+		jsr	(QuickPLC).l	; load life icon
+		bra.s	.loadplc		; branch to rest of code
+
+	.sonicplc:
+		nop
+
+	.loadplc:
+		rts
 
 ; ---------------------------------------------------------------------------
 ; Title screen main loop and cheat checks
@@ -2405,7 +2410,7 @@ Tit_PlayRing:
 		move.b	#1,(a0,d1.w)		; activate cheat depending on C-press count
 		move.b	#sfx_Ring,d0		; set ring sound when code is entered
 		bsr.w	QueueSound2		; play it
-		bra.s	Tit_CountC		; skip over cheat reset 
+		bra.s	Tit_ResetC		;reset cheat so you can enter 2 of them
 ; ===========================================================================
 
 Tit_ResetCheat:
@@ -2413,7 +2418,9 @@ Tit_ResetCheat:
 		beq.s	Tit_CountC		; if yes, branch
 		cmpi.w	#9,(v_title_dcount).w	; has cheat reached index 9? (impossible condition)
 		beq.s	Tit_CountC		; if yes, don't reset D-Pad counter
-		move.w	#0,(v_title_dcount).w	; reset cheat index counter
+Tit_ResetC:
+		move.w	#0,(v_title_dcount).w ; reset cheat index counter
+		move.w	#0,(v_title_ccount).w ; reset C counter
 
 Tit_CountC:
 		move.b	(v_jpadpress1).w,d0	; get currently pressed buttons
@@ -2429,10 +2436,10 @@ Tit_ChkStartOrDemo:
 		beq.w	Tit_MainLoop		; if not, continue looping title screen
 
 Tit_ChkLevSel:
-		tst.b	(f_levselcheat).w	; check if level select code is on
-		beq.w	PlayLevel		; if not, begin game by playing normal level
-		btst	#bitA,(v_jpadhold1).w	; check if A was held while pressing Start
-		beq.w	PlayLevel		; if not, begin game by playing normal level
+		move.w	#bgm_LevSel,d0
+		jsr	(QueueSound1).l	; play level select music, song from sonic 2
+		move.b	#0,(v_menupage)		;set page to 0 which is first page of options
+		move.w	#1,(v_levselitem).w	;select "SONIC ALONE"
 ; ---------------------------------------------------------------------------
 
 Tit_EnterLevelSelect:
@@ -2468,13 +2475,27 @@ LevelSelect:
 		bsr.w	RunPLC			; run any potential PLC
 		tst.l	(v_plc_buffer).w	; are any patterns in the PLC still left to be loaded?
 		bne.s	LevelSelect		; if yes, block quitting level select until finished
+		move.w	(v_levselitem).w,d0	; get currently selected line
 		andi.b	#btnABC+btnStart,(v_jpadpress1).w ; is A, B, C, or Start pressed?
 		beq.s	LevelSelect		; if not, loop level select
-
+	.checkforlevelselect:
+		cmpi.b	#1,(v_menupage)		;are you on page 1?
+		bne.w	.checkforpage2	; if no, check for page 2
+		bra.w	LevSel_SelectionMade	; if yes, do level select
+	.checkforpage2:
+		cmpi.b	#2,(v_menupage)		;are you on page 2?
+		bne.w	.defaultselection	; if no, do default
+		bra.w	.page2	; if yes, do level select
+	.defaultselection:
+		jsr	OptionSelect	;do page 0 function (options)
+		rts
+.page2:
+		jsr	OptionSelect2
+		rts
 LevSel_SelectionMade:
-		move.w	(v_levselitem).w,d0	; get currently selected line
 		cmpi.w	#levsel_sndtest_row,d0	; have you selected item $14 (sound test)?
 		bne.s	LevSel_Level_SS		; if not, go to Level/SS subroutine
+SoundTestSelection:
 		move.w	(v_levselsound).w,d0	; get currently selected sound test entry
 		addi.w	#$80,d0			; make it $80-based
 		tst.b	(f_creditscheat).w	; is Japanese Credits cheat on?
@@ -2723,6 +2744,8 @@ LevSel_Down:
 LevSel_Refresh:
 		move.w	d0,(v_levselitem).w	; set new selection
 		bsr.w	LevSelTextLoad		; refresh text
+		move.w	#sfx_Switch,d0
+		jsr	(QueueSound2).l	; play "blip" sound
 		rts
 ; ===========================================================================
 
@@ -2778,8 +2801,23 @@ levsel_yellow:		equ make_art_tile(ArtTile_Level_Select_Font,2,TRUE) ; VRAM setti
 
 LevSelTextLoad:
 		; Write main text in white
-		lea	(LevelMenuText).l,a1	; load menu text offset
 		lea	(vdp_data_port).l,a6	; prepare VDP data write
+		cmpi.b	#2,(v_menupage)		;are you on page 1?
+		bne.s	.chklvlsel	; if yes, do page 2 text
+		bra.s	.page2
+	.chklvlsel:
+		cmpi.b	#1,(v_menupage)		;are you on page 1?
+		bne.s	.option	; if yes, do level select
+		bra.s	.levelseltextload
+	.option:
+		lea	(OptionText).l,a1	;load options text
+		bra.s	.textload
+.levelseltextload:
+		lea	(LevelMenuText).l,a1	; load menu text offset
+		bra.s	.textload
+.page2:
+		lea	(PageI).l,a1	;load page 2 with bonus options
+.textload:
 		locVRAM	levsel_vram_main,d4	; prepare base VRAM nametable location in d4
 		move.w	#levsel_white,d3	; VRAM setting
 		moveq	#levsel_line_count-1,d1	; number of lines of text to write
@@ -2796,7 +2834,22 @@ LevSelTextLoad:
 		lsl.w	#7,d0			; times $80
 		swap	d0			; swap so that line now becomes VRAM nametable offset
 		add.l	d0,d4			; add that to base VRAM location
+		cmpi.b	#2,(v_menupage)		;are you on page 1?
+		bne.s	.chklvlsel2	; if yes, do page 2 text
+		bra.s	.page2load2
+	.chklvlsel2:
+		cmpi.b	#1,(v_menupage)		;are you on page 1?
+		bne.s	.option2	; if yes, do level select
+		bra.s	.levelseltextload2
+	.option2:
+		lea	(OptionText).l,a1
+		bra.s	.textload2
+.levelseltextload2:
 		lea	(LevelMenuText).l,a1	; load menu text offset
+		bra.s	.textload2
+.page2load2:
+		lea	(PageI).l,a1
+.textload2:
 	if levsel_line_length=24
 		lsl.w	#3,d1			; times 8
 		move.w	d1,d0			; copy result
@@ -2933,6 +2986,88 @@ LevelMenuText:
 	charset
 	even
 
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Options menu text
+; ---------------------------------------------------------------------------
+
+OptionText:
+	charset ' ', $FF
+	charset '0','9',$00
+	charset '$', $0A
+	charset '-', $0B
+	charset '=', $0C
+	charset '>', $0D
+	;charset '>', $0E ; there are two right arrows in the font for some reason
+	charset 'Y','Z',$0F ; Y and Z come before A-X
+	charset 'A','X',$11
+
+		dc.b "PAGE 1                  "
+		dc.b "SONIC ALONE             "
+		dc.b "TAILS ALONE             "
+		dc.b "                        "
+		dc.b "TAILS FLIGHT OFF        "
+		dc.b "SPINDASH OFF            "
+		dc.b "PEELOUT OFF             "
+		dc.b "RE-ENABLE ALL MOVES     "
+		dc.b "S1 STYLE PEELOUT        "
+		dc.b "CD STYLE PEELOUT        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "GO TO PAGE 2            "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "-START A B C TO SELECT- " 
+		dc.b "ONLY 1 BONUS TOGGLEABLE "
+		dc.b "                        "
+		dc.b "START GAME              "
+		dc.b "SOUND SELECT            "
+
+	charset
+	even
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Page 2 menu text
+; ---------------------------------------------------------------------------
+
+PageI:
+	charset ' ', $FF
+	charset '0','9',$00
+	charset '$', $0A
+	charset '-', $0B
+	charset '=', $0C
+	charset '>', $0D
+	;charset '>', $0E ; there are two right arrows in the font for some reason
+	charset 'Y','Z',$0F ; Y and Z come before A-X
+	charset 'A','X',$11
+
+		dc.b "PAGE 2                  "
+		dc.b "-BONUS OPTIONS-         "
+		dc.b "WATER EVERYWHERE        "
+		dc.b "USE SUPER IF 6 EMERALDS "
+		dc.b "EGGMANS TRAPS           "
+		dc.b "DISABLE BONUS OPTIONS   "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "                        "
+		dc.b "-START A B C TO SELECT- " 
+		dc.b "ONLY 1 BONUS TOGGLEABLE "
+		dc.b "                        "
+		dc.b "GO BACK                 "
+		dc.b "SOUND SELECT            "
+
+	charset
+	even
+
+
 ; ---------------------------------------------------------------------------
 ; Music playlist
 ; ---------------------------------------------------------------------------
@@ -2962,6 +3097,7 @@ GM_Level:
 Level_NoMusicFade:
 		bsr.w	ClearPLC
 		bsr.w	PaletteFadeOut
+		jsr	LifeIcon	;note move this instruction to right area otherwise part gets removed in LZ
 		tst.w	(f_demo).w	; is an ending sequence demo running?
 		bmi.s	Level_ClrRam	; if yes, branch
 		disable_ints
@@ -3001,18 +3137,28 @@ Level_ClrRam:
 		move.w	#$8720,(a6)		; set background colour (line 3; colour 0)
 		move.w	#$8A00+223,(v_hbla_hreg).w ; set palette change position (for water)
 		move.w	(v_hbla_hreg).w,(a6)
+		cmpi.b	#2,(v_bonusfeat).w ; is water everywhere enabled?
+		beq.s	.enablewaterinzone	; if yes, branch
 		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
 		bne.s	Level_LoadPal	; if not, branch
-
+.enablewaterinzone:
 		move.w	#$8014,(a6)	; enable H-interrupts
 		moveq	#0,d0
 		move.b	(v_act).w,d0
 		add.w	d0,d0
+		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
+		bne.s	.defaultwater	; if not, branch
 		lea	(WaterHeight).l,a1 ; load water height array
 		move.w	(a1,d0.w),d0
 		move.w	d0,(v_waterpos1).w ; set water heights
 		move.w	d0,(v_waterpos2).w
 		move.w	d0,(v_waterpos3).w
+		bra.s	.enablewater
+.defaultwater:
+		move.w	#$0000,(v_waterpos1).w ; set water heights for every other zone to this
+		move.w	#$0000,(v_waterpos2).w ; set water heights
+		move.w	#$0000,(v_waterpos3).w ; set water heights
+.enablewater:
 		clr.b	(v_wtr_routine).w ; clear water routine counter
 		clr.b	(f_wtr_state).w	; clear water state
 		move.b	#1,(f_water).w	; enable water
@@ -3022,7 +3168,7 @@ Level_LoadPal:
 		enable_ints
 		moveq	#palid_Sonic,d0
 		bsr.w	PalLoad	; load Sonic's palette
-		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	Level_GetBgm	; if not, branch
 
 		moveq	#palid_LZSonWater,d0 ; palette number $F (LZ)
@@ -3095,7 +3241,7 @@ Level_ChkDebug:
 Level_ChkWater:
 		move.w	#0,(v_jpadhold2).w
 		move.w	#0,(v_jpadhold1).w
-		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	Level_LoadObj	; if not, branch
 		move.b	#id_WaterSurface,(v_watersurface1).w ; load water surface object
 		move.w	#$60,(v_watersurface1+obX).w
@@ -3152,7 +3298,7 @@ Level_Demo:
 		move.w	#510,(v_generictimer).w
 
 Level_ChkWaterPal:
-		cmpi.b	#id_LZ,(v_zone).w ; is level LZ/SBZ3?
+		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	Level_Delay	; if not, branch
 		moveq	#palid_LZWater,d0 ; palette $B (LZ underwater)
 		cmpi.b	#3,(v_act).w	; is level SBZ3?
@@ -3533,7 +3679,15 @@ loc_47D4:
 		bsr.w	PalLoad	; load results screen palette
 		moveq	#plcid_Main,d0
 		bsr.w	NewPLC
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmap		; if not, load Sonic's mappings
+		moveq	#plcid_SSResultTails,d0
+		bra.s	.loadmap		; branch to rest of code
+
+	.sonicmap:
 		moveq	#plcid_SSResult,d0
+
+	.loadmap:
 		bsr.w	AddPLC		; load results screen patterns
 		move.b	#1,(f_scorecount).w ; update score counter
 		move.b	#1,(f_endactbonus).w ; update ring bonus counter
@@ -3941,10 +4095,26 @@ GM_Continue:
 		lea	(Nem_TitleCard).l,a0 ; load title card patterns
 		bsr.w	NemDec
 		locVRAM	ArtTile_Continue_Sonic*tile_size
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicpat		; if not, load Sonic's patterns
+		lea	(Nem_ContTails).l,a0 ; load Tails patterns
+		bra.s	.loadpat		; branch to rest of code
+
+	.sonicpat:
 		lea	(Nem_ContSonic).l,a0 ; load Sonic patterns
+
+	.loadpat:
 		bsr.w	NemDec
 		locVRAM	ArtTile_Mini_Sonic*tile_size
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicpatmini		; if not, load Sonic's patterns
+		lea	(Nem_MiniTails).l,a0 ; load continue screen patterns
+		bra.s	.loadpatmini		; branch to rest of code
+
+	.sonicpatmini:
 		lea	(Nem_MiniSonic).l,a0 ; load continue screen patterns
+
+	.loadpatmini:
 		bsr.w	NemDec
 		moveq	#10,d1
 		jsr	(ContScrCounter).l	; run countdown (start from 10)
@@ -4048,7 +4218,15 @@ GM_Ending:
 		move.w	#(id_EndZ<<8)+1,(v_zone).w ; set level number to 0601 (no flowers)
 
 End_LoadData:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicmap		; if not, load Sonic's ending
+		moveq	#plcid_EndingTails,d0	; load Tails' ending
+		bra.s	.loadmap		; branch to rest of code
+
+	.sonicmap:
 		moveq	#plcid_Ending,d0
+
+	.loadmap:
 		bsr.w	QuickPLC	; load ending sequence patterns
 		jsr	(Hud_Base).l
 		bsr.w	LevelSizeLoad
@@ -5081,7 +5259,7 @@ Map_Monitor:	include	"_maps/Monitor.asm"
 
 		include	"_incObj/0E Title Screen Sonic.asm"
 		include	"_incObj/0F Press Start and TM.asm"
-
+		include	"_incObj/OptionSelect.asm"
 		include	"_anim/Title Screen Sonic.asm"
 		include	"_anim/Press Start and TM.asm"
 
@@ -5089,6 +5267,7 @@ Map_Monitor:	include	"_maps/Monitor.asm"
 
 Map_PSB:	include	"_maps/Press Start and TM.asm"
 Map_TSon:	include	"_maps/Title Screen Sonic.asm"
+Map_TTls:	include	"_maps/Title Screen Tails.asm"
 
 		include	"_incObj/2B Chopper.asm"
 		include	"_anim/Chopper.asm"
@@ -5280,6 +5459,7 @@ Map_Over:	include	"_maps/Game Over.asm"
 ; ---------------------------------------------------------------------------
 Map_Got:	mappingsTable
 	mappingsTableEntry.w	M_Got_SonicHas	; "SONIC HAS" text
+	mappingsTableEntry.w	M_Got_TailsHas	; "TAILS HAS" text
 	mappingsTableEntry.w	M_Got_Passed	; "PASSED" text
 	mappingsTableEntry.w	M_Got_Score	; Score tally
 	mappingsTableEntry.w	M_Got_TBonus	; Time Bonus tally
@@ -5302,6 +5482,17 @@ M_Got_SonicHas:	spriteHeader	; SONIC HAS
 	spritePiece	$20, -8, 2, 2, 0, 0, 0, 0, 0	; A
 	spritePiece	$30, -8, 2, 2, $3E, 0, 0, 0, 0	; S
 M_Got_SonicHas_End
+
+M_Got_TailsHas:	spriteHeader		; TAILS HAS
+	spritePiece	-$48, -8, 2, 2, $42, 0, 0, 0, 0	;t
+	spritePiece	-$38, -8, 2, 2, 0, 0, 0, 0, 0	;a
+	spritePiece	-$28, -8, 1, 2, $20, 0, 0, 0, 0	;i
+	spritePiece	-$20, -8, 2, 2, $26, 0, 0, 0, 0	;l
+	spritePiece	-$10, -8, 2, 2, $3E, 0, 0, 0, 0	;s
+	spritePiece	$10, -8, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	$20, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, $3E, 0, 0, 0, 0
+M_Got_TailsHas_End
 
 M_Got_Passed:	spriteHeader	; PASSED
 	spritePiece	-$30, -8, 2, 2, $36, 0, 0, 0, 0	; P
@@ -5355,6 +5546,7 @@ Map_SSR:	mappingsTable
 	mappingsTableEntry.w	M_SSR_Continue	; Continue tally without mini Sonic
 	mappingsTableEntry.w	M_SSR_SpeStage	; "SPECIAL STAGE" text
 	mappingsTableEntry.w	M_SSR_GotAll	; "SONIC GOT THEM ALL" text
+	mappingsTableEntry.w	M_SSR_TailsGotAll;"TAILS GOT THEM ALL" text
 
 M_SSR_Chaos:	spriteHeader	; CHAOS EMERALDS
 	spritePiece	-$70, -8, 2, 2, 8, 0, 0, 0, 0	; C
@@ -5448,6 +5640,24 @@ M_SSR_GotAll:	spriteHeader	; SONIC GOT THEM ALL
 	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0	; L
 	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0	; L
 M_SSR_GotAll_End
+
+M_SSR_TailsGotAll:	spriteHeader		; "TAILS GOT THEM ALL"
+	spritePiece	-$78, -8, 2, 2, $42, 0, 0, 0, 0	;t
+	spritePiece	-$68, -8, 2, 2, 0, 0, 0, 0, 0	;a
+	spritePiece	-$58, -8, 1, 2, $20, 0, 0, 0, 0	;i
+	spritePiece	-$50, -8, 2, 2, $26, 0, 0, 0, 0	;l
+	spritePiece	-$40, -8, 2, 2, $3E, 0, 0, 0, 0	;s
+	spritePiece	-$28, -8, 2, 2, $18, 0, 0, 0, 0
+	spritePiece	-$18, -8, 2, 2, $32, 0, 0, 0, 0
+	spritePiece	-8, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$10, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$20, -8, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	$40, -8, 2, 2, $2A, 0, 0, 0, 0
+	spritePiece	$58, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0
+M_SSR_TailsGotAll_End
 	even
 
 ; ===========================================================================
@@ -5639,8 +5849,9 @@ BuildSprites:
 		btst	#5,d4		; is static mappings flag on?
 		bne.s	.drawFrame	; if yes, branch
 		move.b	obFrame(a0),d1
-		add.b	d1,d1
+		add.w	d1,d1			; MJ: changed from byte to word (we want more than 7F sprites)
 		adda.w	(a1,d1.w),a1	; get mappings frame address
+		moveq	#0,d1			; MJ: clear d1 (because of our byte to word change)
 		move.b	(a1)+,d1	; number of sprite pieces
 		subq.b	#1,d1
 		bmi.s	.setVisible
@@ -6221,6 +6432,15 @@ Map_WFall:	include	"_maps/Waterfalls.asm"
 ; ===========================================================================
 
 		include	"_incObj/01 Sonic.asm"
+		;include	"_incObj/Sonic DropDash.asm"
+		include	"_incObj/Sonic Super.asm"
+		include	"_incObj/TailsHeight.asm"
+		include	"_incObj/TailsFlight.asm"
+		include "_incObj/Sonic PanCamera.asm"
+		include	"_incObj/Sonic Peelout2.asm"
+		include	"_incObj/Sonic Peelout Continue.asm"
+		include	"_incObj/Sonic SpinDash.asm"
+		include	"_incObj/Tails SpinDash.asm"
 		include	"_incObj/0A Drowning Countdown.asm"
 
 
@@ -6234,28 +6454,46 @@ Map_WFall:	include	"_maps/Waterfalls.asm"
 ResumeMusic:
 		cmpi.w	#12,(v_air).w	; more than 12 seconds of air left?
 		bhi.s	.over12		; if yes, branch
-		move.w	#bgm_LZ,d0	; play LZ music
+		jsr	.resumezonemus
 		cmpi.w	#(id_LZ<<8)+3,(v_zone).w ; check if level is 0103 (SBZ3)
-		bne.s	.notsbz
+		bne.s	.fztestwater
 		move.w	#bgm_SBZ,d0	; play SBZ music
 
+.fztestwater:
+		cmpi.w	#(id_SBZ<<8)+2,(v_zone).w ; is level FZ?
+		bne.s	.notsbz
+		move.w	#bgm_FZ,d0		; play FZ music
+
 .notsbz:
-	if Revision<>0
-		tst.b	(v_invinc).w ; is Sonic invincible?
-		beq.s	.notinvinc ; if not, branch
-		move.w	#bgm_Invincible,d0
+		if Revision<>0
+			tst.b	(v_super).w ; is Sonic super?
+			beq.s	.notsuper ; if not, branch
+			move.w	#bgm_Super,d0
+			bra.s	.notinvinc
+	.notsuper:
+
+			tst.b	(v_invinc).w ; is Sonic invincible?
+			beq.s	.notinvinc ; if not, branch
+			move.w	#bgm_Invincible,d0
 .notinvinc:
-		tst.b	(f_lockscreen).w ; is Sonic at a boss?
-		beq.s	.playselected ; if not, branch
-		move.w	#bgm_Boss,d0
+			tst.b	(f_lockscreen).w ; is Sonic at a boss?
+			beq.s	.playselected ; if not, branch
+			move.w	#bgm_Boss,d0
 .playselected:
-	endif
+		endif
 
 		jsr	(QueueSound1).l
 
 .over12:
 		move.w	#30,(v_air).w	; reset air to 30 seconds
 		clr.b	(v_sonicbubbles+objoff_32).w
+		rts
+.resumezonemus:
+		moveq	#0,d0
+		move.b	(v_zone).w,d0
+		lea	(MusicList).l,a1 ; load music playlist
+		move.b	(a1,d0.w),d0
+		jsr	(QueueSound1).l
 		rts
 ; End of function ResumeMusic
 
@@ -7677,14 +7915,20 @@ Eni_JapNames:	binclude	"tilemaps/Hidden Japanese Credits.eni" ; Japanese credits
 		even
 Nem_JapNames:	binclude	"artnem/Hidden Japanese Credits.nem"
 		even
+Nem_TitleTails:	binclude	"artnem/Title Screen Tails.nem"
+		even
 
 Map_Sonic:	include	"_maps/Sonic.asm"
 SonicDynPLC:	include	"_maps/Sonic - Dynamic Gfx Script.asm"
+Map_Miles:	include	"_maps/Tails.asm"
+MilesDynPLC:	include	"_maps/Tails DPLC.asm"
+TlsAniData:	include	"_anim/Tails.asm"
 
 ; ---------------------------------------------------------------------------
 ; Uncompressed graphics - Sonic
 ; ---------------------------------------------------------------------------
 Art_Sonic:	binclude	"artunc/Sonic.bin"	; Sonic
+Art_Miles:	binclude	"artunc/Tails.bin"	; Tails
 		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - various
@@ -7945,6 +8189,8 @@ Nem_Hud:	binclude	"artnem/HUD.nem"	; HUD (rings, time, score)
 		even
 Nem_Lives:	binclude	"artnem/HUD - Life Counter Icon.nem"
 		even
+Nem_TailsLives:	binclude	"artnem/Tails life counter.nem"
+		even
 Nem_Ring:	binclude	"artnem/Rings.nem"
 		even
 Nem_Monitors:	binclude	"artnem/Monitors.nem"
@@ -7972,7 +8218,11 @@ Nem_Bonus:	binclude	"artnem/Hidden Bonuses.nem" ; hidden bonuses at end of a lev
 ; ---------------------------------------------------------------------------
 Nem_ContSonic:	binclude	"artnem/Continue Screen Sonic.nem"
 		even
+Nem_ContTails:	binclude	"artnem/Continue Screen Tails.nem"
+		even
 Nem_MiniSonic:	binclude	"artnem/Continue Screen Stuff.nem"
+		even
+Nem_MiniTails:	binclude	"artnem/Continue Screen Stuff Tails.nem"
 		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - animals
@@ -8064,6 +8314,8 @@ Nem_Exhaust:	binclude	"artnem/Boss - Exhaust Flame.nem"
 Nem_EndEm:	binclude	"artnem/Ending - Emeralds.nem"
 		even
 Nem_EndSonic:	binclude	"artnem/Ending - Sonic.nem"
+		even
+Nem_EndTails:	binclude	"artnem/Ending - Tails.nem"
 		even
 Nem_TryAgain:	binclude	"artnem/Ending - Try Again.nem"
 		even

@@ -20,9 +20,9 @@ v_ngfx_buffer_end:
 v_spritequeue:		ds.b	$400		; sprite display queue, in order of priority
 v_16x16:		ds.b	$1800		; 16x16 tile mappings
 
-v_sgfx_buffer:		ds.b	tile_size*23	; buffered Sonic graphics ($17 cells)
-v_sgfx_buffer_end:
-			ds.b	$20		; unused
+VDP_Command_Buffer:	ds.w	7*$12		; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
+VDP_Command_Buffer_Slot:ds.l	1		; stores the address of the next open slot for a queued VDP command
+			ds.b	$200		; unused ($200 were freed up by the new DMA Queue)
 v_tracksonic:		ds.b	$100		; position tracking data for Sonic
 v_hscrolltablebuffer:	ds.b	$380		; scrolling table data
 v_hscrolltablebuffer_end:
@@ -136,7 +136,10 @@ v_pcyc_num:		ds.w	1		; palette cycling - current reference number
 v_pcyc_time:		ds.w	1		; palette cycling - time until the next change
 v_random:		ds.l	1		; pseudo random number buffer
 f_pause:		ds.w	1		; flag set to pause the game
-			ds.b	4		; unused
+v_supersonpaltimer	ds.b	1		; super sonic palette
+v_supersonpalnum	ds.b	1		; super sonic palette
+v_supersonpal		ds.b	1		; super sonic palette
+			ds.b	1		; unused
 v_vdp_buffer2:		ds.w	1		; VDP instruction buffer
 			ds.b	2		; unused
 f_hbla_pal:		ds.w	1		; flag set to change palette during HBlank (0000 = no; 0001 = change)
@@ -149,7 +152,7 @@ f_wtr_state:		ds.b	1		; water palette state when water is above/below the screen
 f_doupdatesinhblank:	ds.b	1		; defers performing various tasks to the Horizontal Interrupt (H-Blank)
 v_pal_buffer:		ds.b	$30		; palette data buffer (used for palette cycling)
 v_misc_variables_end:
-
+v_palmuscounter = $FFFFFFBF ; counts up to 5 then runs UpdateMusic twice
 v_plc_buffer:		ds.b	6*16		; pattern load cues buffer (maximum $10 PLCs)
 v_plc_buffer_only_end:
 v_plc_ptrnemcode:	ds.l	1		; pointer for nemesis decompression code ($1502 or $150C)
@@ -235,7 +238,7 @@ v_palss_num:		ds.w	1		; palette cycling in Special Stage - reference number
 v_palss_time:		ds.w	1		; palette cycling in Special Stage - time until next change
 v_palss_index:		ds.w	1		; palette cycling in Special Stage - index into palette cycle 2 (unused?)
 v_ssbganim:		ds.w	1		; Special Stage background animation
-			ds.b	2		; unused
+v_camera_pan:		ds.w	1		; Extended Camera - how far the camera/view is panned to the left or right of Sonic (2 bytes)
 v_obj31ypos:		ds.w	1		; y-position of object 31 (MZ stomper)
 			ds.b	1		; unused
 v_bossstatus:		ds.b	1		; status of boss and prison capsule (01 = boss defeated; 02 = prison opened)
@@ -318,12 +321,13 @@ v_objstate_end:
 			ds.b	$140		; stack
 v_systemstack:
 v_crossresetram:				; RAM beyond this point is only cleared on a cold-boot
-			ds.b	2		; unused
+v_menupage		ds.b	1		; unused
+			ds.b	1		; unused
 f_restart:		ds.w	1		; restart level flag
 v_framecount:		ds.w	1		; frame counter (adds 1 every frame)
 v_framebyte = v_framecount+1			; low byte for frame counter
 v_debugitem:		ds.b	1		; debug item currently selected (NOT the object number of the item)
-			ds.b	1		; unused
+v_superframecount	ds.b	1		; unused
 v_debuguse:		ds.w	1		; debug mode use & routine counter (when Sonic is a ring/item)
 v_debugspeedtimer:		ds.b	1		; debug mode - timer before movement starts
 v_debugspeed:		ds.b	1		; debug mode - movement speed
@@ -333,7 +337,7 @@ v_vbla_byte = v_vbla_word+1			; low byte for vertical interrupt counter
 v_zone:			ds.b	1		; current zone number
 v_act:			ds.b	1		; current act number
 v_lives:		ds.b	1		; number of lives
-			ds.b	1		; unused
+v_super			ds.b	1		; unused
 v_air:			ds.w	1		; air remaining while underwater
 v_airbyte = v_air+1				; low byte for air
 v_lastspecial:		ds.b	1		; last special stage number
@@ -438,18 +442,20 @@ f_debugcheat:		ds.b	1		; debug mode cheat flag
 f_creditscheat:		ds.b	1		; hidden credits & press start cheat flag
 v_title_dcount:		ds.w	1		; number of times the d-pad is pressed on title screen
 v_title_ccount:		ds.w	1		; number of times C is pressed on title screen
-			ds.b	2		; unused
-v_unused2:		ds.w	1		; unused
-v_unused3:		ds.b	1		; unused
+v_spindashtoggle	ds.b	1		; turn off spindash individually
+v_flighttoggle		ds.b	1		; turn off tails flight
+v_peelouttoggle:	ds.w	1		; used to decide whether peelout is available (replaces v_unused2)
+v_unused3:		ds.b	1		; this is the spindash counter now, definition in Sonic Peelout2.asm
 v_unused4:		ds.b	1		; unused
 v_unused5:		ds.b	1		; unused
 v_unused6:		ds.b	1		; unused
 f_demo:			ds.w	1		; demo mode flag (0 = no; 1 = yes; $8001 = ending)
 v_demonum:		ds.w	1		; demo level number (not the same as the level number)
 v_creditsnum:		ds.w	1		; credits index number
-			ds.b	2		; unused
+v_character:		ds.b	1		; character choice
 v_megadrive:		ds.b	1		; Megadrive machine type
-			ds.b	1		; unused
+v_s1peelout:		ds.b	1		; turn on S1 peelout style
+v_bonusfeat		ds.b	1		; enable extra thing when starting zone
 f_debugmode:		ds.w	1		; debug mode flag
 v_init:			ds.l	1		; 'init' text string
 v_ram_end:

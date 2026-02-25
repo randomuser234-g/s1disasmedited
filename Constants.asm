@@ -15,6 +15,8 @@ PSG_Sample_Rate: equ Z80_Clock/16
 ; VDP addressses
 vdp_data_port:		equ $C00000
 vdp_control_port:	equ $C00004
+VDP_data_port:		equ vdp_data_port
+VDP_control_port: 	equ vdp_control_port
 vdp_counter:		equ $C00008
 
 psg_input:		equ $C00011
@@ -134,7 +136,7 @@ shoetime:	equ $34	; time left for speed shoes (2 bytes)
 angleright:	equ $36	; angle of floor on Sonic's right side
 angleleft:	equ $37	; angle of floor on Sonic's left side
 sticktoconvex:	equ $38	; flag set while running on an SBZ gear
-;unused:	equ $39	; unused by Sonic
+spindash_flag:	equ $39	; spin dash flag
 restartime:	equ $3A	; time left before level restarts after dying (2 bytes)
 jumping:	equ $3C	; flag set while Sonic is jumping
 standonobject:	equ $3D	; object index Sonic stands on
@@ -197,6 +199,8 @@ bgm_Continue:	equ ((ptr_mus90-MusicIndex)/4)+bgm__First
 bgm_Credits:	equ ((ptr_mus91-MusicIndex)/4)+bgm__First
 bgm_Drowning:	equ ((ptr_mus92-MusicIndex)/4)+bgm__First
 bgm_Emerald:	equ ((ptr_mus93-MusicIndex)/4)+bgm__First
+bgm_LevSel:	equ ((ptr_mus94-MusicIndex)/4)+bgm__First
+bgm_Super:	equ ((ptr_mus95-MusicIndex)/4)+bgm__First
 bgm__Last:	equ ((ptr_musend-MusicIndex-4)/4)+bgm__First
 
 ; Sound effects
@@ -507,7 +511,7 @@ ArtTile_Explosion:		equ $5A0
 ArtTile_Monitor:		equ $680
 ArtTile_HUD:			equ $6CA
 ArtTile_Sonic:			equ $780
-ArtTile_Points:			equ $797
+ArtTile_Points:			equ $6C6
 ArtTile_Lamppost:		equ $7A0
 ArtTile_Ring:			equ $7B2
 ArtTile_Lives_Counter:		equ $7D4
