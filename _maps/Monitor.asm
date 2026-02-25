@@ -1,76 +1,103 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - monitors
-; ---------------------------------------------------------------------------
-Map_Monitor_internal:	mappingsTable
-	mappingsTableEntry.w	.static0
-	mappingsTableEntry.w	.static1
-	mappingsTableEntry.w	.static2
-	mappingsTableEntry.w	.eggman
-	mappingsTableEntry.w	.sonic
-	mappingsTableEntry.w	.shoes
-	mappingsTableEntry.w	.shield
-	mappingsTableEntry.w	.invincible
-	mappingsTableEntry.w	.rings
-	mappingsTableEntry.w	.s
-	mappingsTableEntry.w	.goggles
-	mappingsTableEntry.w	.broken
+Map_e82f: mappingsTable
+	mappingsTableEntry.w	Map_e82f_0
+	mappingsTableEntry.w	Map_e82f_1
+	mappingsTableEntry.w	Map_e82f_2
+	mappingsTableEntry.w	Map_e82f_3
+	mappingsTableEntry.w	Map_e82f_4
+	mappingsTableEntry.w	Map_e82f_5
+	mappingsTableEntry.w	Map_e82f_6
+	mappingsTableEntry.w	Map_e82f_7
+	mappingsTableEntry.w	Map_e82f_8
+	mappingsTableEntry.w	Map_e82f_9
+	mappingsTableEntry.w	Map_e82f_10
+	mappingsTableEntry.w	Map_e82f_11
+	mappingsTableEntry.w	Map_e82f_12
 
-.static0:	spriteHeader
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0	; static monitor
-.static0_End
+Map_e82f_0:	spriteHeader
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_0_End
 
-.static1:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $10, 0, 0, 0, 0	; static monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.static1_End
+Map_e82f_1:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $D, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_1_End
 
-.static2:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $14, 0, 0, 0, 0	; static monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.static2_End
+Map_e82f_2:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $11, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_2_End
 
-.eggman:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $18, 0, 0, 0, 0	; Eggman monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.eggman_End
+Map_e82f_3:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $15, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_3_End
 
-.sonic:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $1C, 0, 0, 0, 0	; Sonic monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.sonic_End
+Map_e82f_4:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $19, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_4_End
 
-.shoes:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $24, 0, 0, 0, 0	; speed shoes monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.shoes_End
+Map_e82f_5:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $21, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_5_End
 
-.shield:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $28, 0, 0, 0, 0	; shield monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.shield_End
+Map_e82f_6:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $25, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_6_End
 
-.invincible:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $2C, 0, 0, 0, 0	; invincibility monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.invincible_End
+Map_e82f_7:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $29, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_7_End
 
-.rings:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $30, 0, 0, 0, 0	; 10 rings monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.rings_End
+Map_e82f_8:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $2D, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_8_End
 
-.s:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $34, 0, 0, 0, 0	; 'S' monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.s_End
+Map_e82f_9:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $31, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_9_End
 
-.goggles:	spriteHeader
-	spritePiece	-8, -$B, 2, 2, $20, 0, 0, 0, 0	; goggles monitor
-	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
-.goggles_End
+Map_e82f_10:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $1D, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_10_End
 
-.broken:	spriteHeader
-	spritePiece	-$10, -1, 4, 2, $38, 0, 0, 0, 0	; broken monitor
-.broken_End
+Map_e82f_11:	spriteHeader
+ spritePiece -$10, -1, 4, 2, $35, 0, 0, 0, 0
+Map_e82f_11_End
+
+Map_e82f_12:	spriteHeader
+ spritePiece -8, -$B, 2, 2, $3D, 0, 0, 0, 0
+ spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$11, 1, 3, 0, 1, 0, 0, 0
+ spritePiece 8, 7, 1, 1, $C, 0, 0, 0, 0
+Map_e82f_12_End
 
 	even

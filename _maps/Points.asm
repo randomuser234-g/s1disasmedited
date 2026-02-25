@@ -1,43 +1,50 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - points that appear when you destroy something
-; ---------------------------------------------------------------------------
-Map_Poi_internal:	mappingsTable
-	mappingsTableEntry.w	byte_94BC
-	mappingsTableEntry.w	byte_94C2
-	mappingsTableEntry.w	byte_94C8
-	mappingsTableEntry.w	byte_94CE
-	mappingsTableEntry.w	byte_94D4
-	mappingsTableEntry.w	byte_94DA
-	mappingsTableEntry.w	byte_94E5
+Map_f210: mappingsTable
+	mappingsTableEntry.w	Map_f210_0
+	mappingsTableEntry.w	Map_f210_1
+	mappingsTableEntry.w	Map_f210_2
+	mappingsTableEntry.w	Map_f210_3
+	mappingsTableEntry.w	Map_f210_4
+	mappingsTableEntry.w	Map_f210_5
+	mappingsTableEntry.w	Map_f210_6
 
-byte_94BC:	spriteHeader
-	spritePiece	-8, -4, 2, 1, 0, 0, 0, 0, 0	; 100 points
-byte_94BC_End
+Map_f210_0:	spriteHeader
+ spritePiece -5, -4, 1, 1, 0, 0, 0, 0, 0
+ spritePiece 0, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_0_End
 
-byte_94C2:	spriteHeader
-	spritePiece	-8, -4, 2, 1, 2, 0, 0, 0, 0	; 200 points
-byte_94C2_End
+Map_f210_1:	spriteHeader
+ spritePiece -5, -4, 1, 1, 2, 0, 0, 0, 0
+ spritePiece 0, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_1_End
 
-byte_94C8:	spriteHeader
-	spritePiece	-8, -4, 2, 1, 4, 0, 0, 0, 0	; 500 points
-byte_94C8_End
+Map_f210_2:	spriteHeader
+ spritePiece -5, -4, 1, 1, 3, 0, 0, 0, 0
+ spritePiece 0, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_2_End
 
-byte_94CE:	spriteHeader
-	spritePiece	-8, -4, 3, 1, 6, 0, 0, 0, 0	; 1000 points
-byte_94CE_End
+Map_f210_3:	spriteHeader
+ spritePiece -8, -4, 1, 1, 0, 0, 0, 0, 0
+ spritePiece -3, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece 2, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_3_End
 
-byte_94D4:	spriteHeader
-	spritePiece	-4, -4, 1, 1, 6, 0, 0, 0, 0	; 10 points
-byte_94D4_End
+Map_f210_4:	spriteHeader
+ spritePiece -4, -4, 1, 1, 0, 0, 0, 0, 0
+Map_f210_4_End
 
-byte_94DA:	spriteHeader
-	spritePiece	-$C, -4, 3, 1, 6, 0, 0, 0, 0	; 10,000 points
-	spritePiece	1, -4, 2, 1, 7, 0, 0, 0, 0
-byte_94DA_End
+Map_f210_5:	spriteHeader
+ spritePiece -$B, -4, 1, 1, 0, 0, 0, 0, 0
+ spritePiece -6, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece -1, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece 4, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_5_End
 
-byte_94E5:	spriteHeader
-	spritePiece	-$C, -4, 3, 1, 6, 0, 0, 0, 0	; 100,000 points
-	spritePiece	6, -4, 2, 1, 7, 0, 0, 0, 0
-byte_94E5_End
+Map_f210_6:	spriteHeader
+ spritePiece -$B, -4, 1, 1, 0, 0, 0, 0, 0
+ spritePiece -6, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece -1, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece 4, -4, 1, 1, 1, 0, 0, 0, 0
+ spritePiece 9, -4, 1, 1, 1, 0, 0, 0, 0
+Map_f210_6_End
 
 	even
