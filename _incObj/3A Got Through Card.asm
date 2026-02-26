@@ -48,10 +48,10 @@ Got_Loop:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	Got_LoopActNum		; if not, do nothing which continues "SONIC HAS" to load
 		moveq	#9,d0		; load "TAILS HAS" text
-		move.b	d0,obFrame(a0)
+		move.b	#9,obFrame(a0)
 		
 Got_LoopActNum:
-		cmpi.b	#7,d0
+		cmpi.b	#6,d0
 		bne.s	loc_C5CA
 		add.b	(v_act).w,d0	; add act number to frame number
 
