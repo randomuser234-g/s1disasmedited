@@ -5459,7 +5459,6 @@ Map_Over:	include	"_maps/Game Over.asm"
 ; ---------------------------------------------------------------------------
 Map_Got:	mappingsTable
 	mappingsTableEntry.w	M_Got_SonicHas	; "SONIC HAS" text
-	mappingsTableEntry.w	M_Got_TailsHas	; "TAILS HAS" text
 	mappingsTableEntry.w	M_Got_Passed	; "PASSED" text
 	mappingsTableEntry.w	M_Got_Score	; Score tally
 	mappingsTableEntry.w	M_Got_TBonus	; Time Bonus tally
@@ -5470,6 +5469,8 @@ Map_Got:	mappingsTable
 	mappingsTableEntry.w	M_Card_Act1	; Act number 1
 	mappingsTableEntry.w	M_Card_Act2	; Act number 2
 	mappingsTableEntry.w	M_Card_Act3	; Act number 3
+	;	Extra characters are put here so they get unique text without touching elsewhere
+	mappingsTableEntry.w	M_Got_TailsHas	; "TAILS HAS" text
 	
 M_Got_SonicHas:	spriteHeader	; SONIC HAS
 	spritePiece	-$48, -8, 2, 2, $3E, 0, 0, 0, 0	; S
@@ -5546,6 +5547,7 @@ Map_SSR:	mappingsTable
 	mappingsTableEntry.w	M_SSR_Continue	; Continue tally without mini Sonic
 	mappingsTableEntry.w	M_SSR_SpeStage	; "SPECIAL STAGE" text
 	mappingsTableEntry.w	M_SSR_GotAll	; "SONIC GOT THEM ALL" text
+	;	extra characters text for getting all emeralds
 	mappingsTableEntry.w	M_SSR_TailsGotAll;"TAILS GOT THEM ALL" text
 
 M_SSR_Chaos:	spriteHeader	; CHAOS EMERALDS
