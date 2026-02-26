@@ -74,6 +74,9 @@ Pow_ChkShoes:
 		cmpi.b	#3,d0		; does monitor contain speed shoes?
 		bne.s	Pow_ChkShield
 
+		tst.b	(v_super).w	; is Sonic already Super?
+		bne.w	Pow_ChkEnd		; if yes, don't change his speed
+
 		move.b	#1,(v_shoes).w	; speed up the BG music
 		move.w	#$4B0,(v_player+shoetime).w	; time limit for the power-up
 		move.w	#$C00,(v_sonspeedmax).w ; change Sonic's top speed
@@ -96,6 +99,9 @@ Pow_ChkShield:
 Pow_ChkInvinc:
 		cmpi.b	#5,d0		; does monitor contain invincibility?
 		bne.s	Pow_ChkRings
+
+		tst.b	(v_super).w	; is Sonic already Super?
+		bne.w	Pow_ChkEnd		; if yes, don't give him invincibility
 
 		move.b	#1,(v_invinc).w	; make Sonic invincible
 		move.w	#$4B0,(v_player+invtime).w ; time limit for the power-up
@@ -147,7 +153,7 @@ Pow_ChkS:
 		addi.w	#50,(v_rings).w	; add 50 rings to the number of rings you have
 		ori.b	#1,(f_ringcount).w ; update the ring counter
 		tst.b	(v_super).w	; is Sonic already Super?
-		bne.w	Pow_ChkEnd		; if yes, branch
+		bne.w	Pow_ChkEnd		; if yes, don't turn super again
 		lea	(v_player).w,a0	;move sonic as target so transform animation works
 		jmp	Sonic_GoSuper	;'S' monitor turns Sonic super
 		rts
