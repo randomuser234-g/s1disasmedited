@@ -538,6 +538,8 @@ locret_1307C:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 Sonic_MoveLeft:
+		btst	#2,obStatus(a0)	; is Sonic already rolling?
+		bne.s	locret_130E8		; if yes, branch
 		move.w	obInertia(a0),d0
 		beq.s	loc_13086
 		bpl.s	loc_130B2
@@ -592,6 +594,8 @@ locret_130E8:
 
 
 Sonic_MoveRight:
+		btst	#2,obStatus(a0)	; is Sonic already rolling?
+		bne.s	locret_1314E		; if yes, branch
 		move.w	obInertia(a0),d0
 		bmi.s	loc_13118
 		bclr	#0,obStatus(a0)
