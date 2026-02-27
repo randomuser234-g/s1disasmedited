@@ -3226,11 +3226,20 @@ Level_SkipTtlCard:
 		jsr	(ConvertCollisionArray).l
 		bsr.w	ColIndexLoad
 		bsr.w	LZWaterFeatures
-		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		jsr	InitPlayers
 		tst.w	(f_demo).w
 		bmi.s	Level_ChkDebug
 		move.b	#id_HUD,(v_hud).w ; load HUD object
+		bra.s	Level_ChkDebug
+InitPlayers:
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		bne.s	.tailsalone		; if not, load Tails
+		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		rts
 
+	.tailsalone:
+		move.b	#id_TailsPlayer,(v_player).w ; load Sonic object
+		rts
 Level_ChkDebug:
 		tst.b	(f_debugcheat).w ; has debug cheat been entered?
 		beq.s	Level_ChkWater	; if not, branch
@@ -4248,7 +4257,7 @@ End_LoadData:
 		move.b	#1,(f_debugmode).w ; enable debug mode
 
 End_LoadSonic:
-		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		jsr	InitPlayers
 		bset	#0,(v_player+obStatus).w ; make Sonic face left
 		move.b	#1,(f_lockctrl).w ; lock controls
 		move.w	#(btnL<<8),(v_jpadhold2).w ; move Sonic to the left
@@ -6434,6 +6443,7 @@ Map_WFall:	include	"_maps/Waterfalls.asm"
 ; ===========================================================================
 
 		include	"_incObj/01 Sonic.asm"
+		include	"_incObj/02 Tails.asm"
 		;include	"_incObj/Sonic DropDash.asm"
 		include	"_incObj/Sonic Super.asm"
 		include	"_incObj/TailsHeight.asm"
