@@ -26,6 +26,7 @@ dpcmLoopCounter function sampleRate, pcmLoopCounterBase(sampleRate,301/2) ; 301 
 Go_SoundPriorities:	dc.l SoundPriorities
 ; Go_SoundD0:
 Go_SpecSoundIndex:	dc.l SpecSoundIndex
+Go_ExtSoundIndex:	dc.l ExtSoundIndex
 Go_MusicIndex:		dc.l MusicIndex
 Go_SoundIndex:		dc.l SoundIndex
 ; off_719A0:
@@ -717,6 +718,8 @@ PlaySoundID:
 	if FixBugs
 		cmpi.b	#spec__Last,d7		; Is this special sfx ($D0-$D0)?
 		bls.w	Sound_PlaySpecial	; Branch if yes
+		cmpi.b	#ext__Last,d7		; Is this extra sfx ($D1-$DF)?
+		bls.w	Sound_PlayMoreSFX	; Branch if yes
 		cmpi.b	#flg__First,d7		; Is this after special sfx but before $E0?
 		blo.w	.locret			; Return if yes
 	else
@@ -988,6 +991,24 @@ PSGInitBytes:	dc.b $80, $A0, $C0	; Specifically, these configure writes to the P
 		even
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
+; Play extra sound effect
+; ---------------------------------------------------------------------------
+; Sound_D1toDF:
+Sound_PlayMoreSFX:
+		tst.b	SMPS_RAM.f_1up_playing(a6)	; Is 1-up playing?
+		bne.w	Sound_PlaySFX.clear_sndprio	; Exit if it is
+		tst.b	SMPS_RAM.v_fadeout_counter(a6)	; Is music being faded out?
+		bne.w	Sound_PlaySFX.clear_sndprio	; Exit if it is
+		tst.b	SMPS_RAM.f_fadein_flag(a6)	; Is music being faded in?
+		bne.w	Sound_PlaySFX.clear_sndprio	; Exit if it is
+
+		; Spin Dash rev effect goes here...
+
+		movea.l	(Go_ExtSoundIndex).l,a0		; Use Extended Sound Index
+		subi.b	#ext__First,d7			; Make it 0-based
+		bra.w	Sound_PlaySFX.sfx_common	; Remaining code is identical to default sfx logic
+; ===========================================================================
+; ---------------------------------------------------------------------------
 ; Play normal sound effect
 ; ---------------------------------------------------------------------------
 ; Sound_A0toCF:
@@ -1017,6 +1038,8 @@ Sound_PlaySFX:
 .sfx_notPush:
 		movea.l	(Go_SoundIndex).l,a0
 		subi.b	#sfx__First,d7		; Make it 0-based
+; SoundEffects_Common:
+.sfx_common:
 		lsl.w	#2,d7			; Convert sfx ID into index
 		movea.l	(a0,d7.w),a3		; SFX data pointer
 		movea.l	a3,a1
@@ -2794,6 +2817,15 @@ ptr_sndD0:	dc.l SoundD0
 ptr_specend
 
 ; ---------------------------------------------------------------------------
+; Extra sound effect pointers
+; ---------------------------------------------------------------------------
+ExtSoundIndex:
+ptr_sndD1:	dc.l SoundD1
+ptr_sndD2:	dc.l SoundD2
+ptr_sndD3:	dc.l SoundD3
+ptr_sndD4:	dc.l SoundD4
+ptr_extend
+; ---------------------------------------------------------------------------
 ; Sound effect data
 ; ---------------------------------------------------------------------------
 SoundA0:	include "sound/sfx/SndA0 - Jump.asm"
@@ -2897,6 +2929,14 @@ SoundCF:	include "sound/sfx/SndCF - Signpost.asm"
 ; Special sound effect data
 ; ---------------------------------------------------------------------------
 SoundD0:	include "sound/sfx/SndD0 - Waterfall.asm"
+		even
+SoundD1:	include "sound/sfx/D1 - Peelout Charge.asm"
+		even
+SoundD2:	include "sound/sfx/D2 - Peelout Release.asm"
+		even
+SoundD3:	include "sound/sfx/D3 - Peelout Stop.asm"
+		even
+SoundD4:	include "sound/sfx/D4 - Spin Dash Rev.asm"
 		even
 
 ; ---------------------------------------------------------------------------
