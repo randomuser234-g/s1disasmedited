@@ -6,14 +6,14 @@ Sonic_SpinDash:
 		cmpi.b	#id_Walk,obAnim(a0)
 		beq.s	rts_SonicSpinDash
 		cmpi.b	#1,spindash_flag(a0)
-		beq.s	Sonic_UpdateSpinDash
+		beq.w	Sonic_UpdateSpinDash
 		cmpi.b	#id_Duck,obAnim(a0)
 		bne.s	rts_SonicSpinDash
 		move.b	(v_jpadpress2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	rts_SonicSpinDash
 		move.b	#id_Roll,obAnim(a0)
-		move.w	#sfx_Roll,d0
+		move.w	#sfx_PeelCharge,d0
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
@@ -29,6 +29,8 @@ Sonic_SpinDash:
 rts_SonicSpinDash:
 		rts
 SpinDash_DoNothing:
+		move.w	#sfx_PeelStop,d0	; spindash zoom sound
+		jsr	(QueueSound2).l 
 		move.b	#$13,obHeight(a0)	; set Sonic's hitbox to standing.
 		jsr	TailsHeight
 		move.b	#9,obWidth(a0)
@@ -61,7 +63,7 @@ Sonic_UpdateSpinDash:
 		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter
 		bset	#2,obStatus(a0)
-		move.w	#sfx_Teleport,d0	; spindash zoom sound
+		move.w	#sfx_PeelRelease,d0	; spindash zoom sound
 		jsr	(QueueSound2).l 
 		bra.s	.donothingloop
 		nop

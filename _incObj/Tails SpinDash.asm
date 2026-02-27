@@ -14,7 +14,7 @@ Tails_SpinDash:
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	Tails_SpinDashDoNothing
 		move.b	#id_SpinDash,obAnim(a0)
-		move.w	#sfx_Roll,d0
+		move.w	#sfx_SpinDash,d0
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
@@ -99,7 +99,7 @@ Tails_ChargingSpindash:			; If still charging the dash...
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	Tails_Spindash_ResetScr
 		move.w	#(id_SpinDash<<8)|(id_Walk<<0),obAnim(a0)
-		move.w	#sfx_Roll,d0
+		move.w	#sfx_SpinDash,d0
 		jsr	(QueueSound2).l
 		beq.w	Tails_Spindash_ResetScr
 		addi.w	#$200,spindash_counter(a0)

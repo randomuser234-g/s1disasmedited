@@ -17,7 +17,7 @@ Sonic_Peelout:
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	rts_SonicPeelout
 		move.b	#id_Walk,obAnim(a0)
-		move.w	#sfx_Roll,d0
+		move.w	#sfx_PeelCharge,d0
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#2,spindash_flag(a0)
@@ -29,6 +29,8 @@ Sonic_Peelout:
 rts_SonicPeelout:
 		rts
 Peelout_DoNothing:
+		move.w	#sfx_PeelStop,d0	; spindash zoom sound
+		jsr	(QueueSound2).l 
 		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter
 		clr.w	obInertia(a0)		; kill whatever little speed we've built up
@@ -58,7 +60,7 @@ Sonic_UpdatePeelout:
 		move.b	#id_Walk,obAnim(a0)
 		clr.b	spindash_flag(a0)		; clear Spin Dash flag
 		clr.w	spindash_counter(a0)
-		move.w	#sfx_Teleport,d0	; spindash zoom sound
+		move.w	#sfx_PeelRelease,d0	; spindash zoom sound
 		jsr	(QueueSound2).l 
 		bra.s	.donothingloop
 		nop
