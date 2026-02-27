@@ -2,10 +2,10 @@
 ; Object pointers
 ; ---------------------------------------------------------------------------
 ptr_SonicPlayer:	dc.l SonicPlayer	; $01
-ptr_Obj02:		dc.l NullObject
+ptr_TailsPlayer:	dc.l TailsPlayer
 ptr_Obj03:		dc.l NullObject
 ptr_Obj04:		dc.l NullObject
-ptr_Obj05:		dc.l NullObject
+ptr_TailsTails:		dc.l NullObject
 ptr_Obj06:		dc.l NullObject
 ptr_Obj07:		dc.l NullObject
 ptr_Splash:		dc.l Splash		; $08
@@ -146,10 +146,10 @@ NullObject:
 		;jmp	(DeleteObject).l	; It would be safer to have this instruction here, but instead it just falls through to ObjectFall
 
 id_SonicPlayer:		equ ((ptr_SonicPlayer-Obj_Index)/4)+1		; $01
-id_Obj02:		equ ((ptr_Obj02-Obj_Index)/4)+1
+id_TailsPlayer:		equ ((ptr_TailsPlayer-Obj_Index)/4)+1
 id_Obj03:		equ ((ptr_Obj03-Obj_Index)/4)+1
 id_Obj04:		equ ((ptr_Obj04-Obj_Index)/4)+1
-id_Obj05:		equ ((ptr_Obj05-Obj_Index)/4)+1
+id_TailsTails:		equ ((ptr_TailsTails-Obj_Index)/4)+1
 id_Obj06:		equ ((ptr_Obj06-Obj_Index)/4)+1
 id_Obj07:		equ ((ptr_Obj07-Obj_Index)/4)+1
 id_Splash:		equ ((ptr_Splash-Obj_Index)/4)+1		; $08
