@@ -34,15 +34,7 @@ Sonic_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
-		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
-		bra.s	.loadmap		; branch to rest of code
-
-	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
-
-	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#$18,obActWid(a0)
@@ -1737,15 +1729,15 @@ Sonic_Animate:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.sonicani		; if not, load Sonic's animations
 		lea	(Ani_Tails).l,a1	; load Tails' animations
-		bra.s	.loadani		; branch to rest of code
+		bra.s	Sonic_Animate2		; branch to rest of code
 
 .sonicani:
 		lea	(Ani_Sonic).l,a1
 		tst.b	(v_super).w	; is Sonic Super?
-		beq.w	.loadani		; if not, branch
+		beq.w	Sonic_Animate2		; if not, branch
 .supersonani:
 		lea	(Ani_SuperSonic).l,a1
-.loadani:
+Sonic_Animate2:
 		moveq	#0,d0
 		move.b	obAnim(a0),d0
 		cmp.b	obPrevAni(a0),d0 ; has animation changed?
