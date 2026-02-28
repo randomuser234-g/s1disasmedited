@@ -46,6 +46,7 @@ Tails_Main:	; Routine 0
 		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
 		move.w	#$C,(v_sonspeedacc).w ; Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; Sonic's deceleration
+		move.b	#id_TailsTails,(v_tailstails).w ; load Tails' tails object
 
 ; Obj02_Control:
 Tails_Control:	; Routine 2
@@ -1822,7 +1823,7 @@ Tails_Animate2:
 
 .nomodspeedtails:
 		lea	(TlsAni_RunFast).l,a1 ; use Tails' running animation
-		cmpi.w	#$A00,d2	; is Tails at higher running speed?
+		cmpi.w	#$700,d2	; is Tails at higher running speed?
 		bcc.s	.runningtails	; if yes, branch
 		lea	(TlsAni_Run).l,a1 ; use Tails' running animation
 		cmpi.w	#$600,d2	; is Tails at running speed?
@@ -1830,7 +1831,7 @@ Tails_Animate2:
 		lea	(TlsAni_Walk).l,a1 ; use Tails' walking animation
 		add.b	d0,d0
 .runningtails:
-		cmpi.w	#$A00,d2	; is Tails at higher running speed?
+		cmpi.w	#$700,d2	; is Tails at higher running speed?
 		bcc.s	.peeloutfasttails	; if yes, branch
 		add.b	d0,d0
 		move.b	d0,d3
@@ -1860,8 +1861,8 @@ Tails_Animate2:
 
 ; SAnim_RollJump:
 .rolljump:
-		addq.b	#1,d0		; is animation rolling/jumping?
-		bne.s	.jumptopush		; if not, branch
+		addq.b	#1,d0		; is the end flag = $FE?
+		bne.w	.TAnim_GetTailFrame	; if not, branch
 		move.w	obInertia(a0),d2 ; get Sonic's speed
 		bpl.s	.nomodspeed2
 		neg.w	d2
@@ -1915,6 +1916,41 @@ Tails_Animate2:
 		or.b	d1,obRender(a0)
 		bra.w	.loadframe
 
+; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+.TAnim_GetTailFrame:				; CODE XREF: Tails_Animate+1B8j
+		move.w	(v_player+obVelX).w,d1
+		move.w	(v_player+obVelY).w,d2
+		jsr	(CalcAngle).l
+		moveq	#0,d1
+		move.b	obStatus(a0),d2
+		andi.b	#1,d2
+		bne.s	.loc_11BA6
+		not.b	d0
+		bra.s	.loc_11BAA
+; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+.loc_11BA6:				; CODE XREF: Tails_Animate+204j
+		addi.b	#$80,d0
+
+.loc_11BAA:				; CODE XREF: Tails_Animate+208j
+		addi.b	#$10,d0
+		bpl.s	.loc_11BB2
+		moveq	#3,d1
+
+.loc_11BB2:				; CODE XREF: Tails_Animate+212j
+		andi.b	#$FC,obRender(a0)
+		eor.b	d1,d2
+		or.b	d2,obRender(a0)
+		lsr.b	#3,d0
+		andi.b	#$C,d0
+		move.b	d0,d3
+		lea	(Obj05Ani_Directional).l,a1
+		move.b	#3,obTimeFrame(a0)
+		bsr.w	.loadframe
+		add.b	d3,obFrame(a0)
+		rts
+
 ; End of function Tails_Animate
 
 
@@ -1936,9 +1972,9 @@ Tails_LoadGfx:
 		rts
 	.movefromanimtest:
 		move.b	obFrame(a0),d0			; get Sonic's current frame
-		cmp.b	(v_sonframenum).w,d0		; has the frame changed?
+		cmp.b	(v_tlsframenum).w,d0		; has the frame changed?
 		beq.s	.end				; if not, nothing to do
-		move.b	d0,(v_sonframenum).w		; update cached frame number
+		move.b	d0,(v_tlsframenum).w		; update cached frame number
 		lea	(MilesDynPLC).l,a2	; load Tails' DPLC
 		move.w	#ArtTile_Tails*tile_size,d4	; starting VRAM tile
 		move.l	#Art_Miles,d6

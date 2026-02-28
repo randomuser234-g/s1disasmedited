@@ -1,0 +1,147 @@
+; ===========================================================================
+; ----------------------------------------------------------------------------
+; Object 05 - Tails' tails
+; ----------------------------------------------------------------------------
+; Sprite_1D200:
+Obj05:
+	moveq	#0,d0
+	move.b	obRoutine(a0),d0
+	move.w	Obj05_Index(pc,d0.w),d1
+	jmp	Obj05_Index(pc,d1.w)
+; ===========================================================================
+; off_1D20E: Obj05_States:
+Obj05_Index:
+		dc.w Obj05_Init-Obj05_Index	; 0
+		dc.w Obj05_Main-Obj05_Index	; 2
+; ===========================================================================
+TailsTails_LastLoadedDPLC = v_tlstlsframenum
+Obj05_parent_prev_anim = objoff_30
+
+; loc_1D212
+Obj05_Init:
+	addq.b	#2,obRoutine(a0) ; => Obj05_Main
+	move.l	#Map_Miles,obMap(a0)
+	move.w	#make_art_tile(ArtTile_TailsTails,0,0),obGfx(a0)
+	move.b	#2,obPriority(a0)
+	move.b	#$18,obActWid(a0)
+	move.b	#4,obRender(a0)
+
+; loc_1D23A:
+Obj05_Main:
+
+	move.b	(v_player+obAngle).w,obAngle(a0)
+	move.b	(v_player+obStatus).w,obStatus(a0)
+	move.w	(v_player+obX).w,obX(a0)
+	move.w	(v_player+obY).w,obY(a0)
+	moveq	#0,d0
+	move.b	(v_player+obAnim).w,d0
+	cmp.b	$30(a0),d0
+	beq.s	.display
+	move.b	d0,$30(a0)
+	move.b	Obj05AniSelection(pc,d0.w),obAnim(a0)
+; loc_1D288:
+.display:
+	lea	(Obj05AniData).l,a1
+	bsr.w	Tails_Animate2
+	bsr.w	LoadTailsTailsDynPLC
+	jsr	(DisplaySprite).l
+	rts
+; ===========================================================================
+; animation master script table for the tails
+; chooses which animation script to run depending on what Tails is doing
+; byte_1D29E:
+Obj05AniSelection:
+	dc.b	0,0	; TailsAni_Walk,Run	->
+	dc.b	3	; TailsAni_Roll		-> Directional
+	dc.b	3	; TailsAni_Roll2	-> Directional
+	dc.b	9	; TailsAni_Push		-> Pushing
+	dc.b	1	; TailsAni_Wait		-> Swish
+	dc.b	0	; TailsAni_Balance	-> Blank
+	dc.b	2	; TailsAni_LookUp	-> Flick
+	dc.b	1	; TailsAni_Duck		-> Swish
+	dc.b	7	; TailsAni_SpinDash	-> Spindash
+	dc.b	0,0,0	; TailsAni_Dummy1,2,3	->
+	dc.b	8	; TailsAni_Stop		-> Skidding
+	dc.b	0,0	; TailsAni_Float,2	->
+	dc.b	0	; TailsAni_Spring	->
+	dc.b	0	; TailsAni_Hang		->
+	dc.b	0,0	; TailsAni_Leap1,2	->
+	dc.b	$A	; TailsAni_Hang2	-> Hanging
+	dc.b	0	; TailsAni_GetAir	->
+	dc.b	0,0,0,0	; TailsAni_Death,2,3,4	->
+	dc.b	0,0	; TailsAni_Hurt,WaterSlide	->
+	dc.b	0	; TailsAni_Null	->
+	dc.b	0,0	; TailsAni_Dummy4,5	->
+	dc.b	0	; TailsAni_RunFast	->
+	dc.b	0	; TailsAni_Fly		->
+	even
+; ---------------------------------------------------------------------------
+; Animation script - Tails' tails
+; ---------------------------------------------------------------------------
+; off_1D2C0:
+Obj05AniData:
+		dc.w Obj05Ani_Blank-Obj05AniData	;  0
+		dc.w Obj05Ani_Swish-Obj05AniData	;  1
+		dc.w Obj05Ani_Flick-Obj05AniData	;  2
+		dc.w Obj05Ani_Directional-Obj05AniData	;  3
+		dc.w Obj05Ani_DownLeft-Obj05AniData	;  4
+		dc.w Obj05Ani_Down-Obj05AniData	;  5
+		dc.w Obj05Ani_DownRight-Obj05AniData	;  6
+		dc.w Obj05Ani_Spindash-Obj05AniData	;  7
+		dc.w Obj05Ani_Skidding-Obj05AniData	;  8
+		dc.w Obj05Ani_Pushing-Obj05AniData	;  9
+		dc.w Obj05Ani_Hanging-Obj05AniData	; $A
+
+Obj05Ani_Blank:		dc.b $20,  0,$FF
+	even
+Obj05Ani_Swish:		dc.b   7,  9, $A, $B, $C, $D,$FF
+	even
+Obj05Ani_Flick:		dc.b   3,  9, $A, $B, $C, $D,$FD,  1
+	even
+Obj05Ani_Directional:	dc.b $FC,$49,$4A,$4B,$4C,$FF ; Tails is moving right
+	even
+Obj05Ani_DownLeft:	dc.b   3,$4D,$4E,$4F,$50,$FF ; Tails is moving up-right
+	even
+Obj05Ani_Down:		dc.b   3,$51,$52,$53,$54,$FF ; Tails is moving up
+	even
+Obj05Ani_DownRight:	dc.b   3,$55,$56,$57,$58,$FF ; Tails is moving up-left
+	even
+Obj05Ani_Spindash:	dc.b   2,$81,$82,$83,$84,$FF
+	even
+Obj05Ani_Skidding:	dc.b   2,$87,$88,$89,$8A,$FF
+	even
+Obj05Ani_Pushing:	dc.b   9,$87,$88,$89,$8A,$FF
+	even
+Obj05Ani_Hanging:	dc.b   9,$81,$82,$83,$84,$FF
+	even
+
+; ===========================================================================
+; ===========================================================================
+
+; ---------------------------------------------------------------------------
+; Tails' Tails pattern loading subroutine
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+; loc_1D184:
+LoadTailsTailsDynPLC:
+		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
+		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
+		bra.s	.movefromanimtest		; branch to rest of code
+.nullanim
+		move.b	#0,obFrame(a0)	; load sprite number
+		rts
+	.movefromanimtest:
+		move.b	obFrame(a0),d0			; get Sonic's current frame
+		cmp.b	(v_tlstlsframenum).w,d0		; has the frame changed?
+		beq.s	.end				; if not, nothing to do
+		move.b	d0,(v_tlstlsframenum).w		; update cached frame number
+		lea	(MilesDynPLC).l,a2	; load Tails' DPLC
+		move.w	#ArtTile_TailsTails*tile_size,d4	; starting VRAM tile
+		move.l	#Art_Miles,d6
+		jmp	(LoadDynPLC).l			; load DPLC
+
+
+.end:
+	rts

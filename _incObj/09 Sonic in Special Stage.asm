@@ -28,13 +28,14 @@ Obj09_Main:	; Routine 0
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.sonicmap		; if not, load Sonic's mappings
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
+		move.b	#id_TailsTails,(v_tailstails).w ; load Tails tails object
 		bra.s	.loadmap		; branch to rest of code
 
 	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
-
-	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+	.loadmap:
 		move.b	#4,obRender(a0)
 		move.b	#0,obPriority(a0)
 		move.b	#id_Roll,obAnim(a0)
