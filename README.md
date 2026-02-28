@@ -26,7 +26,7 @@ there are leftover comments from SCHG sonic retro as the code isn't 100% origina
 
 known issues:
 
-Innacuracies to SCD/S2/S3 (no tails/tails' tails object, different flight physics)
+different flight physics from sonic 3
 
 Infinite flight (flight code ported from S3 prototype)
 
