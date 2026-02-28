@@ -34,6 +34,7 @@ ESon_Main2:
 		clr.b	obStatus(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#0,obFrame(a0)
+		move.b	#0,(v_tailstails).w ; delete tails' tails object
 		move.w	#80,eson_time(a0) ; set duration for Sonic to pause
 
 ESon_MakeEmeralds:
