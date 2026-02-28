@@ -115,7 +115,9 @@ Spin_Spinner:	; Routine 4
 		addq.w	#1,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
-		bra.w	RememberState
+		bra.w	.rememberstate
+.rememberstate:
+		jmp	RememberState
 ; ===========================================================================
 
 .notsolid2:
@@ -127,4 +129,4 @@ Spin_Spinner:	; Routine 4
 		clr.b	obSolid(a0)
 
 .display:
-		bra.w	RememberState
+		bra.w	.rememberstate
