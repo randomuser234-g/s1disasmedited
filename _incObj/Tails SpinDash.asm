@@ -6,6 +6,8 @@
 
 
 Tails_SpinDash:
+		cmpi.b	#1,(v_spindashtoggle).w	; check if spindash toggle is 1 (indicating no spindash)
+		beq.w	Tails_SpinDashDoNothing	;if yes, do nothing
 		cmpi.b	#1,spindash_flag(a0)
 		beq.s	Tails_UpdateSpindash
 		cmpi.b	#id_Duck,obAnim(a0)

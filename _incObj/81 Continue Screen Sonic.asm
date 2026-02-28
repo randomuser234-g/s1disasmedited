@@ -47,8 +47,8 @@ CSon_ChkLand:	; Routine 2
 
 CSon_ShowFall:
 		jsr	(SpeedToPos).l
-		jsr	(Sonic_Animate).l
-		jmp	(Sonic_LoadGfx).l
+		jsr	(Player_ChkAnim).l
+		jmp	(Player_ChkGfx).l
 ; ===========================================================================
 
 CSon_Animate:	; Routine 4
@@ -86,5 +86,5 @@ CSon_AddInertia:
 
 CSon_ShowRun:
 		jsr	(SpeedToPos).l
-		jsr	(Sonic_Animate).l
-		jmp	(Sonic_LoadGfx).l
+		jsr	(Player_ChkAnim).l
+		jmp	(Player_ChkGfx).l

@@ -5,8 +5,6 @@ Sonic_Peelout:
 		beq.w	rts_SonicPeelout	;if yes, don't perform it
 		cmpi.b	#1,(v_s1peelout).w	; check if s1 peelout flag to 1
 		beq.w	Sonic_ContPeelout	;do s1 style peelout, based on continue
-		cmpi.b	#1,(v_character).w	; check if multiple character flag is set 1 (indicating Tails)
-		beq.w	rts_SonicPeelout
 		cmpi.b	#id_Roll,obAnim(a0)
 		beq.s	rts_SonicPeelout
 		cmpi.b	#2,spindash_flag(a0)

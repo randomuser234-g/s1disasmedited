@@ -55,7 +55,7 @@ Obj09_NoDebug:
 		andi.w	#2,d0
 		move.w	Obj09_Modes(pc,d0.w),d1
 		jsr	Obj09_Modes(pc,d1.w)
-		jsr	(Sonic_LoadGfx).l
+		jsr	(Player_ChkGfx).l
 		jmp	(DisplaySprite).l
 ; ===========================================================================
 Obj09_Modes:	dc.w Obj09_OnWall-Obj09_Modes
@@ -83,7 +83,7 @@ Obj09_Display:
 		move.w	(v_ssangle).w,d0
 		add.w	(v_ssrotate).w,d0
 		move.w	d0,(v_ssangle).w
-		jsr	(Sonic_Animate).l
+		jsr	(Player_ChkAnim).l
 		rts
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -332,8 +332,8 @@ loc_1BC12:
 		move.w	(v_ssangle).w,d0
 		add.w	(v_ssrotate).w,d0
 		move.w	d0,(v_ssangle).w
-		jsr	(Sonic_Animate).l
-		jsr	(Sonic_LoadGfx).l
+		jsr	(Player_ChkAnim).l
+		jsr	(Player_ChkGfx).l
 		bsr.w	SS_FixCamera
 		jmp	(DisplaySprite).l
 ; ===========================================================================
@@ -344,8 +344,8 @@ Obj09_Exit2:
 		move.b	#id_Level,(v_gamemode).w
 
 loc_1BC40:
-		jsr	(Sonic_Animate).l
-		jsr	(Sonic_LoadGfx).l
+		jsr	(Player_ChkAnim).l
+		jsr	(Player_ChkGfx).l
 		bsr.w	SS_FixCamera
 		jmp	(DisplaySprite).l
 

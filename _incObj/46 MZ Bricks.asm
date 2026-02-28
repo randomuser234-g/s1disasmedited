@@ -91,7 +91,13 @@ loc_E8A8:
 Brick_Type03:
 		bsr.w	SpeedToPos
 		addi.w	#$18,obVelY(a0)	; increase falling speed
-		bsr.w	ObjFloorDist
+		bsr.w	.objfloordist
+		bra.s	.contafterobjfloor
+.objfloordist:
+		jsr	ObjFloorDist
+		rts
+
+.contafterobjfloor:
 		tst.w	d1		; has the block hit the floor?
 		bpl.w	locret_E8EE	; if not, branch
 		add.w	d1,obY(a0)

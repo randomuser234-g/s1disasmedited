@@ -1,8 +1,6 @@
 Tails_Flight:
 		cmpi.b	#1,(v_flighttoggle).w	; check if flight toggle is 1 (indicating no flight)
 		beq.w	rts_TailsFlight
-		cmpi.b	#1,(v_character).w	; set the multiple character flag to 1 (indicating Tails)
-		bne.w	rts_TailsFlight
 		btst	#2,obStatus(a0)
 		beq.w	rts_TailsFlight
 		move.b	(v_jpadpress2).w,d0
