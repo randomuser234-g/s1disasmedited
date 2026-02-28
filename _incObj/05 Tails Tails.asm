@@ -56,29 +56,30 @@ Obj05_Main:
 ; chooses which animation script to run depending on what Tails is doing
 ; byte_1D29E:
 Obj05AniSelection:
-	dc.b	0,0	; TailsAni_Walk,Run	->
-	dc.b	3	; TailsAni_Roll		-> Directional
-	dc.b	3	; TailsAni_Roll2	-> Directional
-	dc.b	9	; TailsAni_Push		-> Pushing
-	dc.b	1	; TailsAni_Wait		-> Swish
-	dc.b	0	; TailsAni_Balance	-> Blank
-	dc.b	2	; TailsAni_LookUp	-> Flick
-	dc.b	1	; TailsAni_Duck		-> Swish
-	dc.b	7	; TailsAni_SpinDash	-> Spindash
-	dc.b	0,0,0	; TailsAni_Dummy1,2,3	->
-	dc.b	8	; TailsAni_Stop		-> Skidding
-	dc.b	0,0	; TailsAni_Float,2	->
-	dc.b	0	; TailsAni_Spring	->
-	dc.b	0	; TailsAni_Hang		->
-	dc.b	0,0	; TailsAni_Leap1,2	->
-	dc.b	$A	; TailsAni_Hang2	-> Hanging
-	dc.b	0	; TailsAni_GetAir	->
-	dc.b	0,0,0,0	; TailsAni_Death,2,3,4	->
-	dc.b	0,0	; TailsAni_Hurt,WaterSlide	->
-	dc.b	0	; TailsAni_Null	->
-	dc.b	0,0	; TailsAni_Dummy4,5	->
-	dc.b	0	; TailsAni_RunFast	->
-	dc.b	0	; TailsAni_Fly		->
+	dc.b	0,0	; TlsAni_Walk,Run	->
+	dc.b	3	; TlsAni_Roll		-> Directional
+	dc.b	3	; TlsAni_Roll2	-> Directional
+	dc.b	9	; TlsAni_Push		-> Pushing
+	dc.b	1	; TlsAni_Wait		-> Swish
+	dc.b	0	; TlsAni_Balance	-> Blank
+	dc.b	2	; TlsAni_LookUp	-> Flick
+	dc.b	1	; TlsAni_Duck		-> Swish
+	dc.b	0,0,0,0	; TlsAni_Warp1,2,3,4	->
+	dc.b	8	; TlsAni_Stop		-> Skidding
+	dc.b	0,0	; TlsAni_Float1,2	->
+	dc.b	0	; TlsAni_Spring	->
+	dc.b	0	; TlsAni_Hang		->
+	dc.b	0,0	; TlsAni_Leap1,2	->
+	dc.b	$A	; TlsAni_Surf	-> Hanging
+	dc.b	0	; TlsAni_GetAir	->
+	dc.b	0,0,0,0	; TlsAni_Burnt,Drown,Death,Shrink	->
+	dc.b	0,0	; TlsAni_Hurt,WaterSlide	->
+	dc.b	0	; TlsAni_Null	->
+	dc.b	0,0	; TlsAni_Float3,4	->
+	dc.b	7	; TlsAni_SpinDash	-> Spindash
+	dc.b	0	; TlsAni_RunFast	->
+	dc.b	0	; TlsAni_Fly		->
+	dc.b	0	; TlsAni_Transform	->
 	even
 ; ---------------------------------------------------------------------------
 ; Animation script - Tails' tails
