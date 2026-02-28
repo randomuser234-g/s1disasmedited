@@ -107,6 +107,7 @@ Obj87_Leap:	; Routine $10
 		move.b	#5,obFrame(a0)
 		move.b	#2,obAnim(a0)	; use "leaping" animation
 		move.b	#id_EndSTH,(v_endlogo).w ; load "SONIC THE HEDGEHOG" object
+		move.b	#0,(v_tailstails).w ; delete tails' tails object
 		bra.s	Obj87_Animate
 ; ===========================================================================
 
