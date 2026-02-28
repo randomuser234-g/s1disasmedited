@@ -30,7 +30,7 @@ Innacuracies to SCD/S2/S3 (no tails/tails' tails object, different flight physic
 
 Infinite flight (flight code ported from S3 prototype)
 
-one of Tails' diagonal frames are corrupted for some reason
+one of Tails' frames are corrupted for some reason
 
 may be other issues I don't know
 
