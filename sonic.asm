@@ -6444,6 +6444,7 @@ Map_WFall:	include	"_maps/Waterfalls.asm"
 
 		include	"_incObj/01 Sonic.asm"
 		include	"_incObj/02 Tails.asm"
+		include	"_incObj/05 Tails Tails.asm"
 		;include	"_incObj/Sonic DropDash.asm"
 		include	"_incObj/Sonic Super.asm"
 		include	"_incObj/TailsHeight.asm"

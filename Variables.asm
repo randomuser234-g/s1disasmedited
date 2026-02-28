@@ -52,6 +52,7 @@ v_gameovertext1	= v_objspace+object_size*2	; object variable space for the "GAME
 v_gameovertext2	= v_objspace+object_size*3	; object variable space for the "OVER" in "GAME OVER"/"TIME OVER" text ($40 bytes)
 
 v_shieldobj	= v_objspace+object_size*6	; object variable space for the shield ($40 bytes)
+v_tailstails	= v_objspace+object_size*7	; object variable space for Tails' tails ($40 bytes)
 v_starsobj1	= v_objspace+object_size*8	; object variable space for the invincibility stars #1 ($40 bytes)
 v_starsobj2	= v_objspace+object_size*9	; object variable space for the invincibility stars #2 ($40 bytes)
 v_starsobj3	= v_objspace+object_size*10	; object variable space for the invincibility stars #3 ($40 bytes)
@@ -220,9 +221,9 @@ v_sonspeeddec:		ds.w	1		; Sonic's deceleration
 v_sonframenum:		ds.b	1		; frame to display for Sonic
 f_sonframechg:		ds.b	1		; flag set to update Sonic's sprite frame
 v_anglebuffer:		ds.b	1		; angle of collision block that Sonic or object is standing on
-			ds.b	1		; unused
+v_tlsframenum:		ds.b	1		; frame to display for Tails
 v_anglebuffer2:		ds.b	1		; other angle of collision block that Sonic or object is standing on
-			ds.b	1		; unused
+v_tlstlsframenum:	ds.b	1		; frame to display for Tails' tails
 v_opl_routine:		ds.b	1		; ObjPosLoad - routine counter
 			ds.b	1		; unused
 v_opl_screen:		ds.w	1		; ObjPosLoad - screen variable
