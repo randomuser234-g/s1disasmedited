@@ -3238,7 +3238,7 @@ InitPlayers:
 		rts
 
 	.tailsalone:
-		move.b	#id_TailsPlayer,(v_player).w ; load Sonic object
+		move.b	#id_TailsPlayer,(v_player).w ; load Tails object
 		rts
 Level_ChkDebug:
 		tst.b	(f_debugcheat).w ; has debug cheat been entered?
@@ -6454,6 +6454,7 @@ Map_WFall:	include	"_maps/Waterfalls.asm"
 		include	"_incObj/Sonic SpinDash.asm"
 		include	"_incObj/Tails SpinDash.asm"
 		include	"_incObj/0A Drowning Countdown.asm"
+		include	"_incObj/Player_ChkAnim.asm"
 
 
 ; ---------------------------------------------------------------------------
