@@ -28,16 +28,21 @@ Obj05_Init:
 
 ; loc_1D23A:
 Obj05_Main:
-
-	move.b	(v_player+obAngle).w,obAngle(a0)
-	move.b	(v_player+obStatus).w,obStatus(a0)
-	move.w	(v_player+obX).w,obX(a0)
-	move.w	(v_player+obY).w,obY(a0)
+	movea.w	objoff_3E(a0),a2 ; a2=character
+	move.b	obAngle(a2),obAngle(a0)
+	move.b	obStatus(a2),obStatus(a0)
+	move.w	obX(a2),obX(a0)
+	move.w	obY(a2),obY(a0)
 	moveq	#0,d0
-	move.b	(v_player+obAnim).w,d0
-	cmp.b	$30(a0),d0
+	move.b	obAnim(a2),d0
+	btst	#5,obStatus(a2)	; is Tails pushing something?
+	beq.s	.pushing	;if yes, branch
+    
+	moveq	#4,d0
+.pushing:
+	cmp.b	Obj05_parent_prev_anim(a0),d0
 	beq.s	.display
-	move.b	d0,$30(a0)
+	move.b	d0,Obj05_parent_prev_anim(a0)
 	move.b	Obj05AniSelection(pc,d0.w),obAnim(a0)
 ; loc_1D288:
 .display:

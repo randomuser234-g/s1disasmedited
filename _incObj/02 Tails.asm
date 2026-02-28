@@ -47,6 +47,7 @@ Tails_Main:	; Routine 0
 		move.w	#$C,(v_sonspeedacc).w ; Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; Sonic's deceleration
 		move.b	#id_TailsTails,(v_tailstails).w ; load Tails' tails object
+		move.w	a0,(v_tailstails+objoff_3E).w ; set Tails' tails parent object to the character
 
 ; Obj02_Control:
 Tails_Control:	; Routine 2
@@ -1919,8 +1920,8 @@ Tails_Animate2:
 ; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 
 .TAnim_GetTailFrame:				; CODE XREF: Tails_Animate+1B8j
-		move.w	(v_player+obVelX).w,d1
-		move.w	(v_player+obVelY).w,d2
+		move.w	obVelX(a2),d1
+		move.w	obVelY(a2),d2
 		jsr	(CalcAngle).l
 		moveq	#0,d1
 		move.b	obStatus(a0),d2

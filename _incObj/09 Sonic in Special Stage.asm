@@ -30,6 +30,7 @@ Obj09_Main:	; Routine 0
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		move.b	#id_TailsTails,(v_tailstails).w ; load Tails tails object
+		move.w	a0,(v_tailstails+objoff_3E).w ; set Tails' tails parent object to the character
 		bra.s	.loadmap		; branch to rest of code
 
 	.sonicmap:
