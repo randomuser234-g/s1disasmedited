@@ -22,7 +22,8 @@ v_16x16:		ds.b	$1800		; 16x16 tile mappings
 
 VDP_Command_Buffer:	ds.w	7*$12		; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
 VDP_Command_Buffer_Slot:ds.l	1		; stores the address of the next open slot for a queued VDP command
-			ds.b	$200		; unused ($200 were freed up by the new DMA Queue)
+			ds.b	$100		; unused ($200 were freed up by the new DMA Queue)
+v_trackstatsonic:	ds.b	$100		; extra tracking data for Sonic, used in S2 and S3
 v_tracksonic:		ds.b	$100		; position tracking data for Sonic
 v_hscrolltablebuffer:	ds.b	$380		; scrolling table data
 v_hscrolltablebuffer_end:
@@ -322,7 +323,7 @@ v_objstate_end:
 			ds.b	$140		; stack
 v_systemstack:
 v_crossresetram:				; RAM beyond this point is only cleared on a cold-boot
-v_menupage		ds.b	1		; unused
+v_menupage		ds.b	1		; value for the menu screen to decide what options are selectable
 			ds.b	1		; unused
 f_restart:		ds.w	1		; restart level flag
 v_framecount:		ds.w	1		; frame counter (adds 1 every frame)
