@@ -195,7 +195,12 @@ Sonic_RecordPosition:
 		lea	(a1,d0.w),a1
 		move.w	obX(a0),(a1)+
 		move.w	obY(a0),(a1)+
-		addq.b	#4,(v_trackbyte).w
+		addq.b	#4,(v_trackbyte).w	;downwards is from sonic 2/3
+		lea	(v_trackstatsonic).w,a1
+		lea	(a1,d0.w),a1
+		move.w	(v_jpadhold2).w,(a1)+
+		move.w	obStatus(a0),(a1)+ ; Copies `status` AND the byte after it...
+		move.b	obGfx(a0),(a1)+
 		rts
 ; End of function Sonic_RecordPosition
 
