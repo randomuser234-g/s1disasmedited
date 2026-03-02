@@ -79,7 +79,7 @@ ptr_GiantRing:		dc.l GiantRing
 ptr_GeyserMaker:	dc.l GeyserMaker
 ptr_LavaGeyser:		dc.l LavaGeyser
 ptr_LavaWall:		dc.l LavaWall
-ptr_Obj4F:		dc.l Obj4F
+ptr_SuperAfterImg:		dc.l SuperAfterImg
 ptr_Yadrin:		dc.l Yadrin		; $50
 ptr_SmashBlock:		dc.l SmashBlock
 ptr_MovingBlock:	dc.l MovingBlock
@@ -223,7 +223,7 @@ id_GiantRing:		equ ((ptr_GiantRing-Obj_Index)/4)+1
 id_GeyserMaker:		equ ((ptr_GeyserMaker-Obj_Index)/4)+1
 id_LavaGeyser:		equ ((ptr_LavaGeyser-Obj_Index)/4)+1
 id_LavaWall:		equ ((ptr_LavaWall-Obj_Index)/4)+1
-id_Obj4F:		equ ((ptr_Obj4F-Obj_Index)/4)+1
+id_SuperAfterImg:		equ ((ptr_SuperAfterImg-Obj_Index)/4)+1
 id_Yadrin:		equ ((ptr_Yadrin-Obj_Index)/4)+1		; $50
 id_SmashBlock:		equ ((ptr_SmashBlock-Obj_Index)/4)+1
 id_MovingBlock:		equ ((ptr_MovingBlock-Obj_Index)/4)+1
