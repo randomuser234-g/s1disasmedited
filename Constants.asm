@@ -510,7 +510,7 @@ ArtTile_Spikes:			equ $51B
 ArtTile_Spring_Horizontal:	equ $523
 ArtTile_Spring_Vertical:	equ $533
 ArtTile_Shield:			equ $541
-ArtTile_Invincibility:		equ $55C
+ArtTile_Invincibility:		equ ArtTile_Shield	;the code swaps these in on the fly with NewPLC
 ArtTile_Game_Over:		equ $55E
 ArtTile_Title_Card:		equ $580
 ArtTile_Animal_1:		equ $580
@@ -522,8 +522,9 @@ ArtTile_Sonic:			equ $780
 ArtTile_Tails:			equ $799
 ArtTile_TailsTails:		equ $7A9
 ArtTile_Points:			equ $6C6
-ArtTile_Lamppost:		equ $7A0
-ArtTile_Ring:			equ $7B2
+ArtTile_Lamppost:		equ $565	;moved to after the invinc
+ArtTile_Ring:			equ $56F
+ArtTile_RingSS:			equ $7B2	;need seperate spot
 ArtTile_Lives_Counter:		equ $7D4
 
 ; Eggman
