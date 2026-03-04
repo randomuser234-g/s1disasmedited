@@ -195,6 +195,10 @@ loc_19F6A:
 		move.w	d0,(v_player+obVelX).w
 		tst.b	objoff_35(a0)
 		bne.s	loc_19F88
+		tst.b	obColProp(a0)	;is the boss hits at 0?
+		beq.s	.skiphitsafter0	;if yes, don't do damage
+		subq.b	#1,obColProp(a0)
+	.skiphitsafter0:
 		subq.b	#1,obColProp(a0)
 		move.b	#$64,objoff_35(a0)
 		move.w	#sfx_HitBoss,d0
