@@ -42,6 +42,8 @@ ptr_PLC_FZBoss:		dc.w PLC_FZBoss-ArtLoadCues
 ptr_PLC_MainTails:	dc.w PLC_MainTails-ArtLoadCues
 ptr_PLC_SSResultTails:	dc.w PLC_SSResultTails-ArtLoadCues
 ptr_PLC_EndingTails:	dc.w PLC_EndingTails-ArtLoadCues
+ptr_PLC_Main3:		dc.w PLC_Main3-ArtLoadCues
+ptr_PLC_Main4:		dc.w PLC_Main4-ArtLoadCues
 
 plcm:	macro gfx,vram
 		dc.l gfx
@@ -64,7 +66,6 @@ PLC_Mainend:
 PLC_Main2:	dc.w ((PLC_Main2end-PLC_Main2-2)/6)-1
 		plcm	Nem_Monitors, ArtTile_Monitor       ; monitors
 		plcm	Nem_Shield,   ArtTile_Shield        ; shield
-		plcm	Nem_Stars,    ArtTile_Invincibility ; invincibility stars
 PLC_Main2end:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - explosion
@@ -271,6 +272,7 @@ PLC_Warpend:
 ; Pattern load cues - special stage
 ; ---------------------------------------------------------------------------
 PLC_SpecialStage:	dc.w ((PLC_SpeStageend-PLC_SpecialStage-2)/6)-1
+		plcm	Nem_Ring,   	ArtTile_RingSS          ; rings
 		plcm	Nem_SSBgCloud,  ArtTile_SS_Background_Clouds ; bubble and cloud background
 		plcm	Nem_SSBgFish,   ArtTile_SS_Background_Fish   ; bird and fish background
 		plcm	Nem_SSWalls,    ArtTile_SS_Wall              ; walls
@@ -430,6 +432,18 @@ PLC_EndingTails:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
 		plcm	Nem_EndStH,    ArtTile_Ending_STH       ; "SONIC THE HEDGEHOG"
 PLC_EndingTailsend:
 ; ---------------------------------------------------------------------------
+; Pattern load cues - standard block 3
+; ---------------------------------------------------------------------------
+PLC_Main3:	dc.w ((PLC_Main3end-PLC_Main3-2)/6)-1
+		plcm	Nem_Shield,   ArtTile_Shield        ; shield
+PLC_Main3end:
+; ---------------------------------------------------------------------------
+; Pattern load cues - standard block 4
+; ---------------------------------------------------------------------------
+PLC_Main4:	dc.w ((PLC_Main4end-PLC_Main4-2)/6)-1
+		plcm	Nem_Stars,   ArtTile_Invincibility        ; shield
+PLC_Main4end:
+; ---------------------------------------------------------------------------
 ; Pattern load cue IDs
 ; ---------------------------------------------------------------------------
 plcid_Main:		equ (ptr_PLC_Main-ArtLoadCues)/2	; 0
@@ -467,3 +481,5 @@ plcid_FZBoss:		equ (ptr_PLC_FZBoss-ArtLoadCues)/2	; $1F
 plcid_MainTails:	equ (ptr_PLC_MainTails-ArtLoadCues)/2	; 20
 plcid_SSResultTails:	equ (ptr_PLC_SSResultTails-ArtLoadCues)/2; $21
 plcid_EndingTails:	equ (ptr_PLC_EndingTails-ArtLoadCues)/2	; $22
+plcid_Main3:		equ (ptr_PLC_Main3-ArtLoadCues)/2	; 1
+plcid_Main4:		equ (ptr_PLC_Main4-ArtLoadCues)/2	; 1

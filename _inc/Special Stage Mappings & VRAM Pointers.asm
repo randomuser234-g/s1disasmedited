@@ -63,7 +63,7 @@ specialStageData: macro frame,mappings,palette,vram
 		specialStageData	0, Map_SS_R,      0, ArtTile_SS_Zone_4
 		specialStageData	0, Map_SS_R,      0, ArtTile_SS_Zone_5
 		specialStageData	0, Map_SS_R,      0, ArtTile_SS_Zone_6
-		specialStageData	0, Map_Ring,      1, ArtTile_Ring
+		specialStageData	0, Map_Ring,      1, ArtTile_RingSS
 		specialStageData	0, Map_SS_Chaos3, 0, ArtTile_SS_Emerald
 		specialStageData	0, Map_SS_Chaos3, 1, ArtTile_SS_Emerald
 		specialStageData	0, Map_SS_Chaos3, 2, ArtTile_SS_Emerald
@@ -71,10 +71,10 @@ specialStageData: macro frame,mappings,palette,vram
 		specialStageData	0, Map_SS_Chaos1, 0, ArtTile_SS_Emerald
 		specialStageData	0, Map_SS_Chaos2, 0, ArtTile_SS_Emerald
 		specialStageData	0, Map_SS_R,      0, ArtTile_SS_Ghost_Block
-		specialStageData	4, Map_Ring,      1, ArtTile_Ring
-		specialStageData	5, Map_Ring,      1, ArtTile_Ring
-		specialStageData	6, Map_Ring,      1, ArtTile_Ring
-		specialStageData	7, Map_Ring,      1, ArtTile_Ring
+		specialStageData	4, Map_Ring,      1, ArtTile_RingSS
+		specialStageData	5, Map_Ring,      1, ArtTile_RingSS
+		specialStageData	6, Map_Ring,      1, ArtTile_RingSS
+		specialStageData	7, Map_Ring,      1, ArtTile_RingSS
 		specialStageData	0, Map_SS_Glass,  1, ArtTile_SS_Emerald_Sparkle
 		specialStageData	1, Map_SS_Glass,  1, ArtTile_SS_Emerald_Sparkle
 		specialStageData	2, Map_SS_Glass,  1, ArtTile_SS_Emerald_Sparkle
