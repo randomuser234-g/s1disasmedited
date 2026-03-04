@@ -1588,7 +1588,7 @@ loc_138C2:
 		move.w	#bgm_GameOver,d0
 		jsr	(QueueSound1).l	; play game over music
 		moveq	#plcid_GameOver,d0
-		jsr	(AddPLC).l	; load game over patterns
+		jmp	(AddPLC).l	; load game over patterns
 ; ===========================================================================
 
 loc_138D4:

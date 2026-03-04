@@ -87,7 +87,13 @@ loc_9BBA:
 		move.w	obX(a0),objoff_32(a1)
 		move.w	d3,obY(a1)	; set y-axis position based on d3
 		move.l	#Map_Ring,obMap(a1)
-		move.w	#make_art_tile(ArtTile_Ring,1,0),obGfx(a1)
+		cmpi.b	#id_Special,(v_gamemode).w ; is game on special stage?
+		beq.s	.ringlevel	; if not, branch
+		move.w	#make_art_tile(ArtTile_Ring,1,0),obGfx(a1)	
+		bra.s	.afterringtile
+.ringlevel:
+		move.w	#make_art_tile(ArtTile_RingSS,1,0),obGfx(a1)	;put it at it's original spot
+.afterringtile:
 		move.b	#4,obRender(a1)
 		move.b	#2,obPriority(a1)
 		move.b	#$47,obColType(a1)

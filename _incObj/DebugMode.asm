@@ -181,13 +181,6 @@ Debug_ChgItem:
 		moveq	#0,d0
 		move.w	d0,(v_debuguse).w ; deactivate debug mode
 		jsr	.charcheckdebug
-		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonictiles		; if not, load Sonic's mappings
-		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
-		bra.s	.loadtiles
-	.sonictiles:
-		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
-	.loadtiles:
 		move.b	d0,(v_player+obAnim).w
 		move.w	d0,obX+2(a0)
 		move.w	d0,obY+2(a0)
@@ -210,12 +203,14 @@ Debug_ChgItem:
 		rts
 .charcheckdebug:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
+		bne.s	.sonicssmap		; if not, load Sonic's mappings
 		move.l	#Map_Miles,(v_player+obMap).w	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		bra.s	.backtonormalcontinued		; branch to rest of code
 
-	.sonicmap:
+	.sonicssmap:
 		move.l	#Map_Sonic,(v_player+obMap).w
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 
 	.backtonormalcontinued:
 				rts
