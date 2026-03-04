@@ -625,8 +625,6 @@ Tails_RecordPosition:
 
 
 Tails_Water:
-		cmpa.w	#v_player,a0	;is Tails player 1?
-		bne.w	.exit		;if not,don't enter water
 		cmpi.b	#1,(f_water).w	; is there water?
 		beq.s	.islabyrinth	; if yes, branch
 
