@@ -29,10 +29,10 @@ Shi_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0) ; goto Shi_Stars next
 		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)
 		moveq	#plcid_Main4,d0	;
-		bsr.w	.newplc		; load invincibility patterns
+		bsr.w	.addplc		; load invincibility patterns
 		rts
-	.newplc:
-		jmp	NewPLC
+	.addplc:
+		jmp	AddPLC
 ; ===========================================================================
 
 Shi_Shield:	; Routine 2
@@ -109,7 +109,7 @@ Shi_Stars:	; Routine 4
 
 Shi_Start_Delete:	
 		moveq	#plcid_Main3,d0
-		bsr.w	.newplc		; load shield patterns
+		bsr.w	.addplc		; load shield patterns
 		jmp	(DeleteObject).l
-	.newplc:
-		jmp	NewPLC
+	.addplc:
+		jmp	AddPLC
