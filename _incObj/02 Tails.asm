@@ -63,6 +63,7 @@ Tails_Main:	; Routine 0
 Tails_Control:	; Routine 2
 		cmpa.w	#v_player,a0	;is Tails player 1?
 		bne.w	.player2	;if not, cpu controls
+		move.w	(v_jpadhold2).w,(v_jpadhold2p2).w
 		bsr.w	Sonic_PanCamera		; Run extended camera panning calculations
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
 		beq.s	.nodebug	; if not, branch
