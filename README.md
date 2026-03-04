@@ -8,6 +8,8 @@
 
 -Tails playable with flight and S2 spindash
 
+-Sonic and tails can be played together
+
 -other tweaks (roll lock and speed caps removed)
 
 -S1 style peelout based on the continue screen animation, about 65 frames to charge (also disables cd run animation)
@@ -31,6 +33,14 @@ different flight physics from sonic 3
 Infinite flight (flight code ported from S3 prototype)
 
 one of Tails' frames are corrupted for some reason
+
+Sonic and Tails' modes can be intertwined, if he's in water, you're slow
+
+Tails can't interact with most objects as the second player
+
+No second controller works unlike Sonic 2
+
+go in debug during special stage, ring graphic is wrong and Tails doesn't load his art tile, uses Sonic's
 
 may be other issues I don't know
 
