@@ -38,6 +38,8 @@ Shi_Main:	; Routine 0
 Shi_Shield:	; Routine 2
 		tst.b	(v_invinc).w	; does Sonic have invincibility?
 		bne.s	.remove		; if yes, branch
+		tst.b	(f_timecount).w	;is time stopped?
+		beq.w	.remove	; if yes, don't have shield
 		tst.b	(v_shield).w	; does Sonic have shield?
 		beq.s	.delete		; if not, branch
 		move.w	(v_player+obX).w,obX(a0)
@@ -57,6 +59,8 @@ Shi_Shield:	; Routine 2
 Shi_Stars:	; Routine 4
 		tst.b	(v_invinc).w	; does Sonic have invincibility?
 		beq.s	Shi_Start_Delete		; if not, branch
+		tst.b	(f_timecount).w	;is time stopped?
+		beq.w	Shi_Start_Delete	; if yes, don't have invincibility
 		move.w	(v_trackpos).w,d0 ; get index value for tracking data
 		move.b	obAnim(a0),d1
 		subq.b	#1,d1
