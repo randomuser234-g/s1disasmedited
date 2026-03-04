@@ -181,12 +181,20 @@ Debug_ChgItem:
 		moveq	#0,d0
 		move.w	d0,(v_debuguse).w ; deactivate debug mode
 		jsr	.charcheckdebug
-		move.w	#$780,(v_player+obGfx).w
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonictiles		; if not, load Sonic's mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
+		bra.s	.loadtiles
+	.sonictiles:
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+	.loadtiles:
 		move.b	d0,(v_player+obAnim).w
 		move.w	d0,obX+2(a0)
 		move.w	d0,obY+2(a0)
 		move.w	(v_limittopdb).w,(v_limittop2).w ; restore level boundaries
 		move.w	(v_limitbtmdb).w,(v_limitbtm1).w
+		move.w	(v_player+obX).w,(v_player2+obX).w
+		move.w	(v_player+obY).w,(v_player2+obY).w	;copy tails to sonic's position
 		cmpi.b	#id_Special,(v_gamemode).w ; are you in the special stage?
 		bne.s	.stayindebug	; if not, branch
 

@@ -109,10 +109,10 @@ Pow_ChkInvinc:
 		move.b	#1,(v_starsobj1+obAnim).w
 		move.b	#id_ShieldItem,(v_starsobj2).w ; load stars object ($3802)
 		move.b	#2,(v_starsobj2+obAnim).w
-		move.b	#id_ShieldItem,(v_starsobj3).w ; load stars object ($3803)
-		move.b	#3,(v_starsobj3+obAnim).w
-		move.b	#id_ShieldItem,(v_starsobj4).w ; load stars object ($3804)
-		move.b	#4,(v_starsobj4+obAnim).w
+		;move.b	#id_ShieldItem,(v_starsobj3).w ; load stars object ($3803)
+		;move.b	#3,(v_starsobj3+obAnim).w
+		;move.b	#id_ShieldItem,(v_starsobj4).w ; load stars object ($3804)
+		;move.b	#4,(v_starsobj4+obAnim).w
 		tst.b	(f_lockscreen).w ; is boss mode on?
 		bne.s	Pow_NoMusic	; if yes, branch
 	if Revision<>0

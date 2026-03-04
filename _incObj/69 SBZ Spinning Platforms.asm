@@ -71,10 +71,13 @@ Spin_Trapdoor:	; Routine 2
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		bsr.w	.solidobject
 		bra.w	.rememberstate
+.solidobject:
+		jmp	SolidObject
 .rememberstate:
 		jmp	RememberState
+
 ; ===========================================================================
 
 .notsolid:
@@ -114,8 +117,10 @@ Spin_Spinner:	; Routine 4
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		bsr.w	.solidobject
 		bra.w	.rememberstate
+.solidobject:
+		jmp	SolidObject
 .rememberstate:
 		jmp	RememberState
 ; ===========================================================================

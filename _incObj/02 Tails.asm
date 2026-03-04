@@ -1,9 +1,13 @@
 ; ---------------------------------------------------------------------------
 ; Object 02 - Tails	(placeholder, this mostly just does Sonic's code)
 ; ---------------------------------------------------------------------------
-
+;top_solid_bit = 	$3E ; the bit to check for top solidity (either $C or $E)
+;lrb_solid_bit =		$3F ; the bit to check for left/right/bottom solidity (either $D or $F)
+;move_lock =		$2E ; and $2F ; horizontal control lock, counts down to 0
 ; Obj02:
 TailsPlayer:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	Tails_Normal;if not, don't do debug mode
 		tst.w	(v_debuguse).w	; is debug mode being used?
 		beq.s	Tails_Normal	; if not, branch
 		jmp	(DebugMode).l
@@ -11,6 +15,12 @@ TailsPlayer:
 
 ; Obj02_Normal:
 Tails_Normal:
+	cmpi.w	#1,(v_character).w
+	bne.s	+
+	move.w	(v_limitleft2).w,(v_limitleft2tails).w
+	move.w	(v_limitright2).w,(v_limitright2tails).w
+	move.w	(v_limitbtm2).w,(v_limittop2tails).w
++
 		moveq	#0,d0
 		move.b	obRoutine(a0),d0	
 		moveq	#0,d0
@@ -40,7 +50,7 @@ Tails_Main:	; Routine 0
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#$18,obActWid(a0)
-		move.b	#4,obRender(a0)
+		move.b	#1<<7|1<<2,obRender(a0) ; render_flags(Tails) = $80 | initial render_flags(Sonic)
 		move.b	#0,(v_super).w	; turn off Super
 		move.b	#0,(v_shoes).w	; turn off speed shoes
 		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
@@ -51,6 +61,8 @@ Tails_Main:	; Routine 0
 
 ; Obj02_Control:
 Tails_Control:	; Routine 2
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.player2	;if not, cpu controls
 		bsr.w	Sonic_PanCamera		; Run extended camera panning calculations
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
 		beq.s	.nodebug	; if not, branch
@@ -59,15 +71,25 @@ Tails_Control:	; Routine 2
 		move.w	#1,(v_debuguse).w ; change Sonic into a ring/item
 		clr.b	(f_lockctrl).w
 		rts
-; ===========================================================================
 
 .nodebug:
 		tst.b	(f_lockctrl).w	; are controls locked?
 		bne.s	.ignorecontrols	; if yes, branch
+		move.w	(v_jpadhold1).w,(v_jpadhold2p2).w ; enable joypad control
 		move.w	(v_jpadhold1).w,(v_jpadhold2).w ; enable joypad control
+		bra.s	.ignorecontrols
+; ===========================================================================
+.player2:
+	tst.b	(f_lockctrlp2).w
+	bne.s	+
+	move.w	(v_jpadhold1p2).w,(v_jpadhold2p2).w
++
+	bsr.w	TailsCPU_Control
 
 .ignorecontrols:
 		btst	#0,(f_playerctrl).w ; are controls locked?
+		bne.s	.ignoremodes	; if yes, branch
+		btst	#0,(f_playerctrl2).w ; are controls locked?
 		bne.s	.ignoremodes	; if yes, branch
 		moveq	#0,d0
 		move.b	obStatus(a0),d0
@@ -91,6 +113,8 @@ Tails_Control:	; Routine 2
 .nowindtunnel:
 		bsr.w	Tails_Animate
 		tst.b	(f_playerctrl).w
+		bmi.s	.ignoreobjcoll
+		tst.b	(f_playerctrl2).w
 		bmi.s	.ignoreobjcoll
 		jsr	(ReactToItem).l
 
@@ -184,6 +208,398 @@ Tails_Display:
 
 .exit:
 		rts
+; ---------------------------------------------------------------------------
+; Tails' AI code; rather idiotic in this version, as it only really is
+; programmed to copy Sonic's inputs and make no effort to correct itself
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+; loc_10F96: Tails_Control2:
+TailsCPU_Control: ; a0=Tails
+	move.b	(v_jpadhold2p2).w,d0	; did the real player 2 hit something?
+	andi.b	#btnUp|btnDn|btnL|btnR|btnB|btnC|btnA,d0
+	beq.s	+			; if not, branch
+	move.w	#600,(v_tailscontrol).w ; give player 2 control for 10 seconds (minimum)
++
+	lea	(v_player).w,a1 ; a1=character ; a1=Sonic
+	move.w	(v_tailscpuroutine).w,d0
+	move.w	TailsCPU_States(pc,d0.w),d0
+	jmp	TailsCPU_States(pc,d0.w)
+; ===========================================================================
+; off_1BAF4:
+TailsCPU_States:
+	dc.w TailsCPU_Init-TailsCPU_States	; 0
+	dc.w TailsCPU_Spawning-TailsCPU_States	; 2
+	dc.w TailsCPU_Flying-TailsCPU_States	; 4
+	dc.w TailsCPU_Normal-TailsCPU_States	; 6
+	dc.w TailsCPU_Panic-TailsCPU_States	; 8
+
+; ===========================================================================
+; initial AI State
+; ---------------------------------------------------------------------------
+; loc_1BAFE:
+TailsCPU_Init:
+	move.w	#6,(v_tailscpuroutine).w	; => TailsCPU_Normal
+	move.b	#$0,(f_playerctrl2).w
+	move.b	#id_Walk,obAnim(a0)
+	move.w	#0,obVelX(a0)
+	move.w	#0,obVelY(a0)
+	move.w	#0,obInertia(a0)
+	move.b	#0,obStatus(a0)
+	move.w	#0,(v_tailsrespawn).w
+	rts
+; ===========================================================================
+; AI State where Tails is waiting to respawn
+; ---------------------------------------------------------------------------
+; loc_1BB30:
+TailsCPU_Spawning:
+	move.b	(v_jpadhold2p2).w,d0
+	andi.b	#btnB|btnC|btnA|btnStart,d0
+	bne.s	TailsCPU_Respawn
+	move.w	(v_framecount).w,d0
+	andi.w	#$3F,d0
+	bne.s	return_1BB88
+	tst.b	(f_playerctrl2).w
+	beq.s	return_1BB88	;originally bne, not sure what's happening here, as is it stops tails from respawning
+	move.b	obStatus(a1),d0
+	andi.b	#1<<1|1<<4|1<<6|1<<7,d0
+	bne.s	return_1BB88
+; loc_1BB54:
+TailsCPU_Respawn:
+	move.w	#4,(v_tailscpuroutine).w	; => TailsCPU_Flying
+	move.w	obX(a1),d0
+	move.w	d0,obX(a0)
+	move.w	d0,(v_tailscputargetx).w
+	move.w	obY(a1),d0
+	move.w	d0,(v_tailscputargety).w
+	subi.w	#$C0,d0
+	move.w	d0,obY(a0)
+	ori.w	#(1<<15),obGfx(a0)
+	move.b	#0,spindash_flag(a0)
+	move.w	#0,spindash_counter(a0)
+
+return_1BB88:
+	rts
+; ===========================================================================
+; AI State where Tails pretends to be a helicopter
+; ---------------------------------------------------------------------------
+; loc_1BB8A:
+TailsCPU_Flying:
+	btst	#7,obRender(a0)
+	bne.s	TailsCPU_FlyingOnscreen
+	addq.w	#1,(v_tailsrespawn).w
+	cmpi.w	#$12C,(v_tailsrespawn).w
+	blo.s	TailsCPU_Flying_Part2
+	move.w	#0,(v_tailsrespawn).w
+	move.w	#2,(v_tailscpuroutine).w	; => TailsCPU_Spawning
+	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
+	move.b	#1<<1,obStatus(a0)
+	move.w	#0,obX(a0)
+	move.w	#0,obY(a0)
+	move.b	#id_Fly,obAnim(a0)
+	rts
+; ---------------------------------------------------------------------------
+; loc_1BBC8:
+TailsCPU_FlyingOnscreen:
+	move.w	#0,(v_tailsrespawn).w
+; loc_1BBCE:
+TailsCPU_Flying_Part2:
+		move.w	(v_trackpos).w,d0
+		lea	(v_tracksonic).w,a1
+		sub.b	d1,d0
+		lea	(a1,d0.w),a1
+		move.w	(a1)+,d2			; Use previous player x_pos  d2 = earlier x position of Sonic
+		move.w	(a1)+,d3			; Use previous player y_pos  d3 = earlier y position of Sonic
+	move.w	d2,(v_tailscputargetx).w
+	move.w	d3,(v_tailscputargety).w
+	tst.b	(f_water).w
+	beq.s	+
+	move.w	(v_waterpos1).w,d0
+	subi.w	#$10,d0
+	cmp.w	(v_tailscputargety).w,d0
+	bge.s	+
+	move.w	d0,(v_tailscputargety).w
++
+	move.w	obX(a0),d0
+	sub.w	(v_tailscputargetx).w,d0
+	beq.s	loc_1BC54
+	mvabs.w	d0,d2
+	lsr.w	#4,d2
+	cmpi.w	#$C,d2
+	blo.s	+
+	moveq	#$C,d2
++
+	mvabs.b	obVelX(a1),d1
+	add.b	d1,d2
+	addq.w	#1,d2
+	tst.w	d0
+	bmi.s	loc_1BC40P2
+	bset	#0,obStatus(a0)
+	cmp.w	d0,d2
+	blo.s	+
+	move.w	d0,d2
+	moveq	#0,d0
++
+	neg.w	d2
+	bra.s	loc_1BC50
+; ---------------------------------------------------------------------------
+
+loc_1BC40P2:
+	bclr	#0,obStatus(a0)
+	neg.w	d0
+	cmp.w	d0,d2
+	blo.s	loc_1BC50
+	move.b	d0,d2
+	moveq	#0,d0
+
+loc_1BC50:
+	add.w	d2,obX(a0)
+
+loc_1BC54:
+	moveq	#1,d2
+	move.w	obY(a0),d1
+	sub.w	(v_tailscputargety).w,d1
+	beq.s	loc_1BC68
+	bmi.s	loc_1BC64
+	neg.w	d2
+
+loc_1BC64:
+	add.w	d2,obY(a0)
+
+loc_1BC68:
+	lea	(v_trackstatsonic).w,a2
+	move.b	2(a2,d3.w),d2
+	andi.b	#$0,d2
+	bne.s	return_1BCDE
+	or.w	d0,d1
+	bne.s	return_1BCDE
+	move.w	#6,(v_tailscpuroutine).w	; => TailsCPU_Normal
+	move.b	#$0,(f_playerctrl2).w
+	move.b	#id_Walk,obAnim(a0)
+	move.w	#0,obVelX(a0)
+	move.w	#0,obVelY(a0)
+	move.w	#0,obInertia(a0)
+	move.b	#1<<1,obStatus(a0)
+	;move.w	#0,move_lock(a0)
+	andi.w	#$7FFF,obGfx(a0)
+	tst.b	obGfx(a1)
+	bpl.s	+
+	ori.w	#(1<<15),obGfx(a0)
++
+	;move.b	top_solid_bit(a1),top_solid_bit(a0)
+	;move.b	lrb_solid_bit(a1),lrb_solid_bit(a0)
+	cmpi.b	#id_SpinDash,obAnim(a1)
+	beq.s	return_1BCDE
+	move.b	spindash_flag(a0),d0
+	beq.s	return_1BCDE
+	move.b	d0,spindash_flag(a1)
+	bsr.w	Tails_ChkRoll
+
+return_1BCDE:
+	rts
+; ===========================================================================
+; AI State where Tails follows the player normally
+; ---------------------------------------------------------------------------
+; loc_1BCE0:
+TailsCPU_Normal:
+			cmpi.b	#6,(v_player+obRoutine).w	; is Sonic dead?
+	blo.s	TailsCPU_Normal_SonicOK		; if not, branch
+	; Sonic's dead; fly down to his corpse
+	move.w	#4,(v_tailscpuroutine).w	; => TailsCPU_Flying
+	move.b	#0,spindash_flag(a0)
+	move.w	#0,spindash_counter(a0)
+	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
+	move.b	#1<<1,obStatus(a0)
+	move.b	#id_Fly,obAnim(a0)
+	rts
+; ---------------------------------------------------------------------------
+; loc_1BD0E:
+TailsCPU_Normal_SonicOK:
+	bsr.w	TailsCPU_CheckDespawn
+	tst.w	(v_tailscontrol).w	; if CPU has control
+	bne.w	TailsCPU_Normal_HumanControl		; (if not, branch)
+	tst.b	(f_playerctrl2).w			; and Tails isn't fully object controlled (&$80)
+	bmi.w	TailsCPU_Normal_HumanControl		; (if not, branch)
+	;tst.w	move_lock(a0)			; and Tails' movement is locked (usually because he just fell down a slope)
+	;beq.s	+					; (if not, branch)
+	;tst.w	obInertia(a0)			; and Tails is stopped, then...
+	;bne.s	+					; (if not, branch)
+	;move.w	#8,(v_tailscpuroutine).w	; => TailsCPU_Panic
++
+		move.w	(v_trackpos).w,d0
+		lea	(v_tracksonic).w,a1
+		sub.b	d1,d0
+		lea	(a1,d0.w),a1
+		move.w	(a1)+,d2			; Use previous player x_pos  d2 = earlier x position of Sonic
+		move.w	(a1)+,d3			; Use previous player y_pos  d3 = earlier y position of Sonic
+	lea	(v_trackstatsonic).w,a1
+	move.w	(a1,d0.w),d1	; d1 = earlier input of Sonic
+	move.b	2(a1,d0.w),d4	; d4 = earlier status of Sonic
+	move.w	d1,d0
+	btst	#5,obStatus(a0)	; is Tails pushing against something?
+	beq.s	+					; if not, branch
+	btst	#5,d4		; was Sonic pushing against something?
+	beq.w	TailsCPU_Normal_FilterAction_Part2	; if not, branch elsewhere
+
+; either Tails isn't pushing, or Tails and Sonic are both pushing
++	sub.w	obX(a0),d2
+	beq.s	TailsCPU_Normal_Stand ; branch if Tails is already lined up horizontally with Sonic
+	bpl.s	TailsCPU_Normal_FollowRight
+	neg.w	d2
+
+; Tails wants to go left because that's where Sonic is
+; loc_1BD76: TailsCPU_Normal_FollowLeft:
+	cmpi.w	#$10,d2
+	blo.s	+
+	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
+	ori.w	#(btnL<<8)|btnL,d1	; ...and give Tails his own
++
+	tst.w	obInertia(a0)
+	beq.s	TailsCPU_Normal_FilterAction
+	btst	#0,obStatus(a0)
+	beq.s	TailsCPU_Normal_FilterAction
+	subq.w	#1,obX(a0)
+	bra.s	TailsCPU_Normal_FilterAction
+; ===========================================================================
+; Tails wants to go right because that's where Sonic is
+; loc_1BD98:
+TailsCPU_Normal_FollowRight:
+	cmpi.w	#$10,d2
+	blo.s	+
+	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input
+	ori.w	#(btnR<<8)|btnR,d1	; ...and give Tails his own
++
+	tst.w	obInertia(a0)
+	beq.s	TailsCPU_Normal_FilterAction
+	btst	#0,obStatus(a0)
+	bne.s	TailsCPU_Normal_FilterAction
+	addq.w	#1,obX(a0)
+	bra.s	TailsCPU_Normal_FilterAction
+; ===========================================================================
+; Tails is happy where he is
+; loc_1BDBA:
+TailsCPU_Normal_Stand:
+	bclr	#0,obStatus(a0)
+	move.b	d4,d0
+	andi.b	#1,d0
+	beq.s	TailsCPU_Normal_FilterAction
+	bset	#0,obStatus(a0)
+
+; Filter the action we chose depending on a few things
+; loc_1BDCE:
+TailsCPU_Normal_FilterAction:
+	tst.b	(v_tailscpujump).w
+	beq.s	+
+	ori.w	#((btnB|btnC|btnA)<<8),d1
+	btst	#1,obStatus(a0)
+	bne.s	TailsCPU_Normal_SendAction
+	move.b	#0,(v_tailscpujump).w
++
+	move.w	(v_framecount).w,d0
+	andi.w	#$FF,d0
+	beq.s	+
+	cmpi.w	#$40,d2
+	bhs.s	TailsCPU_Normal_SendAction
++
+	sub.w	obY(a0),d3
+	beq.s	TailsCPU_Normal_SendAction
+	bpl.s	TailsCPU_Normal_SendAction
+	neg.w	d3
+	cmpi.w	#$20,d3
+	blo.s	TailsCPU_Normal_SendAction
+; loc_1BE06:
+TailsCPU_Normal_FilterAction_Part2:
+	move.b	(v_framecount+1).w,d0
+	andi.b	#$3F,d0
+	bne.s	TailsCPU_Normal_SendAction
+	cmpi.b	#id_Duck,obAnim(a0)
+	beq.s	TailsCPU_Normal_SendAction
+	ori.w	#((btnB|btnC|btnA)<<8)|(btnB|btnC|btnA),d1
+	move.b	#1,(v_tailscpujump).w
+
+; Send the action we chose by storing it into player 2's input
+; loc_1BE22:
+TailsCPU_Normal_SendAction:
+	move.w	d1,(v_jpadhold2p2).w
+	rts
+
+; ===========================================================================
+; Follow orders from controller 2
+; and decrease the counter to when the CPU will regain control
+; loc_1BE28:
+TailsCPU_Normal_HumanControl:
+	tst.w	(v_tailscontrol).w
+	beq.s	+	; don't decrease if it's already 0
+	subq.w	#1,(v_tailscontrol).w
++
+	rts
+
+; ===========================================================================
+; loc_1BE34:
+TailsCPU_Despawn:
+	move.w	#0,(v_tailscontrol).w
+	move.w	#0,(v_tailsrespawn).w
+	move.w	#2,(v_tailscpuroutine).w	; => TailsCPU_Spawning
+	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
+	move.b	#1<<1,obStatus(a0)
+	move.w	#$4000,obX(a0)
+	move.w	#0,obY(a0)
+	move.b	#id_Fly,obAnim(a0)
+	rts
+; ===========================================================================
+; sub_1BE66:
+TailsCPU_CheckDespawn:
+	btst	#7,obRender(a0)
+	bne.s	TailsCPU_ResetRespawnTimer
+	btst	#3,obStatus(a0)
+	beq.s	TailsCPU_TickRespawnTimer
+
+	moveq	#0,d0
+	move.b	standonobject(a0),d0
+    if object_size=$40
+	lsl.w	#object_size_bits,d0
+    else
+	mulu.w	#object_size,d0
+    endif
+	addi.l	#v_objspace,d0
+	movea.l	d0,a3	; a3=object
+	move.b	(v_tailsinteract).w,d0
+	cmp.b	obID(a3),d0
+	bne.s	BranchTo_TailsCPU_Despawn
+
+; loc_1BE8C:
+TailsCPU_TickRespawnTimer:
+	addq.w	#1,(v_tailsrespawn).w
+	cmpi.w	#$12C,(v_tailsrespawn).w
+	blo.s	TailsCPU_UpdateObjInteract
+
+BranchTo_TailsCPU_Despawn ; BranchTo
+	bra.w	TailsCPU_Despawn
+; ===========================================================================
+; loc_1BE9C:
+TailsCPU_ResetRespawnTimer:
+	move.w	#0,(v_tailsrespawn).w
+; loc_1BEA2:
+TailsCPU_UpdateObjInteract:
+	moveq	#0,d0
+	move.b	standonobject(a0),d0
+    if object_size=$40
+	lsl.w	#object_size_bits,d0
+    else
+	mulu.w	#object_size,d0
+    endif
+	addi.l	#v_objspace,d0
+	movea.l	d0,a3	; a3=object
+	move.b	obID(a3),(v_tailsinteract).w
+	rts
+
+; ===========================================================================
+; AI State where Tails stops, drops, and spindashes in Sonic's direction
+; ---------------------------------------------------------------------------
+; loc_1BEB8:
+TailsCPU_Panic:
+		rts
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to record Tails' previous positions for invincibility stars
@@ -209,6 +625,8 @@ Tails_RecordPosition:
 
 
 Tails_Water:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.exit		;if not,don't enter water
 		cmpi.b	#1,(f_water).w	; is there water?
 		beq.s	.islabyrinth	; if yes, branch
 
@@ -349,12 +767,12 @@ Tails_Move:
 		bne.w	loc_12FEEDup
 		tst.w	locktime(a0)	; is Sonic's D-Pad input temporarily locked?
 		bne.w	Tails_ResetScr	; if yes, ignore D-Pad input
-		btst	#bitL,(v_jpadhold2).w ; is left being pressed?
+		btst	#bitL,(v_jpadhold2p2).w ; is left being pressed?
 		beq.s	.notleft	; if not, branch
 		bsr.w	Tails_MoveLeft
 
 .notleft:
-		btst	#bitR,(v_jpadhold2).w ; is right being pressed?
+		btst	#bitR,(v_jpadhold2p2).w ; is right being pressed?
 		beq.s	.notright	; if not, branch
 		bsr.w	Tails_MoveRight
 
@@ -414,7 +832,7 @@ loc_12F70Dup:
 ; ===========================================================================
 
 Tails_LookUp:
-		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
+		btst	#bitUp,(v_jpadhold2p2).w ; is up being pressed?
 		beq.s	Tails_Duck	; if not, branch
 		move.b	#id_LookUp,obAnim(a0) ; use "looking up" animation
 		cmpi.w	#$C8,(v_lookshift).w
@@ -424,7 +842,7 @@ Tails_LookUp:
 ; ===========================================================================
 
 Tails_Duck:
-		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
+		btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
 		beq.s	Tails_ResetScr	; if not, branch
 		move.b	#id_Duck,obAnim(a0) ; use "ducking" animation
 		cmpi.w	#8,(v_lookshift).w
@@ -444,7 +862,7 @@ loc_12FBEDup:
 		subq.w	#2,(v_lookshift).w ; move screen back to default
 
 loc_12FC2Dup:
-		move.b	(v_jpadhold2).w,d0
+		move.b	(v_jpadhold2p2).w,d0
 		andi.b	#btnL+btnR,d0	; is left/right pressed?
 		bne.s	loc_12FEEDup	; if yes, branch
 		move.w	obInertia(a0),d0
@@ -648,12 +1066,12 @@ Tails_RollSpeed:
 		bne.w	loc_131CCDup
 		tst.w	locktime(a0)	; is Sonic's D-Pad input temporarily locked?
 		bne.s	.notright	; if yes, ignore D-Pad input
-		btst	#bitL,(v_jpadhold2).w ; is left being pressed?
+		btst	#bitL,(v_jpadhold2p2).w ; is left being pressed?
 		beq.s	.notleft	; if not, branch
 		bsr.w	Tails_RollLeft
 
 .notleft:
-		btst	#bitR,(v_jpadhold2).w ; is right being pressed?
+		btst	#bitR,(v_jpadhold2p2).w ; is right being pressed?
 		beq.s	.notright	; if not, branch
 		bsr.w	Tails_RollRight
 
@@ -768,7 +1186,7 @@ Tails_JumpDirection:
 		btst	#4,obStatus(a0)
 		bne.s	Obj02_ResetScr2
 		move.w	obVelX(a0),d0
-		btst	#bitL,(v_jpadhold2).w ; is left being pressed?
+		btst	#bitL,(v_jpadhold2p2).w ; is left being pressed?
 		beq.s	loc_13278Dup	; if not, branch
 		bset	#0,obStatus(a0)
 		sub.w	d5,d0
@@ -782,7 +1200,7 @@ Tails_JumpDirection:
 		move.w	d1,d0
 
 loc_13278Dup:
-		btst	#bitR,(v_jpadhold2).w ; is right being pressed?
+		btst	#bitR,(v_jpadhold2p2).w ; is right being pressed?
 		beq.s	Obj02_JumpMove	; if not, branch
 		bclr	#0,obStatus(a0)
 		add.w	d5,d0
@@ -942,10 +1360,10 @@ Tails_Roll:
 .ispositive:
 		cmpi.w	#$80,d0		; is Sonic moving at $80 speed or faster?
 		blo.s	.noroll		; if not, branch
-		move.b	(v_jpadhold2).w,d0
+		move.b	(v_jpadhold2p2).w,d0
 		andi.b	#btnL+btnR,d0	; is left/right being pressed?
 		bne.s	.noroll		; if yes, branch
-		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
+		btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
 		bne.s	Tails_ChkRoll	; if yes, branch
 
 ; Obj02_NoRoll
@@ -985,7 +1403,7 @@ Tails_ChkRoll:
 
 
 Tails_Jump:
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		beq.w	.return	; if not, branch
 		moveq	#0,d0
@@ -1061,7 +1479,7 @@ Tails_JumpHeight:
 .notunderwater:
 		cmp.w	obVelY(a0),d1	; get current y speed.
 		ble.s	.tails
-		move.b	(v_jpadhold2).w,d0
+		move.b	(v_jpadhold2p2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		bne.s	.return	; if yes, branch
 		move.w	d1,obVelY(a0)
@@ -1542,6 +1960,17 @@ Tails_Death:	; Routine 6
 
 
 GameOverDup:
+	cmpa.w	#v_player,a0	;is Tails player 1?
+	beq.w	.gameover	;if not, cpu controls
+	;move.b	#1,(Scroll_lock_P2).w
+	move.b	#0,spindash_flag(a0)
+	move.w	(v_limittop2tails).w,d0
+	addi.w	#$100,d0
+	cmp.w	obY(a0),d0
+	bge.w	locret_13900Dup
+	move.b	#2,obRoutine(a0)
+	bra.w	TailsCPU_Despawn
+.gameover:
 	if FixBugs
 		; Fix the death boundary bug
 		; https://info.sonicretro.org/SCHG_How-to:Fix_the_death_boundary_bug

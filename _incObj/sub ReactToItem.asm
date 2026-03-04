@@ -260,6 +260,8 @@ React_ChkHurt:
 
 
 HurtSonic:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.skiphasshield;if not, don't be hurt
 		tst.b	(v_shield).w	; does Sonic have a shield?
 		bne.s	.hasshield	; if yes, branch
 		tst.w	(v_rings).w	; does Sonic have any rings?
@@ -273,6 +275,7 @@ HurtSonic:
 
 .hasshield:
 		move.b	#0,(v_shield).w	; remove shield
+.skiphasshield:
 		move.b	#4,obRoutine(a0)
 		bsr.w	.resetonfloor
 		bset	#1,obStatus(a0)
@@ -325,6 +328,8 @@ HurtSonic:
 .norings:
 		tst.w	(f_debugmode).w	; is debug mode cheat on?
 		bne.w	.hasshield	; if yes, branch
+		tst.w	(f_demo).w	; is an ending sequence demo running?
+		bmi.w	.skiphasshield	; if yes,don't kill Sonic (fix softlock in credits due to dying)
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to kill Sonic
@@ -336,14 +341,16 @@ HurtSonic:
 KillSonic:
 		tst.w	(v_debuguse).w	; is debug mode active?
 		bne.s	.dontdie	; if yes, branch
+		cmpa.w	#v_player,a0	;did player 1 die?
+		bne.w	.dontremovesuper;if not, don't remove buffs
 		move.b	#0,(v_invinc).w	; remove invincibility
 		move.b	#0,(v_shoes).w	; clear speed shoes
 		tst.b	(v_super).w	; is Sonic already Super?
 		beq.w	.dontremovesuper		; if not, branch
 		move.b	#2,(v_supersonpal).w	; Remove rotating palette
 		move.b	#$28,(v_supersonpalnum).w
-		.dontremovesuper:
 		move.b	#0,(v_super).w
+		.dontremovesuper:
 		move.b	#6,obRoutine(a0)
 		bsr.w	.resetonfloor
 		bset	#1,obStatus(a0)

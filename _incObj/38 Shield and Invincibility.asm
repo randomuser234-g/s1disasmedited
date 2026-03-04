@@ -101,3 +101,5 @@ Shi_Stars:	; Routine 4
 
 Shi_Start_Delete:	
 		jmp	(DeleteObject).l
+
+Shi_LoadGfx:

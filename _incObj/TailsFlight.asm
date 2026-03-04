@@ -3,7 +3,7 @@ Tails_Flight:
 		beq.w	rts_TailsFlight
 		btst	#2,obStatus(a0)
 		beq.w	rts_TailsFlight
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.s	rts_TailsFlight
 		jsr	Tails_StartFlying
@@ -14,14 +14,14 @@ rts_TailsFlight:
 
 Tails_StartFlying:
 		jsr	FlyP1
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.s	Tails_Speed1
 		subi.w	#$400,obVelY(a0)
 		bra.s	Tails_Speed2
 
 Tails_Speed1:
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#$40,d0
 		beq.s	Tails_Speed2
 		subi.w	#$100,obVelY(a0)
@@ -35,7 +35,7 @@ Tails_Speed2:
 Fly_DoNothing:
                 rts
 FlyP1:
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.s	FlyP2
 		tst.w	obVelY(a0)
@@ -44,7 +44,7 @@ FlyP1:
 		bra.s	FlyP3
 
 FlyP2:
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.s	FlyP3
 		tst.w	obVelY(a0)

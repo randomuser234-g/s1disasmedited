@@ -11,7 +11,6 @@ Sonic_CheckGoSuper:
 	move.b	(v_jpadpress2).w,d0
 	andi.b	#btnB|btnC|btnA,d0
 	beq.w	return_1ABA4
-
 	cmpi.b	#1,(v_bonusfeat).w	; check if bonus feature flag is set to 1 (indicating super forms)
 	bne.w	return_1ABA4		; if not, branch
 	tst.b	(v_super).w	; is Sonic already Super?
@@ -23,6 +22,8 @@ Sonic_CheckGoSuper:
 	tst.b	(f_timecount).w	;is time stopped?
 	beq.w	return_1ABA4		; if yes, branch
 Sonic_GoSuper:
+	cmpa.w	#v_player,a0	;is Tails player 1?
+	bne.w	return_1ABA4	;if not, do nothing
 	andi.b	#~(1<<2|1<<4),obStatus(a0)	; Clear bits 2 and 4, clears rolljump
 	move.b	#$13,obHeight(a0)
 	jsr	TailsHeight
@@ -41,8 +42,8 @@ Sonic_GoSuper:
 	move.b	#1,(v_starsobj1+obAnim).w
 	move.b	#id_ShieldItem,(v_starsobj2).w ; load stars object ($3802)
 	move.b	#2,(v_starsobj2+obAnim).w
-	move.b	#id_ShieldItem,(v_starsobj3).w ; load stars object ($3803)
-	move.b	#3,(v_starsobj3+obAnim).w
+	;move.b	#id_ShieldItem,(v_starsobj3).w ; load stars object ($3803)
+	;move.b	#3,(v_starsobj3+obAnim).w
 	move.b	#id_SuperAfterImg,(v_starsobj4).w ; load after image object ($3804)
 
 	move.w	#$A00,(v_sonspeedmax).w ; change Sonic's top speed

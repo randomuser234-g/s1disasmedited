@@ -6,9 +6,15 @@ OptionSelect:
 		bsr.w	.optionplaysound
 	.tails:
 		cmpi.w	#$2,d0		; have you selected item $2 (tails)?
-		bne.w	.disableflight	; if not, go to start game
+		bne.w	.sonicandtails	; if not, go to start game
 		move.b	#1,(v_character).w	; set the multiple character flag to 1 (indicating Tails)
 		move.b	#sfx_Spring,d0		; put value of Spring sound into d0
+		bsr.w	.optionplaysound
+	.sonicandtails:
+		cmpi.w	#$3,d0		; have you selected item $2 (tails)?
+		bne.w	.disableflight	; if not, go to start game
+		move.b	#2,(v_character).w	; set the multiple character flag to 2 (indicating Sonic and Tails)
+		move.b	#sfx_Roll,d0		; put value of Roll sound into d0
 		bsr.w	.optionplaysound
 	.disableflight:
 		cmpi.w	#$4,d0		; have you selected item $4 (disable tails' flight)?
