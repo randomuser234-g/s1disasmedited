@@ -342,6 +342,7 @@ PLC_SBZAnimalsend:
 ; ---------------------------------------------------------------------------
 PLC_SSResult:dc.w ((PLC_SpeStResultend-PLC_SSResult-2)/6)-1
 		plcm	Nem_ResultEm,  ArtTile_SS_Results_Emeralds ; emeralds
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
 		plcm	Nem_MiniSonic, ArtTile_Mini_Sonic          ; mini Sonic
 PLC_SpeStResultend:
 ; ---------------------------------------------------------------------------
@@ -407,6 +408,7 @@ PLC_MainTailsend:
 ; ---------------------------------------------------------------------------
 PLC_SSResultTails:dc.w ((PLC_SpeStResultend-PLC_SSResult-2)/6)-1
 		plcm	Nem_ResultEm,  ArtTile_SS_Results_Emeralds ; emeralds
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
 		plcm	Nem_MiniTails, ArtTile_Mini_Sonic          ; mini Tails
 PLC_SpeStResultTailsend:
 ; ---------------------------------------------------------------------------
