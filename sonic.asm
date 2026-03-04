@@ -4317,6 +4317,16 @@ End_MainLoop:
 		cmpi.b	#id_Ending,(v_gamemode).w ; is game mode $18 (ending)?
 		beq.s	End_ChkEmerald	; if yes, branch
 
+		moveq	#plcid_Main,d0
+		bsr.w	NewPLC		; reload the ring and checkpoint (causes animals to glitch for a second)
+
+End_WaitLoop:
+		move.b	#4,(v_vbla_routine).w
+		bsr.w	WaitForVBla
+		bsr.w	RunPLC
+		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
+		bne.s	End_WaitLoop	; if not, branch
+
 		move.b	#id_Credits,(v_gamemode).w ; goto credits
 		move.b	#bgm_Credits,d0
 		bsr.w	QueueSound2 ; play credits music
