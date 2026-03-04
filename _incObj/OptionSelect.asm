@@ -116,15 +116,17 @@ OptionSelect2:
 	.goodend:
 		cmpi.w	#$8,d0		; have you selected item $5 (disable bonuses)?
 		bne.w	.badend	; if not, do nothing
-		move.b	#6,(v_emeralds).w
+		move.b	#6,(v_emeralds).w	;set up good ending by giving all emeralds
 		bra.s	.playending		; if yes, branch
 	.badend:
 		cmpi.w	#$9,d0		; have you selected item $5 (disable bonuses)?
 		bne.w	.credits	; if not, do nothing
+		move.b	#0,(v_emeralds).w	;set up bad ending by not having emeralds
 		bra.s	.playending		; if yes, branch
 	.credits:
 		cmpi.w	#$A,d0		; have you selected item $5 (disable bonuses)?
 		bne.w	.goback	; if not, do nothing
+		move.b	#0,(v_emeralds).w
 		bra.w	.playcredits		; if yes, branch
 	.goback:
 		cmpi.w	#$13,d0		; have you selected item $13 (go back)?
