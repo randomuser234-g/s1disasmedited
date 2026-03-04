@@ -1588,7 +1588,9 @@ loc_138C2:
 		move.w	#bgm_GameOver,d0
 		jsr	(QueueSound1).l	; play game over music
 		moveq	#plcid_GameOver,d0
-		jmp	(AddPLC).l	; load game over patterns
+		jsr	(AddPLC).l	; load game over patterns
+		lea	(v_player2).w,a0	;move the 2nd player to be deleted
+		jmp	DeleteObject
 ; ===========================================================================
 
 loc_138D4:

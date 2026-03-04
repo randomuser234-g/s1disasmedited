@@ -341,6 +341,8 @@ HurtSonic:
 KillSonic:
 		tst.w	(v_debuguse).w	; is debug mode active?
 		bne.s	.dontdie	; if yes, branch
+		tst.b	(f_timecount).w	;is time stopped?
+		beq.w	.dontdie	; if yes, don't die
 		cmpa.w	#v_player,a0	;did player 1 die?
 		bne.w	.dontremovesuper;if not, don't remove buffs
 		move.b	#0,(v_invinc).w	; remove invincibility

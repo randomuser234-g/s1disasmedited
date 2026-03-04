@@ -695,7 +695,7 @@ Tails_Water:
 
 ; Obj02_MdNormal:
 Tails_MdNormal:
-		bsr.w	TailsHeight
+		bsr.w	TailsSetHeight
 		bsr.w	Tails_SpinDash
 		;bsr.w	Sonic_Peelout
 		bsr.w	Tails_Jump
@@ -1105,8 +1105,6 @@ loc_131AADup:
 		move.b	#9,obWidth(a0)
 		move.b	#id_Wait,obAnim(a0) ; use "standing" animation
 		subq.w	#1,obY(a0)
-		;jsr	Tails_HeightAfterLanding
-
 loc_131CCDup:
 		move.b	obAngle(a0),d0
 		jsr	(CalcSine).l
@@ -1385,7 +1383,6 @@ Tails_ChkRoll:
 		move.b	#7,obWidth(a0)
 		move.b	#id_Roll,obAnim(a0) ; use "rolling" animation
 		addq.w	#1,obY(a0)
-		;jsr	TailsRollHeight
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l	; play rolling sound
 		tst.w	obInertia(a0)
@@ -1869,7 +1866,6 @@ Tails_ResetOnFloor:
 		move.b	#9,obWidth(a0)
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#1,obY(a0)	; raise Sonic up 5 pixels so he's not inside the ground.
-		;jsr	Tails_HeightAfterLanding
 
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
