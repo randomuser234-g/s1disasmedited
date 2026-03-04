@@ -2335,18 +2335,6 @@ Tit_LoadText:
 		bsr.w	PaletteFadeIn
 		jmp	Tit_MainLoop
 		rts
-LifeIcon:
-		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicplc		; if not, load Sonic's life icon
-		moveq	#plcid_MainTails,d0	;
-		jsr	(QuickPLC).l	; load life icon
-		bra.s	.loadplc		; branch to rest of code
-
-	.sonicplc:
-		nop
-
-	.loadplc:
-		rts
 
 ; ---------------------------------------------------------------------------
 ; Title screen main loop and cheat checks
@@ -3088,6 +3076,23 @@ MusicList:
 ; ---------------------------------------------------------------------------
 
 GM_Level:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.sonicplc		; if not, load Sonic's life icon
+		moveq	#plcid_MainTails,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LevelStart_WaitLoop		; branch to rest of code
+
+	.sonicplc:
+		moveq	#plcid_Main,d0
+		bsr.w	NewPLC		
+
+.LevelStart_WaitLoop:
+		move.b	#4,(v_vbla_routine).w
+		bsr.w	WaitForVBla
+		bsr.w	RunPLC
+		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
+		bne.s	.LevelStart_WaitLoop	; if not, branch
+
 		bset	#7,(v_gamemode).w ; add $80 to screen mode (for pre level sequence)
 		tst.w	(f_demo).w
 		bmi.s	Level_NoMusicFade
@@ -3097,7 +3102,6 @@ GM_Level:
 Level_NoMusicFade:
 		bsr.w	ClearPLC
 		bsr.w	PaletteFadeOut
-		jsr	LifeIcon	;note move this instruction to right area otherwise part gets removed in LZ
 		tst.w	(f_demo).w	; is an ending sequence demo running?
 		bmi.s	Level_ClrRam	; if yes, branch
 		disable_ints
@@ -3728,8 +3732,6 @@ SS_NormalExit:
 		beq.s	SS_NormalExit
 		tst.l	(v_plc_buffer).w
 		bne.s	SS_NormalExit
-		moveq	#plcid_Main,d0
-		bsr.w	NewPLC
 		move.w	#sfx_EnterSS,d0
 		bsr.w	QueueSound2 ; play special stage exit sound
 		bsr.w	PaletteWhiteOut
@@ -4316,16 +4318,6 @@ End_MainLoop:
 		bsr.w	SynchroAnimate
 		cmpi.b	#id_Ending,(v_gamemode).w ; is game mode $18 (ending)?
 		beq.s	End_ChkEmerald	; if yes, branch
-
-		moveq	#plcid_Main,d0
-		bsr.w	NewPLC		; reload the ring and checkpoint (causes animals to glitch for a second)
-
-End_WaitLoop:
-		move.b	#4,(v_vbla_routine).w
-		bsr.w	WaitForVBla
-		bsr.w	RunPLC
-		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
-		bne.s	End_WaitLoop	; if not, branch
 
 		move.b	#id_Credits,(v_gamemode).w ; goto credits
 		move.b	#bgm_Credits,d0
