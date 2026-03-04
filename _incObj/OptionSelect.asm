@@ -109,10 +109,23 @@ OptionSelect2:
 		bsr.w	.optionplaysound
 	.disablebonuses:
 		cmpi.w	#$5,d0		; have you selected item $5 (disable bonuses)?
-		bne.w	.goback	; if not, do nothing
+		bne.w	.goodend	; if not, do nothing
 		move.b	#0,(v_bonusfeat).w	; set the bonus feature flag to 0 (indicating no bonuses)
 		move.b	#sfx_Bumper,d0		; put value of Bumper sound into d0
 		bsr.w	.optionplaysound
+	.goodend:
+		cmpi.w	#$8,d0		; have you selected item $5 (disable bonuses)?
+		bne.w	.badend	; if not, do nothing
+		move.b	#6,(v_emeralds).w
+		bra.s	.playending		; if yes, branch
+	.badend:
+		cmpi.w	#$9,d0		; have you selected item $5 (disable bonuses)?
+		bne.w	.credits	; if not, do nothing
+		bra.s	.playending		; if yes, branch
+	.credits:
+		cmpi.w	#$A,d0		; have you selected item $5 (disable bonuses)?
+		bne.w	.goback	; if not, do nothing
+		bra.w	.playcredits		; if yes, branch
 	.goback:
 		cmpi.w	#$13,d0		; have you selected item $13 (go back)?
 		bne.w	.soundtest	; if not, do nothing
@@ -134,4 +147,14 @@ OptionSelect2:
 		rts
 .soundtestsel:
 		jsr	SoundTestSelection
+		rts
+.playending:
+		move.b	#id_Ending,(v_gamemode).w ; set screen mode to $18 (Ending)
+		move.w	#(id_EndZ<<8),(v_zone).w  ; set level to 0600 (good Ending)
+		rts
+.playcredits:
+		move.b	#id_Credits,(v_gamemode).w ; set screen mode to $1C (Credits)
+		move.b	#bgm_Credits,d0		; set credits music
+		bsr.w	.optionplaysound		; play it
+		move.w	#0,(v_creditsnum).w	; start at the first credits page
 		rts
