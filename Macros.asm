@@ -252,7 +252,13 @@ jmi:		macro loc
 		jmp	loc
 .nojump:
 		endm
-
+; macro to move the absolute value of the source in the destination
+mvabs macro source,destination
+	move.ATTRIBUTE	source,destination
+	bpl.s	.skip
+	neg.ATTRIBUTE	destination
+.skip:
+    endm
 ; ---------------------------------------------------------------------------
 ; check if object moves out of range
 ; input: location to jump to if out of range, x-axis pos (obX(a0) by default)

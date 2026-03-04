@@ -3005,7 +3005,7 @@ OptionText:
 		dc.b "PAGE 1                  "
 		dc.b "SONIC ALONE             "
 		dc.b "TAILS ALONE             "
-		dc.b "                        "
+		dc.b "SONIC AND TAILS         "
 		dc.b "TAILS FLIGHT OFF        "
 		dc.b "SPINDASH OFF            "
 		dc.b "PEELOUT OFF             "
@@ -3232,8 +3232,17 @@ Level_SkipTtlCard:
 		move.b	#id_HUD,(v_hud).w ; load HUD object
 		bra.s	Level_ChkDebug
 InitPlayers:
+		cmpi.b	#2,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		bne.s	.alone		; if not, check for characters alone
+		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		move.b	#id_TailsPlayer,(v_player2).w ; load Tails object
+		move.w	(v_player+obX).w,(v_player2+obX).w
+		move.w	(v_player+obY).w,(v_player2+obY).w
+		subi.w	#$20,(v_player2+obX).w
+		rts
+	.alone:
 		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
-		bne.s	.tailsalone		; if not, load Tails
+		bne.s	.tailsalone		; if not, check for Tails alone
 		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
 		rts
 

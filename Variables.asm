@@ -56,8 +56,8 @@ v_shieldobj	= v_objspace+object_size*6	; object variable space for the shield ($
 v_tailstails	= v_objspace+object_size*7	; object variable space for Tails' tails ($40 bytes)
 v_starsobj1	= v_objspace+object_size*8	; object variable space for the invincibility stars #1 ($40 bytes)
 v_starsobj2	= v_objspace+object_size*9	; object variable space for the invincibility stars #2 ($40 bytes)
-v_starsobj3	= v_objspace+object_size*10	; object variable space for the invincibility stars #3 ($40 bytes)
-v_starsobj4	= v_objspace+object_size*11	; object variable space for the invincibility stars #4 ($40 bytes)
+v_starsobj4	= v_objspace+object_size*10	; object variable space for the invincibility stars #4 ($40 bytes)
+v_player2	= v_objspace+object_size*11	; object variable space for Tails as P2 #3 ($40 bytes)
 
 v_splash	= v_objspace+object_size*12	; object variable space for the water splash ($40 bytes)
 v_sonicbubbles	= v_objspace+object_size*13	; object variable space for the bubbles that come out of Sonic's mouth/drown countdown ($40 bytes)
@@ -111,7 +111,11 @@ v_jpadhold2:		ds.b	1		; joypad input - held, duplicate
 v_jpadpress2:		ds.b	1		; joypad input - pressed, duplicate
 v_jpadhold1:		ds.b	1		; joypad input - held
 v_jpadpress1:		ds.b	1		; joypad input - pressed
-			ds.b	6		; unused
+v_jpadhold2p2:		ds.b	1		; joypad input - held, duplicate	player2
+v_jpadpress2p2:		ds.b	1		; joypad input - pressed, duplicate	player2
+v_jpadhold1p2:		ds.b	1		; joypad input - held			player2
+v_jpadpress1p2:		ds.b	1		; joypad input - pressed		player2
+			ds.b	2		; unused
 v_vdp_buffer1:		ds.w	1		; VDP instruction buffer of register $81 (used for enabling/disabling display)
 			ds.b	6		; unused
 v_generictimer:		ds.w	1		; generic timer, decrements to 0 in vblank (word)
@@ -187,7 +191,9 @@ v_limittop2:		ds.w	1		; top level boundary
 v_limitbtm2:		ds.w	1		; bottom level boundary
 v_unused11:		ds.w	1		; unused
 v_limitleft3:		ds.w	1		; left level boundary, at the end of an act
-			ds.b	6		; unused
+v_limitleft2tails:		ds.w	1		; left level boundary	for the tails ai
+v_limitright2tails:		ds.w	1		; right level boundary
+v_limittop2tails:		ds.w	1		; top level boundary
 v_scrshiftx:		ds.w	1		; x-screen shift (new - last) * $100
 v_scrshifty:		ds.w	1		; y-screen shift (new - last) * $100
 v_lookshift:		ds.w	1		; screen shift when Sonic looks up/down
@@ -264,7 +270,8 @@ v_lani4_frame:		ds.b	1		; level graphics animation 4 - current frame
 v_lani4_time:		ds.b	1		; level graphics animation 4 - time until next frame
 v_lani5_frame:		ds.b	1		; level graphics animation 5 - current frame
 v_lani5_time:		ds.b	1		; level graphics animation 5 - time until next frame
-			ds.b	2		; unused
+f_playerctrl2		ds.b	1		; used for Tails to pause only him
+			ds.b	1		; unused
 v_gfxbigring:		ds.w	1		; settings for giant ring graphics loading
 f_conveyrev:		ds.b	1		; flag set to reverse conveyor belts in LZ/SBZ
 v_obj63:		ds.b	6		; object 63 (LZ/SBZ platforms) variables
@@ -276,20 +283,26 @@ v_obj6B:		ds.b	1		; object 6B (SBZ stomper) variable
 f_lockctrl:		ds.b	1		; flag set to lock controls during ending sequence
 f_bigring:		ds.b	1		; flag set when Sonic collects the giant ring
 f_obj56:		ds.b	1		; object 56 flag
-			ds.b	1		; unused
+f_lockctrlp2		ds.b	1		; player 2 lock controls
+			ds.b	2		; unused
+v_tailscontrol:		ds.w	1	; how long until the CPU takes control
+v_tailsrespawn:		ds.w	1
+v_tailscpuroutine:		ds.w	1
+v_tailscputargetx:		ds.w	1
+v_tailscputargety:		ds.w	1
+v_tailsinteract:		ds.b	1	; object ID of last object stood on
+v_tailscpujump:		ds.b	1
 v_itembonus:		ds.w	1		; item bonus from broken enemies, blocks etc.
 v_timebonus:		ds.w	1		; time bonus at the end of an act
 v_ringbonus:		ds.w	1		; ring bonus at the end of an act
 f_endactbonus:		ds.b	1		; time/ring bonus update flag at the end of an act
 v_sonicend:		ds.b	1		; routine counter for Sonic in the ending sequence
 v_lz_deform:		ds.w	1		; LZ deformation offset, in units of $80
-			ds.b	6		; unused
 f_switch:		ds.b	$10		; flags set when Sonic stands on a switch
 v_scroll_block_1_size:	ds.w	1
 v_scroll_block_2_size:	ds.w	1		; unused
 v_scroll_block_3_size:	ds.w	1		; unused
 v_scroll_block_4_size:	ds.w	1		; unused
-			ds.b	8		; unused
 v_levelvariables_end:
 
 v_spritetablebuffer:	ds.b	$280		; sprite table (last $80 bytes are overwritten by v_palette_water_fading)
