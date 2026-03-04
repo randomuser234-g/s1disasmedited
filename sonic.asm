@@ -3695,8 +3695,6 @@ loc_47D4:
 		enable_ints
 		moveq	#palid_SSResult,d0
 		bsr.w	PalLoad	; load results screen palette
-		moveq	#plcid_Main,d0
-		bsr.w	NewPLC
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.sonicmap		; if not, load Sonic's mappings
 		moveq	#plcid_SSResultTails,d0
@@ -3730,6 +3728,8 @@ SS_NormalExit:
 		beq.s	SS_NormalExit
 		tst.l	(v_plc_buffer).w
 		bne.s	SS_NormalExit
+		moveq	#plcid_Main,d0
+		bsr.w	NewPLC
 		move.w	#sfx_EnterSS,d0
 		bsr.w	QueueSound2 ; play special stage exit sound
 		bsr.w	PaletteWhiteOut

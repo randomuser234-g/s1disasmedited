@@ -511,7 +511,7 @@ ArtTile_Spring_Horizontal:	equ $523
 ArtTile_Spring_Vertical:	equ $533
 ArtTile_Shield:			equ $541
 ArtTile_Invincibility:		equ ArtTile_Shield	;the code swaps these in on the fly with NewPLC
-ArtTile_Game_Over:		equ $55E
+ArtTile_Game_Over:		equ ArtTile_Sonic
 ArtTile_Title_Card:		equ $580
 ArtTile_Animal_1:		equ $580
 ArtTile_Animal_2:		equ $592
