@@ -1995,7 +1995,9 @@ loc_138C2Dup:
 		move.w	#bgm_GameOver,d0
 		jsr	(QueueSound1).l	; play game over music
 		moveq	#plcid_GameOver,d0
-		jmp	(AddPLC).l	; load game over patterns
+		jsr	(AddPLC).l	; load game over patterns
+		lea	(v_hud).w,a0	;move the hut to be deleted
+		jmp	DeleteObject
 ; ===========================================================================
 
 loc_138D4Dup:

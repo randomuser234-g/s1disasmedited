@@ -125,8 +125,9 @@ Jun_Release:	; Routine 6
 .dontrelease:
 		bsr.s	Jun_ChkSwitch
 		bsr.s	Jun_ChgPos
-		bra.w	RememberState
-
+		bra.w	.rememberstate
+.rememberstate:
+		jmp	RememberState
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 

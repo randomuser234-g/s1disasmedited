@@ -22,13 +22,13 @@ CSon_Main:	; Routine 0
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.sonicmap		; if not, load Sonic's mappings
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		bra.s	.loadmap		; branch to rest of code
 
 	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
-
-	.loadmap:
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+	.loadmap:
 		move.b	#4,obRender(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#id_Float3,obAnim(a0) ; use "floating" animation
@@ -62,13 +62,14 @@ CSon_GetUp:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.sonicmap		; if not, load Sonic's mappings
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		bra.s	.loadmap		; branch to rest of code
 
 	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 
 	.loadmap:
-		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		move.b	#id_Float4,obAnim(a0) ; use "getting up" animation
 		clr.w	obInertia(a0)
 		subq.w	#8,obY(a0)
