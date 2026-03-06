@@ -157,6 +157,8 @@ React_Monitor:
 .movingdown:
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
 		bne.s	.donothing
+		cmpa.w	#v_player,a0	;is player 1 hitting it?
+		bne.w	.donothing	;if not, don't break monitor
 		neg.w	obVelY(a0)	; reverse Sonic's y-motion
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
