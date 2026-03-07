@@ -33,11 +33,14 @@ Sign_Main:	; Routine 0
 		move.b	#4,obPriority(a0)
 
 Sign_Touch:	; Routine 2
+		tst.b	(f_bigring).w	; has Sonic jumped into a giant ring?
+		bne.s	.touchsignpost	; if yes, count as clearing the zone
 		move.w	(v_player+obX).w,d0
 		sub.w	obX(a0),d0
 		bcs.s	.notouch
 		cmpi.w	#$20,d0		; is Sonic within $20 pixels of the signpost?
 		bhs.s	.notouch	; if not, branch
+	.touchsignpost:
 		move.w	#sfx_Signpost,d0
 		jsr	(QueueSound1).l	; play signpost sound
 		clr.b	(f_timecount).w	; stop time counter
