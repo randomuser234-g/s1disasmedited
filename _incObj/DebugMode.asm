@@ -193,11 +193,11 @@ Debug_ChgItem:
 
 		clr.w	(v_ssangle).w
 		move.w	#$40,(v_ssrotate).w ; set new level rotation speed
-		jsr	.charcheckdebug
 		move.w	#$780,(v_player+obGfx).w
 		move.b	#id_Roll,(v_player+obAnim).w
 		bset	#2,(v_player+obStatus).w
 		bset	#1,(v_player+obStatus).w
+		jsr	.charcheckdebug
 
 .stayindebug:
 		rts
