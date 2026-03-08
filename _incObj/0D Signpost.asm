@@ -21,8 +21,8 @@ Signpost:
 		jsr	(LoadDynPLC).l		; load DPLCs
 
 		bsr.w	DisplaySprite
-		out_of_range.w	DeleteObject
 	.offscreen:
+		out_of_range.w	DeleteObject
 		rts
 ; ===========================================================================
 Sign_Index:	dc.w Sign_Main-Sign_Index
