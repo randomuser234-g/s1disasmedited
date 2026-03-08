@@ -6362,6 +6362,7 @@ Map_Bump:	include	"_maps/Bumper.asm"
 		include	"_incObj/0D Signpost.asm" ; includes "GotThroughAct" subroutine
 		include	"_anim/Signpost.asm"
 Map_Sign:	include	"_maps/Signpost.asm"
+DPLC_Sign:	include	"_maps/Signpost - Dynamic Gfx Script.asm"
 
 		include	"_incObj/4C & 4D Lava Geyser Maker.asm"
 		include	"_incObj/4E Wall of Lava.asm"
@@ -7969,11 +7970,6 @@ Art_Shield:	binclude	"artunc/Shield.bin"
 Art_Shield_End:	even
 Art_Stars:	binclude	"artunc/Invincibility Stars.bin"
 Art_Stars_End:	even
-Nem_Shield:	binclude	"artnem/Shield.nem"
-		even
-Nem_Stars:	binclude	"artnem/Invincibility Stars.nem"
-		even
-
 	if Revision=0
 Nem_LzSonic:	binclude	"artnem/Unused - LZ Sonic.nem" ; Sonic holding his breath
 		even
@@ -8234,7 +8230,7 @@ Nem_HSpring:	binclude	"artnem/Spring Horizontal.nem"
 		even
 Nem_VSpring:	binclude	"artnem/Spring Vertical.nem"
 		even
-Nem_SignPost:	binclude	"artnem/Signpost.nem"	; end of level signpost
+Art_SignPost:	binclude	"artunc/Signpost.bin"	; end of level signpost	not compressed
 		even
 Nem_Lamp:	binclude	"artnem/Lamppost.nem"
 		even
