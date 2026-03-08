@@ -835,9 +835,9 @@ VBla_0A:
 		writeCRAM	v_palette,0
 		writeVRAM	v_spritetablebuffer,vram_sprites
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		bsr.w	PalCycle_SS
-		jsr	ProcessDMAQueue(pc)
 
 		tst.w	(v_generictimer).w	; is there time left on the demo?
 		beq.w	.end	; if not, return
@@ -915,8 +915,8 @@ VBla_16:
 		writeCRAM	v_palette,0
 		writeVRAM	v_spritetablebuffer,vram_sprites
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
-		startZ80
 		jsr	ProcessDMAQueue(pc)
+		startZ80
 
 		tst.w	(v_generictimer).w
 		beq.w	.end
@@ -2710,7 +2710,7 @@ LevSelControls:
 		bpl.s	LevSel_SndTest		; if time remains, branch
 
 LevSel_UpDown:
-		move.w	#12-1,(v_levseldelay).w	; reset time delay
+		move.w	#11-1,(v_levseldelay).w	; reset time delay
 		move.b	(v_jpadhold1).w,d1	; get currently held buttons
 		andi.b	#btnUp+btnDn,d1		; is up/down held?
 		beq.s	LevSel_SndTest		; if not, branch
@@ -2994,13 +2994,13 @@ OptionText:
 		dc.b "SONIC ALONE             "
 		dc.b "TAILS ALONE             "
 		dc.b "SONIC AND TAILS         "
+		dc.b "                        "
 		dc.b "TAILS FLIGHT OFF        "
 		dc.b "SPINDASH OFF            "
 		dc.b "PEELOUT OFF             "
 		dc.b "RE-ENABLE ALL MOVES     "
 		dc.b "S1 STYLE PEELOUT        "
 		dc.b "CD STYLE PEELOUT        "
-		dc.b "                        "
 		dc.b "                        "
 		dc.b "GO TO PAGE 2            "
 		dc.b "                        "
