@@ -27,17 +27,12 @@ Shi_Main:	; Routine 0
 
 .stars:
 		addq.b	#2,obRoutine(a0) ; goto Shi_Stars next
-		lea	(vdp_data_port).l,a6
-		locVRAM	ArtTile_Invincibility*tile_size,4(a6)
-		lea	(Art_Stars).l,a5	; load invincibility
-		move.w	#(Art_Stars_End-Art_Stars)/2-1,d1	;as you can tell, copy of code from title screen
-
-.Tit_LoadText:
-		move.w	(a5)+,(a6)
-		dbf	d1,.Tit_LoadText	; load invincibility directly to vram to avoid plc issues
 		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)
-		move.w	#0,d0
+		moveq	#plcid_Main4,d0	;
+		bsr.w	.addplc		; load invincibility patterns
 		rts
+	.addplc:
+		jmp	AddPLC
 ; ===========================================================================
 
 Shi_Shield:	; Routine 2
@@ -113,14 +108,8 @@ Shi_Stars:	; Routine 4
 ; ===========================================================================
 
 Shi_Start_Delete:	
-		lea	(vdp_data_port).l,a6
-		locVRAM	ArtTile_Shield*tile_size,4(a6)
-		lea	(Art_Shield).l,a5	; load level select font
-		move.w	#(Art_Shield_End-Art_Shield)/2-1,d1
-
-.Tit_LoadText:
-		move.w	(a5)+,(a6)
-		dbf	d1,.Tit_LoadText	; load level select font
-		move.w	#make_art_tile(ArtTile_Shield,0,0),obGfx(a0)	; shield specific code
-		move.w	#0,d0
+		moveq	#plcid_Main3,d0
+		bsr.w	.addplc		; load shield patterns
 		jmp	(DeleteObject).l
+	.addplc:
+		jmp	AddPLC
