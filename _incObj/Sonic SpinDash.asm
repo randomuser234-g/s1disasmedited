@@ -1,8 +1,6 @@
 Sonic_SpinDash:
 		cmpi.b	#1,(v_spindashtoggle).w	; check if spindash toggle is 1 (indicating no spindash)
 		beq.w	rts_SonicSpinDash	;if yes, do nothing
-		cmpi.b	#id_Walk,obAnim(a0)
-		beq.s	rts_SonicSpinDash
 		cmpi.b	#1,spindash_flag(a0)
 		beq.w	Sonic_UpdateSpinDash
 		cmpi.b	#id_Duck,obAnim(a0)

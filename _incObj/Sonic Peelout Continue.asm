@@ -1,8 +1,6 @@
 Sonic_ContPeelout:
 		cmpi.b	#1,(v_character).w	; check if multiple character flag is set 1 (indicating Tails)
 		beq.w	rts_SonicContPeelout
-		cmpi.b	#id_Roll,obAnim(a0)
-		beq.s	rts_SonicContPeelout
 		cmpi.b	#2,spindash_flag(a0)
 		beq.s	Sonic_UpdateContPeelout
 		cmpi.b	#id_LookUp,obAnim(a0)
