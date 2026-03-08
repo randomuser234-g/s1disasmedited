@@ -17,25 +17,25 @@ OptionSelect:
 		move.b	#sfx_Roll,d0		; put value of Roll sound into d0
 		bsr.w	.optionplaysound
 	.disableflight:
-		cmpi.w	#$4,d0		; have you selected item $4 (disable tails' flight)?
+		cmpi.w	#$5,d0		; have you selected item $4 (disable tails' flight)?
 		bne.w	.spindashdisable	; if not, do nothing
 		move.b	#1,(v_flighttoggle).w	; set the flight toggle to 1 (disable tails' flight)
 		move.b	#sfx_Skid,d0		; put value of teleport sound into d0
 		bsr.w	.optionplaysound
 	.spindashdisable:
-		cmpi.w	#$5,d0		; have you selected item $5 (s1 style peelout)?
+		cmpi.w	#$6,d0		; have you selected item $5 (s1 style peelout)?
 		bne.w	.peeloutdisable	; if not, do nothing
 		move.b	#1,(v_spindashtoggle).w	; set the spindash toggle to 0 (enable spindash)
 		move.b	#sfx_Roll,d0		; put value of Roll sound into d0
 		bsr.w	.optionplaysound
 	.peeloutdisable:
-		cmpi.w	#$6,d0		; have you selected item $9 (disable peelout)?
+		cmpi.w	#$7,d0		; have you selected item $9 (disable peelout)?
 		bne.w	.movesenable	; if not, do nothing
 		move.b	#1,(v_peelouttoggle).w	; set the moves usability flag to 1 (indicating no moves)
 		move.b	#sfx_Bumper,d0		; put value of bumper sound into d0
 		bsr.w	.optionplaysound
 	.movesenable:
-		cmpi.w	#$7,d0		; have you selected item $8 (enable moves)?
+		cmpi.w	#$8,d0		; have you selected item $8 (enable moves)?
 		bne.w	.s1peelout	; if not, go to sound test
 		move.b	#0,(v_flighttoggle).w	; set the flight toggle to 0 (enable tails' flight)
 		move.b	#0,(v_spindashtoggle).w	; set the spindash toggle to 0 (enable spindash)
@@ -43,13 +43,13 @@ OptionSelect:
 		move.b	#sfx_Lamppost,d0		; put value of lamppost sound into d0
 		bsr.w	.optionplaysound
 	.s1peelout:
-		cmpi.w	#$8,d0		; have you selected item $6 (s1 style peelout)?
+		cmpi.w	#$9,d0		; have you selected item $6 (s1 style peelout)?
 		bne.w	.cdpeelout	; if not, do nothing
 		move.b	#1,(v_s1peelout).w	; set the moves usability flag to 1 (s1 peelout)
 		move.b	#sfx_Ring,d0		; put value of Ring sound into d0
 		bsr.w	.optionplaysound
 	.cdpeelout:
-		cmpi.w	#$9,d0		; have you selected item $7 (cd style peelout)?
+		cmpi.w	#$A,d0		; have you selected item $7 (cd style peelout)?
 		bne.w	.gotopage2	; if not, do nothing
 		move.b	#0,(v_s1peelout).w	; set the moves usability flag to 1 (cd peelout)
 		move.b	#sfx_Ring,d0		; put value of Ring sound into d0
