@@ -27,12 +27,8 @@ Shi_Main:	; Routine 0
 
 .stars:
 		addq.b	#2,obRoutine(a0) ; goto Shi_Stars next
-		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)
-		moveq	#plcid_Main4,d0	;
-		bsr.w	.addplc		; load invincibility patterns
+		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)	; shield specific code
 		rts
-	.addplc:
-		jmp	AddPLC
 ; ===========================================================================
 
 Shi_Shield:	; Routine 2
@@ -47,6 +43,13 @@ Shi_Shield:	; Routine 2
 		move.b	(v_player+obStatus).w,obStatus(a0)
 		lea	(Ani_Shield).l,a1
 		jsr	(AnimateSprite).l
+
+		move.b	obFrame(a0),d0		; load current frame to d0
+		lea	ShieldStarDynPLC(pc),a2	; load shield/stars DPLCs to a2
+		move.l	#Art_Shield,d6		; load uncompressed graphics pointer to d6
+		move.w	#ArtTile_Shield*tile_size,d4 ; load art tile x $20 to d4 to get VRAM offset
+		jsr	(LoadDynPLC).l		; load DPLCs
+
 		jmp	(DisplaySprite).l
 
 .remove:
@@ -58,7 +61,7 @@ Shi_Shield:	; Routine 2
 
 Shi_Stars:	; Routine 4
 		tst.b	(v_invinc).w	; does Sonic have invincibility?
-		beq.s	Shi_Start_Delete		; if not, branch
+		beq.w	Shi_Start_Delete		; if not, branch
 		tst.b	(f_timecount).w	;is time stopped?
 		beq.w	Shi_Start_Delete	; if yes, don't have invincibility
 		move.w	(v_trackpos).w,d0 ; get index value for tracking data
@@ -104,12 +107,20 @@ Shi_Stars:	; Routine 4
 		move.b	(v_player+obStatus).w,obStatus(a0)
 		lea	(Ani_Shield).l,a1
 		jsr	(AnimateSprite).l
+
+		;	make the shield use a DPLC
+		;	https://info.sonicretro.org/SCHG_How-to:Optimize_Shield_and_Invincibility_Art
+
+		cmpi.b	#1,obAnim(a0)		; is this the first invincibility object?
+		bne.s	.display		; if not, don't spam the VDP with extra DMA transfers
+		move.b	obFrame(a0),d0		; load current frame to d0
+		lea	ShieldStarDynPLC(pc),a2	; load shield/stars DPLCs to a2
+		move.l	#Art_Stars,d6		; load uncompressed graphics pointer to d6
+		move.w	#ArtTile_Invincibility*tile_size,d4 ; load art tile x $20 to d4 to get VRAM offset
+		jsr	(LoadDynPLC).l		; load DPLCs
+.display:
 		jmp	(DisplaySprite).l
 ; ===========================================================================
 
 Shi_Start_Delete:	
-		moveq	#plcid_Main3,d0
-		bsr.w	.addplc		; load shield patterns
 		jmp	(DeleteObject).l
-	.addplc:
-		jmp	AddPLC
