@@ -36,6 +36,7 @@ Shi_Main:	; Routine 0
 		move.w	(a5)+,(a6)
 		dbf	d1,.Tit_LoadText	; load invincibility directly to vram to avoid plc issues
 		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)
+		move.w	#0,d0
 		rts
 ; ===========================================================================
 
@@ -121,4 +122,5 @@ Shi_Start_Delete:
 		move.w	(a5)+,(a6)
 		dbf	d1,.Tit_LoadText	; load level select font
 		move.w	#make_art_tile(ArtTile_Shield,0,0),obGfx(a0)	; shield specific code
+		move.w	#0,d0
 		jmp	(DeleteObject).l
