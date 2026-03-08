@@ -10,6 +10,10 @@ Signpost:
 		lea	(Ani_Sign).l,a1
 		bsr.w	AnimateSprite
 
+		bsr.w	ChkPartiallyVisible
+		cmpi.w	#1,d0		;is the signpost visible?
+		beq.s	.offscreen	;if not, don't render it
+
 		move.b	obFrame(a0),d0		; load current frame to d0
 		lea	DPLC_Sign(pc),a2	; load signpost DPLCs to a2
 		move.l	#Art_SignPost,d6		; load uncompressed graphics pointer to d6
@@ -18,6 +22,7 @@ Signpost:
 
 		bsr.w	DisplaySprite
 		out_of_range.w	DeleteObject
+	.offscreen:
 		rts
 ; ===========================================================================
 Sign_Index:	dc.w Sign_Main-Sign_Index
