@@ -7964,6 +7964,10 @@ Nem_Smoke:	binclude	"artnem/Unused - Smoke.nem"
 Nem_SyzSparkle:	binclude	"artnem/Unused - SYZ Sparkles.nem"
 		even
 	endif
+Art_Shield:	binclude	"artunc/Shield.bin"
+Art_Shield_End:	even
+Art_Stars:	binclude	"artunc/Invincibility Stars.bin"
+Art_Stars_End:	even
 Nem_Shield:	binclude	"artnem/Shield.nem"
 		even
 Nem_Stars:	binclude	"artnem/Invincibility Stars.nem"
