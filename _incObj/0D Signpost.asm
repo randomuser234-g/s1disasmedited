@@ -19,9 +19,8 @@ Signpost:
 		move.l	#Art_SignPost,d6		; load uncompressed graphics pointer to d6
 		move.w	#ArtTile_Signpost*tile_size,d4 ; load art tile x $20 to d4 to get VRAM offset
 		jsr	(LoadDynPLC).l		; load DPLCs
-
-		bsr.w	DisplaySprite
 	.offscreen:
+		bsr.w	DisplaySprite
 		out_of_range.w	DeleteObject
 		rts
 ; ===========================================================================
