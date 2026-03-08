@@ -9,6 +9,13 @@ Signpost:
 		jsr	Sign_Index(pc,d1.w)
 		lea	(Ani_Sign).l,a1
 		bsr.w	AnimateSprite
+
+		move.b	obFrame(a0),d0		; load current frame to d0
+		lea	DPLC_Sign(pc),a2	; load signpost DPLCs to a2
+		move.l	#Art_SignPost,d6		; load uncompressed graphics pointer to d6
+		move.w	#ArtTile_Signpost*tile_size,d4 ; load art tile x $20 to d4 to get VRAM offset
+		jsr	(LoadDynPLC).l		; load DPLCs
+
 		bsr.w	DisplaySprite
 		out_of_range.w	DeleteObject
 		rts
