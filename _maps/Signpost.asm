@@ -1,42 +1,46 @@
-Map_77dc: mappingsTable
-	mappingsTableEntry.w	Map_77dc_0
-	mappingsTableEntry.w	Map_77dc_1
-	mappingsTableEntry.w	Map_77dc_2
-	mappingsTableEntry.w	Map_77dc_3
-	mappingsTableEntry.w	Map_77dc_4
-	mappingsTableEntry.w	Map_77dc_5
+; --------------------------------------------------------------------------------
+; Sprite mappings - output from ClownMapEd - MapMacros format
+; --------------------------------------------------------------------------------
 
-Map_77dc_0:	spriteHeader
- spritePiece -$18, -$10, 3, 4, 0, 0, 0, 0, 0
- spritePiece 0, -$10, 3, 4, 0, 1, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
-Map_77dc_0_End
+.offsets:	mappingsTable
+	mappingsTableEntry.w	.frame0
+	mappingsTableEntry.w	.frame1
+	mappingsTableEntry.w	.frame2
+	mappingsTableEntry.w	.frame3
+	mappingsTableEntry.w	.frame4
+	mappingsTableEntry.w	.frame5
 
-Map_77dc_1:	spriteHeader
- spritePiece -$10, -$10, 4, 4, $C, 0, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
-Map_77dc_1_End
+.frame0:	spriteHeader
+	spritePiece -24, -16, 3, 4, 0, 0, 0, 0, 0
+	spritePiece 0, -16, 3, 4, 0, 1, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 12, 0, 0, 0, 0
+.frame0_End
 
-Map_77dc_2:	spriteHeader
- spritePiece -4, -$10, 1, 4, $1C, 0, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 1, 0, 0, 0
-Map_77dc_2_End
+.frame1:	spriteHeader
+	spritePiece -16, -16, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 16, 0, 0, 0, 0
+.frame1_End
 
-Map_77dc_3:	spriteHeader
- spritePiece -$10, -$10, 4, 4, $C, 1, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 1, 0, 0, 0
-Map_77dc_3_End
+.frame2:	spriteHeader
+	spritePiece -4, -16, 1, 4, 0, 0, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 4, 1, 0, 0, 0
+.frame2_End
 
-Map_77dc_4:	spriteHeader
- spritePiece -$18, -$10, 3, 4, $20, 0, 0, 0, 0
- spritePiece 0, -$10, 3, 4, $2C, 0, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
-Map_77dc_4_End
+.frame3:	spriteHeader
+	spritePiece -16, -16, 4, 4, 0, 1, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 16, 1, 0, 0, 0
+.frame3_End
 
-Map_77dc_5:	spriteHeader
- spritePiece -$18, -$10, 3, 4, $3A, 0, 0, 0, 0
- spritePiece 0, -$10, 3, 4, $3A, 1, 0, 0, 0
- spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
-Map_77dc_5_End
+.frame4:	spriteHeader
+	spritePiece -24, -16, 3, 4, 0, 0, 0, 0, 0
+	spritePiece 0, -16, 3, 4, 12, 0, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 24, 0, 0, 0, 0
+.frame4_End
+
+.frame5:	spriteHeader
+	spritePiece -24, -16, 3, 4, 2, 0, 0, 0, 0
+	spritePiece 0, -16, 3, 4, 2, 1, 0, 0, 0
+	spritePiece -4, 16, 1, 2, 0, 0, 0, 0, 0
+.frame5_End
 
 	even
