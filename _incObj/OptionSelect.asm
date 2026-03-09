@@ -74,13 +74,11 @@ OptionSelect:
 		bra.w	.soundtestsel
 	.donothing:
 		jmp	LevelSelect
-		rts
 .optionplaysound:
 		jsr	QueueSound2	; jump to the subroutine that plays the sound currently in d0
 		rts
 .soundtestsel:
-		jsr	SoundTestSelection
-		rts
+		jmp	SoundTestSelection
 .levsel:
 		move.b	#1,(v_menupage)
 		move.w	#$0,(v_levselitem).w	;go to top of list
@@ -143,13 +141,11 @@ OptionSelect2:
 
 	.donothing:
 		jmp	LevelSelect
-		rts
 .optionplaysound:
 		jsr	QueueSound2	; jump to the subroutine that plays the sound currently in d0
 		rts
 .soundtestsel:
-		jsr	SoundTestSelection
-		rts
+		jmp	SoundTestSelection
 .playending:
 		move.b	#id_Ending,(v_gamemode).w ; set screen mode to $18 (Ending)
 		move.w	#(id_EndZ<<8),(v_zone).w  ; set level to 0600 (good Ending)
