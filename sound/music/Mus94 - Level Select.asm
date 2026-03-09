@@ -14,7 +14,7 @@ Mus_LevelSel_Header:
 	smpsHeaderPSG       Mus_LevelSel_PSG2,	$D0, $03, $00, fTone_07
 	smpsHeaderPSG       Mus_LevelSel_PSG3,	$D0, $06, $00, fTone_07
 dMidTom	=	dMidTimpani
-dFloorTom	=	dLowTimpani
+dFloorTom	=	dVLowTimpani
 ; FM1 Data
 Mus_LevelSel_FM1:
 	smpsPan             panRight, $00
