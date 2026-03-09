@@ -2475,11 +2475,9 @@ LevelSelect:
 		bne.w	.defaultselection	; if no, do default
 		bra.w	.page2	; if yes, do level select
 	.defaultselection:
-		jsr	OptionSelect	;do page 0 function (options)
-		rts
+		jmp	OptionSelect	;do page 0 function (options)
 .page2:
-		jsr	OptionSelect2
-		rts
+		jmp	OptionSelect2
 LevSel_SelectionMade:
 		cmpi.w	#levsel_sndtest_row,d0	; have you selected item $14 (sound test)?
 		bne.s	LevSel_Level_SS		; if not, go to Level/SS subroutine
