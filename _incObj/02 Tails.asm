@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 ;top_solid_bit = 	$3E ; the bit to check for top solidity (either $C or $E)
 ;lrb_solid_bit =		$3F ; the bit to check for left/right/bottom solidity (either $D or $F)
-;move_lock =		$2E ; and $2F ; horizontal control lock, counts down to 0
+;move_lock =		locktime, it's same between oil ocean slides and labyrinth
 ; Obj02:
 TailsPlayer:
 		cmpa.w	#v_player,a0	;is Tails player 1?
@@ -375,6 +375,10 @@ loc_1BC68:
 	bne.s	return_1BCDE
 	or.w	d0,d1
 	bne.s	return_1BCDE
+	cmpi.b	#6,(v_player+obRoutine).w	; is Sonic dead?
+	blo.s	TailsCPU_Flying_SonicOK		; if not, branch
+	bra.s	return_1BCDE
+TailsCPU_Flying_SonicOK:
 	move.w	#6,(v_tailscpuroutine).w	; => TailsCPU_Normal
 	move.b	#$0,(f_playerctrl2).w
 	move.b	#id_Walk,obAnim(a0)
@@ -382,7 +386,7 @@ loc_1BC68:
 	move.w	#0,obVelY(a0)
 	move.w	#0,obInertia(a0)
 	move.b	#1<<1,obStatus(a0)
-	;move.w	#0,move_lock(a0)
+	move.w	#0,locktime(a0)
 	andi.w	#$7FFF,obGfx(a0)
 	tst.b	obGfx(a1)
 	bpl.s	+
@@ -422,11 +426,11 @@ TailsCPU_Normal_SonicOK:
 	bne.w	TailsCPU_Normal_HumanControl		; (if not, branch)
 	tst.b	(f_playerctrl2).w			; and Tails isn't fully object controlled (&$80)
 	bmi.w	TailsCPU_Normal_HumanControl		; (if not, branch)
-	;tst.w	move_lock(a0)			; and Tails' movement is locked (usually because he just fell down a slope)
-	;beq.s	+					; (if not, branch)
-	;tst.w	obInertia(a0)			; and Tails is stopped, then...
-	;bne.s	+					; (if not, branch)
-	;move.w	#8,(v_tailscpuroutine).w	; => TailsCPU_Panic
+	tst.w	locktime(a0)			; and Tails' movement is locked (usually because he just fell down a slope)
+	beq.s	+					; (if not, branch)
+	tst.w	obInertia(a0)			; and Tails is stopped, then...
+	bne.s	+					; (if not, branch)
+	move.w	#8,(v_tailscpuroutine).w	; => TailsCPU_Panic
 +
 		move.w	(v_trackpos).w,d0
 		lea	(v_tracksonic).w,a1
@@ -600,7 +604,61 @@ TailsCPU_UpdateObjInteract:
 ; ---------------------------------------------------------------------------
 ; loc_1BEB8:
 TailsCPU_Panic:
-		rts
+	bsr.w	TailsCPU_CheckDespawn
+	tst.w	(v_tailscontrol).w
+	bne.w	return_1BF36
+	tst.w	locktime(a0)
+	bne.w	return_1BF36
+	cmpi.b	#id_SpinDash,obAnim(a0) ; is this "spindash" animation?
+	beq.s	.skipwaitanim	;if yes, skip check for standing animation
+	cmpi.b	#id_Duck,obAnim(a0) ; is this "duck" animation?
+	beq.s	.skipwaitanim	;if yes, skip check for standing animation
+	cmpi.b	#id_Wait,obAnim(a0) ; is this "standing" animation?
+	bne.s	return_1BF36	;if not, don't attempt spindash until you're standing, workaround for tails attempting spindash too early
+	.skipwaitanim:
+	cmpi.b	#1,spindash_flag(a0)	;is this spindash flag
+	bne.s	TailsCPU_Panic_ChargingDash	;if not, begin charging
+
+	tst.w	obInertia(a0)
+	bne.s	return_1BF36
+	bclr	#0,obStatus(a0)
+	move.w	obX(a0),d0
+	sub.w	obX(a1),d0
+	bcs.s	+
+	bset	#0,obStatus(a0)
++
+	move.w	#(btnDn<<8)|btnDn,(v_jpadhold2p2).w
+	move.b	(v_framecount+1).w,d0
+	andi.b	#$7F,d0
+	beq.s	TailsCPU_Panic_ReleaseDash
+
+	cmpi.b	#id_Duck,obAnim(a0)
+	bne.s	return_1BF36
+	move.w	#((btnDn|btnB|btnC|btnA)<<8)|(btnDn|btnB|btnC|btnA),(v_jpadhold2p2).w
+	rts
+; ---------------------------------------------------------------------------
+; loc_1BF0C:
+TailsCPU_Panic_ChargingDash:
+	move.w	#(btnDn<<8)|btnDn,(v_jpadhold2p2).w
+	move.b	(v_framecount+1).w,d0
+	andi.b	#$7F,d0
+	bne.s	TailsCPU_Panic_RevDash
+
+; loc_1BF1C:
+TailsCPU_Panic_ReleaseDash:
+	move.w	#0,(v_jpadhold2p2).w
+	move.w	#6,(v_tailscpuroutine).w	; => TailsCPU_Normal
+	rts
+; ---------------------------------------------------------------------------
+; loc_1BF2A:
+TailsCPU_Panic_RevDash:
+	andi.b	#$1F,d0
+	bne.s	return_1BF36
+	ori.w	#((btnB|btnC|btnA)<<8)|(btnB|btnC|btnA),(v_jpadhold2p2).w
+
+return_1BF36:
+	rts
+; End of function TailsCPU_Control
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to record Tails' previous positions for invincibility stars

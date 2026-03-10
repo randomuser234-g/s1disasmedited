@@ -6,13 +6,16 @@
 
 
 Tails_SpinDash:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.skiptoggle	;if not, skip spindash toggle
 		cmpi.b	#1,(v_spindashtoggle).w	; check if spindash toggle is 1 (indicating no spindash)
 		beq.w	Tails_SpinDashDoNothing	;if yes, do nothing
+	.skiptoggle:
 		cmpi.b	#1,spindash_flag(a0)
 		beq.s	Tails_UpdateSpindash
 		cmpi.b	#id_Duck,obAnim(a0)
 		bne.s	Tails_SpinDashDoNothing
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	Tails_SpinDashDoNothing
 		move.b	#id_SpinDash,obAnim(a0)
@@ -37,7 +40,7 @@ Tails_SpinDashDoNothing:
 
 Tails_UpdateSpindash:
 		move.b	#id_SpinDash,obAnim(a0)
-		move.b	(v_jpadhold2).w,d0 
+		move.b	(v_jpadhold2p2).w,d0 
 		btst	#bitDn,d0
 		bne.w	Tails_ChargingSpindash
 
@@ -97,7 +100,7 @@ Tails_ChargingSpindash:			; If still charging the dash...
 		bcc.s	+
 		move.w	#0,spindash_counter(a0)
 +
-		move.b	(v_jpadpress2).w,d0
+		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.w	Tails_Spindash_ResetScr
 		move.w	#(id_SpinDash<<8)|(id_Walk<<0),obAnim(a0)

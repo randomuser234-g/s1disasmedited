@@ -34,16 +34,10 @@ Sonic_GoSuper:
 	move.b	#$81,(f_playerctrl).w ; lock controls and disable object interaction
 	move.b	#id_Transform,obAnim(a0)			; use transformation animation
 
-	lea	(v_starsobj4).w,a0	;move the stars to be deleted
-	jsr	DeleteObject
-	lea	(v_player).w,a0	;put the player back
-
 	move.b	#id_ShieldItem,(v_starsobj1).w ; load stars object ($3801)
 	move.b	#1,(v_starsobj1+obAnim).w
 	move.b	#id_ShieldItem,(v_starsobj2).w ; load stars object ($3802)
 	move.b	#2,(v_starsobj2+obAnim).w
-	;move.b	#id_ShieldItem,(v_starsobj3).w ; load stars object ($3803)
-	;move.b	#3,(v_starsobj3+obAnim).w
 	move.b	#id_SuperAfterImg,(v_starsobj4).w ; load after image object ($3804)
 
 	move.w	#$A00,(v_sonspeedmax).w ; change Sonic's top speed

@@ -97,7 +97,9 @@ Jun_Action:	; Routine 2
 		asr	obY(a1)
 
 Jun_Display:	; Routine 4
-		bra.w	RememberState
+		bra.w	.rememberstate
+	.rememberstate:
+		jmp	RememberState
 ; ===========================================================================
 
 Jun_Release:	; Routine 6
