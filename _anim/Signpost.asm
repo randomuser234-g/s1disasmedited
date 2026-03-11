@@ -6,11 +6,13 @@ Ani_Sign:	dc.w .eggman-Ani_Sign
 		dc.w .spin2-Ani_Sign
 		dc.w .sonic-Ani_Sign
 		dc.w .tails-Ani_Sign
+		dc.w .knuckles-Ani_Sign
 
 .eggman:	dc.b $F, 0, afEnd
 		even
 .spin1:		dc.b 1,	0, 1, 2, 3, afEnd
-.spin2:		dc.b 1,	5, 1, 2, 3, 4, 1, 2, 3, afEnd
+.spin2:		dc.b 1,	5, 1, 2, 3, 4, 1, 2, 3,	6, 1, 2, 3, afEnd
 .sonic:		dc.b $F, 4, afEnd
 .tails:		dc.b $F, 5, afEnd
+.knuckles:	dc.b $F, 6, afEnd
 		even
