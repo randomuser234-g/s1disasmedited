@@ -3075,14 +3075,21 @@ MusicList:
 
 GM_Level:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicplc		; if not, load Sonic's life icon
+		bne.s	.knucklesplc		; if not, load Sonic's life icon
 		moveq	#plcid_MainTails,d0	;
 		bsr.w	NewPLC		;
 		bra.s	.LevelStart_WaitLoop		; branch to rest of code
 
+	.knucklesplc:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Knuckles)?
+		bne.s	.sonicplc		; if not, load Sonic's life icon
+		moveq	#plcid_MainKnuckles,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LevelStart_WaitLoop		; branch to rest of code	
+
 	.sonicplc:
 		moveq	#plcid_Main,d0
-		bsr.w	NewPLC		
+		bsr.w	NewPLC	
 
 .LevelStart_WaitLoop:
 		move.b	#4,(v_vbla_routine).w
@@ -5494,6 +5501,7 @@ Map_Got:	mappingsTable
 	mappingsTableEntry.w	M_Card_Act3	; Act number 3
 	;	Extra characters are put here so they get unique text without touching elsewhere
 	mappingsTableEntry.w	M_Got_TailsHas	; "TAILS HAS" text
+	mappingsTableEntry.w	M_Got_KnucklesHas	; "KNUCKLES HAS" text
 	
 M_Got_SonicHas:	spriteHeader	; SONIC HAS
 	spritePiece	-$48, -8, 2, 2, $3E, 0, 0, 0, 0	; S
@@ -5517,6 +5525,22 @@ M_Got_TailsHas:	spriteHeader		; TAILS HAS
 	spritePiece	$20, -8, 2, 2, 0, 0, 0, 0, 0
 	spritePiece	$30, -8, 2, 2, $3E, 0, 0, 0, 0
 M_Got_TailsHas_End
+M_Got_KnucklesHas:
+	dc.b 11	; KNUCKLES HAS
+		dc.b $F8, $05, $00, $22, $80	; K
+		dc.b $F8, $05, $00, $2E, $90	; N
+		dc.b $F8, $05, $00, $46, $A0	; U
+		dc.b $F8, $05, $00, $08, $B0	; C
+		dc.b $F8, $05, $00, $22, $C0	; K
+		dc.b $F8, $05, $00, $26, $D0	; L
+		dc.b $F8, $05, $00, $10, $E0	; E
+		dc.b $F8, $05, $00, $3E, $F0	; S
+						; space
+		dc.b $F8, $05, $00, $1C, $10	; H
+		dc.b $F8, $05, $00, $00, $20	; A
+		dc.b $F8, $05, $00, $3E, $30	; S
+		even
+M_Got_KnucklesHas_End
 
 M_Got_Passed:	spriteHeader	; PASSED
 	spritePiece	-$30, -8, 2, 2, $36, 0, 0, 0, 0	; P
@@ -5572,6 +5596,7 @@ Map_SSR:	mappingsTable
 	mappingsTableEntry.w	M_SSR_GotAll	; "SONIC GOT THEM ALL" text
 	;	extra characters text for getting all emeralds
 	mappingsTableEntry.w	M_SSR_TailsGotAll;"TAILS GOT THEM ALL" text
+	mappingsTableEntry.w	M_SSR_KnucklesGotAll;"KNUCKLES GOT THEM ALL" text
 
 M_SSR_Chaos:	spriteHeader	; CHAOS EMERALDS
 	spritePiece	-$70, -8, 2, 2, 8, 0, 0, 0, 0	; C
@@ -5683,6 +5708,21 @@ M_SSR_TailsGotAll:	spriteHeader		; "TAILS GOT THEM ALL"
 	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0
 M_SSR_TailsGotAll_End
+M_SSR_KnucklesGotAll:	spriteHeader
+	spritePiece	-$68, -8, 2, 2, $22, 0, 0, 0, 0	;K
+	spritePiece	-$58, -8, 2, 2, $42, 0, 0, 0, 0	;T
+	spritePiece	-$48, -8, 2, 2, $10, 0, 0, 0, 0	; E
+	spritePiece	-$28, -8, 2, 2, $18, 0, 0, 0, 0
+	spritePiece	-$18, -8, 2, 2, $32, 0, 0, 0, 0
+	spritePiece	-8, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$10, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$20, -8, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	$40, -8, 2, 2, $2A, 0, 0, 0, 0
+	spritePiece	$58, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0
+M_SSR_KnucklesGotAll_End
 	even
 
 ; ===========================================================================
@@ -8221,6 +8261,8 @@ Nem_Hud:	binclude	"artnem/HUD.nem"	; HUD (rings, time, score)
 Nem_Lives:	binclude	"artnem/HUD - Life Counter Icon.nem"
 		even
 Nem_TailsLives:	binclude	"artnem/Tails life counter.nem"
+		even
+Nem_KnucklesLives:	binclude	"artnem/Knuckles Life Icon.bin"
 		even
 Nem_Ring:	binclude	"artnem/Rings.nem"
 		even
