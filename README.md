@@ -10,6 +10,8 @@
 
 -Sonic and tails can be played together
 
+-knuckles is "implemented" in the game as well
+
 -other tweaks (roll lock and speed caps removed)
 
 -S1 style peelout based on the continue screen animation, about 65 frames to charge (also disables cd run animation)
@@ -40,7 +42,9 @@ Tails can't interact with most objects as the second player
 
 No second controller works unlike Sonic 2
 
-go in debug during special stage, ring graphic is wrong and Tails doesn't load his art tile, uses Sonic's
+go in debug during special stage, ring graphic is wrong
+
+knuckles doesn't have abilities and is missing graphics for ending etc
 
 may be other issues I don't know
 
