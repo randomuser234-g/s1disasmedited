@@ -1,20 +1,26 @@
 OptionSelect:
 		cmpi.w	#$1,d0		; have you selected item $1 (sonic)?
-		bne.w	.tails	; if not, go to Level/SS subroutine
+		bne.w	.tails	; if not, go to tails
 		move.b	#0,(v_character).w	; set the multiple character flag to 0 (indicating Sonic)
 		move.b	#sfx_Ring,d0		; put value of ring sound into d0
 		bsr.w	.optionplaysound
 	.tails:
 		cmpi.w	#$2,d0		; have you selected item $2 (tails)?
-		bne.w	.sonicandtails	; if not, go to start game
+		bne.w	.sonicandtails	; if not, go to sonic and tails
 		move.b	#1,(v_character).w	; set the multiple character flag to 1 (indicating Tails)
 		move.b	#sfx_Spring,d0		; put value of Spring sound into d0
 		bsr.w	.optionplaysound
 	.sonicandtails:
 		cmpi.w	#$3,d0		; have you selected item $2 (tails)?
-		bne.w	.disableflight	; if not, go to start game
+		bne.w	.knuckles	; if not, go to knuckles
 		move.b	#2,(v_character).w	; set the multiple character flag to 2 (indicating Sonic and Tails)
 		move.b	#sfx_Roll,d0		; put value of Roll sound into d0
+		bsr.w	.optionplaysound
+	.knuckles:
+		cmpi.w	#$4,d0		; have you selected item $4 (knuckles)?
+		bne.w	.disableflight	; if not, go to disable flight
+		move.b	#3,(v_character).w	; set the multiple character flag to 3 (indicating Knuckles)
+		move.b	#sfx_Spring,d0		; put value of Spring sound into d0
 		bsr.w	.optionplaysound
 	.disableflight:
 		cmpi.w	#$5,d0		; have you selected item $4 (disable tails' flight)?

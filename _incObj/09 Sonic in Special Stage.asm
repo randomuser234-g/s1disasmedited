@@ -25,17 +25,27 @@ Obj09_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.b	#$E,obHeight(a0)
 		move.b	#7,obWidth(a0)
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		beq.s	.sonicmap		; if not, load Sonic's mappings
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
+		beq.s	.tailsmap		; if not, load Sonic's mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		beq.s	.knucklesmap		; if not, load Sonic's mappings
+
+	.sonicmap:
+		move.l	#Map_Sonic,obMap(a0)
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+		bra.s	.loadmap		; branch to rest of code
+	.tailsmap:
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		move.b	#id_TailsTails,(v_tailstails).w ; load Tails tails object
 		move.w	a0,(v_tailstails+objoff_3E).w ; set Tails' tails parent object to the character
 		bra.s	.loadmap		; branch to rest of code
-
-	.sonicmap:
-		move.l	#Map_Sonic,obMap(a0)
+	.knucklesmap:
+		move.l	#Map_Knuckles,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+
 	.loadmap:
 		move.b	#4,obRender(a0)
 		move.b	#0,obPriority(a0)

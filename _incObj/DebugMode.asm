@@ -202,14 +202,23 @@ Debug_ChgItem:
 .stayindebug:
 		rts
 .charcheckdebug:
-		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicssmap		; if not, load Sonic's mappings
-		move.l	#Map_Miles,(v_player+obMap).w	; load Tails' mappings
-		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
-		bra.s	.backtonormalcontinued		; branch to rest of code
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.sonicssmap		; if not, check Tails' mappings
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.tailsmap		; if not, check Tails' mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.knucklesmap		; if not, check Tails' mappings
 
 	.sonicssmap:
 		move.l	#Map_Sonic,(v_player+obMap).w
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+		bra.s	.backtonormalcontinued		; branch to rest of code
+	.tailsmap:
+		move.l	#Map_Miles,(v_player+obMap).w	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
+		bra.s	.backtonormalcontinued		; branch to rest of code
+	.knucklesmap:
+		move.l	#Map_Knuckles,(v_player+obMap).w	; load Tails' mappings
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 
 	.backtonormalcontinued:

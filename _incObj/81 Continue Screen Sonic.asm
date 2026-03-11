@@ -19,14 +19,23 @@ CSon_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.w	#$A0,obX(a0)
 		move.w	#$C0,obY(a0)
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.sonicmap		; if yes, load Sonic's mappings
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
-		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
-		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
-		bra.s	.loadmap		; branch to rest of code
+		beq.s	.tailsmap		; if yes, load Tails mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklesmap		; if yes, load Knuckles mappings
 
 	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+		bra.s	.loadmap		; branch to rest of code
+	.tailsmap:
+		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
+		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
+		bra.s	.loadmap		; branch to rest of code
+	.knucklesmap:
+		move.l	#Map_Knuckles,obMap(a0)	; load Knuckles' mappings
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 	.loadmap:
 		move.b	#4,obRender(a0)
@@ -59,14 +68,22 @@ CSon_Animate:	; Routine 4
 
 CSon_GetUp:
 		addq.b	#2,obRoutine(a0)
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.sonicmap		; if yes, load Sonic's mappings
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
+		beq.s	.tailsmap		; if yes, load Tails mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklesmap		; if yes, load Knuckles mappings
+	.sonicmap:
+		move.l	#Map_Sonic,obMap(a0)
+		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
+		bra.s	.loadmap		; branch to rest of code
+	.tailsmap:
 		move.l	#Map_Miles,obMap(a0)	; load Tails' mappings
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		bra.s	.loadmap		; branch to rest of code
-
-	.sonicmap:
-		move.l	#Map_Sonic,obMap(a0)
+	.knucklesmap:
+		move.l	#Map_Knuckles,obMap(a0)	; load Knuckles' mappings
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 
 	.loadmap:

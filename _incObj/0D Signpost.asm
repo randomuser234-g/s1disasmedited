@@ -70,8 +70,13 @@ Sign_Spin:	; Routine 4
 		cmpi.b	#3,obAnim(a0)	; have 3 spin cycles completed?
 		bne.s	.chksparkle	; if not, branch
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicsign		; if not, load Sonic's signpost
+		bne.s	.checkifknuckles		; if not, load Sonic's signpost
 		addq.b	#1,obAnim(a0)	; load tails sign
+		bra.s	.loadsign		; branch to rest of code
+		.checkifknuckles:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		bne.s	.sonicsign		; if not, load Sonic's signpost
+		addq.b	#2,obAnim(a0)	; load knuckles sign
 		bra.s	.loadsign		; branch to rest of code
 
 	.sonicsign:
