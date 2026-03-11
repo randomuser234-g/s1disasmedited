@@ -57,10 +57,15 @@ SSR_Loop:
 		cmpi.b	#6,d1		; do you have all chaos emeralds?
 		bne.s	loc_C842	; if not, branch
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicgot		; if not, load Sonic's life icon
+		bne.s	.knucklesgot		; if not, check if Knuckles
 		moveq	#9,d0		; load "Tails got them all" text
 		bra.s	.loadgot		; branch to rest of code
 
+	.knucklesgot:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		bne.s	.sonicgot		; if not, load Sonic's text
+		moveq	#$A,d0		; load "Knuckles got them all" text
+		bra.s	.loadgot		; branch to rest of code
 	.sonicgot:
 		moveq	#8,d0		; load "Sonic got them all" text
 

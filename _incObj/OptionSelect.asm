@@ -20,7 +20,7 @@ OptionSelect:
 		cmpi.w	#$4,d0		; have you selected item $4 (knuckles)?
 		bne.w	.disableflight	; if not, go to disable flight
 		move.b	#3,(v_character).w	; set the multiple character flag to 3 (indicating Knuckles)
-		move.b	#sfx_Spring,d0		; put value of Spring sound into d0
+		move.b	#sfx_HitBoss,d0		; put value of HitBoss sound into d0
 		bsr.w	.optionplaysound
 	.disableflight:
 		cmpi.w	#$5,d0		; have you selected item $4 (disable tails' flight)?

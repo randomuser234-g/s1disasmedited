@@ -46,8 +46,14 @@ Got_Loop:
 		jmp	Got_LoopActNum
 .charactercheck:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	Got_LoopActNum		; if not, do nothing which continues "SONIC HAS" to load
+		bne.s	.knuckles	; if not, check if Knuckles
 		moveq	#9,d0		; load "TAILS HAS" text
+		move.b	d0,obFrame(a0)
+		bra.s	Got_LoopActNum
+	.knuckles:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		bne.s	Got_LoopActNum		; if not, do nothing which continues "SONIC HAS" to load
+		moveq	#$A,d0		; load "KNUCKLES HAS" text
 		move.b	d0,obFrame(a0)
 		
 Got_LoopActNum:

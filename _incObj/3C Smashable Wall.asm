@@ -40,6 +40,8 @@ Smash_Solid:	; Routine 2
 ; ===========================================================================
 
 .chkroll:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.smashwall		; if yes, smash the wall
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		bne.s	.donothing	; if not, branch
 		move.w	smash_speed(a0),d0
@@ -49,6 +51,7 @@ Smash_Solid:	; Routine 2
 .chkspeed:
 		cmpi.w	#$480,d0	; is Sonic's speed $480 or higher?
 		blo.s	.donothing	; if not, branch
+	.smashwall:
 		move.w	smash_speed(a0),obVelX(a1)
 		addq.w	#4,obX(a1)
 		lea	(Smash_FragSpd1).l,a4 ; use fragments that move right

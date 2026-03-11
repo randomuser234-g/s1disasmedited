@@ -1006,10 +1006,10 @@ Knuckles_Jump:
 		jsr	sub_14D48	;originally bsr.w
 		cmpi.w	#6,d1
 		blt.w	.return
-		move.w	#$680,d2	; set initial jump force.
+		move.w	#$600,d2	; set initial jump force.
 		btst	#6,obStatus(a0)	; is Knuckles underwater?
 		beq.s	.notunderwater	; if not, continue.
-		move.w	#$380,d2	; set underwater jump force.
+		move.w	#$300,d2	; set underwater jump force.
 
 .notunderwater:
 		moveq	#0,d0
