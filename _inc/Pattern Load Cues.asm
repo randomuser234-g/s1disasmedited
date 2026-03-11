@@ -42,6 +42,7 @@ ptr_PLC_FZBoss:		dc.w PLC_FZBoss-ArtLoadCues
 ptr_PLC_MainTails:	dc.w PLC_MainTails-ArtLoadCues
 ptr_PLC_SSResultTails:	dc.w PLC_SSResultTails-ArtLoadCues
 ptr_PLC_EndingTails:	dc.w PLC_EndingTails-ArtLoadCues
+ptr_PLC_MainKnuckles:		dc.w PLC_MainKnuckles-ArtLoadCues
 
 plcm:	macro gfx,vram
 		dc.l gfx
@@ -431,6 +432,17 @@ PLC_EndingTails:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
 		plcm	Nem_EndStH,    ArtTile_Ending_STH       ; "SONIC THE HEDGEHOG"
 PLC_EndingTailsend:
 
+; ---------------------------------------------------------------------------
+; Pattern load cues - standard block 1 but for Knuckles
+; ---------------------------------------------------------------------------
+PLC_MainKnuckles:	dc.w ((PLC_Mainend-PLC_Main-2)/6)-1
+		plcm	Nem_Lamp,   ArtTile_Lamppost      ; lamppost
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
+		plcm	Nem_KnucklesLives,  ArtTile_Lives_Counter ; lives counter
+		plcm	Nem_Ring,   ArtTile_Ring          ; rings
+		plcm	Nem_Points, ArtTile_Points        ; points from enemy
+PLC_MainKnucklesend:
+
 plcid_Main:		equ (ptr_PLC_Main-ArtLoadCues)/2	; 0
 plcid_Main2:		equ (ptr_PLC_Main2-ArtLoadCues)/2	; 1
 plcid_Explode:		equ (ptr_PLC_Explode-ArtLoadCues)/2	; 2
@@ -466,3 +478,4 @@ plcid_FZBoss:		equ (ptr_PLC_FZBoss-ArtLoadCues)/2	; $1F
 plcid_MainTails:	equ (ptr_PLC_MainTails-ArtLoadCues)/2	; 20
 plcid_SSResultTails:	equ (ptr_PLC_SSResultTails-ArtLoadCues)/2; $21
 plcid_EndingTails:	equ (ptr_PLC_EndingTails-ArtLoadCues)/2	; $22
+plcid_MainKnuckles:	equ (ptr_PLC_MainKnuckles-ArtLoadCues)/2	; 23
