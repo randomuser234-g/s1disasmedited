@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 ptr_SonicPlayer:	dc.l SonicPlayer	; $01
 ptr_TailsPlayer:	dc.l TailsPlayer
-ptr_Obj03:		dc.l NullObject
+ptr_KnucklesPlayer:		dc.l KnucklesPlayer
 ptr_Obj04:		dc.l NullObject
 ptr_TailsTails:		dc.l Obj05
 ptr_Obj06:		dc.l NullObject
@@ -147,7 +147,7 @@ NullObject:
 
 id_SonicPlayer:		equ ((ptr_SonicPlayer-Obj_Index)/4)+1		; $01
 id_TailsPlayer:		equ ((ptr_TailsPlayer-Obj_Index)/4)+1
-id_Obj03:		equ ((ptr_Obj03-Obj_Index)/4)+1
+id_KnucklesPlayer:		equ ((ptr_KnucklesPlayer-Obj_Index)/4)+1
 id_Obj04:		equ ((ptr_Obj04-Obj_Index)/4)+1
 id_TailsTails:		equ ((ptr_TailsTails-Obj_Index)/4)+1
 id_Obj06:		equ ((ptr_Obj06-Obj_Index)/4)+1
