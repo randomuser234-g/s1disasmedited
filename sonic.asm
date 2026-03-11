@@ -2992,7 +2992,7 @@ OptionText:
 		dc.b "SONIC ALONE             "
 		dc.b "TAILS ALONE             "
 		dc.b "SONIC AND TAILS         "
-		dc.b "                        "
+		dc.b "KNUCKLES ALONE          "
 		dc.b "TAILS FLIGHT OFF        "
 		dc.b "SPINDASH OFF            "
 		dc.b "PEELOUT OFF             "
@@ -3249,7 +3249,12 @@ InitPlayers:
 		rts
 
 	.tailsalone:
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		bne.s	.knucklesalone		; if not, check for Knuckles alone
 		move.b	#id_TailsPlayer,(v_player).w ; load Tails object
+		rts
+	.knucklesalone:
+		move.b	#id_KnucklesPlayer,(v_player).w ; load Knuckles object
 		rts
 Level_ChkDebug:
 		tst.b	(f_debugcheat).w ; has debug cheat been entered?
@@ -7948,12 +7953,15 @@ SonicDynPLC:	include	"_maps/Sonic - Dynamic Gfx Script.asm"
 Map_Miles:	include	"_maps/Tails.asm"
 MilesDynPLC:	include	"_maps/Tails DPLC.asm"
 TlsAniData:	include	"_anim/Tails.asm"
+Map_Knuckles:	include	"_maps/Knuckles.asm"
+KnucklesDynPLC:	include	"_maps/Knuckles - Dynamic Gfx Script.asm"
 
 ; ---------------------------------------------------------------------------
 ; Uncompressed graphics - Sonic
 ; ---------------------------------------------------------------------------
 Art_Sonic:	binclude	"artunc/Sonic.bin"	; Sonic
 Art_Miles:	binclude	"artunc/Tails.bin"	; Tails
+Art_Knuckles:	binclude	"artunc/Knuckles.bin"	; Sonic
 		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - various
@@ -8736,6 +8744,8 @@ ObjPos_Null:	dc.b $FF, $FF, 0, 0, 0,	0
 		endif
 
 SoundDriver:	include "s1.sounddriver.asm"
+		include	"_incObj/03 Knuckles.asm"
+		include	"_incObj/Knuckles SpinDash.asm"
 
 ; end of 'ROM'
 		even
