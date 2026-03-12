@@ -1360,6 +1360,8 @@ locret_136E0Knuckles:
 ; ===========================================================================
 
 loc_136E2Knuckles:
+		jsr	Sonic_HitWall	;originally bsr.w
+		tst.w	d1
 		bpl.s	loc_136F4Knuckles
 		sub.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
