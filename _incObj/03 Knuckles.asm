@@ -1063,6 +1063,7 @@ Knuckles_Jump:
 Knuckles_JumpHeight:
 		tst.b	jumping(a0)	; has Knuckles jumped?
 		beq.s	.capyvel		; if not, just cap Y speed normally.
+		jsr	KnucklesGlideCustom
 		move.w	#-$400,d1		; set max jump height.
 		btst	#6,obStatus(a0)	; is Knuckles underwater?
 		beq.s	.notunderwater	; if not, continue.
@@ -1283,7 +1284,6 @@ loc_1361EKnuckles:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Knuckles_ResetOnFloor
-		;jsr	Knuckles_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
 		move.b	d3,d0
 		addi.b	#$20,d0
@@ -1360,8 +1360,6 @@ locret_136E0Knuckles:
 ; ===========================================================================
 
 loc_136E2Knuckles:
-		jsr	Sonic_HitWall	;originally bsr.w
-		tst.w	d1
 		bpl.s	loc_136F4Knuckles
 		sub.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
@@ -1963,3 +1961,5 @@ Knuckles_LoadGfx:
 .end:
 		rts					; return
 ; End of function Knuckles_LoadGfx
+		;include	"_incObj/Knuckles_MdAir_Gliding.asm"
+		include	"_incObj/KnucklesGlideCustom.asm"

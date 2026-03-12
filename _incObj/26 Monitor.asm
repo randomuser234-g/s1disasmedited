@@ -102,6 +102,8 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C		;if yes, no colision
 		cmpi.b	#2,spindash_flag(a1)	;is this a peelout?
 		beq.s	loc_A25C		;if yes, no collision
+		cmpi.b	#id_Glide,obAnim(a1) ; is Knuckles rolling?
+		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		beq.s	loc_A25C	; if yes, branch
 

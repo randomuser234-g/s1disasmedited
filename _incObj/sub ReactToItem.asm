@@ -139,6 +139,8 @@ ReactToItem:
 ; ===========================================================================
 
 React_Monitor:
+		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles gliding?
+		beq.w	.breakmonitor	;if yes, break the monitor
 		tst.w	obVelY(a0)	; is Sonic moving upwards?
 		bpl.s	.movingdown	; if not, branch
 
@@ -159,6 +161,7 @@ React_Monitor:
 		bne.s	.donothing
 		cmpa.w	#v_player,a0	;is player 1 hitting it?
 		bne.w	.donothing	;if not, don't break monitor
+		.breakmonitor:
 		neg.w	obVelY(a0)	; reverse Sonic's y-motion
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
@@ -171,6 +174,8 @@ React_Enemy:
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_SpinDash,obAnim(a0)	; is Tails Spin Dashing? 
 		beq.s	.donthurtsonic	; if yes, branch
+		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles gliding?
+		beq.s	.donthurtsonic	;if yes, hurt the enemy
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
 		bne.w	React_ChkHurt	; if not, branch
 
