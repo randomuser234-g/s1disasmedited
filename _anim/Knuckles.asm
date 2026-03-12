@@ -38,6 +38,8 @@ ptr_SpinDashKnuckles:	dc.w KnucklesAni_SpinDash-Ani_Knuckles
 ptr_RunFastKnuckles:	dc.w KnucklesAni_RunFast-Ani_Knuckles
 ptr_FlyKnuckles:	dc.w KnucklesAni_Fly-Ani_Knuckles
 ptr_TransformKnuckles:	dc.w KnucklesAni_Transform-Ani_Knuckles
+ptr_GlideKnuckles:	dc.w KnucklesAni_Glide-Ani_Knuckles
+ptr_FallFromGlideKnuckles:	dc.w KnucklesAni_FallFromGlide-Ani_Knuckles
 
 KnucklesAni_Walk:	dc.b $FF,  7,	8,  1,	2,  3,	4,  5,	6, afEnd
 		even
@@ -123,6 +125,10 @@ KnucklesAni_Transform:
 		dc.b   2,$EB,$EB,$EC,$ED,$EC,$ED,$EC,$ED,$EC,$ED,$EC,$ED;	0 ; ...
 		dc.b 	afChange,  id_Walk		  ; 13
 		even
+KnucklesAni_Glide:	dc.b $1F,$C0,$FF
+	even
+KnucklesAni_FallFromGlide:	dc.b   7,$CA,$CB,afBack,	 1
+	even
 
 id_WalkKnuckles:	equ (ptr_WalkKnuckles-Ani_Knuckles)/2	; 0
 id_RunKnuckles:		equ (ptr_RunKnuckles-Ani_Knuckles)/2	; 1
@@ -159,4 +165,6 @@ id_SpinDashKnuckles:	equ (ptr_SpinDashKnuckles-Ani_Knuckles)/2	; $1F
 id_RunFastKnuckles:	equ (ptr_RunFastKnuckles-Ani_Knuckles)/2	; $1F
 id_FlyKnuckles:		equ (ptr_FlyKnuckles-Ani_Knuckles)/2	; $1F
 id_TransformKnuckles:		equ (ptr_TransformKnuckles-Ani_Knuckles)/2	; $1F
+id_GlideKnuckles	equ (ptr_GlideKnuckles-Ani_Knuckles)/2	; $1F
+id_FallFromGlideKnuckles	equ (ptr_FallFromGlideKnuckles-Ani_Knuckles)/2	; $1F
 ;---------------------------------------------------------------------------------------------------------

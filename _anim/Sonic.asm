@@ -38,6 +38,8 @@ ptr_SpinDash:	dc.w SonAni_SpinDash-Ani_Sonic
 ptr_RunFast:	dc.w SonAni_RunFast-Ani_Sonic
 ptr_Fly:	dc.w SonAni_Fly-Ani_Sonic
 ptr_Transform:	dc.w SonAni_Transform-Ani_Sonic
+ptr_Glide:	dc.w SonAni_Glide-Ani_Sonic
+ptr_FallFromGlide:	dc.w SonAni_FallFromGlide-Ani_Sonic
 
 SonAni_Walk:	dc.b $FF, fr_Walk13, fr_Walk14,	fr_Walk15, fr_Walk16, fr_Walk11, fr_Walk12, afEnd
 		even
@@ -113,6 +115,12 @@ SonAni_Fly:
 SonAni_Transform:
 		dc.b   2,$68,$68,$69,$69,$6A,$6B,$6C,$6B,$6C,$6B,$6C,$6B,$6C,afChange, id_Walk
 		even
+SonAni_Glide:
+		dc.b 7, $3C, $3F, afEnd
+		even
+SonAni_FallFromGlide:
+		dc.b 7, fr_Spring, fr_Spring, afBack, 1
+		even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2	; 0
 id_Run:		equ (ptr_Run-Ani_Sonic)/2	; 1
@@ -149,6 +157,8 @@ id_SpinDash:	equ (ptr_SpinDash-Ani_Sonic)/2	; $1F
 id_RunFast:	equ (ptr_RunFast-Ani_Sonic)/2	; $1F
 id_Fly:		equ (ptr_Fly-Ani_Sonic)/2	; $1F
 id_Transform:		equ (ptr_Transform-Ani_Sonic)/2	; $1F
+id_Glide:		equ (ptr_Glide-Ani_Sonic)/2	; $1F
+id_FallFromGlide:		equ (ptr_FallFromGlide-Ani_Sonic)/2	; $1F
 ;---------------------------------------------------------------------------------------------------------
 Ani_SuperSonic:
 
@@ -187,6 +197,8 @@ ptrSS_SpinDash:	dc.w SupSonAni_SpinDash-Ani_SuperSonic
 ptrSS_RunFast:	dc.w SupSonAni_RunFast-Ani_SuperSonic
 ptrSS_Fly:	dc.w SupSonAni_Fly-Ani_SuperSonic
 ptrSS_Transform:	dc.w SupSonAni_Transform-Ani_SuperSonic
+ptrSS_Glide:	dc.w SupSonAni_Glide-Ani_SuperSonic
+ptrSS_FallFromGlide:	dc.w SupSonAni_FallFromGlide-Ani_SuperSonic
 
 SupSonAni_Walk:	dc.b $FF,$70,$71,$72,$73,$74,$75,$FF,$FF,$FF
 		even
@@ -262,6 +274,12 @@ SupSonAni_Fly:
 SupSonAni_Transform:
 		dc.b   2,$68,$68,$69,$69,$6A,$6B,$6C,$6B,$6C,$6B,$6C,$6B,$6C,afChange, id_Walk
 		even
+SupSonAni_Glide:
+		dc.b 7, $88, $89, afEnd
+		even
+SupSonAni_FallFromGlide:
+		dc.b 7, fr_Spring, fr_Spring, afBack, 1
+		even
 
 idSS_Walk:	equ (ptr_Walk-Ani_SuperSonic)/2	; 0
 idSS_Run:		equ (ptr_Run-Ani_SuperSonic)/2	; 1
@@ -296,5 +314,5 @@ idSS_Float3:	equ (ptr_Float3-Ani_SuperSonic)/2	; $1D
 idSS_Float4:	equ (ptr_Float4-Ani_SuperSonic)/2	; $1E
 idSS_SpinDash:	equ (ptr_SpinDash-Ani_SuperSonic)/2	; $1F
 idSS_RunFast:	equ (ptr_RunFast-Ani_SuperSonic)/2	; $1F
-idSS_Fly:		equ (ptr_Fly-Ani_SuperSonic)/2	; $1F
-idSS_Transform:		equ (ptr_Transform-Ani_SuperSonic)/2	; $1F
+idSS_Fly:		equ (ptr_Glide-Ani_SuperSonic)/2	; $1F
+idSS_Transform:		equ (ptr_FallFromGlide-Ani_SuperSonic)/2	; $1F
