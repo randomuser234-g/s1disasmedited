@@ -4249,13 +4249,18 @@ GM_Ending:
 
 End_LoadData:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's ending
+		beq.s	.tailsending		; if not, check for knuckles
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklesending		; if not, load Sonic's ending
+
+	.sonicending:
+		moveq	#plcid_Ending,d0
+		bra.s	.loadmap		; branch to rest of code
+	.tailsending:
 		moveq	#plcid_EndingTails,d0	; load Tails' ending
 		bra.s	.loadmap		; branch to rest of code
-
-	.sonicmap:
-		moveq	#plcid_Ending,d0
-
+	.knucklesending:
+		moveq	#plcid_Ending,d0	; load Knuckles' ending (doesn't actually exist yet)
 	.loadmap:
 		bsr.w	QuickPLC	; load ending sequence patterns
 		jsr	(Hud_Base).l
@@ -4388,7 +4393,7 @@ End_MoveSonic:
 		move.b	(v_sonicend).w,d0
 		bne.s	End_MoveSon2
 		cmpi.w	#$90,(v_player+obX).w ; has Sonic passed $90 on x-axis?
-		bhs.s	End_MoveSonExit	; if not, branch
+		bhs.w	End_MoveSonExit	; if not, branch
 
 		addq.b	#2,(v_sonicend).w
 		move.b	#1,(f_lockctrl).w ; lock player's controls
@@ -4408,7 +4413,18 @@ End_MoveSon2:
 		move.w	d0,(v_jpadhold2).w ; stop Sonic moving
 		move.w	d0,(v_player+obInertia).w
 		move.b	#$81,(f_playerctrl).w ; lock controls and disable object interaction
+		cmpi.b	#id_TailsPlayer,(v_player).w ; is this Tails object
+		beq.s	.tails
+		cmpi.b	#id_KnucklesPlayer,(v_player).w ; is this Knuckles object
+		beq.s	.knuckles
 		move.b	#fr_Wait2,(v_player+obFrame).w
+		bra.s	.skip
+		.tails:
+		move.b	#5,(v_player+obFrame).w
+		bra.s	.skip
+		.knuckles:
+		move.b	#$D4,(v_player+obFrame).w
+		.skip:
 		move.w	#(id_Wait<<8)+id_Wait,(v_player+obAnim).w ; use "standing" animation
 		move.b	#3,(v_player+obTimeFrame).w
 		rts
