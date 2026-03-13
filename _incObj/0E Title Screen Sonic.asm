@@ -25,12 +25,18 @@ TSon_Main:	; Routine 0
 	endif
 		move.w	#$DE,obScreenY(a0) ; position is fixed to screen
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmaptitle		; if not, load Sonic's mappings
-		move.l	#Map_TTls,obMap(a0)
-		bra.s	.loadmaptitle		; branch to rest of code
+		beq.s	.tailsmaptitle		; if not, load Sonic's mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		beq.s	.knucklesmaptitle		; if not, load Sonic's mappings
 
 	.sonicmaptitle:
 		move.l	#Map_TSon,obMap(a0)
+		bra.s	.loadmaptitle
+	.tailsmaptitle:
+		move.l	#Map_TTls,obMap(a0)
+		bra.s	.loadmaptitle
+	.knucklesmaptitle:
+		move.l	#Map_TKTE,obMap(a0)
 
 	.loadmaptitle:
 		move.w	#make_art_tile(ArtTile_Title_Sonic,1,0),obGfx(a0)
