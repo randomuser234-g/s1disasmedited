@@ -2231,12 +2231,18 @@ GM_Title:
 		bsr.w	NemDec
 		locVRAM	ArtTile_Title_Sonic*tile_size
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonictitle		; if not, load Sonic's titlescreen
-		lea	(Nem_TitleTails).l,a0 ; load Tails title screen patterns
-		bra.s	.loadtitle		; branch to rest of code
+		beq.s	.tailstitle		; if yes, load his titlescreen
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklestitle		; if yes, load his titlescreen
 
 	.sonictitle:
 		lea	(Nem_TitleSonic).l,a0 ; load Sonic title screen patterns
+		bra.s	.loadtitle		; branch to rest of code
+	.tailstitle:
+		lea	(Nem_TitleTails).l,a0 ; load Tails title screen patterns
+		bra.s	.loadtitle		; branch to rest of code
+	.knucklestitle:
+		lea	(Nem_TitleKnuckles).l,a0 ; load Knuckles title screen patterns
 
 	.loadtitle:
 		bsr.w	NemDec
@@ -2327,8 +2333,6 @@ Tit_LoadText:
 		jsr	(ExecuteObjects).l
 		bsr.w	DeformLayers
 		jsr	(BuildSprites).l
-		moveq	#plcid_Main,d0
-		bsr.w	NewPLC
 		move.w	#0,(v_title_dcount).w
 		move.w	#0,(v_title_ccount).w
 		enable_display
@@ -4288,7 +4292,7 @@ End_LoadSonic:
 		move.b	#1,(f_lockctrl).w ; lock controls
 		move.w	#(btnL<<8),(v_jpadhold2).w ; move Sonic to the left
 		move.w	#-$800,(v_player+obInertia).w ; set Sonic's speed
-		move.b	#id_HUD,(v_hud).w ; load HUD object
+		;move.b	#id_HUD,(v_hud).w ; load HUD object
 		jsr	(ObjPosLoad).l
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
@@ -5314,6 +5318,7 @@ Map_Monitor:	include	"_maps/Monitor.asm"
 Map_PSB:	include	"_maps/Press Start and TM.asm"
 Map_TSon:	include	"_maps/Title Screen Sonic.asm"
 Map_TTls:	include	"_maps/Title Screen Tails.asm"
+Map_TKTE:	include	"_maps/Title Screen Knuckles.asm"
 
 		include	"_incObj/2B Chopper.asm"
 		include	"_anim/Chopper.asm"
@@ -7994,6 +7999,8 @@ Eni_Title:	binclude	"tilemaps/Title Screen.eni" ; title screen foreground (mappi
 Nem_TitleFg:	binclude	"artnem/Title Screen Foreground.nem"
 		even
 Nem_TitleSonic:	binclude	"artnem/Title Screen Sonic.nem"
+		even
+Nem_TitleKnuckles:	binclude	"artnem/Title Screen KnucklesAlt.nem"
 		even
 Nem_TitleTM:	binclude	"artnem/Title Screen TM.nem"
 		even
