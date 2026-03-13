@@ -4,7 +4,7 @@
 Ani_Monitor:	dc.w .static-Ani_Monitor, .eggman-Ani_Monitor, .sonic-Ani_Monitor
 		dc.w .shoes-Ani_Monitor, .shield-Ani_Monitor, .invincible-Ani_Monitor
 		dc.w .rings-Ani_Monitor, .s-Ani_Monitor, .goggles-Ani_Monitor
-		dc.w .breaking-Ani_Monitor, .tails-Ani_Monitor
+		dc.w .breaking-Ani_Monitor, .tails-Ani_Monitor, .knuckles-Ani_Monitor
 .static:	dc.b 1,	0, 1, 2, afEnd
 		even
 .eggman:	dc.b 1,	0, 3, 3, 1, 3, 3, 2, 3,	3, afEnd
@@ -27,3 +27,6 @@ Ani_Monitor:	dc.w .static-Ani_Monitor, .eggman-Ani_Monitor, .sonic-Ani_Monitor
 		even
 .tails		dc.b 1,	0, $0C, $0C, 1, $0C, $0C, 2, $0C, $0C, afEnd
 		even
+.knuckles:	dc.b 1,	0, $0D, $0D, 1, $0D, $0D, 2, $0D, $0D, afEnd
+		even
+		
