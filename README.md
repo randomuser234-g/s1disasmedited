@@ -38,7 +38,7 @@ Knuckles is missing graphics
 
 Infinite flight (flight code ported from S3 prototype)
 
-one of Tails' and Knuckles' frames are corrupted for some reason
+one of the player's frames during animation are corrupted for some reason
 
 Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
