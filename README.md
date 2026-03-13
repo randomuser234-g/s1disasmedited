@@ -32,9 +32,13 @@ known issues:
 
 different flight physics from sonic 3
 
+Knuckles' glide and climbing physics are different from KIS2, be prepared for oddities
+
+Knuckles is missing graphics
+
 Infinite flight (flight code ported from S3 prototype)
 
-one of Tails' frames are corrupted for some reason
+one of Tails' and Knuckles' frames are corrupted for some reason
 
 Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
@@ -43,8 +47,6 @@ Tails can't interact with most objects as the second player
 No second controller works unlike Sonic 2
 
 go in debug during special stage, ring graphic is wrong
-
-knuckles doesn't have abilities and is missing graphics for ending etc
 
 may be other issues I don't know
 
