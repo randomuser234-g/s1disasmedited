@@ -153,12 +153,21 @@ loc_A26A:
 
 Mon_Animate:	; Routine 6
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.loadmap		; if not, load Sonic's mappings
+		beq.s	.checksonicmonitor	; if yes, check the type of monitor
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.checksonicmonitor	; yes, check the type of monitor
+		bra.s	.loadmap		;skip this code if neither character is there
+	.checksonicmonitor:
 		cmpi.b	#2,obAnim(a0)		; does monitor contain Sonic?
 		bne.s	.loadmap
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.knucklesmonitor	; if not, you must be Knuckles, load his monitor
 
-	.tailsmap:
+	.tailsmonitor:
 		move.b	#$A,obAnim(a0)		; use 'Tails' icon
+		bra.s	.loadmap
+	.knucklesmonitor:
+		move.b	#$B,obAnim(a0)		; use 'Knuckles' icon
 
 	.loadmap:
 		lea	(Ani_Monitor).l,a1

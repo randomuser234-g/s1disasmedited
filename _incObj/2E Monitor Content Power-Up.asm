@@ -164,14 +164,14 @@ Pow_ChkGogles:
 
 Pow_ChkTails:
 		cmpi.b	#$A,d0		; does monitor contain Tails?
-		bne.s	Pow_ChkEnd
-		jmp	ExtraLife2
+		bne.s	Pow_ChkKnuckles
+		jmp	ExtraLife
 
-ExtraLife2:
-		addq.b	#1,(v_lives).w	; add 1 to the number of lives you have
-		addq.b	#1,(f_lifecount).w ; update the lives counter
-		move.w	#bgm_ExtraLife,d0
-		jmp	(QueueSound1).l	; play extra life music
+Pow_ChkKnuckles:
+		cmpi.b	#$B,d0		; does monitor contain Knuckles?
+		bne.s	Pow_ChkEnd
+		jmp	ExtraLife
+
 
 Pow_ChkEnd:
 		rts		;  goggles monitors do nothing
