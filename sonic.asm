@@ -8015,7 +8015,6 @@ Map_Sonic:	include	"_maps/Sonic.asm"
 SonicDynPLC:	include	"_maps/Sonic - Dynamic Gfx Script.asm"
 Map_Miles:	include	"_maps/Tails.asm"
 MilesDynPLC:	include	"_maps/Tails DPLC.asm"
-TlsAniData:	include	"_anim/Tails.asm"
 Map_Knuckles:	include	"_maps/Knuckles.asm"
 KnucklesDynPLC:	include	"_maps/Knuckles - Dynamic Gfx Script.asm"
 
