@@ -2428,7 +2428,7 @@ Tails_Animate2:
 
 ; End of function Tails_Animate
 
-
+TlsAniData:	include	"_anim/Tails.asm"
 
 ; ---------------------------------------------------------------------------
 ; Tails graphics loading subroutine
