@@ -1,4 +1,6 @@
 KnucklesGlideCustom:
+		btst	#0,(f_doublejump).w ; are controls locked?
+		bne.w	Knuckles_AlreadyClimbing	; if yes, branch
 		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
 		beq.s	KnucklesGlideCustom_StartGliding	;if yes, continue
 		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started?
@@ -14,8 +16,8 @@ rts_KnucklesGlideCustom:
 KnucklesGlideCustom_StartGliding:
 		move.b	#10,obHeight(a0)
 		move.b	#10,obWidth(a0)
-		;btst	#5,obStatus(a0)	; is Knuckles pushing something? this check doesn't actually work, no wall climb yet
-		;bne.w	KnucklesGlideCustom_ClimbWall		; if yes, branch
+		btst	#0,(f_doublejump).w ; are controls locked?
+		bne.s	KnucklesGlideCustom_ClimbWall	; if yes, branch
 		.continue:
 		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started?
 		beq.s	rts_KnucklesGlideCustom	;if yes, don't do more
@@ -40,6 +42,7 @@ KnucklesGlideCustom_StartGliding:
 
 
 KnucklesGlideCustom_CancelGlide:
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
 		move.b	#id_FallFromGlide,obAnim(a0)
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
@@ -49,6 +52,84 @@ KnucklesGlideCustom_CancelGlide:
 		rts
 
 KnucklesGlideCustom_ClimbWall:
-		move.b	#id_FallFromGlide,obAnim(a0)
+	move.b	#$B7,(v_player+obFrame).w	
+	move.b	#$7F,obTimeFrame(a0)
+	move.b	#0,obAniFrame(a0)
+Knuckles_AlreadyClimbing:
+	; Get Knuckles' distance from the wall in 'd1'.
+	move.w	obY(a0),d2
+	subi.w	#11,d2
+	jsr	GetDistanceFromWall
+
+	; If the wall is far away from Knuckles, then we must have reached a
+	; ledge, so make Knuckles climb up onto it.
+	cmpi.w	#4,d1
+	bge.w	Knuckles_StopClimbing
+	.onwall:
+		move.b	#$13,obHeight(a0)
+		move.b	#9,obWidth(a0)
+		clr.w	obVelX(a0)	;freeze knuckles on the wall
+		clr.w	obVelY(a0)
+		move.b	(v_jpadpress2).w,d0
+		jsr	.jump
+		jsr	.dn
+		rts
+		.jump:
+		andi.b	#btnABC,d0	; is A, B or C pressed?
+		beq.w	rts_KnucklesGlideCustom	; if yes, branch
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		move.b	#id_Roll,obAnim(a0)
+		bra.w	Knuckles_Jump	;jump up from the wall
+		.dn:
+		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
+		beq.w	.up	; if not, branch
+		addq.w	#1,obY(a0)	;go down on the wall
+		cmpi.b	#$B7,(v_player+obFrame).w	
+		ble.s	.loopdown
+		subi.b	#$1,(v_player+obFrame).w	
+		rts
+		.up:
+		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
+		beq.w	Knuckles_StoppedClimbing	; if not, branch
+		subq.w	#1,obY(a0)	;go up on the wall
+		cmpi.b	#$BC,(v_player+obFrame).w	
+		bge.s	.loopup
+		addi.b	#1,(v_player+obFrame).w	
+		rts
+		.loopup:
+		move.b	#$B7,(v_player+obFrame).w	
+		move.b	#$7F,obTimeFrame(a0)
+		move.b	#0,obAniFrame(a0)	
+		rts
+		.loopdown:
+		move.b	#$BC,(v_player+obFrame).w	
+		move.b	#$7F,obTimeFrame(a0)
+		move.b	#0,obAniFrame(a0)	
 		rts
 		
+Knuckles_StoppedClimbing:
+		move.b	#$B7,(v_player+obFrame).w	
+		move.b	#$7F,obTimeFrame(a0)
+		move.b	#0,obAniFrame(a0)
+		rts
+Knuckles_StopClimbing:
+		move.b	#id_Roll,obAnim(a0)
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		rts
+;============================================================================
+; sub_315C22:
+GetDistanceFromWall:
+	move.b	obSolid(a0),d5
+	btst	#0,obStatus(a0)
+	bne.s	.facingLeft
+
+;.facingRight:
+	move.w	obX(a0),d3
+	jmp	sub_14EB4
+; ---------------------------------------------------------------------------
+; loc_315C36:
+.facingLeft:
+	move.w	obX(a0),d3
+	subq.w	#1,d3
+	jmp	Sonic_HitWall
+; End of function GetDistanceFromWall

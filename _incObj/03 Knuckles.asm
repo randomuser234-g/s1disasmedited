@@ -281,7 +281,7 @@ Knuckles_Water:
 
 ; obj03_MdNormal:
 Knuckles_MdNormal:
-		bsr.w	Knuckles_SpinDash	;mode doesn't exist yet
+		bsr.w	Knuckles_SpinDash	
 		bsr.w	Knuckles_Jump
 		bsr.w	Knuckles_SlopeResist
 		bsr.w	Knuckles_Move
@@ -343,6 +343,7 @@ Knuckles_MdJump2:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 Knuckles_Move:
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
 		move.w	(v_sonspeedmax).w,d6
 		move.w	(v_sonspeedacc).w,d5
 		move.w	(v_sonspeeddec).w,d4
@@ -848,17 +849,7 @@ locret_132D2Knuckles:
 ; ---------------------------------------------------------------------------
 
 Knuckles_SquashUnused:
-		move.b	obAngle(a0),d0
-		addi.b	#$20,d0
-		andi.b	#$C0,d0
-		bne.s	.return
-		jsr	Sonic_DontRunOnWalls	;originally bsr.w
-		tst.w	d1
-		bpl.s	.return
-		move.w	#0,obInertia(a0) ; stop Knuckles moving
-		move.w	#0,obVelX(a0)
-		move.w	#0,obVelY(a0)
-		move.b	#id_Warp3,obAnim(a0) ; use "warping" animation
+		;dont
 
 .return:
 		rts
@@ -1006,12 +997,10 @@ Knuckles_Jump:
 		jsr	sub_14D48	;originally bsr.w
 		cmpi.w	#6,d1
 		blt.w	.return
-		move.w	#$680,d2	; set initial jump force.
-		;move.w	#$600,d2	; set initial jump force. (correct for knuckles but unused since climbing isn't implemented)
+		move.w	#$600,d2	; set initial jump force.
 		btst	#6,obStatus(a0)	; is Knuckles underwater?
 		beq.s	.notunderwater	; if not, continue.
-		move.w	#$380,d2	; set underwater jump force.
-		;move.w	#$300,d2	; set underwater jump force. (correct for knuckles but unused since climbing isn't implemented)
+		move.w	#$300,d2	; set underwater jump force.
 
 .notunderwater:
 		moveq	#0,d0
@@ -1259,6 +1248,11 @@ Knuckles_Floor:
 		bpl.s	loc_135F0Knuckles
 		sub.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
+		;gliding code
+		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
+		bne.s	loc_135F0Knuckles	;if not, don't do this part
+		move.b	#1,(f_doublejump).w ;set thing for go on wall
+		
 
 loc_135F0Knuckles:
 		jsr	sub_14EB4	;originally bsr.w
@@ -1266,6 +1260,11 @@ loc_135F0Knuckles:
 		bpl.s	loc_13602Knuckles
 		add.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
+		;gliding code
+		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
+		bne.s	loc_13602Knuckles	;if not, don't do this part
+		move.b	#1,(f_doublejump).w ;set thing for go on wall
+		
 
 loc_13602Knuckles:
 		jsr	Sonic_HitFloor	;originally bsr.w
@@ -1453,6 +1452,7 @@ Knuckles_ResetOnFloor:
 		nop	
 
 .notrolljump:
+		move.b	#0,(f_doublejump).w ;clear on wall flag
 		bclr	#5,obStatus(a0)	; clear push flag.
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
@@ -1963,5 +1963,3 @@ Knuckles_LoadGfx:
 .end:
 		rts					; return
 ; End of function Knuckles_LoadGfx
-		;include	"_incObj/Knuckles_MdAir_Gliding.asm"
-		include	"_incObj/KnucklesGlideCustom.asm"
