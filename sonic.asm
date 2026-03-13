@@ -8013,11 +8013,13 @@ Map_Knuckles:	include	"_maps/Knuckles.asm"
 KnucklesDynPLC:	include	"_maps/Knuckles - Dynamic Gfx Script.asm"
 
 ; ---------------------------------------------------------------------------
-; Uncompressed graphics - Sonic
+; Uncompressed graphics - player characters
 ; ---------------------------------------------------------------------------
 Art_Sonic:	binclude	"artunc/Sonic.bin"	; Sonic
+		even
 Art_Miles:	binclude	"artunc/Tails.bin"	; Tails
-Art_Knuckles:	binclude	"artunc/Knuckles.bin"	; Sonic
+		even
+Art_Knuckles:	binclude	"artunc/Knuckles.bin"	; Knuckles
 		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - various
@@ -8800,13 +8802,10 @@ ObjPos_Null:	dc.b $FF, $FF, 0, 0, 0,	0
 				dc.b	[$63C]$FF
 			endif
 		endif
-
 SoundDriver:	include "s1.sounddriver.asm"
 		include	"_incObj/03 Knuckles.asm"
 		include	"_incObj/Knuckles SpinDash.asm"
-
-; end of 'ROM'
+		include	"_incObj/KnucklesGlideCustom.asm"
 		even
 EndOfRom:
-
 		END

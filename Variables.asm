@@ -232,7 +232,7 @@ v_tlsframenum:		ds.b	1		; frame to display for Tails
 v_anglebuffer2:		ds.b	1		; other angle of collision block that Sonic or object is standing on
 v_tlstlsframenum:	ds.b	1		; frame to display for Tails' tails
 v_opl_routine:		ds.b	1		; ObjPosLoad - routine counter
-			ds.b	1		; unused
+f_doublejump:		ds.b	1		; use for knuckles glide
 v_opl_screen:		ds.w	1		; ObjPosLoad - screen variable
 v_opl_data:		ds.b	$10		; ObjPosLoad - data buffer
 v_ssangle:		ds.w	1		; Special Stage angle
