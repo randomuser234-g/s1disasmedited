@@ -50,22 +50,15 @@ KnucklesGlideCustom_CancelGlide:
 		asr.w	obVelX(a0)
 		asr.w	obVelX(a0)
 		rts
-
+;-----------------------------------------------------------------------------------
 KnucklesGlideCustom_ClimbWall:
 	move.b	#$B7,(v_player+obFrame).w	
 	move.b	#$7F,obTimeFrame(a0)
 	move.b	#0,obAniFrame(a0)
 Knuckles_AlreadyClimbing:
 	; Get Knuckles' distance from the wall in 'd1'.
-	move.w	obY(a0),d2
-	subi.w	#11,d2
-	jsr	GetDistanceFromWall
-
-	; If the wall is far away from Knuckles, then we must have reached a
-	; ledge, so make Knuckles climb up onto it.
-	cmpi.w	#4,d1
-	bge.w	Knuckles_StopClimbing
 	.onwall:
+	;is knuckles away from the wall?
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		clr.w	obVelX(a0)	;freeze knuckles on the wall
@@ -74,28 +67,57 @@ Knuckles_AlreadyClimbing:
 		jsr	.jump
 		jsr	.dn
 		rts
+;-----------------------------------------------------------------------------------
 		.jump:
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		beq.w	rts_KnucklesGlideCustom	; if yes, branch
 		move.b	#0,(f_doublejump).w ;clear thing for go on wall
 		move.b	#id_Roll,obAnim(a0)
 		bra.w	Knuckles_Jump	;jump up from the wall
+;-----------------------------------------------------------------------------------
 		.dn:
 		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 		beq.w	.up	; if not, branch
 		addq.w	#1,obY(a0)	;go down on the wall
+		;wall check
+	move.w	obY(a0),d2
+	addi.w	#11,d2
+	bsr.w	GetDistanceFromWall
+
+	; If Knuckles is no longer against the wall (he has climbed off the
+	; bottom of it) then make him let go.
+	tst.w	d1
+	bne.w	Knuckles_StopClimbing
 		cmpi.b	#$B7,(v_player+obFrame).w	
 		ble.s	.loopdown
 		subi.b	#$1,(v_player+obFrame).w	
 		rts
+;-----------------------------------------------------------------------------------
 		.up:
 		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
 		beq.w	Knuckles_StoppedClimbing	; if not, branch
+	move.w	obY(a0),d2
+	subi.w	#11,d2
+	jsr	GetDistanceFromWall
+
+	; If the wall is far away from Knuckles, then we must have reached a
+	; ledge, so make Knuckles climb up onto it.
+	cmpi.w	#4,d1
+	bge.w	Knuckles_Ledge
+	tst.w	d1
+	bpl.s	.moveup
+
+	; Knuckles is bumping into the ceiling, so push him out.
+	sub.w	d1,obY(a0)
+	bra.s	.animup
+		.moveup:
 		subq.w	#1,obY(a0)	;go up on the wall
+		.animup:
 		cmpi.b	#$BC,(v_player+obFrame).w	
 		bge.s	.loopup
 		addi.b	#1,(v_player+obFrame).w	
 		rts
+;-----------------------------------------------------------------------------------
 		.loopup:
 		move.b	#$B7,(v_player+obFrame).w	
 		move.b	#$7F,obTimeFrame(a0)
@@ -106,15 +128,34 @@ Knuckles_AlreadyClimbing:
 		move.b	#$7F,obTimeFrame(a0)
 		move.b	#0,obAniFrame(a0)	
 		rts
-		
+;-----------------------------------------------------------------------------------
 Knuckles_StoppedClimbing:
+	; check similar to going up, but to stop climbing if you go left or right
+	move.w	obY(a0),d2
+	addi.w	#11,d2
+	bsr.w	GetDistanceFromWall
+	tst.w	d1
+	bne.w	Knuckles_StopClimbing
+	clr.w	d1
+
 		move.b	#$B7,(v_player+obFrame).w	
 		move.b	#$7F,obTimeFrame(a0)
 		move.b	#0,obAniFrame(a0)
 		rts
 Knuckles_StopClimbing:
-		move.b	#id_Roll,obAnim(a0)
+		move.b	#id_FallFromGlide,obAnim(a0)
 		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		rts
+Knuckles_Ledge:
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		btst	#0,obStatus(a0)
+		bne.s	.facingLeft
+		addi.w	#5,obX(a0)
+		bra.s	.skipleft
+	.facingLeft:
+		subi.w	#5,obX(a0)
+	.skipleft:
+		subi.w	#$10,obY
 		rts
 ;============================================================================
 ; sub_315C22:
