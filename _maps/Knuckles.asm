@@ -1,1705 +1,1709 @@
-Map_7466: mappingsTable
-	mappingsTableEntry.w	Map_7466_0
-	mappingsTableEntry.w	Map_7466_1
-	mappingsTableEntry.w	Map_7466_2
-	mappingsTableEntry.w	Map_7466_3
-	mappingsTableEntry.w	Map_7466_4
-	mappingsTableEntry.w	Map_7466_5
-	mappingsTableEntry.w	Map_7466_6
-	mappingsTableEntry.w	Map_7466_7
-	mappingsTableEntry.w	Map_7466_8
-	mappingsTableEntry.w	Map_7466_9
-	mappingsTableEntry.w	Map_7466_10
-	mappingsTableEntry.w	Map_7466_11
-	mappingsTableEntry.w	Map_7466_12
-	mappingsTableEntry.w	Map_7466_13
-	mappingsTableEntry.w	Map_7466_14
-	mappingsTableEntry.w	Map_7466_15
-	mappingsTableEntry.w	Map_7466_16
-	mappingsTableEntry.w	Map_7466_17
-	mappingsTableEntry.w	Map_7466_18
-	mappingsTableEntry.w	Map_7466_19
-	mappingsTableEntry.w	Map_7466_20
-	mappingsTableEntry.w	Map_7466_21
-	mappingsTableEntry.w	Map_7466_22
-	mappingsTableEntry.w	Map_7466_23
-	mappingsTableEntry.w	Map_7466_24
-	mappingsTableEntry.w	Map_7466_25
-	mappingsTableEntry.w	Map_7466_26
-	mappingsTableEntry.w	Map_7466_27
-	mappingsTableEntry.w	Map_7466_28
-	mappingsTableEntry.w	Map_7466_29
-	mappingsTableEntry.w	Map_7466_30
-	mappingsTableEntry.w	Map_7466_31
-	mappingsTableEntry.w	Map_7466_32
-	mappingsTableEntry.w	Map_7466_33
-	mappingsTableEntry.w	Map_7466_34
-	mappingsTableEntry.w	Map_7466_35
-	mappingsTableEntry.w	Map_7466_36
-	mappingsTableEntry.w	Map_7466_37
-	mappingsTableEntry.w	Map_7466_38
-	mappingsTableEntry.w	Map_7466_39
-	mappingsTableEntry.w	Map_7466_40
-	mappingsTableEntry.w	Map_7466_41
-	mappingsTableEntry.w	Map_7466_42
-	mappingsTableEntry.w	Map_7466_43
-	mappingsTableEntry.w	Map_7466_44
-	mappingsTableEntry.w	Map_7466_45
-	mappingsTableEntry.w	Map_7466_46
-	mappingsTableEntry.w	Map_7466_47
-	mappingsTableEntry.w	Map_7466_48
-	mappingsTableEntry.w	Map_7466_49
-	mappingsTableEntry.w	Map_7466_50
-	mappingsTableEntry.w	Map_7466_51
-	mappingsTableEntry.w	Map_7466_52
-	mappingsTableEntry.w	Map_7466_53
-	mappingsTableEntry.w	Map_7466_54
-	mappingsTableEntry.w	Map_7466_55
-	mappingsTableEntry.w	Map_7466_56
-	mappingsTableEntry.w	Map_7466_57
-	mappingsTableEntry.w	Map_7466_58
-	mappingsTableEntry.w	Map_7466_59
-	mappingsTableEntry.w	Map_7466_60
-	mappingsTableEntry.w	Map_7466_61
-	mappingsTableEntry.w	Map_7466_62
-	mappingsTableEntry.w	Map_7466_63
-	mappingsTableEntry.w	Map_7466_64
-	mappingsTableEntry.w	Map_7466_65
-	mappingsTableEntry.w	Map_7466_66
-	mappingsTableEntry.w	Map_7466_67
-	mappingsTableEntry.w	Map_7466_68
-	mappingsTableEntry.w	Map_7466_69
-	mappingsTableEntry.w	Map_7466_70
-	mappingsTableEntry.w	Map_7466_71
-	mappingsTableEntry.w	Map_7466_72
-	mappingsTableEntry.w	Map_7466_73
-	mappingsTableEntry.w	Map_7466_74
-	mappingsTableEntry.w	Map_7466_75
-	mappingsTableEntry.w	Map_7466_76
-	mappingsTableEntry.w	Map_7466_77
-	mappingsTableEntry.w	Map_7466_78
-	mappingsTableEntry.w	Map_7466_79
-	mappingsTableEntry.w	Map_7466_80
-	mappingsTableEntry.w	Map_7466_81
-	mappingsTableEntry.w	Map_7466_82
-	mappingsTableEntry.w	Map_7466_83
-	mappingsTableEntry.w	Map_7466_84
-	mappingsTableEntry.w	Map_7466_85
-	mappingsTableEntry.w	Map_7466_86
-	mappingsTableEntry.w	Map_7466_87
-	mappingsTableEntry.w	Map_7466_88
-	mappingsTableEntry.w	Map_7466_89
-	mappingsTableEntry.w	Map_7466_90
-	mappingsTableEntry.w	Map_7466_91
-	mappingsTableEntry.w	Map_7466_92
-	mappingsTableEntry.w	Map_7466_93
-	mappingsTableEntry.w	Map_7466_94
-	mappingsTableEntry.w	Map_7466_95
-	mappingsTableEntry.w	Map_7466_96
-	mappingsTableEntry.w	Map_7466_97
-	mappingsTableEntry.w	Map_7466_98
-	mappingsTableEntry.w	Map_7466_99
-	mappingsTableEntry.w	Map_7466_100
-	mappingsTableEntry.w	Map_7466_101
-	mappingsTableEntry.w	Map_7466_102
-	mappingsTableEntry.w	Map_7466_103
-	mappingsTableEntry.w	Map_7466_104
-	mappingsTableEntry.w	Map_7466_105
-	mappingsTableEntry.w	Map_7466_106
-	mappingsTableEntry.w	Map_7466_107
-	mappingsTableEntry.w	Map_7466_108
-	mappingsTableEntry.w	Map_7466_109
-	mappingsTableEntry.w	Map_7466_110
-	mappingsTableEntry.w	Map_7466_111
-	mappingsTableEntry.w	Map_7466_112
-	mappingsTableEntry.w	Map_7466_113
-	mappingsTableEntry.w	Map_7466_114
-	mappingsTableEntry.w	Map_7466_115
-	mappingsTableEntry.w	Map_7466_116
-	mappingsTableEntry.w	Map_7466_117
-	mappingsTableEntry.w	Map_7466_118
-	mappingsTableEntry.w	Map_7466_119
-	mappingsTableEntry.w	Map_7466_120
-	mappingsTableEntry.w	Map_7466_121
-	mappingsTableEntry.w	Map_7466_122
-	mappingsTableEntry.w	Map_7466_123
-	mappingsTableEntry.w	Map_7466_124
-	mappingsTableEntry.w	Map_7466_125
-	mappingsTableEntry.w	Map_7466_126
-	mappingsTableEntry.w	Map_7466_127
-	mappingsTableEntry.w	Map_7466_128
-	mappingsTableEntry.w	Map_7466_129
-	mappingsTableEntry.w	Map_7466_130
-	mappingsTableEntry.w	Map_7466_131
-	mappingsTableEntry.w	Map_7466_132
-	mappingsTableEntry.w	Map_7466_133
-	mappingsTableEntry.w	Map_7466_134
-	mappingsTableEntry.w	Map_7466_135
-	mappingsTableEntry.w	Map_7466_136
-	mappingsTableEntry.w	Map_7466_137
-	mappingsTableEntry.w	Map_7466_138
-	mappingsTableEntry.w	Map_7466_139
-	mappingsTableEntry.w	Map_7466_140
-	mappingsTableEntry.w	Map_7466_141
-	mappingsTableEntry.w	Map_7466_142
-	mappingsTableEntry.w	Map_7466_143
-	mappingsTableEntry.w	Map_7466_144
-	mappingsTableEntry.w	Map_7466_145
-	mappingsTableEntry.w	Map_7466_146
-	mappingsTableEntry.w	Map_7466_147
-	mappingsTableEntry.w	Map_7466_148
-	mappingsTableEntry.w	Map_7466_149
-	mappingsTableEntry.w	Map_7466_150
-	mappingsTableEntry.w	Map_7466_151
-	mappingsTableEntry.w	Map_7466_152
-	mappingsTableEntry.w	Map_7466_153
-	mappingsTableEntry.w	Map_7466_154
-	mappingsTableEntry.w	Map_7466_155
-	mappingsTableEntry.w	Map_7466_156
-	mappingsTableEntry.w	Map_7466_157
-	mappingsTableEntry.w	Map_7466_158
-	mappingsTableEntry.w	Map_7466_159
-	mappingsTableEntry.w	Map_7466_160
-	mappingsTableEntry.w	Map_7466_161
-	mappingsTableEntry.w	Map_7466_162
-	mappingsTableEntry.w	Map_7466_163
-	mappingsTableEntry.w	Map_7466_164
-	mappingsTableEntry.w	Map_7466_165
-	mappingsTableEntry.w	Map_7466_166
-	mappingsTableEntry.w	Map_7466_167
-	mappingsTableEntry.w	Map_7466_168
-	mappingsTableEntry.w	Map_7466_169
-	mappingsTableEntry.w	Map_7466_170
-	mappingsTableEntry.w	Map_7466_171
-	mappingsTableEntry.w	Map_7466_172
-	mappingsTableEntry.w	Map_7466_173
-	mappingsTableEntry.w	Map_7466_174
-	mappingsTableEntry.w	Map_7466_175
-	mappingsTableEntry.w	Map_7466_176
-	mappingsTableEntry.w	Map_7466_177
-	mappingsTableEntry.w	Map_7466_178
-	mappingsTableEntry.w	Map_7466_179
-	mappingsTableEntry.w	Map_7466_180
-	mappingsTableEntry.w	Map_7466_181
-	mappingsTableEntry.w	Map_7466_182
-	mappingsTableEntry.w	Map_7466_183
-	mappingsTableEntry.w	Map_7466_184
-	mappingsTableEntry.w	Map_7466_185
-	mappingsTableEntry.w	Map_7466_186
-	mappingsTableEntry.w	Map_7466_187
-	mappingsTableEntry.w	Map_7466_188
-	mappingsTableEntry.w	Map_7466_189
-	mappingsTableEntry.w	Map_7466_190
-	mappingsTableEntry.w	Map_7466_191
-	mappingsTableEntry.w	Map_7466_192
-	mappingsTableEntry.w	Map_7466_193
-	mappingsTableEntry.w	Map_7466_194
-	mappingsTableEntry.w	Map_7466_195
-	mappingsTableEntry.w	Map_7466_196
-	mappingsTableEntry.w	Map_7466_197
-	mappingsTableEntry.w	Map_7466_198
-	mappingsTableEntry.w	Map_7466_199
-	mappingsTableEntry.w	Map_7466_200
-	mappingsTableEntry.w	Map_7466_201
-	mappingsTableEntry.w	Map_7466_202
-	mappingsTableEntry.w	Map_7466_203
-	mappingsTableEntry.w	Map_7466_204
-	mappingsTableEntry.w	Map_7466_205
-	mappingsTableEntry.w	Map_7466_206
-	mappingsTableEntry.w	Map_7466_207
-	mappingsTableEntry.w	Map_7466_208
-	mappingsTableEntry.w	Map_7466_209
-	mappingsTableEntry.w	Map_7466_210
-	mappingsTableEntry.w	Map_7466_211
-	mappingsTableEntry.w	Map_7466_212
-	mappingsTableEntry.w	Map_7466_213
-	mappingsTableEntry.w	Map_7466_214
-	mappingsTableEntry.w	Map_7466_215
-	mappingsTableEntry.w	Map_7466_216
-	mappingsTableEntry.w	Map_7466_217
-	mappingsTableEntry.w	Map_7466_218
-	mappingsTableEntry.w	Map_7466_219
-	mappingsTableEntry.w	Map_7466_220
-	mappingsTableEntry.w	Map_7466_221
-	mappingsTableEntry.w	Map_7466_222
-	mappingsTableEntry.w	Map_7466_223
-	mappingsTableEntry.w	Map_7466_224
-	mappingsTableEntry.w	Map_7466_225
-	mappingsTableEntry.w	Map_7466_226
-	mappingsTableEntry.w	Map_7466_227
-	mappingsTableEntry.w	Map_7466_228
-	mappingsTableEntry.w	Map_7466_229
-	mappingsTableEntry.w	Map_7466_230
-	mappingsTableEntry.w	Map_7466_231
-	mappingsTableEntry.w	Map_7466_232
-	mappingsTableEntry.w	Map_7466_233
-	mappingsTableEntry.w	Map_7466_234
-	mappingsTableEntry.w	Map_7466_235
-	mappingsTableEntry.w	Map_7466_236
-	mappingsTableEntry.w	Map_7466_237
-	mappingsTableEntry.w	Map_7466_238
-	mappingsTableEntry.w	Map_7466_239
-	mappingsTableEntry.w	Map_7466_240
-	mappingsTableEntry.w	Map_7466_241
-	mappingsTableEntry.w	Map_7466_242
-	mappingsTableEntry.w	Map_7466_243
-	mappingsTableEntry.w	Map_7466_244
-	mappingsTableEntry.w	Map_7466_245
-	mappingsTableEntry.w	Map_7466_246
-	mappingsTableEntry.w	Map_7466_247
-	mappingsTableEntry.w	Map_7466_248
-	mappingsTableEntry.w	Map_7466_249
-	mappingsTableEntry.w	Map_7466_250
-
-Map_7466_0:	spriteHeader
-Map_7466_0_End
-
-Map_7466_1:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$15, -4, 1, 3, $F, 0, 0, 0, 0
- spritePiece 3, $C, 2, 1, $12, 0, 0, 0, 0
-Map_7466_1_End
-
-Map_7466_2:	spriteHeader
- spritePiece -7, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -$C, 4, 4, 2, 0, 0, 0, 0
- spritePiece -$17, -4, 1, 3, $12, 0, 0, 0, 0
-Map_7466_2_End
-
-Map_7466_3:	spriteHeader
- spritePiece -$C, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$14, -4, 4, 2, 6, 0, 0, 0, 0
- spritePiece -$C, $C, 2, 1, $E, 0, 0, 0, 0
-Map_7466_3_End
-
-Map_7466_4:	spriteHeader
- spritePiece -$B, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$13, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_4_End
-
-Map_7466_5:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$15, -4, 1, 2, $F, 0, 0, 0, 0
- spritePiece -$15, $C, 4, 1, $11, 0, 0, 0, 0
-Map_7466_5_End
-
-Map_7466_6:	spriteHeader
- spritePiece -6, -$16, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$E, -$E, 3, 1, 2, 0, 0, 0, 0
- spritePiece -$E, -6, 4, 3, 5, 0, 0, 0, 0
- spritePiece -$16, 2, 1, 2, $11, 0, 0, 0, 0
-Map_7466_6_End
-
-Map_7466_7:	spriteHeader
- spritePiece -9, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$C, 4, 3, 2, 0, 0, 0, 0
- spritePiece -$11, $C, 3, 1, $E, 0, 0, 0, 0
-Map_7466_7_End
-
-Map_7466_8:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 3, 1, 3, 0, 0, 0, 0
- spritePiece -$D, -4, 4, 3, 6, 0, 0, 0, 0
- spritePiece -$15, -4, 1, 1, $12, 0, 0, 0, 0
-Map_7466_8_End
-
-Map_7466_9:	spriteHeader
- spritePiece -$E, -$13, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$E, 5, 3, 1, $C, 0, 0, 0, 0
- spritePiece -6, $D, 2, 2, $F, 0, 0, 0, 0
-Map_7466_9_End
-
-Map_7466_10:	spriteHeader
- spritePiece -$10, -$11, 4, 4, 0, 0, 0, 0, 0
- spritePiece $10, -9, 1, 3, $10, 0, 0, 0, 0
- spritePiece -8, $F, 2, 1, $13, 0, 0, 0, 0
-Map_7466_10_End
-
-Map_7466_11:	spriteHeader
- spritePiece -$C, -$11, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -9, 4, 3, 3, 0, 0, 0, 0
- spritePiece 4, $F, 1, 1, $F, 0, 0, 0, 0
-Map_7466_11_End
-
-Map_7466_12:	spriteHeader
- spritePiece -$D, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -8, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$D, 8, 3, 1, $B, 0, 0, 0, 0
- spritePiece -5, $10, 2, 1, $E, 0, 0, 0, 0
-Map_7466_12_End
-
-Map_7466_13:	spriteHeader
- spritePiece -$E, -$15, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $B, 2, 1, $10, 0, 0, 0, 0
- spritePiece -6, $13, 2, 1, $12, 0, 0, 0, 0
-Map_7466_13_End
-
-Map_7466_14:	spriteHeader
- spritePiece -$B, -$11, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$B, 7, 2, 2, $C, 0, 0, 0, 0
-Map_7466_14_End
-
-Map_7466_15:	spriteHeader
- spritePiece -$B, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$B, -8, 4, 3, 3, 0, 0, 0, 0
- spritePiece 5, $10, 1, 1, $F, 0, 0, 0, 0
-Map_7466_15_End
-
-Map_7466_16:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -5, $C, 2, 1, $F, 0, 0, 0, 0
-Map_7466_16_End
-
-Map_7466_17:	spriteHeader
- spritePiece -$C, -$12, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$A, 4, 3, 4, 0, 0, 0, 0
- spritePiece $C, -$A, 1, 1, $10, 0, 0, 0, 0
- spritePiece -4, $E, 3, 1, $11, 0, 0, 0, 0
-Map_7466_17_End
-
-Map_7466_18:	spriteHeader
- spritePiece -$C, -$10, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -8, 4, 2, 4, 0, 0, 0, 0
- spritePiece $C, -8, 1, 1, $C, 0, 0, 0, 0
- spritePiece -$C, 8, 4, 2, $D, 0, 0, 0, 0
-Map_7466_18_End
-
-Map_7466_19:	spriteHeader
- spritePiece -$14, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece $C, -3, 1, 2, $C, 0, 0, 0, 0
- spritePiece -4, $D, 2, 1, $E, 0, 0, 0, 0
-Map_7466_19_End
-
-Map_7466_20:	spriteHeader
- spritePiece -$14, -$C, 2, 3, 0, 0, 0, 0, 0
- spritePiece -4, -$C, 3, 4, 6, 0, 0, 0, 0
-Map_7466_20_End
-
-Map_7466_21:	spriteHeader
- spritePiece -$C, -$13, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$B, 4, 3, 3, 0, 0, 0, 0
- spritePiece $C, -$B, 1, 1, $F, 0, 0, 0, 0
- spritePiece -4, $D, 3, 1, $10, 0, 0, 0, 0
-Map_7466_21_End
-
-Map_7466_22:	spriteHeader
- spritePiece -5, -$11, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -9, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$15, -9, 1, 2, $F, 0, 0, 0, 0
- spritePiece 3, $F, 2, 1, $11, 0, 0, 0, 0
-Map_7466_22_End
-
-Map_7466_23:	spriteHeader
- spritePiece -$C, -$E, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -6, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$14, -6, 1, 2, $F, 0, 0, 0, 0
-Map_7466_23_End
-
-Map_7466_24:	spriteHeader
- spritePiece -4, -$12, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$A, 4, 3, 2, 0, 0, 0, 0
- spritePiece $C, -$A, 1, 3, $E, 0, 0, 0, 0
- spritePiece -4, $E, 1, 1, $11, 0, 0, 0, 0
-Map_7466_24_End
-
-Map_7466_25:	spriteHeader
- spritePiece -$12, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -8, 4, 3, 3, 0, 0, 0, 0
- spritePiece $E, -8, 2, 2, $F, 0, 0, 0, 0
-Map_7466_25_End
-
-Map_7466_26:	spriteHeader
- spritePiece -9, -$17, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$F, 4, 4, 3, 0, 0, 0, 0
- spritePiece $F, -7, 1, 2, $13, 0, 0, 0, 0
-Map_7466_26_End
-
-Map_7466_27:	spriteHeader
- spritePiece -8, -$15, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$D, 4, 3, 3, 0, 0, 0, 0
- spritePiece $10, -$D, 1, 1, $F, 0, 0, 0, 0
-Map_7466_27_End
-
-Map_7466_28:	spriteHeader
- spritePiece -6, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$E, -$C, 4, 3, 2, 0, 0, 0, 0
- spritePiece $12, -$C, 1, 2, $E, 0, 0, 0, 0
-Map_7466_28_End
-
-Map_7466_29:	spriteHeader
- spritePiece -$15, -$12, 4, 4, 0, 0, 0, 0, 0
- spritePiece $B, -$A, 2, 3, $10, 0, 0, 0, 0
-Map_7466_29_End
-
-Map_7466_30:	spriteHeader
- spritePiece -$12, -$13, 3, 4, 0, 0, 0, 0, 0
- spritePiece 6, -3, 2, 2, $C, 0, 0, 0, 0
-Map_7466_30_End
-
-Map_7466_31:	spriteHeader
- spritePiece -7, -$15, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -$D, 4, 3, 3, 0, 0, 0, 0
- spritePiece $11, -$D, 1, 1, $F, 0, 0, 0, 0
-Map_7466_31_End
-
-Map_7466_32:	spriteHeader
- spritePiece -$A, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece $E, -$C, 1, 2, $F, 0, 0, 0, 0
-Map_7466_32_End
-
-Map_7466_33:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_33_End
-
-Map_7466_34:	spriteHeader
- spritePiece -$C, -$13, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$B, 4, 4, 3, 0, 0, 0, 0
-Map_7466_34_End
-
-Map_7466_35:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_35_End
-
-Map_7466_36:	spriteHeader
- spritePiece -$C, -$13, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$B, 4, 4, 3, 0, 0, 0, 0
-Map_7466_36_End
-
-Map_7466_37:	spriteHeader
- spritePiece -$12, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -8, 4, 3, 3, 0, 0, 0, 0
- spritePiece $E, 0, 1, 2, $F, 0, 0, 0, 0
- spritePiece -$A, $10, 3, 1, $11, 0, 0, 0, 0
-Map_7466_37_End
-
-Map_7466_38:	spriteHeader
- spritePiece -$F, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -8, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$17, -8, 1, 2, $F, 0, 0, 0, 0
- spritePiece -7, $10, 3, 1, $11, 0, 0, 0, 0
-Map_7466_38_End
-
-Map_7466_39:	spriteHeader
- spritePiece -$11, -$F, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -7, 4, 2, 3, 0, 0, 0, 0
- spritePiece -9, 9, 3, 2, $B, 0, 0, 0, 0
-Map_7466_39_End
-
-Map_7466_40:	spriteHeader
- spritePiece -$F, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -8, 4, 4, 3, 0, 0, 0, 0
- spritePiece -$17, -8, 1, 2, $13, 0, 0, 0, 0
-Map_7466_40_End
-
-Map_7466_41:	spriteHeader
- spritePiece -$16, -$C, 1, 3, 0, 0, 0, 0, 0
- spritePiece -$E, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_41_End
-
-Map_7466_42:	spriteHeader
- spritePiece -$15, -$C, 1, 3, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_42_End
-
-Map_7466_43:	spriteHeader
- spritePiece -$16, -$C, 1, 3, 0, 0, 0, 0, 0
- spritePiece -$E, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_43_End
-
-Map_7466_44:	spriteHeader
- spritePiece -$15, -$C, 1, 3, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_44_End
-
-Map_7466_45:	spriteHeader
- spritePiece 0, -$15, 2, 1, 0, 0, 0, 0, 0
- spritePiece -8, -$D, 4, 3, 2, 0, 0, 0, 0
- spritePiece -$10, -5, 1, 2, $E, 0, 0, 0, 0
- spritePiece -$10, $B, 4, 1, $10, 0, 0, 0, 0
-Map_7466_45_End
-
-Map_7466_46:	spriteHeader
- spritePiece -8, -$10, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -8, 4, 3, 4, 0, 0, 0, 0
- spritePiece $10, -8, 1, 2, $10, 0, 0, 0, 0
- spritePiece -8, $10, 2, 1, $12, 0, 0, 0, 0
-Map_7466_46_End
-
-Map_7466_47:	spriteHeader
- spritePiece -7, -$E, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$F, -6, 1, 2, $C, 0, 0, 0, 0
- spritePiece -$F, $A, 3, 1, $E, 0, 0, 0, 0
-Map_7466_47_End
-
-Map_7466_48:	spriteHeader
- spritePiece -8, -$10, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$10, -8, 1, 3, $10, 0, 0, 0, 0
- spritePiece -8, $10, 2, 1, $13, 0, 0, 0, 0
-Map_7466_48_End
-
-Map_7466_49:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$D, 4, 3, 1, $B, 0, 0, 0, 0
- spritePiece -5, $C, 2, 1, $E, 0, 0, 0, 0
-Map_7466_49_End
-
-Map_7466_50:	spriteHeader
- spritePiece -5, -$16, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$E, 4, 4, 2, 0, 0, 0, 0
-Map_7466_50_End
-
-Map_7466_51:	spriteHeader
- spritePiece -$C, -$13, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -3, 4, 1, 6, 0, 0, 0, 0
- spritePiece -$C, 5, 3, 1, $A, 0, 0, 0, 0
-Map_7466_51_End
-
-Map_7466_52:	spriteHeader
- spritePiece -$D, -$11, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -9, 4, 3, 3, 0, 0, 0, 0
- spritePiece 3, $F, 1, 1, $F, 0, 0, 0, 0
-Map_7466_52_End
-
-Map_7466_53:	spriteHeader
- spritePiece -$C, -$E, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -6, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $A, 3, 1, $B, 0, 0, 0, 0
-Map_7466_53_End
-
-Map_7466_54:	spriteHeader
- spritePiece -5, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 2, 2, 0, 0, 0, 0
- spritePiece -$D, 4, 3, 2, $A, 0, 0, 0, 0
-Map_7466_54_End
-
-Map_7466_55:	spriteHeader
- spritePiece -$E, -$14, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $C, 3, 1, $10, 0, 0, 0, 0
-Map_7466_55_End
-
-Map_7466_56:	spriteHeader
- spritePiece -5, -$15, 2, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -5, 4, 1, 4, 0, 0, 0, 0
- spritePiece -$D, 3, 3, 2, 8, 0, 0, 0, 0
-Map_7466_56_End
-
-Map_7466_57:	spriteHeader
- spritePiece -$D, -$E, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$D, $A, 3, 1, $C, 0, 0, 0, 0
-Map_7466_57_End
-
-Map_7466_58:	spriteHeader
- spritePiece -$D, -$C, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$D, 4, 3, 1, 8, 0, 0, 0, 0
-Map_7466_58_End
-
-Map_7466_59:	spriteHeader
- spritePiece -$E, -$D, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$E, 3, 3, 1, 8, 0, 0, 0, 0
- spritePiece -$E, $B, 4, 1, $B, 0, 0, 0, 0
-Map_7466_59_End
-
-Map_7466_60:	spriteHeader
- spritePiece -$C, -$14, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$C, 4, 4, 2, 9, 0, 0, 0, 0
-Map_7466_60_End
-
-Map_7466_61:	spriteHeader
- spritePiece -$C, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_61_End
-
-Map_7466_62:	spriteHeader
- spritePiece -$C, -$D, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -5, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $B, 2, 1, $B, 0, 0, 0, 0
-Map_7466_62_End
-
-Map_7466_63:	spriteHeader
- spritePiece -$C, -$A, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$C, 6, 3, 1, 8, 0, 0, 0, 0
-Map_7466_63_End
-
-Map_7466_64:	spriteHeader
- spritePiece -7, -$E, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -6, 4, 2, 3, 0, 0, 0, 0
- spritePiece -7, $A, 2, 1, $B, 0, 0, 0, 0
-Map_7466_64_End
-
-Map_7466_65:	spriteHeader
- spritePiece -$D, -$11, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$D, 7, 3, 2, $C, 0, 0, 0, 0
-Map_7466_65_End
-
-Map_7466_66:	spriteHeader
- spritePiece -$C, -$14, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 3, 1, 4, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 1, 7, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 2, $B, 0, 0, 0, 0
-Map_7466_66_End
-
-Map_7466_67:	spriteHeader
- spritePiece -$C, -$13, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, $D, 3, 1, $C, 0, 0, 0, 0
-Map_7466_67_End
-
-Map_7466_68:	spriteHeader
- spritePiece -$C, -$10, 4, 4, 0, 0, 0, 0, 0
-Map_7466_68_End
-
-Map_7466_69:	spriteHeader
- spritePiece -$C, -$E, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -6, 4, 2, 3, 0, 0, 0, 0
- spritePiece -4, $A, 1, 1, $B, 0, 0, 0, 0
-Map_7466_69_End
-
-Map_7466_70:	spriteHeader
- spritePiece -$D, -$F, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, 1, 4, 2, 6, 0, 0, 0, 0
-Map_7466_70_End
-
-Map_7466_71:	spriteHeader
- spritePiece -$D, -$13, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -3, 4, 3, 6, 0, 0, 0, 0
-Map_7466_71_End
-
-Map_7466_72:	spriteHeader
- spritePiece -$D, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_72_End
-
-Map_7466_73:	spriteHeader
- spritePiece -$F, -$13, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$17, -$B, 1, 3, $10, 0, 0, 0, 0
- spritePiece -7, $D, 2, 1, $13, 0, 0, 0, 0
-Map_7466_73_End
-
-Map_7466_74:	spriteHeader
- spritePiece -$12, -$10, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$12, 8, 3, 1, $C, 0, 0, 0, 0
- spritePiece -$12, $10, 1, 1, $F, 0, 0, 0, 0
-Map_7466_74_End
-
-Map_7466_75:	spriteHeader
- spritePiece -$C, -$C, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$C, $C, 2, 1, 9, 0, 0, 0, 0
-Map_7466_75_End
-
-Map_7466_76:	spriteHeader
- spritePiece -$10, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$10, $D, 4, 1, $C, 0, 0, 0, 0
-Map_7466_76_End
-
-Map_7466_77:	spriteHeader
- spritePiece -$D, -$C, 4, 3, 0, 0, 0, 0, 0
-Map_7466_77_End
-
-Map_7466_78:	spriteHeader
- spritePiece -8, -$13, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$B, 4, 3, 3, 0, 0, 0, 0
- spritePiece $10, -$B, 1, 2, $F, 0, 0, 0, 0
-Map_7466_78_End
-
-Map_7466_79:	spriteHeader
- spritePiece -$A, -$13, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -$B, 4, 3, 4, 0, 0, 0, 0
-Map_7466_79_End
-
-Map_7466_80:	spriteHeader
- spritePiece 4, -$12, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$A, 4, 3, 1, 0, 0, 0, 0
- spritePiece $C, -$A, 1, 2, $D, 0, 0, 0, 0
-Map_7466_80_End
-
-Map_7466_81:	spriteHeader
- spritePiece 1, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -$C, 3, 3, 2, 0, 0, 0, 0
- spritePiece 9, -$C, 2, 2, $B, 0, 0, 0, 0
-Map_7466_81_End
-
-Map_7466_82:	spriteHeader
- spritePiece -8, -$11, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -9, 4, 2, 2, 0, 0, 0, 0
- spritePiece -8, 7, 2, 1, $A, 0, 0, 0, 0
-Map_7466_82_End
-
-Map_7466_83:	spriteHeader
- spritePiece -$10, -$12, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$A, 4, 2, 3, 0, 0, 0, 0
- spritePiece -8, 6, 3, 1, $B, 0, 0, 0, 0
-Map_7466_83_End
-
-Map_7466_84:	spriteHeader
- spritePiece -$10, -$10, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$10, 8, 3, 1, $C, 0, 0, 0, 0
-Map_7466_84_End
-
-Map_7466_85:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 1, 3, 0, 0, 0, 0
- spritePiece -$C, -4, 3, 3, 7, 0, 0, 0, 0
-Map_7466_85_End
-
-Map_7466_86:	spriteHeader
- spritePiece -$D, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_86_End
-
-Map_7466_87:	spriteHeader
- spritePiece -$D, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_87_End
-
-Map_7466_88:	spriteHeader
- spritePiece -$D, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$D, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_88_End
-
-Map_7466_89:	spriteHeader
- spritePiece -$E, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$E, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$E, 4, 3, 2, $B, 0, 0, 0, 0
-Map_7466_89_End
-
-Map_7466_90:	spriteHeader
- spritePiece -$E, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_90_End
-
-Map_7466_91:	spriteHeader
- spritePiece -$D, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$D, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_91_End
-
-Map_7466_92:	spriteHeader
- spritePiece -$1D, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece 3, -$B, 3, 3, $C, 0, 0, 0, 0
-Map_7466_92_End
-
-Map_7466_93:	spriteHeader
- spritePiece -$16, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece $A, -$B, 1, 3, $C, 0, 0, 0, 0
-Map_7466_93_End
-
-Map_7466_94:	spriteHeader
- spritePiece -$16, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece $A, -$B, 1, 3, $C, 0, 0, 0, 0
-Map_7466_94_End
-
-Map_7466_95:	spriteHeader
- spritePiece -$1C, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece 4, -$B, 3, 3, $C, 0, 0, 0, 0
-Map_7466_95_End
-
-Map_7466_96:	spriteHeader
- spritePiece -$E, -$B, 4, 3, 0, 0, 0, 0, 0
-Map_7466_96_End
-
-Map_7466_97:	spriteHeader
- spritePiece -$18, -$B, 4, 3, 0, 0, 0, 0, 0
-Map_7466_97_End
-
-Map_7466_98:	spriteHeader
- spritePiece -$11, -$B, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$19, -3, 4, 2, 4, 0, 0, 0, 0
- spritePiece 7, -3, 2, 2, $C, 0, 0, 0, 0
-Map_7466_98_End
-
-Map_7466_99:	spriteHeader
- spritePiece -$B, -$1D, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$B, 3, 3, 3, $C, 0, 0, 0, 0
-Map_7466_99_End
-
-Map_7466_100:	spriteHeader
- spritePiece -$B, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$B, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_100_End
-
-Map_7466_101:	spriteHeader
- spritePiece -$B, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$B, $C, 3, 1, $C, 0, 0, 0, 0
-Map_7466_101_End
-
-Map_7466_102:	spriteHeader
- spritePiece -$B, -$1B, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$B, 5, 3, 3, $C, 0, 0, 0, 0
-Map_7466_102_End
-
-Map_7466_103:	spriteHeader
- spritePiece -$B, -$10, 3, 4, 0, 0, 0, 0, 0
-Map_7466_103_End
-
-Map_7466_104:	spriteHeader
- spritePiece -$B, -$B, 3, 4, 0, 0, 0, 0, 0
-Map_7466_104_End
-
-Map_7466_105:	spriteHeader
- spritePiece -5, -$18, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$10, 3, 2, 2, 0, 0, 0, 0
- spritePiece -$D, 0, 4, 2, 8, 0, 0, 0, 0
-Map_7466_105_End
-
-Map_7466_106:	spriteHeader
- spritePiece -$B, -$11, 3, 3, 0, 0, 0, 0, 0
- spritePiece -3, 7, 2, 1, 9, 0, 0, 0, 0
-Map_7466_106_End
-
-Map_7466_107:	spriteHeader
- spritePiece -$D, -$B, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -3, 4, 2, 3, 0, 0, 0, 0
-Map_7466_107_End
-
-Map_7466_108:	spriteHeader
- spritePiece -6, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$16, -$C, 4, 3, 2, 0, 0, 0, 0
- spritePiece $A, -$C, 1, 2, $E, 0, 0, 0, 0
-Map_7466_108_End
-
-Map_7466_109:	spriteHeader
- spritePiece -$E, -$F, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$16, -7, 1, 3, $10, 0, 0, 0, 0
-Map_7466_109_End
-
-Map_7466_110:	spriteHeader
- spritePiece -1, -$12, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$A, 3, 3, 1, 0, 0, 0, 0
- spritePiece 7, -$A, 2, 2, $A, 0, 0, 0, 0
-Map_7466_110_End
-
-Map_7466_111:	spriteHeader
- spritePiece -7, -$11, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -9, 4, 1, 3, 0, 0, 0, 0
- spritePiece -$F, -1, 3, 1, 7, 0, 0, 0, 0
- spritePiece -$F, 7, 4, 1, $A, 0, 0, 0, 0
-Map_7466_111_End
-
-Map_7466_112:	spriteHeader
- spritePiece -2, -$13, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$A, -$B, 3, 3, 2, 0, 0, 0, 0
-Map_7466_112_End
-
-Map_7466_113:	spriteHeader
- spritePiece -$11, -$13, 4, 4, 0, 0, 0, 0, 0
-Map_7466_113_End
-
-Map_7466_114:	spriteHeader
- spritePiece -$10, -$14, 2, 4, 0, 0, 0, 0, 0
- spritePiece 0, -$C, 3, 3, 8, 0, 0, 0, 0
-Map_7466_114_End
-
-Map_7466_115:	spriteHeader
- spritePiece -2, -$11, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -9, 1, 2, 2, 0, 0, 0, 0
- spritePiece -$A, -9, 4, 3, 4, 0, 0, 0, 0
-Map_7466_115_End
-
-Map_7466_116:	spriteHeader
- spritePiece -$12, -$10, 4, 4, 0, 0, 0, 0, 0
- spritePiece $E, -8, 1, 2, $10, 0, 0, 0, 0
-Map_7466_116_End
-
-Map_7466_117:	spriteHeader
- spritePiece -5, -$13, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$B, 4, 3, 1, 0, 0, 0, 0
-Map_7466_117_End
-
-Map_7466_118:	spriteHeader
- spritePiece -$F, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -8, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$17, -8, 1, 1, $F, 0, 0, 0, 0
-Map_7466_118_End
-
-Map_7466_119:	spriteHeader
- spritePiece -9, -$13, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$B, 4, 3, 2, 0, 0, 0, 0
-Map_7466_119_End
-
-Map_7466_120:	spriteHeader
- spritePiece -$F, -$1A, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -$12, 3, 3, 4, 0, 0, 0, 0
- spritePiece -7, 6, 4, 2, $D, 0, 0, 0, 0
-Map_7466_120_End
-
-Map_7466_121:	spriteHeader
- spritePiece -$1B, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$1B, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece 5, -$C, 2, 3, $B, 0, 0, 0, 0
- spritePiece -$13, 4, 3, 1, $11, 0, 0, 0, 0
-Map_7466_121_End
-
-Map_7466_122:	spriteHeader
- spritePiece -$1A, -$10, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$1A, -8, 4, 3, 1, 0, 0, 0, 0
- spritePiece 6, -$18, 2, 4, $D, 0, 0, 0, 0
-Map_7466_122_End
-
-Map_7466_123:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -4, -$C, 2, 1, 3, 0, 0, 0, 0
- spritePiece -$C, -4, 3, 1, 5, 0, 0, 0, 0
- spritePiece -$14, 4, 4, 3, 8, 0, 0, 0, 0
-Map_7466_123_End
-
-Map_7466_124:	spriteHeader
- spritePiece -$10, $13, 4, 1, 0, 1, 1, 0, 0
- spritePiece -8, -5, 3, 3, 4, 1, 1, 0, 0
- spritePiece -$18, -$15, 4, 2, $D, 1, 1, 0, 0
-Map_7466_124_End
-
-Map_7466_125:	spriteHeader
- spritePiece 3, $E, 3, 1, 0, 1, 1, 0, 0
- spritePiece -5, -2, 4, 2, 3, 1, 1, 0, 0
- spritePiece -$15, -$A, 2, 3, $B, 1, 1, 0, 0
- spritePiece -5, -$A, 3, 1, $11, 1, 1, 0, 0
-Map_7466_125_End
-
-Map_7466_126:	spriteHeader
- spritePiece $13, 8, 1, 1, 0, 1, 1, 0, 0
- spritePiece -5, -$10, 4, 3, 1, 1, 1, 0, 0
- spritePiece -$15, -8, 2, 4, $D, 1, 1, 0, 0
-Map_7466_126_End
-
-Map_7466_127:	spriteHeader
- spritePiece -$B, $E, 3, 1, 0, 1, 1, 0, 0
- spritePiece -$B, 6, 2, 1, 3, 1, 1, 0, 0
- spritePiece -$B, -2, 3, 1, 5, 1, 1, 0, 0
- spritePiece -$B, -$1A, 4, 3, 8, 1, 1, 0, 0
-Map_7466_127_End
-
-Map_7466_128:	spriteHeader
- spritePiece -$12, -$18, 4, 4, 0, 0, 0, 0, 0
- spritePiece $E, -$18, 1, 1, $10, 0, 0, 0, 0
- spritePiece -$12, 8, 3, 2, $11, 0, 0, 0, 0
-Map_7466_128_End
-
-Map_7466_129:	spriteHeader
- spritePiece -1, -$1F, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$17, 4, 1, 1, 0, 0, 0, 0
- spritePiece -$11, -$F, 3, 4, 5, 0, 0, 0, 0
- spritePiece -$11, $11, 3, 1, $11, 0, 0, 0, 0
-Map_7466_129_End
-
-Map_7466_130:	spriteHeader
- spritePiece -$C, -$1F, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$17, 4, 3, 2, 0, 0, 0, 0
- spritePiece -$C, 1, 3, 3, $E, 0, 0, 0, 0
-Map_7466_130_End
-
-Map_7466_131:	spriteHeader
- spritePiece -$12, -$19, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$A, 7, 3, 2, $10, 0, 0, 0, 0
-Map_7466_131_End
-
-Map_7466_132:	spriteHeader
- spritePiece -4, -$1E, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$16, 3, 2, 2, 0, 0, 0, 0
- spritePiece -$C, -6, 4, 1, 8, 0, 0, 0, 0
- spritePiece -$C, 2, 3, 3, $C, 0, 0, 0, 0
-Map_7466_132_End
-
-Map_7466_133:	spriteHeader
- spritePiece -$C, -$1E, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$16, 4, 1, 2, 0, 0, 0, 0
- spritePiece -$C, -$E, 3, 3, 6, 0, 0, 0, 0
- spritePiece -4, $A, 2, 2, $F, 0, 0, 0, 0
-Map_7466_133_End
-
-Map_7466_134:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_134_End
-
-Map_7466_135:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_135_End
-
-Map_7466_136:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_136_End
-
-Map_7466_137:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_137_End
-
-Map_7466_138:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_138_End
-
-Map_7466_139:	spriteHeader
- spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, 0, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $B, 0, 0, 0, 0
-Map_7466_139_End
-
-Map_7466_140:	spriteHeader
- spritePiece -$10, -$11, 3, 4, 0, 0, 0, 0, 0
- spritePiece 8, -$11, 2, 3, $C, 0, 0, 0, 0
- spritePiece -8, $F, 2, 1, $12, 0, 0, 0, 0
-Map_7466_140_End
-
-Map_7466_141:	spriteHeader
- spritePiece -$E, -$15, 3, 3, 0, 0, 0, 0, 0
- spritePiece $A, -$15, 2, 2, 9, 0, 0, 0, 0
- spritePiece -$E, 3, 4, 2, $D, 0, 0, 0, 0
- spritePiece $12, 3, 1, 1, $15, 0, 0, 0, 0
-Map_7466_141_End
-
-Map_7466_142:	spriteHeader
- spritePiece -$A, -$18, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$A, -$10, 3, 3, 2, 0, 0, 0, 0
- spritePiece -$A, 8, 2, 2, $B, 0, 0, 0, 0
-Map_7466_142_End
-
-Map_7466_143:	spriteHeader
- spritePiece -$19, -$D, 1, 2, 0, 0, 0, 0, 0
- spritePiece -$11, -$D, 4, 3, 2, 0, 0, 0, 0
- spritePiece -1, $B, 2, 1, $E, 0, 0, 0, 0
-Map_7466_143_End
-
-Map_7466_144:	spriteHeader
- spritePiece -7, -$1A, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -$12, 3, 3, 2, 0, 0, 0, 0
- spritePiece -7, 6, 3, 2, $B, 0, 0, 0, 0
- spritePiece -7, $16, 2, 1, $11, 0, 0, 0, 0
-Map_7466_144_End
-
-Map_7466_145:	spriteHeader
- spritePiece -$E, -$1A, 3, 4, 0, 0, 0, 0, 0
- spritePiece -6, 6, 3, 2, $C, 0, 0, 0, 0
-Map_7466_145_End
-
-Map_7466_146:	spriteHeader
- spritePiece -$E, -$1A, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$E, -2, 4, 1, 9, 0, 0, 0, 0
- spritePiece 2, 6, 2, 2, $D, 0, 0, 0, 0
-Map_7466_146_End
-
-Map_7466_147:	spriteHeader
- spritePiece -$E, -$1A, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$E, -2, 4, 1, 9, 0, 0, 0, 0
- spritePiece 2, 6, 2, 1, $D, 0, 0, 0, 0
-Map_7466_147_End
-
-Map_7466_148:	spriteHeader
- spritePiece -$F, -$17, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -$15, 2, 1, 8, 0, 0, 0, 0
- spritePiece -$C, -$D, 3, 4, $A, 0, 0, 0, 0
- spritePiece -$C, $13, 3, 1, $16, 0, 0, 0, 0
-Map_7466_148_End
-
-Map_7466_149:	spriteHeader
- spritePiece -$C, -$17, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -$15, 2, 1, 6, 0, 0, 0, 0
- spritePiece -$C, -$D, 3, 4, 8, 0, 0, 0, 0
- spritePiece -$C, $13, 3, 1, $14, 0, 0, 0, 0
-Map_7466_149_End
-
-Map_7466_150:	spriteHeader
- spritePiece -$10, -$F, 4, 4, 0, 0, 0, 0, 0
-Map_7466_150_End
-
-Map_7466_151:	spriteHeader
- spritePiece -$10, -$F, 4, 4, 0, 0, 0, 0, 0
-Map_7466_151_End
-
-Map_7466_152:	spriteHeader
- spritePiece -$10, -$F, 4, 4, 0, 0, 0, 0, 0
-Map_7466_152_End
-
-Map_7466_153:	spriteHeader
- spritePiece -$10, -$F, 4, 4, 0, 0, 0, 0, 0
-Map_7466_153_End
-
-Map_7466_154:	spriteHeader
- spritePiece -$10, -$F, 4, 4, 0, 0, 0, 0, 0
-Map_7466_154_End
-
-Map_7466_155:	spriteHeader
- spritePiece -$D, -$C, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -4, 4, 3, 3, 0, 0, 0, 0
-Map_7466_155_End
-
-Map_7466_156:	spriteHeader
- spritePiece -$B, -4, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$B, 4, 4, 2, 3, 0, 0, 0, 0
-Map_7466_156_End
-
-Map_7466_157:	spriteHeader
- spritePiece -8, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$C, 4, 4, 2, 0, 0, 0, 0
-Map_7466_157_End
-
-Map_7466_158:	spriteHeader
- spritePiece -$12, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$A, -$C, 4, 4, 3, 0, 0, 0, 0
- spritePiece -$12, -$C, 1, 1, $13, 0, 0, 0, 0
- spritePiece -$1A, -4, 2, 2, $14, 0, 0, 0, 0
-Map_7466_158_End
-
-Map_7466_159:	spriteHeader
- spritePiece -8, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece $10, -4, 1, 2, $F, 0, 0, 0, 0
- spritePiece -$10, $C, 3, 1, $11, 0, 0, 0, 0
-Map_7466_159_End
-
-Map_7466_160:	spriteHeader
- spritePiece -9, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$11, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece $F, -$C, 2, 3, $F, 0, 0, 0, 0
- spritePiece -$11, $C, 3, 1, $15, 0, 0, 0, 0
-Map_7466_160_End
-
-Map_7466_161:	spriteHeader
- spritePiece -$A, -$1C, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -$14, 4, 3, 1, 0, 0, 0, 0
- spritePiece $E, -$14, 2, 4, $D, 0, 0, 0, 0
- spritePiece -$12, 4, 3, 2, $15, 0, 0, 0, 0
-Map_7466_161_End
-
-Map_7466_162:	spriteHeader
- spritePiece -7, -$18, 4, 3, 0, 0, 0, 0, 0
- spritePiece $19, -$10, 1, 2, $C, 0, 0, 0, 0
- spritePiece -7, 0, 2, 1, $E, 0, 0, 0, 0
- spritePiece -$F, 8, 3, 2, $10, 0, 0, 0, 0
-Map_7466_162_End
-
-Map_7466_163:	spriteHeader
- spritePiece -2, -$1A, 1, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -$12, 4, 3, 1, 0, 0, 0, 0
- spritePiece $E, -$A, 2, 2, $D, 0, 0, 0, 0
- spritePiece -$12, 6, 3, 2, $11, 0, 0, 0, 0
-Map_7466_163_End
-
-Map_7466_164:	spriteHeader
- spritePiece -$F, -$F, 4, 3, 0, 0, 0, 0, 0
- spritePiece $11, -$F, 1, 2, $C, 0, 0, 0, 0
- spritePiece -$F, 9, 3, 1, $E, 0, 0, 0, 0
- spritePiece -7, $11, 2, 1, $11, 0, 0, 0, 0
-Map_7466_164_End
-
-Map_7466_165:	spriteHeader
- spritePiece -$F, -$1C, 2, 1, 0, 0, 0, 0, 0
- spritePiece $11, -$14, 1, 2, 2, 0, 0, 0, 0
- spritePiece -$F, -$14, 4, 3, 4, 0, 0, 0, 0
- spritePiece -$F, 4, 3, 2, $10, 0, 0, 0, 0
-Map_7466_165_End
-
-Map_7466_166:	spriteHeader
- spritePiece $11, -$14, 2, 3, 0, 0, 0, 0, 0
- spritePiece -$F, -$14, 4, 3, 6, 0, 0, 0, 0
- spritePiece -7, 4, 3, 1, $12, 0, 0, 0, 0
- spritePiece -$F, $C, 3, 1, $15, 0, 0, 0, 0
-Map_7466_166_End
-
-Map_7466_167:	spriteHeader
- spritePiece -$A, -$14, 4, 3, 0, 0, 0, 0, 0
- spritePiece $16, -$C, 1, 2, $C, 0, 0, 0, 0
- spritePiece -$12, 4, 3, 2, $E, 0, 0, 0, 0
- spritePiece 6, 4, 2, 1, $14, 0, 0, 0, 0
-Map_7466_167_End
-
-Map_7466_168:	spriteHeader
- spritePiece $16, -$14, 1, 2, 0, 0, 0, 0, 0
- spritePiece -$A, -$14, 4, 2, 2, 0, 0, 0, 0
- spritePiece -$12, -4, 3, 3, $A, 0, 0, 0, 0
- spritePiece 6, -4, 2, 2, $13, 0, 0, 0, 0
-Map_7466_168_End
-
-Map_7466_169:	spriteHeader
- spritePiece -7, -$1C, 3, 2, 0, 0, 0, 0, 0
- spritePiece -7, $C, 2, 1, 6, 0, 0, 0, 0
- spritePiece -$17, -$C, 4, 3, 8, 0, 0, 0, 0
- spritePiece 9, -$C, 3, 3, $14, 0, 0, 0, 0
-Map_7466_169_End
-
-Map_7466_170:	spriteHeader
- spritePiece 3, -$1C, 2, 1, 0, 0, 0, 0, 0
- spritePiece -5, $C, 2, 1, 2, 0, 0, 0, 0
- spritePiece -5, -$14, 4, 4, 4, 0, 0, 0, 0
- spritePiece -$15, -$C, 2, 3, $14, 0, 0, 0, 0
-Map_7466_170_End
-
-Map_7466_171:	spriteHeader
- spritePiece -$D, -$12, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$15, -$12, 1, 2, 8, 0, 0, 0, 0
- spritePiece -$D, -2, 3, 2, $A, 0, 0, 0, 0
- spritePiece -$D, $E, 4, 1, $10, 0, 0, 0, 0
-Map_7466_171_End
-
-Map_7466_172:	spriteHeader
- spritePiece -$15, -$12, 4, 2, 0, 0, 0, 0, 0
- spritePiece $B, -$12, 1, 2, 8, 0, 0, 0, 0
- spritePiece -$D, -2, 3, 2, $A, 0, 0, 0, 0
- spritePiece -$D, $E, 4, 1, $10, 0, 0, 0, 0
-Map_7466_172_End
-
-Map_7466_173:	spriteHeader
- spritePiece -$15, -$12, 4, 2, 0, 0, 0, 0, 0
- spritePiece $B, -$12, 1, 2, 8, 0, 0, 0, 0
- spritePiece -$D, -2, 3, 2, $A, 0, 0, 0, 0
- spritePiece -$D, $E, 4, 1, $10, 0, 0, 0, 0
-Map_7466_173_End
-
-Map_7466_174:	spriteHeader
- spritePiece -$1A, -$C, 4, 3, 0, 0, 0, 0, 0
- spritePiece 6, -$C, 1, 1, $C, 0, 0, 0, 0
- spritePiece 6, -4, 3, 2, $D, 0, 0, 0, 0
-Map_7466_174_End
-
-Map_7466_175:	spriteHeader
- spritePiece -$1A, -$C, 4, 3, 0, 0, 0, 0, 0
- spritePiece 6, -$C, 1, 1, $C, 0, 0, 0, 0
- spritePiece 6, -4, 3, 2, $D, 0, 0, 0, 0
-Map_7466_175_End
-
-Map_7466_176:	spriteHeader
- spritePiece -$C, -$16, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$14, -$E, 4, 4, 4, 0, 0, 0, 0
- spritePiece $C, -$E, 1, 1, $14, 0, 0, 0, 0
-Map_7466_176_End
-
-Map_7466_177:	spriteHeader
- spritePiece -$D, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 4, 3, 0, 0, 0, 0
-Map_7466_177_End
-
-Map_7466_178:	spriteHeader
- spritePiece -5, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$D, -$C, 4, 4, 3, 0, 0, 0, 0
- spritePiece $13, -4, 1, 3, $13, 0, 0, 0, 0
-Map_7466_178_End
-
-Map_7466_179:	spriteHeader
- spritePiece -4, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 4, 2, 0, 0, 0, 0
-Map_7466_179_End
-
-Map_7466_180:	spriteHeader
- spritePiece -4, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 4, 3, 0, 0, 0, 0
- spritePiece $14, -4, 1, 2, $13, 0, 0, 0, 0
-Map_7466_180_End
-
-Map_7466_181:	spriteHeader
- spritePiece -$C, -$1A, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, 6, 3, 1, $C, 0, 0, 0, 0
- spritePiece -$C, $E, 2, 2, $F, 0, 0, 0, 0
-Map_7466_181_End
-
-Map_7466_182:	spriteHeader
- spritePiece -$C, -$1A, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, 6, 3, 1, $C, 0, 0, 0, 0
- spritePiece -$C, $E, 2, 2, $F, 0, 0, 0, 0
-Map_7466_182_End
-
-Map_7466_183:	spriteHeader
- spritePiece -$15, -$12, 4, 4, 0, 0, 0, 0, 0
- spritePiece 3, $E, 1, 1, $10, 0, 0, 0, 0
-Map_7466_183_End
-
-Map_7466_184:	spriteHeader
- spritePiece -$15, -$10, 4, 4, 0, 0, 0, 0, 0
-Map_7466_184_End
-
-Map_7466_185:	spriteHeader
- spritePiece -$15, -$14, 4, 4, 0, 0, 0, 0, 0
- spritePiece -5, $C, 2, 1, $10, 0, 0, 0, 0
-Map_7466_185_End
-
-Map_7466_186:	spriteHeader
- spritePiece -$15, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$15, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -5, $C, 2, 1, $F, 0, 0, 0, 0
-Map_7466_186_End
-
-Map_7466_187:	spriteHeader
- spritePiece -$15, -$12, 4, 4, 0, 0, 0, 0, 0
-Map_7466_187_End
-
-Map_7466_188:	spriteHeader
- spritePiece -$15, -$11, 4, 4, 0, 0, 0, 0, 0
-Map_7466_188_End
-
-Map_7466_189:	spriteHeader
- spritePiece -$10, -$14, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$10, -4, 3, 1, 8, 0, 0, 0, 0
- spritePiece -8, 4, 2, 1, $B, 0, 0, 0, 0
- spritePiece 0, $C, 1, 1, $D, 0, 0, 0, 0
-Map_7466_189_End
-
-Map_7466_190:	spriteHeader
- spritePiece -$10, -$14, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$10, 4, 2, 2, $C, 0, 0, 0, 0
-Map_7466_190_End
-
-Map_7466_191:	spriteHeader
- spritePiece -4, -$14, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 4, 2, 0, 0, 0, 0
- spritePiece -$14, $C, 1, 1, $12, 0, 0, 0, 0
-Map_7466_191_End
-
-Map_7466_192:	spriteHeader
- spritePiece -$10, -$C, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$18, -4, 4, 2, 4, 0, 0, 0, 0
- spritePiece 8, -4, 2, 2, $C, 0, 0, 0, 0
-Map_7466_192_End
-
-Map_7466_193:	spriteHeader
- spritePiece -$C, -$C, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$14, -4, 1, 2, $C, 0, 0, 0, 0
-Map_7466_193_End
-
-Map_7466_194:	spriteHeader
- spritePiece -$10, -$C, 4, 3, 0, 0, 0, 0, 0
-Map_7466_194_End
-
-Map_7466_195:	spriteHeader
- spritePiece -$14, -$C, 4, 3, 0, 1, 0, 0, 0
- spritePiece $C, -4, 1, 2, $C, 1, 0, 0, 0
-Map_7466_195_End
-
-Map_7466_196:	spriteHeader
- spritePiece -$10, -$C, 4, 1, 0, 1, 0, 0, 0
- spritePiece -8, -4, 4, 2, 4, 1, 0, 0, 0
- spritePiece -$18, -4, 2, 2, $C, 1, 0, 0, 0
-Map_7466_196_End
-
-Map_7466_197:	spriteHeader
- spritePiece -$15, -$C, 4, 3, 0, 0, 0, 0, 0
- spritePiece $B, -$C, 2, 3, $C, 0, 0, 0, 0
-Map_7466_197_End
-
-Map_7466_198:	spriteHeader
- spritePiece -$A, -$C, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$12, -4, 4, 2, 4, 0, 0, 0, 0
- spritePiece $E, -4, 2, 2, $C, 0, 0, 0, 0
-Map_7466_198_End
-
-Map_7466_199:	spriteHeader
- spritePiece -$10, -$C, 4, 3, 0, 0, 0, 0, 0
-Map_7466_199_End
-
-Map_7466_200:	spriteHeader
- spritePiece -$15, -$C, 4, 1, 0, 1, 0, 0, 0
- spritePiece -$D, -4, 4, 2, 4, 1, 0, 0, 0
- spritePiece -$1D, -4, 2, 2, $C, 1, 0, 0, 0
-Map_7466_200_End
-
-Map_7466_201:	spriteHeader
- spritePiece -$A, -$C, 4, 3, 0, 1, 0, 0, 0
- spritePiece -$1A, -$C, 2, 3, $C, 1, 0, 0, 0
-Map_7466_201_End
-
-Map_7466_202:	spriteHeader
- spritePiece -$10, -$11, 4, 2, 0, 0, 0, 0, 0
- spritePiece -$18, -1, 4, 2, 8, 0, 0, 0, 0
- spritePiece 8, -1, 2, 2, $10, 0, 0, 0, 0
- spritePiece -$18, $F, 3, 1, $14, 0, 0, 0, 0
-Map_7466_202_End
-
-Map_7466_203:	spriteHeader
- spritePiece -$10, -$18, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$18, -8, 1, 1, $C, 0, 0, 0, 0
- spritePiece -$18, 0, 4, 1, $D, 0, 0, 0, 0
- spritePiece -8, 8, 2, 2, $11, 0, 0, 0, 0
-Map_7466_203_End
-
-Map_7466_204:	spriteHeader
- spritePiece -4, -$D, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -5, 4, 1, 2, 0, 0, 0, 0
- spritePiece -$1C, 3, 4, 1, 6, 0, 0, 0, 0
- spritePiece 4, 3, 3, 1, $A, 0, 0, 0, 0
-Map_7466_204_End
-
-Map_7466_205:	spriteHeader
- spritePiece -8, -$C, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -4, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$18, 4, 1, 2, $F, 0, 0, 0, 0
-Map_7466_205_End
-
-Map_7466_206:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 1, 3, 0, 0, 0, 0
- spritePiece -$14, -4, 4, 3, 7, 0, 0, 0, 0
- spritePiece $C, -4, 1, 1, $13, 0, 0, 0, 0
-Map_7466_206_End
-
-Map_7466_207:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$14, -4, 1, 2, $F, 0, 0, 0, 0
- spritePiece -$14, $C, 3, 1, $11, 0, 0, 0, 0
-Map_7466_207_End
-
-Map_7466_208:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 1, 3, 0, 0, 0, 0
- spritePiece -$14, -4, 1, 1, 7, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 1, 8, 0, 0, 0, 0
- spritePiece -$14, 4, 4, 2, $C, 0, 0, 0, 0
-Map_7466_208_End
-
-Map_7466_209:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$14, -4, 1, 1, $F, 0, 0, 0, 0
- spritePiece -$14, $C, 3, 1, $10, 0, 0, 0, 0
-Map_7466_209_End
-
-Map_7466_210:	spriteHeader
- spritePiece -$E, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $C, 4, 1, $C, 0, 0, 0, 0
-Map_7466_210_End
-
-Map_7466_211:	spriteHeader
- spritePiece -$E, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $C, 4, 1, $C, 0, 0, 0, 0
-Map_7466_211_End
-
-Map_7466_212:	spriteHeader
- spritePiece -$E, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$E, $C, 4, 1, $C, 0, 0, 0, 0
-Map_7466_212_End
-
-Map_7466_213:	spriteHeader
- spritePiece -$C, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_213_End
-
-Map_7466_214:	spriteHeader
- spritePiece -$C, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_214_End
-
-Map_7466_215:	spriteHeader
- spritePiece -$C, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 3, 6, 0, 0, 0, 0
-Map_7466_215_End
-
-Map_7466_216:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 1, $B, 0, 0, 0, 0
- spritePiece -$C, $C, 4, 1, $E, 0, 0, 0, 0
-Map_7466_216_End
-
-Map_7466_217:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 1, 3, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 1, 7, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 1, $B, 0, 0, 0, 0
- spritePiece -$C, $C, 4, 1, $E, 0, 0, 0, 0
-Map_7466_217_End
-
-Map_7466_218:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 1, $B, 0, 0, 0, 0
- spritePiece -$C, $C, 4, 1, $E, 0, 0, 0, 0
-Map_7466_218_End
-
-Map_7466_219:	spriteHeader
- spritePiece -$C, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$C, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 1, $B, 0, 0, 0, 0
- spritePiece -$C, $C, 4, 1, $E, 0, 0, 0, 0
-Map_7466_219_End
-
-Map_7466_220:	spriteHeader
- spritePiece -$A, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$A, -$C, 4, 2, 3, 0, 0, 0, 0
- spritePiece -$A, 4, 3, 2, $B, 0, 0, 0, 0
-Map_7466_220_End
-
-Map_7466_221:	spriteHeader
- spritePiece -9, -$14, 3, 3, 0, 0, 0, 0, 0
- spritePiece $F, -$C, 2, 2, 9, 0, 0, 0, 0
- spritePiece -9, 4, 3, 2, $D, 0, 0, 0, 0
-Map_7466_221_End
-
-Map_7466_222:	spriteHeader
- spritePiece -$C, -$14, 4, 3, 0, 0, 0, 0, 0
- spritePiece $14, -$C, 1, 2, $C, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 1, $E, 0, 0, 0, 0
- spritePiece -$C, $C, 4, 1, $11, 0, 0, 0, 0
-Map_7466_222_End
-
-Map_7466_223:	spriteHeader
- spritePiece -$F, -$13, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$F, -3, 4, 2, 6, 0, 0, 0, 0
- spritePiece -7, $D, 2, 1, $E, 0, 0, 0, 0
-Map_7466_223_End
-
-Map_7466_224:	spriteHeader
- spritePiece -$F, -$10, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$F, -8, 4, 2, 3, 0, 0, 0, 0
- spritePiece -7, 8, 2, 1, $B, 0, 0, 0, 0
-Map_7466_224_End
-
-Map_7466_225:	spriteHeader
- spritePiece -$10, -$C, 4, 4, 0, 0, 0, 0, 0
-Map_7466_225_End
-
-Map_7466_226:	spriteHeader
- spritePiece -$D, -$12, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$D, $E, 2, 1, $C, 0, 0, 0, 0
-Map_7466_226_End
-
-Map_7466_227:	spriteHeader
- spritePiece -$C, -$11, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$C, 7, 4, 2, 9, 0, 0, 0, 0
-Map_7466_227_End
-
-Map_7466_228:	spriteHeader
- spritePiece -8, -$18, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$10, 3, 1, 2, 0, 0, 0, 0
- spritePiece -$10, -8, 4, 2, 5, 0, 0, 0, 0
- spritePiece -8, 8, 3, 2, $D, 0, 0, 0, 0
-Map_7466_228_End
-
-Map_7466_229:	spriteHeader
- spritePiece -$C, -$18, 3, 4, 0, 0, 0, 0, 0
- spritePiece -4, 8, 3, 2, $C, 0, 0, 0, 0
-Map_7466_229_End
-
-Map_7466_230:	spriteHeader
- spritePiece -$10, -$18, 4, 4, 0, 0, 0, 0, 0
- spritePiece -8, 8, 3, 1, $10, 0, 0, 0, 0
- spritePiece 0, $10, 2, 1, $13, 0, 0, 0, 0
-Map_7466_230_End
-
-Map_7466_231:	spriteHeader
- spritePiece -$C, -$18, 3, 4, 0, 0, 0, 0, 0
- spritePiece -4, 8, 2, 1, $C, 0, 0, 0, 0
- spritePiece -$C, $10, 3, 1, $E, 0, 0, 0, 0
-Map_7466_231_End
-
-Map_7466_232:	spriteHeader
- spritePiece -$A, -$18, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$12, -8, 4, 1, 6, 0, 0, 0, 0
- spritePiece -$A, 0, 3, 1, $A, 0, 0, 0, 0
- spritePiece -$12, 8, 3, 2, $D, 0, 0, 0, 0
-Map_7466_232_End
-
-Map_7466_233:	spriteHeader
- spritePiece -$D, -$18, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$D, -8, 4, 2, 6, 0, 0, 0, 0
- spritePiece -$D, 8, 3, 2, $E, 0, 0, 0, 0
-Map_7466_233_End
-
-Map_7466_234:	spriteHeader
- spritePiece -$C, -$18, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, 8, 3, 2, $C, 0, 0, 0, 0
-Map_7466_234_End
-
-Map_7466_235:	spriteHeader
- spritePiece -$C, -$14, 3, 2, 0, 0, 0, 0, 0
- spritePiece -$C, -4, 4, 1, 6, 0, 0, 0, 0
- spritePiece -$C, 4, 3, 2, $A, 0, 0, 0, 0
-Map_7466_235_End
-
-Map_7466_236:	spriteHeader
- spritePiece -$17, -$14, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$17, -$C, 1, 3, 4, 0, 0, 0, 0
- spritePiece -$F, -$C, 4, 4, 7, 0, 0, 0, 0
-Map_7466_236_End
-
-Map_7466_237:	spriteHeader
- spritePiece -$16, -$14, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$16, -$C, 4, 4, 4, 0, 0, 0, 0
- spritePiece $A, -$C, 1, 4, $14, 0, 0, 0, 0
-Map_7466_237_End
-
-Map_7466_238:	spriteHeader
- spritePiece -$16, -$14, 4, 1, 0, 0, 0, 0, 0
- spritePiece -$16, -$C, 4, 4, 4, 0, 0, 0, 0
- spritePiece $A, -$C, 1, 4, $14, 0, 0, 0, 0
-Map_7466_238_End
-
-Map_7466_239:	spriteHeader
- spritePiece -8, -$18, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$10, 4, 3, 2, 0, 0, 0, 0
- spritePiece -$10, 8, 3, 1, $E, 0, 0, 0, 0
-Map_7466_239_End
-
-Map_7466_240:	spriteHeader
- spritePiece -8, -$18, 2, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$10, 4, 3, 2, 0, 0, 0, 0
- spritePiece -8, 8, 2, 1, $E, 0, 0, 0, 0
-Map_7466_240_End
-
-Map_7466_241:	spriteHeader
- spritePiece -$C, -$18, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$C, 8, 3, 1, $C, 0, 0, 0, 0
-Map_7466_241_End
-
-Map_7466_242:	spriteHeader
- spritePiece -$C, -$15, 3, 4, 0, 0, 0, 0, 0
- spritePiece -4, $B, 1, 1, $C, 0, 0, 0, 0
-Map_7466_242_End
-
-Map_7466_243:	spriteHeader
- spritePiece -$C, -$18, 3, 4, 0, 1, 0, 0, 0
- spritePiece -$C, 8, 3, 1, $C, 1, 0, 0, 0
-Map_7466_243_End
-
-Map_7466_244:	spriteHeader
- spritePiece -$10, -$14, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$C, 4, 3, 3, 0, 0, 0, 0
- spritePiece -8, $C, 2, 1, $F, 0, 0, 0, 0
-Map_7466_244_End
-
-Map_7466_245:	spriteHeader
- spritePiece -$10, -$15, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$D, 4, 3, 3, 0, 0, 0, 0
- spritePiece -$10, $B, 3, 1, $F, 0, 0, 0, 0
-Map_7466_245_End
-
-Map_7466_246:	spriteHeader
- spritePiece -$10, -$14, 4, 4, 0, 0, 0, 0, 0
- spritePiece -8, $C, 2, 1, $10, 0, 0, 0, 0
-Map_7466_246_End
-
-Map_7466_247:	spriteHeader
- spritePiece -8, -$15, 3, 1, 0, 0, 0, 0, 0
- spritePiece -$10, -$D, 4, 2, 3, 0, 0, 0, 0
- spritePiece -8, 3, 3, 1, $B, 0, 0, 0, 0
- spritePiece -8, $B, 2, 1, $E, 0, 0, 0, 0
-Map_7466_247_End
-
-Map_7466_248:	spriteHeader
- spritePiece -$C, -$14, 3, 3, 0, 0, 0, 0, 0
- spritePiece -4, 4, 2, 1, 9, 0, 0, 0, 0
- spritePiece -$C, $C, 2, 1, $B, 0, 0, 0, 0
-Map_7466_248_End
-
-Map_7466_249:	spriteHeader
- spritePiece -$10, -$15, 3, 1, 0, 1, 0, 0, 0
- spritePiece -$10, -$D, 4, 2, 3, 1, 0, 0, 0
- spritePiece -$10, 3, 3, 1, $B, 1, 0, 0, 0
- spritePiece -8, $B, 2, 1, $E, 1, 0, 0, 0
-Map_7466_249_End
-
-Map_7466_250:	spriteHeader
- spritePiece -$10, -$15, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$10, 3, 3, 2, $C, 0, 0, 0, 0
-Map_7466_250_End
+; --------------------------------------------------------------------------------
+; Sprite mappings - output from ClownMapEd - MapMacros format
+; --------------------------------------------------------------------------------
+
+.offsets:	mappingsTable
+	mappingsTableEntry.w	.frame0
+	mappingsTableEntry.w	.frame1
+	mappingsTableEntry.w	.frame2
+	mappingsTableEntry.w	.frame3
+	mappingsTableEntry.w	.frame4
+	mappingsTableEntry.w	.frame5
+	mappingsTableEntry.w	.frame6
+	mappingsTableEntry.w	.frame7
+	mappingsTableEntry.w	.frame8
+	mappingsTableEntry.w	.frame9
+	mappingsTableEntry.w	.frame10
+	mappingsTableEntry.w	.frame11
+	mappingsTableEntry.w	.frame12
+	mappingsTableEntry.w	.frame13
+	mappingsTableEntry.w	.frame14
+	mappingsTableEntry.w	.frame15
+	mappingsTableEntry.w	.frame16
+	mappingsTableEntry.w	.frame17
+	mappingsTableEntry.w	.frame18
+	mappingsTableEntry.w	.frame19
+	mappingsTableEntry.w	.frame20
+	mappingsTableEntry.w	.frame21
+	mappingsTableEntry.w	.frame22
+	mappingsTableEntry.w	.frame23
+	mappingsTableEntry.w	.frame24
+	mappingsTableEntry.w	.frame25
+	mappingsTableEntry.w	.frame26
+	mappingsTableEntry.w	.frame27
+	mappingsTableEntry.w	.frame28
+	mappingsTableEntry.w	.frame29
+	mappingsTableEntry.w	.frame30
+	mappingsTableEntry.w	.frame31
+	mappingsTableEntry.w	.frame32
+	mappingsTableEntry.w	.frame33
+	mappingsTableEntry.w	.frame34
+	mappingsTableEntry.w	.frame35
+	mappingsTableEntry.w	.frame36
+	mappingsTableEntry.w	.frame37
+	mappingsTableEntry.w	.frame38
+	mappingsTableEntry.w	.frame39
+	mappingsTableEntry.w	.frame40
+	mappingsTableEntry.w	.frame41
+	mappingsTableEntry.w	.frame42
+	mappingsTableEntry.w	.frame43
+	mappingsTableEntry.w	.frame44
+	mappingsTableEntry.w	.frame45
+	mappingsTableEntry.w	.frame46
+	mappingsTableEntry.w	.frame47
+	mappingsTableEntry.w	.frame48
+	mappingsTableEntry.w	.frame49
+	mappingsTableEntry.w	.frame50
+	mappingsTableEntry.w	.frame51
+	mappingsTableEntry.w	.frame52
+	mappingsTableEntry.w	.frame53
+	mappingsTableEntry.w	.frame54
+	mappingsTableEntry.w	.frame55
+	mappingsTableEntry.w	.frame56
+	mappingsTableEntry.w	.frame57
+	mappingsTableEntry.w	.frame58
+	mappingsTableEntry.w	.frame59
+	mappingsTableEntry.w	.frame60
+	mappingsTableEntry.w	.frame61
+	mappingsTableEntry.w	.frame62
+	mappingsTableEntry.w	.frame63
+	mappingsTableEntry.w	.frame64
+	mappingsTableEntry.w	.frame65
+	mappingsTableEntry.w	.frame66
+	mappingsTableEntry.w	.frame67
+	mappingsTableEntry.w	.frame68
+	mappingsTableEntry.w	.frame69
+	mappingsTableEntry.w	.frame70
+	mappingsTableEntry.w	.frame71
+	mappingsTableEntry.w	.frame72
+	mappingsTableEntry.w	.frame73
+	mappingsTableEntry.w	.frame74
+	mappingsTableEntry.w	.frame75
+	mappingsTableEntry.w	.frame76
+	mappingsTableEntry.w	.frame77
+	mappingsTableEntry.w	.frame78
+	mappingsTableEntry.w	.frame79
+	mappingsTableEntry.w	.frame80
+	mappingsTableEntry.w	.frame81
+	mappingsTableEntry.w	.frame82
+	mappingsTableEntry.w	.frame83
+	mappingsTableEntry.w	.frame84
+	mappingsTableEntry.w	.frame85
+	mappingsTableEntry.w	.frame86
+	mappingsTableEntry.w	.frame87
+	mappingsTableEntry.w	.frame88
+	mappingsTableEntry.w	.frame89
+	mappingsTableEntry.w	.frame90
+	mappingsTableEntry.w	.frame91
+	mappingsTableEntry.w	.frame92
+	mappingsTableEntry.w	.frame93
+	mappingsTableEntry.w	.frame94
+	mappingsTableEntry.w	.frame95
+	mappingsTableEntry.w	.frame96
+	mappingsTableEntry.w	.frame97
+	mappingsTableEntry.w	.frame98
+	mappingsTableEntry.w	.frame99
+	mappingsTableEntry.w	.frame100
+	mappingsTableEntry.w	.frame101
+	mappingsTableEntry.w	.frame102
+	mappingsTableEntry.w	.frame103
+	mappingsTableEntry.w	.frame104
+	mappingsTableEntry.w	.frame105
+	mappingsTableEntry.w	.frame106
+	mappingsTableEntry.w	.frame107
+	mappingsTableEntry.w	.frame108
+	mappingsTableEntry.w	.frame109
+	mappingsTableEntry.w	.frame110
+	mappingsTableEntry.w	.frame111
+	mappingsTableEntry.w	.frame112
+	mappingsTableEntry.w	.frame113
+	mappingsTableEntry.w	.frame114
+	mappingsTableEntry.w	.frame115
+	mappingsTableEntry.w	.frame116
+	mappingsTableEntry.w	.frame117
+	mappingsTableEntry.w	.frame118
+	mappingsTableEntry.w	.frame119
+	mappingsTableEntry.w	.frame120
+	mappingsTableEntry.w	.frame121
+	mappingsTableEntry.w	.frame122
+	mappingsTableEntry.w	.frame123
+	mappingsTableEntry.w	.frame124
+	mappingsTableEntry.w	.frame125
+	mappingsTableEntry.w	.frame126
+	mappingsTableEntry.w	.frame127
+	mappingsTableEntry.w	.frame128
+	mappingsTableEntry.w	.frame129
+	mappingsTableEntry.w	.frame130
+	mappingsTableEntry.w	.frame131
+	mappingsTableEntry.w	.frame132
+	mappingsTableEntry.w	.frame133
+	mappingsTableEntry.w	.frame134
+	mappingsTableEntry.w	.frame135
+	mappingsTableEntry.w	.frame136
+	mappingsTableEntry.w	.frame137
+	mappingsTableEntry.w	.frame138
+	mappingsTableEntry.w	.frame139
+	mappingsTableEntry.w	.frame140
+	mappingsTableEntry.w	.frame141
+	mappingsTableEntry.w	.frame142
+	mappingsTableEntry.w	.frame143
+	mappingsTableEntry.w	.frame144
+	mappingsTableEntry.w	.frame145
+	mappingsTableEntry.w	.frame146
+	mappingsTableEntry.w	.frame147
+	mappingsTableEntry.w	.frame148
+	mappingsTableEntry.w	.frame149
+	mappingsTableEntry.w	.frame150
+	mappingsTableEntry.w	.frame151
+	mappingsTableEntry.w	.frame152
+	mappingsTableEntry.w	.frame153
+	mappingsTableEntry.w	.frame154
+	mappingsTableEntry.w	.frame155
+	mappingsTableEntry.w	.frame156
+	mappingsTableEntry.w	.frame157
+	mappingsTableEntry.w	.frame158
+	mappingsTableEntry.w	.frame159
+	mappingsTableEntry.w	.frame160
+	mappingsTableEntry.w	.frame161
+	mappingsTableEntry.w	.frame162
+	mappingsTableEntry.w	.frame163
+	mappingsTableEntry.w	.frame164
+	mappingsTableEntry.w	.frame165
+	mappingsTableEntry.w	.frame166
+	mappingsTableEntry.w	.frame167
+	mappingsTableEntry.w	.frame168
+	mappingsTableEntry.w	.frame169
+	mappingsTableEntry.w	.frame170
+	mappingsTableEntry.w	.frame171
+	mappingsTableEntry.w	.frame172
+	mappingsTableEntry.w	.frame173
+	mappingsTableEntry.w	.frame174
+	mappingsTableEntry.w	.frame175
+	mappingsTableEntry.w	.frame176
+	mappingsTableEntry.w	.frame177
+	mappingsTableEntry.w	.frame178
+	mappingsTableEntry.w	.frame179
+	mappingsTableEntry.w	.frame180
+	mappingsTableEntry.w	.frame181
+	mappingsTableEntry.w	.frame182
+	mappingsTableEntry.w	.frame183
+	mappingsTableEntry.w	.frame184
+	mappingsTableEntry.w	.frame185
+	mappingsTableEntry.w	.frame186
+	mappingsTableEntry.w	.frame187
+	mappingsTableEntry.w	.frame188
+	mappingsTableEntry.w	.frame189
+	mappingsTableEntry.w	.frame190
+	mappingsTableEntry.w	.frame191
+	mappingsTableEntry.w	.frame192
+	mappingsTableEntry.w	.frame193
+	mappingsTableEntry.w	.frame194
+	mappingsTableEntry.w	.frame195
+	mappingsTableEntry.w	.frame196
+	mappingsTableEntry.w	.frame197
+	mappingsTableEntry.w	.frame198
+	mappingsTableEntry.w	.frame199
+	mappingsTableEntry.w	.frame200
+	mappingsTableEntry.w	.frame201
+	mappingsTableEntry.w	.frame202
+	mappingsTableEntry.w	.frame203
+	mappingsTableEntry.w	.frame204
+	mappingsTableEntry.w	.frame205
+	mappingsTableEntry.w	.frame206
+	mappingsTableEntry.w	.frame207
+	mappingsTableEntry.w	.frame208
+	mappingsTableEntry.w	.frame209
+	mappingsTableEntry.w	.frame210
+	mappingsTableEntry.w	.frame211
+	mappingsTableEntry.w	.frame212
+	mappingsTableEntry.w	.frame213
+	mappingsTableEntry.w	.frame214
+	mappingsTableEntry.w	.frame215
+	mappingsTableEntry.w	.frame216
+	mappingsTableEntry.w	.frame217
+	mappingsTableEntry.w	.frame218
+	mappingsTableEntry.w	.frame219
+	mappingsTableEntry.w	.frame220
+	mappingsTableEntry.w	.frame221
+	mappingsTableEntry.w	.frame222
+	mappingsTableEntry.w	.frame223
+	mappingsTableEntry.w	.frame224
+	mappingsTableEntry.w	.frame225
+	mappingsTableEntry.w	.frame226
+	mappingsTableEntry.w	.frame227
+	mappingsTableEntry.w	.frame228
+	mappingsTableEntry.w	.frame229
+	mappingsTableEntry.w	.frame230
+	mappingsTableEntry.w	.frame231
+	mappingsTableEntry.w	.frame232
+	mappingsTableEntry.w	.frame233
+	mappingsTableEntry.w	.frame234
+	mappingsTableEntry.w	.frame235
+	mappingsTableEntry.w	.frame236
+	mappingsTableEntry.w	.frame237
+	mappingsTableEntry.w	.frame238
+	mappingsTableEntry.w	.frame239
+	mappingsTableEntry.w	.frame240
+	mappingsTableEntry.w	.frame241
+	mappingsTableEntry.w	.frame242
+	mappingsTableEntry.w	.frame243
+	mappingsTableEntry.w	.frame244
+	mappingsTableEntry.w	.frame245
+	mappingsTableEntry.w	.frame246
+	mappingsTableEntry.w	.frame247
+	mappingsTableEntry.w	.frame248
+	mappingsTableEntry.w	.frame249
+	mappingsTableEntry.w	.frame250
+
+.frame0:	spriteHeader
+.frame0_End
+
+.frame1:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -21, -4, 1, 3, 15, 0, 0, 0, 0
+	spritePiece 3, 12, 2, 1, 18, 0, 0, 0, 0
+.frame1_End
+
+.frame2:	spriteHeader
+	spritePiece -7, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -12, 4, 4, 2, 0, 0, 0, 0
+	spritePiece -23, -4, 1, 3, 18, 0, 0, 0, 0
+.frame2_End
+
+.frame3:	spriteHeader
+	spritePiece -12, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -20, -4, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -12, 12, 2, 1, 14, 0, 0, 0, 0
+.frame3_End
+
+.frame4:	spriteHeader
+	spritePiece -11, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -19, -4, 4, 3, 6, 0, 0, 0, 0
+.frame4_End
+
+.frame5:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -21, -4, 1, 2, 15, 0, 0, 0, 0
+	spritePiece -21, 12, 4, 1, 17, 0, 0, 0, 0
+.frame5_End
+
+.frame6:	spriteHeader
+	spritePiece -6, -22, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -14, -14, 3, 1, 2, 0, 0, 0, 0
+	spritePiece -14, -6, 4, 3, 5, 0, 0, 0, 0
+	spritePiece -22, 2, 1, 2, 17, 0, 0, 0, 0
+.frame6_End
+
+.frame7:	spriteHeader
+	spritePiece -9, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -12, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -17, 12, 3, 1, 14, 0, 0, 0, 0
+.frame7_End
+
+.frame8:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 3, 1, 3, 0, 0, 0, 0
+	spritePiece -13, -4, 4, 3, 6, 0, 0, 0, 0
+	spritePiece -21, -4, 1, 1, 18, 0, 0, 0, 0
+.frame8_End
+
+.frame9:	spriteHeader
+	spritePiece -14, -19, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -14, 5, 3, 1, 12, 0, 0, 0, 0
+	spritePiece -6, 13, 2, 2, 15, 0, 0, 0, 0
+.frame9_End
+
+.frame10:	spriteHeader
+	spritePiece -16, -17, 4, 4, 0, 0, 0, 0, 0
+	spritePiece 16, -9, 1, 3, 16, 0, 0, 0, 0
+	spritePiece -8, 15, 2, 1, 19, 0, 0, 0, 0
+.frame10_End
+
+.frame11:	spriteHeader
+	spritePiece -12, -17, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -9, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 4, 15, 1, 1, 15, 0, 0, 0, 0
+.frame11_End
+
+.frame12:	spriteHeader
+	spritePiece -13, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -8, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -13, 8, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -5, 16, 2, 1, 14, 0, 0, 0, 0
+.frame12_End
+
+.frame13:	spriteHeader
+	spritePiece -14, -21, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -14, 11, 2, 1, 16, 0, 0, 0, 0
+	spritePiece -6, 19, 2, 1, 18, 0, 0, 0, 0
+.frame13_End
+
+.frame14:	spriteHeader
+	spritePiece -11, -17, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -11, 7, 2, 2, 12, 0, 0, 0, 0
+.frame14_End
+
+.frame15:	spriteHeader
+	spritePiece -11, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -11, -8, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 5, 16, 1, 1, 15, 0, 0, 0, 0
+.frame15_End
+
+.frame16:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -5, 12, 2, 1, 15, 0, 0, 0, 0
+.frame16_End
+
+.frame17:	spriteHeader
+	spritePiece -12, -18, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -10, 4, 3, 4, 0, 0, 0, 0
+	spritePiece 12, -10, 1, 1, 16, 0, 0, 0, 0
+	spritePiece -4, 14, 3, 1, 17, 0, 0, 0, 0
+.frame17_End
+
+.frame18:	spriteHeader
+	spritePiece -12, -16, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -8, 4, 2, 4, 0, 0, 0, 0
+	spritePiece 12, -8, 1, 1, 12, 0, 0, 0, 0
+	spritePiece -12, 8, 4, 2, 13, 0, 0, 0, 0
+.frame18_End
+
+.frame19:	spriteHeader
+	spritePiece -20, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 12, -3, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -4, 13, 2, 1, 14, 0, 0, 0, 0
+.frame19_End
+
+.frame20:	spriteHeader
+	spritePiece -20, -12, 2, 3, 0, 0, 0, 0, 0
+	spritePiece -4, -12, 3, 4, 6, 0, 0, 0, 0
+.frame20_End
+
+.frame21:	spriteHeader
+	spritePiece -12, -19, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -11, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 12, -11, 1, 1, 15, 0, 0, 0, 0
+	spritePiece -4, 13, 3, 1, 16, 0, 0, 0, 0
+.frame21_End
+
+.frame22:	spriteHeader
+	spritePiece -5, -17, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -9, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -21, -9, 1, 2, 15, 0, 0, 0, 0
+	spritePiece 3, 15, 2, 1, 17, 0, 0, 0, 0
+.frame22_End
+
+.frame23:	spriteHeader
+	spritePiece -12, -14, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -6, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -20, -6, 1, 2, 15, 0, 0, 0, 0
+.frame23_End
+
+.frame24:	spriteHeader
+	spritePiece -4, -18, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -10, 4, 3, 2, 0, 0, 0, 0
+	spritePiece 12, -10, 1, 3, 14, 0, 0, 0, 0
+	spritePiece -4, 14, 1, 1, 17, 0, 0, 0, 0
+.frame24_End
+
+.frame25:	spriteHeader
+	spritePiece -18, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -8, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 14, -8, 2, 2, 15, 0, 0, 0, 0
+.frame25_End
+
+.frame26:	spriteHeader
+	spritePiece -9, -23, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -15, 4, 4, 3, 0, 0, 0, 0
+	spritePiece 15, -7, 1, 2, 19, 0, 0, 0, 0
+.frame26_End
+
+.frame27:	spriteHeader
+	spritePiece -8, -21, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -13, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 16, -13, 1, 1, 15, 0, 0, 0, 0
+.frame27_End
+
+.frame28:	spriteHeader
+	spritePiece -6, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -14, -12, 4, 3, 2, 0, 0, 0, 0
+	spritePiece 18, -12, 1, 2, 14, 0, 0, 0, 0
+.frame28_End
+
+.frame29:	spriteHeader
+	spritePiece -21, -18, 4, 4, 0, 0, 0, 0, 0
+	spritePiece 11, -10, 2, 3, 16, 0, 0, 0, 0
+.frame29_End
+
+.frame30:	spriteHeader
+	spritePiece -18, -19, 3, 4, 0, 0, 0, 0, 0
+	spritePiece 6, -3, 2, 2, 12, 0, 0, 0, 0
+.frame30_End
+
+.frame31:	spriteHeader
+	spritePiece -7, -21, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -13, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 17, -13, 1, 1, 15, 0, 0, 0, 0
+.frame31_End
+
+.frame32:	spriteHeader
+	spritePiece -10, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 14, -12, 1, 2, 15, 0, 0, 0, 0
+.frame32_End
+
+.frame33:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -12, 4, 4, 3, 0, 0, 0, 0
+.frame33_End
+
+.frame34:	spriteHeader
+	spritePiece -12, -19, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -11, 4, 4, 3, 0, 0, 0, 0
+.frame34_End
+
+.frame35:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -12, 4, 4, 3, 0, 0, 0, 0
+.frame35_End
+
+.frame36:	spriteHeader
+	spritePiece -12, -19, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -11, 4, 4, 3, 0, 0, 0, 0
+.frame36_End
+
+.frame37:	spriteHeader
+	spritePiece -18, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -8, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 14, 0, 1, 2, 15, 0, 0, 0, 0
+	spritePiece -10, 16, 3, 1, 17, 0, 0, 0, 0
+.frame37_End
+
+.frame38:	spriteHeader
+	spritePiece -15, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -8, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -23, -8, 1, 2, 15, 0, 0, 0, 0
+	spritePiece -7, 16, 3, 1, 17, 0, 0, 0, 0
+.frame38_End
+
+.frame39:	spriteHeader
+	spritePiece -17, -15, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -7, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -9, 9, 3, 2, 11, 0, 0, 0, 0
+.frame39_End
+
+.frame40:	spriteHeader
+	spritePiece -15, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -8, 4, 4, 3, 0, 0, 0, 0
+	spritePiece -23, -8, 1, 2, 19, 0, 0, 0, 0
+.frame40_End
+
+.frame41:	spriteHeader
+	spritePiece -22, -12, 1, 3, 0, 0, 0, 0, 0
+	spritePiece -14, -12, 4, 4, 3, 0, 0, 0, 0
+.frame41_End
+
+.frame42:	spriteHeader
+	spritePiece -21, -12, 1, 3, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 4, 3, 0, 0, 0, 0
+.frame42_End
+
+.frame43:	spriteHeader
+	spritePiece -22, -12, 1, 3, 0, 0, 0, 0, 0
+	spritePiece -14, -12, 4, 4, 3, 0, 0, 0, 0
+.frame43_End
+
+.frame44:	spriteHeader
+	spritePiece -21, -12, 1, 3, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 4, 3, 0, 0, 0, 0
+.frame44_End
+
+.frame45:	spriteHeader
+	spritePiece 0, -21, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -8, -13, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -16, -5, 1, 2, 14, 0, 0, 0, 0
+	spritePiece -16, 11, 4, 1, 16, 0, 0, 0, 0
+.frame45_End
+
+.frame46:	spriteHeader
+	spritePiece -8, -16, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -8, 4, 3, 4, 0, 0, 0, 0
+	spritePiece 16, -8, 1, 2, 16, 0, 0, 0, 0
+	spritePiece -8, 16, 2, 1, 18, 0, 0, 0, 0
+.frame46_End
+
+.frame47:	spriteHeader
+	spritePiece -7, -14, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -15, -6, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -15, 10, 3, 1, 14, 0, 0, 0, 0
+.frame47_End
+
+.frame48:	spriteHeader
+	spritePiece -8, -16, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -16, -8, 1, 3, 16, 0, 0, 0, 0
+	spritePiece -8, 16, 2, 1, 19, 0, 0, 0, 0
+.frame48_End
+
+.frame49:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -13, 4, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -5, 12, 2, 1, 14, 0, 0, 0, 0
+.frame49_End
+
+.frame50:	spriteHeader
+	spritePiece -5, -22, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -14, 4, 4, 2, 0, 0, 0, 0
+.frame50_End
+
+.frame51:	spriteHeader
+	spritePiece -12, -19, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -12, -3, 4, 1, 6, 0, 0, 0, 0
+	spritePiece -12, 5, 3, 1, 10, 0, 0, 0, 0
+.frame51_End
+
+.frame52:	spriteHeader
+	spritePiece -13, -17, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -9, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 3, 15, 1, 1, 15, 0, 0, 0, 0
+.frame52_End
+
+.frame53:	spriteHeader
+	spritePiece -12, -14, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -6, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 10, 3, 1, 11, 0, 0, 0, 0
+.frame53_End
+
+.frame54:	spriteHeader
+	spritePiece -5, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 2, 2, 0, 0, 0, 0
+	spritePiece -13, 4, 3, 2, 10, 0, 0, 0, 0
+.frame54_End
+
+.frame55:	spriteHeader
+	spritePiece -14, -20, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -14, 12, 3, 1, 16, 0, 0, 0, 0
+.frame55_End
+
+.frame56:	spriteHeader
+	spritePiece -5, -21, 2, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -5, 4, 1, 4, 0, 0, 0, 0
+	spritePiece -13, 3, 3, 2, 8, 0, 0, 0, 0
+.frame56_End
+
+.frame57:	spriteHeader
+	spritePiece -13, -14, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -13, 10, 3, 1, 12, 0, 0, 0, 0
+.frame57_End
+
+.frame58:	spriteHeader
+	spritePiece -13, -12, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -13, 4, 3, 1, 8, 0, 0, 0, 0
+.frame58_End
+
+.frame59:	spriteHeader
+	spritePiece -14, -13, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -14, 3, 3, 1, 8, 0, 0, 0, 0
+	spritePiece -14, 11, 4, 1, 11, 0, 0, 0, 0
+.frame59_End
+
+.frame60:	spriteHeader
+	spritePiece -12, -20, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -12, 4, 4, 2, 9, 0, 0, 0, 0
+.frame60_End
+
+.frame61:	spriteHeader
+	spritePiece -12, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 12, 3, 1, 12, 0, 0, 0, 0
+.frame61_End
+
+.frame62:	spriteHeader
+	spritePiece -12, -13, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -5, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 11, 2, 1, 11, 0, 0, 0, 0
+.frame62_End
+
+.frame63:	spriteHeader
+	spritePiece -12, -10, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -12, 6, 3, 1, 8, 0, 0, 0, 0
+.frame63_End
+
+.frame64:	spriteHeader
+	spritePiece -7, -14, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -6, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -7, 10, 2, 1, 11, 0, 0, 0, 0
+.frame64_End
+
+.frame65:	spriteHeader
+	spritePiece -13, -17, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -13, 7, 3, 2, 12, 0, 0, 0, 0
+.frame65_End
+
+.frame66:	spriteHeader
+	spritePiece -12, -20, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 3, 1, 4, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 1, 7, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 2, 11, 0, 0, 0, 0
+.frame66_End
+
+.frame67:	spriteHeader
+	spritePiece -12, -19, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 13, 3, 1, 12, 0, 0, 0, 0
+.frame67_End
+
+.frame68:	spriteHeader
+	spritePiece -12, -16, 4, 4, 0, 0, 0, 0, 0
+.frame68_End
+
+.frame69:	spriteHeader
+	spritePiece -12, -14, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -6, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -4, 10, 1, 1, 11, 0, 0, 0, 0
+.frame69_End
+
+.frame70:	spriteHeader
+	spritePiece -13, -15, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, 1, 4, 2, 6, 0, 0, 0, 0
+.frame70_End
+
+.frame71:	spriteHeader
+	spritePiece -13, -19, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -3, 4, 3, 6, 0, 0, 0, 0
+.frame71_End
+
+.frame72:	spriteHeader
+	spritePiece -13, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -4, 4, 3, 6, 0, 0, 0, 0
+.frame72_End
+
+.frame73:	spriteHeader
+	spritePiece -15, -19, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -23, -11, 1, 3, 16, 0, 0, 0, 0
+	spritePiece -7, 13, 2, 1, 19, 0, 0, 0, 0
+.frame73_End
+
+.frame74:	spriteHeader
+	spritePiece -18, -16, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -18, 8, 3, 1, 12, 0, 0, 0, 0
+	spritePiece -18, 16, 1, 1, 15, 0, 0, 0, 0
+.frame74_End
+
+.frame75:	spriteHeader
+	spritePiece -12, -12, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -12, 12, 2, 1, 9, 0, 0, 0, 0
+.frame75_End
+
+.frame76:	spriteHeader
+	spritePiece -16, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -16, 13, 4, 1, 12, 0, 0, 0, 0
+.frame76_End
+
+.frame77:	spriteHeader
+	spritePiece -13, -12, 4, 3, 0, 0, 0, 0, 0
+.frame77_End
+
+.frame78:	spriteHeader
+	spritePiece -8, -19, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -11, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 16, -11, 1, 2, 15, 0, 0, 0, 0
+.frame78_End
+
+.frame79:	spriteHeader
+	spritePiece -10, -19, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -11, 4, 3, 4, 0, 0, 0, 0
+.frame79_End
+
+.frame80:	spriteHeader
+	spritePiece 4, -18, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -10, 4, 3, 1, 0, 0, 0, 0
+	spritePiece 12, -10, 1, 2, 13, 0, 0, 0, 0
+.frame80_End
+
+.frame81:	spriteHeader
+	spritePiece 1, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -12, 3, 3, 2, 0, 0, 0, 0
+	spritePiece 9, -12, 2, 2, 11, 0, 0, 0, 0
+.frame81_End
+
+.frame82:	spriteHeader
+	spritePiece -8, -17, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -9, 4, 2, 2, 0, 0, 0, 0
+	spritePiece -8, 7, 2, 1, 10, 0, 0, 0, 0
+.frame82_End
+
+.frame83:	spriteHeader
+	spritePiece -16, -18, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -10, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -8, 6, 3, 1, 11, 0, 0, 0, 0
+.frame83_End
+
+.frame84:	spriteHeader
+	spritePiece -16, -16, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -16, 8, 3, 1, 12, 0, 0, 0, 0
+.frame84_End
+
+.frame85:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 1, 3, 0, 0, 0, 0
+	spritePiece -12, -4, 3, 3, 7, 0, 0, 0, 0
+.frame85_End
+
+.frame86:	spriteHeader
+	spritePiece -13, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -4, 4, 3, 6, 0, 0, 0, 0
+.frame86_End
+
+.frame87:	spriteHeader
+	spritePiece -13, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -4, 4, 3, 6, 0, 0, 0, 0
+.frame87_End
+
+.frame88:	spriteHeader
+	spritePiece -13, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -13, 12, 3, 1, 12, 0, 0, 0, 0
+.frame88_End
+
+.frame89:	spriteHeader
+	spritePiece -14, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -14, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -14, 4, 3, 2, 11, 0, 0, 0, 0
+.frame89_End
+
+.frame90:	spriteHeader
+	spritePiece -14, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -14, 12, 3, 1, 12, 0, 0, 0, 0
+.frame90_End
+
+.frame91:	spriteHeader
+	spritePiece -13, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -13, 12, 3, 1, 12, 0, 0, 0, 0
+.frame91_End
+
+.frame92:	spriteHeader
+	spritePiece -29, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 3, -11, 3, 3, 12, 0, 0, 0, 0
+.frame92_End
+
+.frame93:	spriteHeader
+	spritePiece -22, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 10, -11, 1, 3, 12, 0, 0, 0, 0
+.frame93_End
+
+.frame94:	spriteHeader
+	spritePiece -22, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 10, -11, 1, 3, 12, 0, 0, 0, 0
+.frame94_End
+
+.frame95:	spriteHeader
+	spritePiece -28, -11, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 4, -11, 3, 3, 12, 0, 0, 0, 0
+.frame95_End
+
+.frame96:	spriteHeader
+	spritePiece -14, -11, 4, 3, 0, 0, 0, 0, 0
+.frame96_End
+
+.frame97:	spriteHeader
+	spritePiece -24, -11, 4, 3, 0, 0, 0, 0, 0
+.frame97_End
+
+.frame98:	spriteHeader
+	spritePiece -17, -11, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -25, -3, 4, 2, 4, 0, 0, 0, 0
+	spritePiece 7, -3, 2, 2, 12, 0, 0, 0, 0
+.frame98_End
+
+.frame99:	spriteHeader
+	spritePiece -11, -29, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -11, 3, 3, 3, 12, 0, 0, 0, 0
+.frame99_End
+
+.frame100:	spriteHeader
+	spritePiece -11, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -11, 12, 3, 1, 12, 0, 0, 0, 0
+.frame100_End
+
+.frame101:	spriteHeader
+	spritePiece -11, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -11, 12, 3, 1, 12, 0, 0, 0, 0
+.frame101_End
+
+.frame102:	spriteHeader
+	spritePiece -11, -27, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -11, 5, 3, 3, 12, 0, 0, 0, 0
+.frame102_End
+
+.frame103:	spriteHeader
+	spritePiece -11, -16, 3, 4, 0, 0, 0, 0, 0
+.frame103_End
+
+.frame104:	spriteHeader
+	spritePiece -11, -11, 3, 4, 0, 0, 0, 0, 0
+.frame104_End
+
+.frame105:	spriteHeader
+	spritePiece -5, -24, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -16, 3, 2, 2, 0, 0, 0, 0
+	spritePiece -13, 0, 4, 2, 8, 0, 0, 0, 0
+.frame105_End
+
+.frame106:	spriteHeader
+	spritePiece -11, -17, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -3, 7, 2, 1, 9, 0, 0, 0, 0
+.frame106_End
+
+.frame107:	spriteHeader
+	spritePiece -13, -11, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -3, 4, 2, 3, 0, 0, 0, 0
+.frame107_End
+
+.frame108:	spriteHeader
+	spritePiece -6, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -22, -12, 4, 3, 2, 0, 0, 0, 0
+	spritePiece 10, -12, 1, 2, 14, 0, 0, 0, 0
+.frame108_End
+
+.frame109:	spriteHeader
+	spritePiece -14, -15, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -22, -7, 1, 3, 16, 0, 0, 0, 0
+.frame109_End
+
+.frame110:	spriteHeader
+	spritePiece -1, -18, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -10, 3, 3, 1, 0, 0, 0, 0
+	spritePiece 7, -10, 2, 2, 10, 0, 0, 0, 0
+.frame110_End
+
+.frame111:	spriteHeader
+	spritePiece -7, -17, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -9, 4, 1, 3, 0, 0, 0, 0
+	spritePiece -15, -1, 3, 1, 7, 0, 0, 0, 0
+	spritePiece -15, 7, 4, 1, 10, 0, 0, 0, 0
+.frame111_End
+
+.frame112:	spriteHeader
+	spritePiece -2, -19, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -10, -11, 3, 3, 2, 0, 0, 0, 0
+.frame112_End
+
+.frame113:	spriteHeader
+	spritePiece -17, -19, 4, 4, 0, 0, 0, 0, 0
+.frame113_End
+
+.frame114:	spriteHeader
+	spritePiece -16, -20, 2, 4, 0, 0, 0, 0, 0
+	spritePiece 0, -12, 3, 3, 8, 0, 0, 0, 0
+.frame114_End
+
+.frame115:	spriteHeader
+	spritePiece -2, -17, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -9, 1, 2, 2, 0, 0, 0, 0
+	spritePiece -10, -9, 4, 3, 4, 0, 0, 0, 0
+.frame115_End
+
+.frame116:	spriteHeader
+	spritePiece -18, -16, 4, 4, 0, 0, 0, 0, 0
+	spritePiece 14, -8, 1, 2, 16, 0, 0, 0, 0
+.frame116_End
+
+.frame117:	spriteHeader
+	spritePiece -5, -19, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -11, 4, 3, 1, 0, 0, 0, 0
+.frame117_End
+
+.frame118:	spriteHeader
+	spritePiece -15, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -8, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -23, -8, 1, 1, 15, 0, 0, 0, 0
+.frame118_End
+
+.frame119:	spriteHeader
+	spritePiece -9, -19, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -11, 4, 3, 2, 0, 0, 0, 0
+.frame119_End
+
+.frame120:	spriteHeader
+	spritePiece -15, -26, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -18, 3, 3, 4, 0, 0, 0, 0
+	spritePiece -7, 6, 4, 2, 13, 0, 0, 0, 0
+.frame120_End
+
+.frame121:	spriteHeader
+	spritePiece -27, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -27, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece 5, -12, 2, 3, 11, 0, 0, 0, 0
+	spritePiece -19, 4, 3, 1, 17, 0, 0, 0, 0
+.frame121_End
+
+.frame122:	spriteHeader
+	spritePiece -26, -16, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -26, -8, 4, 3, 1, 0, 0, 0, 0
+	spritePiece 6, -24, 2, 4, 13, 0, 0, 0, 0
+.frame122_End
+
+.frame123:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -4, -12, 2, 1, 3, 0, 0, 0, 0
+	spritePiece -12, -4, 3, 1, 5, 0, 0, 0, 0
+	spritePiece -20, 4, 4, 3, 8, 0, 0, 0, 0
+.frame123_End
+
+.frame124:	spriteHeader
+	spritePiece -16, 19, 4, 1, 0, 1, 1, 0, 0
+	spritePiece -8, -5, 3, 3, 4, 1, 1, 0, 0
+	spritePiece -24, -21, 4, 2, 13, 1, 1, 0, 0
+.frame124_End
+
+.frame125:	spriteHeader
+	spritePiece 3, 14, 3, 1, 0, 1, 1, 0, 0
+	spritePiece -5, -2, 4, 2, 3, 1, 1, 0, 0
+	spritePiece -21, -10, 2, 3, 11, 1, 1, 0, 0
+	spritePiece -5, -10, 3, 1, 17, 1, 1, 0, 0
+.frame125_End
+
+.frame126:	spriteHeader
+	spritePiece 19, 8, 1, 1, 0, 1, 1, 0, 0
+	spritePiece -5, -16, 4, 3, 1, 1, 1, 0, 0
+	spritePiece -21, -8, 2, 4, 13, 1, 1, 0, 0
+.frame126_End
+
+.frame127:	spriteHeader
+	spritePiece -11, 14, 3, 1, 0, 1, 1, 0, 0
+	spritePiece -11, 6, 2, 1, 3, 1, 1, 0, 0
+	spritePiece -11, -2, 3, 1, 5, 1, 1, 0, 0
+	spritePiece -11, -26, 4, 3, 8, 1, 1, 0, 0
+.frame127_End
+
+.frame128:	spriteHeader
+	spritePiece -18, -24, 4, 4, 0, 0, 0, 0, 0
+	spritePiece 14, -24, 1, 1, 16, 0, 0, 0, 0
+	spritePiece -18, 8, 3, 2, 17, 0, 0, 0, 0
+.frame128_End
+
+.frame129:	spriteHeader
+	spritePiece -1, -31, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -23, 4, 1, 1, 0, 0, 0, 0
+	spritePiece -17, -15, 3, 4, 5, 0, 0, 0, 0
+	spritePiece -17, 17, 3, 1, 17, 0, 0, 0, 0
+.frame129_End
+
+.frame130:	spriteHeader
+	spritePiece -12, -31, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -23, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -12, 1, 3, 3, 14, 0, 0, 0, 0
+.frame130_End
+
+.frame131:	spriteHeader
+	spritePiece -18, -25, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -10, 7, 3, 2, 16, 0, 0, 0, 0
+.frame131_End
+
+.frame132:	spriteHeader
+	spritePiece -4, -30, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -22, 3, 2, 2, 0, 0, 0, 0
+	spritePiece -12, -6, 4, 1, 8, 0, 0, 0, 0
+	spritePiece -12, 2, 3, 3, 12, 0, 0, 0, 0
+.frame132_End
+
+.frame133:	spriteHeader
+	spritePiece -12, -30, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -22, 4, 1, 2, 0, 0, 0, 0
+	spritePiece -12, -14, 3, 3, 6, 0, 0, 0, 0
+	spritePiece -4, 10, 2, 2, 15, 0, 0, 0, 0
+.frame133_End
+
+.frame134:	spriteHeader
+	spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 11, 0, 0, 0, 0
+.frame134_End
+
+.frame135:	spriteHeader
+	spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 11, 0, 0, 0, 0
+.frame135_End
+
+.frame136:	spriteHeader
+	spritePiece -4, -8, 3, 1, 3, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 0, 0, 0, 0, 0
+.frame136_End
+
+.frame137:	spriteHeader
+	spritePiece -4, -8, 3, 1, 3, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 0, 0, 0, 0, 0
+.frame137_End
+
+.frame138:	spriteHeader
+	spritePiece -4, -8, 3, 1, 3, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 0, 0, 0, 0, 0
+.frame138_End
+
+.frame139:	spriteHeader
+	spritePiece -4, -8, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, 0, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 3, 0, 0, 0, 0
+.frame139_End
+
+.frame140:	spriteHeader
+	spritePiece -16, -17, 3, 4, 0, 0, 0, 0, 0
+	spritePiece 8, -17, 2, 3, 12, 0, 0, 0, 0
+	spritePiece -8, 15, 2, 1, 18, 0, 0, 0, 0
+.frame140_End
+
+.frame141:	spriteHeader
+	spritePiece -14, -21, 3, 3, 0, 0, 0, 0, 0
+	spritePiece 10, -21, 2, 2, 9, 0, 0, 0, 0
+	spritePiece -14, 3, 4, 2, 13, 0, 0, 0, 0
+	spritePiece 18, 3, 1, 1, 21, 0, 0, 0, 0
+.frame141_End
+
+.frame142:	spriteHeader
+	spritePiece -10, -24, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -10, -16, 3, 3, 2, 0, 0, 0, 0
+	spritePiece -10, 8, 2, 2, 11, 0, 0, 0, 0
+.frame142_End
+
+.frame143:	spriteHeader
+	spritePiece -25, -13, 1, 2, 0, 0, 0, 0, 0
+	spritePiece -17, -13, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -1, 11, 2, 1, 14, 0, 0, 0, 0
+.frame143_End
+
+.frame144:	spriteHeader
+	spritePiece -7, -26, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -18, 3, 3, 2, 0, 0, 0, 0
+	spritePiece -7, 6, 3, 2, 11, 0, 0, 0, 0
+	spritePiece -7, 22, 2, 1, 17, 0, 0, 0, 0
+.frame144_End
+
+.frame145:	spriteHeader
+	spritePiece -14, -26, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -6, 6, 3, 2, 12, 0, 0, 0, 0
+.frame145_End
+
+.frame146:	spriteHeader
+	spritePiece -14, -26, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -14, -2, 4, 1, 9, 0, 0, 0, 0
+	spritePiece 2, 6, 2, 2, 13, 0, 0, 0, 0
+.frame146_End
+
+.frame147:	spriteHeader
+	spritePiece -14, -26, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -14, -2, 4, 1, 9, 0, 0, 0, 0
+	spritePiece 2, 6, 2, 1, 13, 0, 0, 0, 0
+.frame147_End
+
+.frame148:	spriteHeader
+	spritePiece -15, -23, 4, 2, 17, 0, 0, 0, 0
+	spritePiece -12, -21, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -13, 3, 4, 2, 0, 0, 0, 0
+	spritePiece -12, 19, 3, 1, 14, 0, 0, 0, 0
+.frame148_End
+
+.frame149:	spriteHeader
+	spritePiece -12, -23, 3, 2, 17, 0, 0, 0, 0
+	spritePiece -12, -21, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -13, 3, 4, 2, 0, 0, 0, 0
+	spritePiece -12, 19, 3, 1, 14, 0, 0, 0, 0
+.frame149_End
+
+.frame150:	spriteHeader
+	spritePiece -16, -15, 4, 4, 0, 0, 0, 0, 0
+.frame150_End
+
+.frame151:	spriteHeader
+	spritePiece -16, -15, 4, 4, 0, 0, 0, 0, 0
+.frame151_End
+
+.frame152:	spriteHeader
+	spritePiece -16, -15, 4, 4, 0, 0, 0, 0, 0
+.frame152_End
+
+.frame153:	spriteHeader
+	spritePiece -16, -15, 4, 4, 0, 0, 0, 0, 0
+.frame153_End
+
+.frame154:	spriteHeader
+	spritePiece -16, -15, 4, 4, 0, 0, 0, 0, 0
+.frame154_End
+
+.frame155:	spriteHeader
+	spritePiece -13, -12, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -4, 4, 3, 3, 0, 0, 0, 0
+.frame155_End
+
+.frame156:	spriteHeader
+	spritePiece -11, -4, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -11, 4, 4, 2, 3, 0, 0, 0, 0
+.frame156_End
+
+.frame157:	spriteHeader
+	spritePiece -8, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -12, 4, 4, 2, 0, 0, 0, 0
+.frame157_End
+
+.frame158:	spriteHeader
+	spritePiece -18, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -10, -12, 4, 4, 3, 0, 0, 0, 0
+	spritePiece -18, -12, 1, 1, 19, 0, 0, 0, 0
+	spritePiece -26, -4, 2, 2, 20, 0, 0, 0, 0
+.frame158_End
+
+.frame159:	spriteHeader
+	spritePiece -8, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 16, -4, 1, 2, 15, 0, 0, 0, 0
+	spritePiece -16, 12, 3, 1, 17, 0, 0, 0, 0
+.frame159_End
+
+.frame160:	spriteHeader
+	spritePiece -9, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -17, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece 15, -12, 2, 3, 15, 0, 0, 0, 0
+	spritePiece -17, 12, 3, 1, 21, 0, 0, 0, 0
+.frame160_End
+
+.frame161:	spriteHeader
+	spritePiece -10, -28, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -20, 4, 3, 1, 0, 0, 0, 0
+	spritePiece 14, -20, 2, 4, 13, 0, 0, 0, 0
+	spritePiece -18, 4, 3, 2, 21, 0, 0, 0, 0
+.frame161_End
+
+.frame162:	spriteHeader
+	spritePiece -7, -24, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 25, -16, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -7, 0, 2, 1, 14, 0, 0, 0, 0
+	spritePiece -15, 8, 3, 2, 16, 0, 0, 0, 0
+.frame162_End
+
+.frame163:	spriteHeader
+	spritePiece -2, -26, 1, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -18, 4, 3, 1, 0, 0, 0, 0
+	spritePiece 14, -10, 2, 2, 13, 0, 0, 0, 0
+	spritePiece -18, 6, 3, 2, 17, 0, 0, 0, 0
+.frame163_End
+
+.frame164:	spriteHeader
+	spritePiece -15, -15, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 17, -15, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -15, 9, 3, 1, 14, 0, 0, 0, 0
+	spritePiece -7, 17, 2, 1, 17, 0, 0, 0, 0
+.frame164_End
+
+.frame165:	spriteHeader
+	spritePiece -15, -28, 2, 1, 0, 0, 0, 0, 0
+	spritePiece 17, -20, 1, 2, 2, 0, 0, 0, 0
+	spritePiece -15, -20, 4, 3, 4, 0, 0, 0, 0
+	spritePiece -15, 4, 3, 2, 16, 0, 0, 0, 0
+.frame165_End
+
+.frame166:	spriteHeader
+	spritePiece 17, -20, 2, 3, 0, 0, 0, 0, 0
+	spritePiece -15, -20, 4, 3, 6, 0, 0, 0, 0
+	spritePiece -7, 4, 3, 1, 18, 0, 0, 0, 0
+	spritePiece -15, 12, 3, 1, 21, 0, 0, 0, 0
+.frame166_End
+
+.frame167:	spriteHeader
+	spritePiece -10, -20, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 22, -12, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -18, 4, 3, 2, 14, 0, 0, 0, 0
+	spritePiece 6, 4, 2, 1, 20, 0, 0, 0, 0
+.frame167_End
+
+.frame168:	spriteHeader
+	spritePiece 22, -20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece -10, -20, 4, 2, 2, 0, 0, 0, 0
+	spritePiece -18, -4, 3, 3, 10, 0, 0, 0, 0
+	spritePiece 6, -4, 2, 2, 19, 0, 0, 0, 0
+.frame168_End
+
+.frame169:	spriteHeader
+	spritePiece -7, -28, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -7, 12, 2, 1, 6, 0, 0, 0, 0
+	spritePiece -23, -12, 4, 3, 8, 0, 0, 0, 0
+	spritePiece 9, -12, 3, 3, 20, 0, 0, 0, 0
+.frame169_End
+
+.frame170:	spriteHeader
+	spritePiece 3, -28, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -5, 12, 2, 1, 2, 0, 0, 0, 0
+	spritePiece -5, -20, 4, 4, 4, 0, 0, 0, 0
+	spritePiece -21, -12, 2, 3, 20, 0, 0, 0, 0
+.frame170_End
+
+.frame171:	spriteHeader
+	spritePiece -13, -18, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -21, -18, 1, 2, 8, 0, 0, 0, 0
+	spritePiece -13, -2, 3, 2, 10, 0, 0, 0, 0
+	spritePiece -13, 14, 4, 1, 16, 0, 0, 0, 0
+.frame171_End
+
+.frame172:	spriteHeader
+	spritePiece -21, -18, 4, 2, 2, 0, 0, 0, 0
+	spritePiece 11, -18, 1, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -2, 3, 2, 10, 0, 0, 0, 0
+	spritePiece -13, 14, 4, 1, 16, 0, 0, 0, 0
+.frame172_End
+
+.frame173:	spriteHeader
+	spritePiece -21, -18, 4, 2, 6, 0, 0, 0, 0
+	spritePiece 11, -18, 1, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -2, 3, 2, 14, 0, 0, 0, 0
+	spritePiece -13, 14, 4, 1, 2, 0, 0, 0, 0
+.frame173_End
+
+.frame174:	spriteHeader
+	spritePiece -26, -12, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 6, -12, 1, 1, 12, 0, 0, 0, 0
+	spritePiece 6, -4, 3, 2, 13, 0, 0, 0, 0
+.frame174_End
+
+.frame175:	spriteHeader
+	spritePiece -26, -12, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 6, -12, 1, 1, 12, 0, 0, 0, 0
+	spritePiece 6, -4, 3, 2, 13, 0, 0, 0, 0
+.frame175_End
+
+.frame176:	spriteHeader
+	spritePiece -12, -22, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -20, -14, 4, 4, 4, 0, 0, 0, 0
+	spritePiece 12, -14, 1, 1, 20, 0, 0, 0, 0
+.frame176_End
+
+.frame177:	spriteHeader
+	spritePiece -13, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 4, 3, 0, 0, 0, 0
+.frame177_End
+
+.frame178:	spriteHeader
+	spritePiece -5, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -13, -12, 4, 4, 3, 0, 0, 0, 0
+	spritePiece 19, -4, 1, 3, 19, 0, 0, 0, 0
+.frame178_End
+
+.frame179:	spriteHeader
+	spritePiece -4, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 4, 2, 0, 0, 0, 0
+.frame179_End
+
+.frame180:	spriteHeader
+	spritePiece -4, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 4, 3, 0, 0, 0, 0
+	spritePiece 20, -4, 1, 2, 19, 0, 0, 0, 0
+.frame180_End
+
+.frame181:	spriteHeader
+	spritePiece -12, -26, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 6, 3, 1, 12, 0, 0, 0, 0
+	spritePiece -12, 14, 2, 2, 15, 0, 0, 0, 0
+.frame181_End
+
+.frame182:	spriteHeader
+	spritePiece -12, -26, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 6, 3, 1, 12, 0, 0, 0, 0
+	spritePiece -12, 14, 2, 2, 15, 0, 0, 0, 0
+.frame182_End
+
+.frame183:	spriteHeader
+	spritePiece -21, -18, 4, 4, 0, 0, 0, 0, 0
+	spritePiece 3, 14, 1, 1, 16, 0, 0, 0, 0
+.frame183_End
+
+.frame184:	spriteHeader
+	spritePiece -21, -16, 4, 4, 0, 0, 0, 0, 0
+.frame184_End
+
+.frame185:	spriteHeader
+	spritePiece -21, -20, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -5, 12, 2, 1, 16, 0, 0, 0, 0
+.frame185_End
+
+.frame186:	spriteHeader
+	spritePiece -21, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -21, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -5, 12, 2, 1, 15, 0, 0, 0, 0
+.frame186_End
+
+.frame187:	spriteHeader
+	spritePiece -21, -18, 4, 4, 0, 0, 0, 0, 0
+.frame187_End
+
+.frame188:	spriteHeader
+	spritePiece -21, -17, 4, 4, 0, 0, 0, 0, 0
+.frame188_End
+
+.frame189:	spriteHeader
+	spritePiece -16, -20, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -16, -4, 3, 1, 8, 0, 0, 0, 0
+	spritePiece -8, 4, 2, 1, 11, 0, 0, 0, 0
+	spritePiece 0, 12, 1, 1, 13, 0, 0, 0, 0
+.frame189_End
+
+.frame190:	spriteHeader
+	spritePiece -16, -20, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -16, 4, 2, 2, 12, 0, 0, 0, 0
+.frame190_End
+
+.frame191:	spriteHeader
+	spritePiece -4, -20, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 4, 2, 0, 0, 0, 0
+	spritePiece -20, 12, 1, 1, 18, 0, 0, 0, 0
+.frame191_End
+
+.frame192:	spriteHeader
+	spritePiece -16, -12, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -24, -4, 4, 2, 4, 0, 0, 0, 0
+	spritePiece 8, -4, 2, 2, 12, 0, 0, 0, 0
+.frame192_End
+
+.frame193:	spriteHeader
+	spritePiece -12, -12, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -20, -4, 1, 2, 12, 0, 0, 0, 0
+.frame193_End
+
+.frame194:	spriteHeader
+	spritePiece -16, -12, 4, 3, 0, 0, 0, 0, 0
+.frame194_End
+
+.frame195:	spriteHeader
+	spritePiece -20, -12, 4, 3, 0, 1, 0, 0, 0
+	spritePiece 12, -4, 1, 2, 12, 1, 0, 0, 0
+.frame195_End
+
+.frame196:	spriteHeader
+	spritePiece -16, -12, 4, 1, 0, 1, 0, 0, 0
+	spritePiece -8, -4, 4, 2, 4, 1, 0, 0, 0
+	spritePiece -24, -4, 2, 2, 12, 1, 0, 0, 0
+.frame196_End
+
+.frame197:	spriteHeader
+	spritePiece -21, -12, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 11, -12, 2, 3, 12, 0, 0, 0, 0
+.frame197_End
+
+.frame198:	spriteHeader
+	spritePiece -10, -12, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -18, -4, 4, 2, 4, 0, 0, 0, 0
+	spritePiece 14, -4, 2, 2, 12, 0, 0, 0, 0
+.frame198_End
+
+.frame199:	spriteHeader
+	spritePiece -16, -12, 4, 3, 0, 0, 0, 0, 0
+.frame199_End
+
+.frame200:	spriteHeader
+	spritePiece -21, -12, 4, 1, 0, 1, 0, 0, 0
+	spritePiece -13, -4, 4, 2, 4, 1, 0, 0, 0
+	spritePiece -29, -4, 2, 2, 12, 1, 0, 0, 0
+.frame200_End
+
+.frame201:	spriteHeader
+	spritePiece -10, -12, 4, 3, 0, 1, 0, 0, 0
+	spritePiece -26, -12, 2, 3, 12, 1, 0, 0, 0
+.frame201_End
+
+.frame202:	spriteHeader
+	spritePiece -16, -17, 4, 2, 0, 0, 0, 0, 0
+	spritePiece -24, -1, 4, 2, 8, 0, 0, 0, 0
+	spritePiece 8, -1, 2, 2, 16, 0, 0, 0, 0
+	spritePiece -24, 15, 3, 1, 20, 0, 0, 0, 0
+.frame202_End
+
+.frame203:	spriteHeader
+	spritePiece -16, -24, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -24, -8, 1, 1, 12, 0, 0, 0, 0
+	spritePiece -24, 0, 4, 1, 13, 0, 0, 0, 0
+	spritePiece -8, 8, 2, 2, 17, 0, 0, 0, 0
+.frame203_End
+
+.frame204:	spriteHeader
+	spritePiece -4, -13, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -5, 4, 1, 2, 0, 0, 0, 0
+	spritePiece -28, 3, 4, 1, 6, 0, 0, 0, 0
+	spritePiece 4, 3, 3, 1, 10, 0, 0, 0, 0
+.frame204_End
+
+.frame205:	spriteHeader
+	spritePiece -8, -12, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -4, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -24, 4, 1, 2, 15, 0, 0, 0, 0
+.frame205_End
+
+.frame206:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 1, 3, 0, 0, 0, 0
+	spritePiece -20, -4, 4, 3, 7, 0, 0, 0, 0
+	spritePiece 12, -4, 1, 1, 19, 0, 0, 0, 0
+.frame206_End
+
+.frame207:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -20, -4, 1, 2, 15, 0, 0, 0, 0
+	spritePiece -20, 12, 3, 1, 17, 0, 0, 0, 0
+.frame207_End
+
+.frame208:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 1, 3, 0, 0, 0, 0
+	spritePiece -20, -4, 1, 1, 7, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 1, 8, 0, 0, 0, 0
+	spritePiece -20, 4, 4, 2, 12, 0, 0, 0, 0
+.frame208_End
+
+.frame209:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -20, -4, 1, 1, 15, 0, 0, 0, 0
+	spritePiece -20, 12, 3, 1, 16, 0, 0, 0, 0
+.frame209_End
+
+.frame210:	spriteHeader
+	spritePiece -14, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -14, 12, 4, 1, 12, 0, 0, 0, 0
+.frame210_End
+
+.frame211:	spriteHeader
+	spritePiece -14, -20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -14, 12, 4, 1, 12, 0, 0, 0, 0
+.frame211_End
+
+.frame212:	spriteHeader
+	spritePiece -14, -20, 3, 4, 4, 0, 0, 0, 0
+	spritePiece -14, 12, 4, 1, 0, 0, 0, 0, 0
+.frame212_End
+
+.frame213:	spriteHeader
+	spritePiece -12, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 3, 6, 0, 0, 0, 0
+.frame213_End
+
+.frame214:	spriteHeader
+	spritePiece -12, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 3, 6, 0, 0, 0, 0
+.frame214_End
+
+.frame215:	spriteHeader
+	spritePiece -12, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 3, 6, 0, 0, 0, 0
+.frame215_End
+
+.frame216:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -12, 12, 4, 1, 14, 0, 0, 0, 0
+.frame216_End
+
+.frame217:	spriteHeader
+	spritePiece -12, -20, 3, 1, 4, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 1, 7, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 1, 11, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 1, 15, 0, 0, 0, 0
+	spritePiece -12, 12, 4, 1, 0, 0, 0, 0, 0
+.frame217_End
+
+.frame218:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -12, 12, 4, 1, 14, 0, 0, 0, 0
+.frame218_End
+
+.frame219:	spriteHeader
+	spritePiece -12, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -12, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -12, 12, 4, 1, 14, 0, 0, 0, 0
+.frame219_End
+
+.frame220:	spriteHeader
+	spritePiece -10, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -10, -12, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -10, 4, 3, 2, 11, 0, 0, 0, 0
+.frame220_End
+
+.frame221:	spriteHeader
+	spritePiece -9, -20, 3, 3, 0, 0, 0, 0, 0
+	spritePiece 15, -12, 2, 2, 9, 0, 0, 0, 0
+	spritePiece -9, 4, 3, 2, 13, 0, 0, 0, 0
+.frame221_End
+
+.frame222:	spriteHeader
+	spritePiece -12, -20, 4, 3, 0, 0, 0, 0, 0
+	spritePiece 20, -12, 1, 2, 12, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 1, 14, 0, 0, 0, 0
+	spritePiece -12, 12, 4, 1, 17, 0, 0, 0, 0
+.frame222_End
+
+.frame223:	spriteHeader
+	spritePiece -15, -19, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -15, -3, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -7, 13, 2, 1, 14, 0, 0, 0, 0
+.frame223_End
+
+.frame224:	spriteHeader
+	spritePiece -15, -16, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -15, -8, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -7, 8, 2, 1, 11, 0, 0, 0, 0
+.frame224_End
+
+.frame225:	spriteHeader
+	spritePiece -16, -12, 4, 4, 0, 0, 0, 0, 0
+.frame225_End
+
+.frame226:	spriteHeader
+	spritePiece -13, -18, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -13, 14, 2, 1, 12, 0, 0, 0, 0
+.frame226_End
+
+.frame227:	spriteHeader
+	spritePiece -12, -17, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -12, 7, 4, 2, 9, 0, 0, 0, 0
+.frame227_End
+
+.frame228:	spriteHeader
+	spritePiece -8, -24, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -16, 3, 1, 2, 0, 0, 0, 0
+	spritePiece -16, -8, 4, 2, 5, 0, 0, 0, 0
+	spritePiece -8, 8, 3, 2, 13, 0, 0, 0, 0
+.frame228_End
+
+.frame229:	spriteHeader
+	spritePiece -12, -24, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -4, 8, 3, 2, 12, 0, 0, 0, 0
+.frame229_End
+
+.frame230:	spriteHeader
+	spritePiece -16, -24, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -8, 8, 3, 1, 16, 0, 0, 0, 0
+	spritePiece 0, 16, 2, 1, 19, 0, 0, 0, 0
+.frame230_End
+
+.frame231:	spriteHeader
+	spritePiece -12, -24, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -4, 8, 2, 1, 12, 0, 0, 0, 0
+	spritePiece -12, 16, 3, 1, 14, 0, 0, 0, 0
+.frame231_End
+
+.frame232:	spriteHeader
+	spritePiece -10, -24, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -18, -8, 4, 1, 6, 0, 0, 0, 0
+	spritePiece -10, 0, 3, 1, 10, 0, 0, 0, 0
+	spritePiece -18, 8, 3, 2, 13, 0, 0, 0, 0
+.frame232_End
+
+.frame233:	spriteHeader
+	spritePiece -13, -24, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -13, -8, 4, 2, 6, 0, 0, 0, 0
+	spritePiece -13, 8, 3, 2, 14, 0, 0, 0, 0
+.frame233_End
+
+.frame234:	spriteHeader
+	spritePiece -12, -24, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 8, 3, 2, 12, 0, 0, 0, 0
+.frame234_End
+
+.frame235:	spriteHeader
+	spritePiece -12, -20, 3, 2, 0, 0, 0, 0, 0
+	spritePiece -12, -4, 4, 1, 6, 0, 0, 0, 0
+	spritePiece -12, 4, 3, 2, 10, 0, 0, 0, 0
+.frame235_End
+
+.frame236:	spriteHeader
+	spritePiece -23, -20, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -23, -12, 1, 3, 4, 0, 0, 0, 0
+	spritePiece -15, -12, 4, 4, 7, 0, 0, 0, 0
+.frame236_End
+
+.frame237:	spriteHeader
+	spritePiece -22, -20, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -22, -12, 4, 4, 4, 0, 0, 0, 0
+	spritePiece 10, -12, 1, 4, 20, 0, 0, 0, 0
+.frame237_End
+
+.frame238:	spriteHeader
+	spritePiece -22, -20, 4, 1, 0, 0, 0, 0, 0
+	spritePiece -22, -12, 4, 4, 4, 0, 0, 0, 0
+	spritePiece 10, -12, 1, 4, 20, 0, 0, 0, 0
+.frame238_End
+
+.frame239:	spriteHeader
+	spritePiece -8, -24, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -16, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -16, 8, 3, 1, 14, 0, 0, 0, 0
+.frame239_End
+
+.frame240:	spriteHeader
+	spritePiece -8, -24, 2, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -16, 4, 3, 2, 0, 0, 0, 0
+	spritePiece -8, 8, 2, 1, 14, 0, 0, 0, 0
+.frame240_End
+
+.frame241:	spriteHeader
+	spritePiece -12, -24, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -12, 8, 3, 1, 12, 0, 0, 0, 0
+.frame241_End
+
+.frame242:	spriteHeader
+	spritePiece -12, -21, 3, 4, 0, 0, 0, 0, 0
+	spritePiece -4, 11, 1, 1, 12, 0, 0, 0, 0
+.frame242_End
+
+.frame243:	spriteHeader
+	spritePiece -12, -24, 3, 4, 0, 1, 0, 0, 0
+	spritePiece -12, 8, 3, 1, 12, 1, 0, 0, 0
+.frame243_End
+
+.frame244:	spriteHeader
+	spritePiece -16, -20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -12, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -8, 12, 2, 1, 15, 0, 0, 0, 0
+.frame244_End
+
+.frame245:	spriteHeader
+	spritePiece -16, -21, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -13, 4, 3, 3, 0, 0, 0, 0
+	spritePiece -16, 11, 3, 1, 15, 0, 0, 0, 0
+.frame245_End
+
+.frame246:	spriteHeader
+	spritePiece -16, -20, 4, 4, 0, 0, 0, 0, 0
+	spritePiece -8, 12, 2, 1, 16, 0, 0, 0, 0
+.frame246_End
+
+.frame247:	spriteHeader
+	spritePiece -8, -21, 3, 1, 0, 0, 0, 0, 0
+	spritePiece -16, -13, 4, 2, 3, 0, 0, 0, 0
+	spritePiece -8, 3, 3, 1, 11, 0, 0, 0, 0
+	spritePiece -8, 11, 2, 1, 14, 0, 0, 0, 0
+.frame247_End
+
+.frame248:	spriteHeader
+	spritePiece -12, -20, 3, 3, 0, 0, 0, 0, 0
+	spritePiece -4, 4, 2, 1, 9, 0, 0, 0, 0
+	spritePiece -12, 12, 2, 1, 11, 0, 0, 0, 0
+.frame248_End
+
+.frame249:	spriteHeader
+	spritePiece -16, -21, 3, 1, 0, 1, 0, 0, 0
+	spritePiece -16, -13, 4, 2, 3, 1, 0, 0, 0
+	spritePiece -16, 3, 3, 1, 11, 1, 0, 0, 0
+	spritePiece -8, 11, 2, 1, 14, 1, 0, 0, 0
+.frame249_End
+
+.frame250:	spriteHeader
+	spritePiece -16, -21, 4, 3, 0, 0, 0, 0, 0
+	spritePiece -16, 3, 3, 2, 12, 0, 0, 0, 0
+.frame250_End
 
 	even

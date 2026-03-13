@@ -1,1056 +1,963 @@
-DPLC_386e: mappingsTable
-	mappingsTableEntry.w	DPLC_386e_0
-	mappingsTableEntry.w	DPLC_386e_1
-	mappingsTableEntry.w	DPLC_386e_2
-	mappingsTableEntry.w	DPLC_386e_3
-	mappingsTableEntry.w	DPLC_386e_4
-	mappingsTableEntry.w	DPLC_386e_5
-	mappingsTableEntry.w	DPLC_386e_6
-	mappingsTableEntry.w	DPLC_386e_7
-	mappingsTableEntry.w	DPLC_386e_8
-	mappingsTableEntry.w	DPLC_386e_9
-	mappingsTableEntry.w	DPLC_386e_10
-	mappingsTableEntry.w	DPLC_386e_11
-	mappingsTableEntry.w	DPLC_386e_12
-	mappingsTableEntry.w	DPLC_386e_13
-	mappingsTableEntry.w	DPLC_386e_14
-	mappingsTableEntry.w	DPLC_386e_15
-	mappingsTableEntry.w	DPLC_386e_16
-	mappingsTableEntry.w	DPLC_386e_17
-	mappingsTableEntry.w	DPLC_386e_18
-	mappingsTableEntry.w	DPLC_386e_19
-	mappingsTableEntry.w	DPLC_386e_20
-	mappingsTableEntry.w	DPLC_386e_21
-	mappingsTableEntry.w	DPLC_386e_22
-	mappingsTableEntry.w	DPLC_386e_23
-	mappingsTableEntry.w	DPLC_386e_24
-	mappingsTableEntry.w	DPLC_386e_25
-	mappingsTableEntry.w	DPLC_386e_26
-	mappingsTableEntry.w	DPLC_386e_27
-	mappingsTableEntry.w	DPLC_386e_28
-	mappingsTableEntry.w	DPLC_386e_29
-	mappingsTableEntry.w	DPLC_386e_30
-	mappingsTableEntry.w	DPLC_386e_31
-	mappingsTableEntry.w	DPLC_386e_32
-	mappingsTableEntry.w	DPLC_386e_33
-	mappingsTableEntry.w	DPLC_386e_34
-	mappingsTableEntry.w	DPLC_386e_35
-	mappingsTableEntry.w	DPLC_386e_36
-	mappingsTableEntry.w	DPLC_386e_37
-	mappingsTableEntry.w	DPLC_386e_38
-	mappingsTableEntry.w	DPLC_386e_39
-	mappingsTableEntry.w	DPLC_386e_40
-	mappingsTableEntry.w	DPLC_386e_41
-	mappingsTableEntry.w	DPLC_386e_42
-	mappingsTableEntry.w	DPLC_386e_43
-	mappingsTableEntry.w	DPLC_386e_44
-	mappingsTableEntry.w	DPLC_386e_45
-	mappingsTableEntry.w	DPLC_386e_46
-	mappingsTableEntry.w	DPLC_386e_47
-	mappingsTableEntry.w	DPLC_386e_48
-	mappingsTableEntry.w	DPLC_386e_49
-	mappingsTableEntry.w	DPLC_386e_50
-	mappingsTableEntry.w	DPLC_386e_51
-	mappingsTableEntry.w	DPLC_386e_52
-	mappingsTableEntry.w	DPLC_386e_53
-	mappingsTableEntry.w	DPLC_386e_54
-	mappingsTableEntry.w	DPLC_386e_55
-	mappingsTableEntry.w	DPLC_386e_56
-	mappingsTableEntry.w	DPLC_386e_57
-	mappingsTableEntry.w	DPLC_386e_58
-	mappingsTableEntry.w	DPLC_386e_59
-	mappingsTableEntry.w	DPLC_386e_60
-	mappingsTableEntry.w	DPLC_386e_61
-	mappingsTableEntry.w	DPLC_386e_62
-	mappingsTableEntry.w	DPLC_386e_63
-	mappingsTableEntry.w	DPLC_386e_64
-	mappingsTableEntry.w	DPLC_386e_65
-	mappingsTableEntry.w	DPLC_386e_66
-	mappingsTableEntry.w	DPLC_386e_67
-	mappingsTableEntry.w	DPLC_386e_68
-	mappingsTableEntry.w	DPLC_386e_69
-	mappingsTableEntry.w	DPLC_386e_70
-	mappingsTableEntry.w	DPLC_386e_71
-	mappingsTableEntry.w	DPLC_386e_72
-	mappingsTableEntry.w	DPLC_386e_73
-	mappingsTableEntry.w	DPLC_386e_74
-	mappingsTableEntry.w	DPLC_386e_75
-	mappingsTableEntry.w	DPLC_386e_76
-	mappingsTableEntry.w	DPLC_386e_77
-	mappingsTableEntry.w	DPLC_386e_78
-	mappingsTableEntry.w	DPLC_386e_79
-	mappingsTableEntry.w	DPLC_386e_80
-	mappingsTableEntry.w	DPLC_386e_81
-	mappingsTableEntry.w	DPLC_386e_82
-	mappingsTableEntry.w	DPLC_386e_83
-	mappingsTableEntry.w	DPLC_386e_84
-	mappingsTableEntry.w	DPLC_386e_85
-	mappingsTableEntry.w	DPLC_386e_86
-	mappingsTableEntry.w	DPLC_386e_87
-	mappingsTableEntry.w	DPLC_386e_88
-	mappingsTableEntry.w	DPLC_386e_89
-	mappingsTableEntry.w	DPLC_386e_90
-	mappingsTableEntry.w	DPLC_386e_91
-	mappingsTableEntry.w	DPLC_386e_92
-	mappingsTableEntry.w	DPLC_386e_93
-	mappingsTableEntry.w	DPLC_386e_94
-	mappingsTableEntry.w	DPLC_386e_95
-	mappingsTableEntry.w	DPLC_386e_96
-	mappingsTableEntry.w	DPLC_386e_97
-	mappingsTableEntry.w	DPLC_386e_98
-	mappingsTableEntry.w	DPLC_386e_99
-	mappingsTableEntry.w	DPLC_386e_100
-	mappingsTableEntry.w	DPLC_386e_101
-	mappingsTableEntry.w	DPLC_386e_102
-	mappingsTableEntry.w	DPLC_386e_103
-	mappingsTableEntry.w	DPLC_386e_104
-	mappingsTableEntry.w	DPLC_386e_105
-	mappingsTableEntry.w	DPLC_386e_106
-	mappingsTableEntry.w	DPLC_386e_107
-	mappingsTableEntry.w	DPLC_386e_108
-	mappingsTableEntry.w	DPLC_386e_109
-	mappingsTableEntry.w	DPLC_386e_110
-	mappingsTableEntry.w	DPLC_386e_111
-	mappingsTableEntry.w	DPLC_386e_112
-	mappingsTableEntry.w	DPLC_386e_113
-	mappingsTableEntry.w	DPLC_386e_114
-	mappingsTableEntry.w	DPLC_386e_115
-	mappingsTableEntry.w	DPLC_386e_116
-	mappingsTableEntry.w	DPLC_386e_117
-	mappingsTableEntry.w	DPLC_386e_118
-	mappingsTableEntry.w	DPLC_386e_119
-	mappingsTableEntry.w	DPLC_386e_120
-	mappingsTableEntry.w	DPLC_386e_121
-	mappingsTableEntry.w	DPLC_386e_122
-	mappingsTableEntry.w	DPLC_386e_123
-	mappingsTableEntry.w	DPLC_386e_124
-	mappingsTableEntry.w	DPLC_386e_125
-	mappingsTableEntry.w	DPLC_386e_126
-	mappingsTableEntry.w	DPLC_386e_127
-	mappingsTableEntry.w	DPLC_386e_128
-	mappingsTableEntry.w	DPLC_386e_129
-	mappingsTableEntry.w	DPLC_386e_130
-	mappingsTableEntry.w	DPLC_386e_131
-	mappingsTableEntry.w	DPLC_386e_132
-	mappingsTableEntry.w	DPLC_386e_133
-	mappingsTableEntry.w	DPLC_386e_134
-	mappingsTableEntry.w	DPLC_386e_135
-	mappingsTableEntry.w	DPLC_386e_136
-	mappingsTableEntry.w	DPLC_386e_137
-	mappingsTableEntry.w	DPLC_386e_138
-	mappingsTableEntry.w	DPLC_386e_139
-	mappingsTableEntry.w	DPLC_386e_140
-	mappingsTableEntry.w	DPLC_386e_141
-	mappingsTableEntry.w	DPLC_386e_142
-	mappingsTableEntry.w	DPLC_386e_143
-	mappingsTableEntry.w	DPLC_386e_144
-	mappingsTableEntry.w	DPLC_386e_145
-	mappingsTableEntry.w	DPLC_386e_146
-	mappingsTableEntry.w	DPLC_386e_147
-	mappingsTableEntry.w	DPLC_386e_148
-	mappingsTableEntry.w	DPLC_386e_149
-	mappingsTableEntry.w	DPLC_386e_150
-	mappingsTableEntry.w	DPLC_386e_151
-	mappingsTableEntry.w	DPLC_386e_152
-	mappingsTableEntry.w	DPLC_386e_153
-	mappingsTableEntry.w	DPLC_386e_154
-	mappingsTableEntry.w	DPLC_386e_155
-	mappingsTableEntry.w	DPLC_386e_156
-	mappingsTableEntry.w	DPLC_386e_157
-	mappingsTableEntry.w	DPLC_386e_158
-	mappingsTableEntry.w	DPLC_386e_159
-	mappingsTableEntry.w	DPLC_386e_160
-	mappingsTableEntry.w	DPLC_386e_161
-	mappingsTableEntry.w	DPLC_386e_162
-
-DPLC_386e_0:	dplcHeader
-DPLC_386e_0_End
-
-DPLC_386e_1:	dplcHeader
- dplcEntry 3, 0
- dplcEntry 8, 3
- dplcEntry 3, $B
- dplcEntry 3, $E
-DPLC_386e_1_End
-
-DPLC_386e_2:	dplcHeader
- dplcEntry 6, $11
- dplcEntry 6, $17
- dplcEntry 3, $1D
-DPLC_386e_2_End
-
-DPLC_386e_3:	dplcHeader
- dplcEntry 6, $20
- dplcEntry 6, $17
- dplcEntry 3, $1D
-DPLC_386e_3_End
-
-DPLC_386e_4:	dplcHeader
- dplcEntry 6, $20
- dplcEntry 6, $17
- dplcEntry 3, $26
-DPLC_386e_4_End
-
-DPLC_386e_5:	dplcHeader
- dplcEntry 9, $29
- dplcEntry 3, $B
- dplcEntry 3, $E
-DPLC_386e_5_End
-
-DPLC_386e_6:	dplcHeader
- dplcEntry 8, $32
- dplcEntry 6, $3A
- dplcEntry 6, $40
- dplcEntry 2, $46
-DPLC_386e_6_End
-
-DPLC_386e_7:	dplcHeader
- dplcEntry 8, $32
- dplcEntry $C, $48
-DPLC_386e_7_End
-
-DPLC_386e_8:	dplcHeader
- dplcEntry 6, $54
- dplcEntry 9, $5A
-DPLC_386e_8_End
-
-DPLC_386e_9:	dplcHeader
- dplcEntry 6, $54
- dplcEntry 6, $63
- dplcEntry 6, $69
- dplcEntry 2, $6F
-DPLC_386e_9_End
-
-DPLC_386e_10:	dplcHeader
- dplcEntry 6, $54
- dplcEntry $C, $71
-DPLC_386e_10_End
-
-DPLC_386e_11:	dplcHeader
- dplcEntry 8, $32
- dplcEntry 4, $7D
- dplcEntry 6, $81
-DPLC_386e_11_End
-
-DPLC_386e_12:	dplcHeader
- dplcEntry 6, $87
- dplcEntry 6, $8D
- dplcEntry 3, $93
- dplcEntry 6, $96
- dplcEntry 1, $9C
-DPLC_386e_12_End
-
-DPLC_386e_13:	dplcHeader
- dplcEntry 6, $87
- dplcEntry 2, $9D
- dplcEntry 4, $9F
- dplcEntry 6, $A3
- dplcEntry 4, $A9
- dplcEntry 1, $AD
-DPLC_386e_13_End
-
-DPLC_386e_14:	dplcHeader
- dplcEntry 6, $AE
- dplcEntry 2, $B4
- dplcEntry 8, $B6
- dplcEntry 3, $BE
-DPLC_386e_14_End
-
-DPLC_386e_15:	dplcHeader
- dplcEntry 6, $C1
- dplcEntry 4, $C7
- dplcEntry 8, $CB
- dplcEntry 3, $D3
- dplcEntry 2, $D6
-DPLC_386e_15_End
-
-DPLC_386e_16:	dplcHeader
- dplcEntry 6, $C1
- dplcEntry 2, $D8
- dplcEntry 8, $DA
- dplcEntry 3, $E2
-DPLC_386e_16_End
-
-DPLC_386e_17:	dplcHeader
- dplcEntry 6, $87
- dplcEntry 2, $9D
- dplcEntry 1, $93
- dplcEntry 8, $E5
- dplcEntry 3, $ED
-DPLC_386e_17_End
-
-DPLC_386e_18:	dplcHeader
- dplcEntry 8, $F0
- dplcEntry 6, $F8
- dplcEntry 2, $FE
- dplcEntry 6, $100
-DPLC_386e_18_End
-
-DPLC_386e_19:	dplcHeader
- dplcEntry 8, $F0
- dplcEntry $C, $106
-DPLC_386e_19_End
-
-DPLC_386e_20:	dplcHeader
- dplcEntry 6, $112
- dplcEntry 9, $118
-DPLC_386e_20_End
-
-DPLC_386e_21:	dplcHeader
- dplcEntry 6, $112
- dplcEntry 6, $121
- dplcEntry 2, $127
- dplcEntry 6, $129
-DPLC_386e_21_End
-
-DPLC_386e_22:	dplcHeader
- dplcEntry 6, $112
- dplcEntry $C, $12F
-DPLC_386e_22_End
-
-DPLC_386e_23:	dplcHeader
- dplcEntry 8, $F0
- dplcEntry 1, $106
- dplcEntry 9, $13B
-DPLC_386e_23_End
-
-DPLC_386e_24:	dplcHeader
- dplcEntry 6, $144
- dplcEntry 2, $14A
- dplcEntry 2, $14C
- dplcEntry 9, $14E
- dplcEntry 1, $157
- dplcEntry 1, $158
-DPLC_386e_24_End
-
-DPLC_386e_25:	dplcHeader
- dplcEntry 6, $144
- dplcEntry 3, $159
- dplcEntry 2, $15C
- dplcEntry 2, $15E
- dplcEntry 9, $160
- dplcEntry 1, $157
-DPLC_386e_25_End
-
-DPLC_386e_26:	dplcHeader
- dplcEntry 6, $169
- dplcEntry 2, $16F
- dplcEntry 9, $171
- dplcEntry 2, $17A
-DPLC_386e_26_End
-
-DPLC_386e_27:	dplcHeader
- dplcEntry 6, $17C
- dplcEntry 3, $182
- dplcEntry 2, $185
- dplcEntry 8, $187
- dplcEntry 3, $18F
-DPLC_386e_27_End
-
-DPLC_386e_28:	dplcHeader
- dplcEntry 6, $17C
- dplcEntry 2, $192
- dplcEntry 9, $194
- dplcEntry 2, $19D
-DPLC_386e_28_End
-
-DPLC_386e_29:	dplcHeader
- dplcEntry 6, $144
- dplcEntry 9, $19F
- dplcEntry 2, $15E
- dplcEntry 2, $1A8
- dplcEntry 1, $157
-DPLC_386e_29_End
-
-DPLC_386e_30:	dplcHeader
- dplcEntry 6, $1AA
- dplcEntry $C, $1B0
-DPLC_386e_30_End
-
-DPLC_386e_31:	dplcHeader
- dplcEntry 6, $54
- dplcEntry $C, $1BC
-DPLC_386e_31_End
-
-DPLC_386e_32:	dplcHeader
- dplcEntry 6, $1AA
- dplcEntry $C, $1C8
-DPLC_386e_32_End
-
-DPLC_386e_33:	dplcHeader
- dplcEntry 6, $54
- dplcEntry $C, $1D4
-DPLC_386e_33_End
-
-DPLC_386e_34:	dplcHeader
- dplcEntry 6, $1E0
- dplcEntry 2, $1E6
- dplcEntry $C, $1E8
- dplcEntry 1, $1F4
-DPLC_386e_34_End
-
-DPLC_386e_35:	dplcHeader
- dplcEntry 6, $1F5
- dplcEntry 2, $1FB
- dplcEntry $C, $1FD
-DPLC_386e_35_End
-
-DPLC_386e_36:	dplcHeader
- dplcEntry 6, $1E0
- dplcEntry 2, $209
- dplcEntry $C, $20B
- dplcEntry 1, $1F4
-DPLC_386e_36_End
-
-DPLC_386e_37:	dplcHeader
- dplcEntry 6, $1F5
- dplcEntry 2, $1FB
- dplcEntry $C, $217
-DPLC_386e_37_End
-
-DPLC_386e_38:	dplcHeader
- dplcEntry 6, $223
- dplcEntry $C, $229
-DPLC_386e_38_End
-
-DPLC_386e_39:	dplcHeader
- dplcEntry 6, $112
- dplcEntry $C, $235
-DPLC_386e_39_End
-
-DPLC_386e_40:	dplcHeader
- dplcEntry 6, $223
- dplcEntry $C, $241
-DPLC_386e_40_End
-
-DPLC_386e_41:	dplcHeader
- dplcEntry 6, $112
- dplcEntry $C, $24D
-DPLC_386e_41_End
-
-DPLC_386e_42:	dplcHeader
- dplcEntry 6, $259
- dplcEntry 2, $25F
- dplcEntry $C, $261
- dplcEntry 1, $26D
-DPLC_386e_42_End
-
-DPLC_386e_43:	dplcHeader
- dplcEntry 8, $26E
- dplcEntry $C, $276
-DPLC_386e_43_End
-
-DPLC_386e_44:	dplcHeader
- dplcEntry 6, $259
- dplcEntry 2, $282
- dplcEntry $C, $284
- dplcEntry 1, $26D
-DPLC_386e_44_End
-
-DPLC_386e_45:	dplcHeader
- dplcEntry 8, $26E
- dplcEntry $C, $290
-DPLC_386e_45_End
-
-DPLC_386e_46:	dplcHeader
- dplcEntry $10, $29C
-DPLC_386e_46_End
-
-DPLC_386e_47:	dplcHeader
- dplcEntry $10, $2AC
-DPLC_386e_47_End
-
-DPLC_386e_48:	dplcHeader
- dplcEntry $10, $2BC
-DPLC_386e_48_End
-
-DPLC_386e_49:	dplcHeader
- dplcEntry $10, $2CC
-DPLC_386e_49_End
-
-DPLC_386e_50:	dplcHeader
- dplcEntry $10, $2DC
-DPLC_386e_50_End
-
-DPLC_386e_51:	dplcHeader
- dplcEntry $C, $2EC
- dplcEntry 3, $2F8
-DPLC_386e_51_End
-
-DPLC_386e_52:	dplcHeader
- dplcEntry $10, $2FB
-DPLC_386e_52_End
-
-DPLC_386e_53:	dplcHeader
- dplcEntry $C, $30B
- dplcEntry 3, $317
-DPLC_386e_53_End
-
-DPLC_386e_54:	dplcHeader
- dplcEntry $10, $31A
-DPLC_386e_54_End
-
-DPLC_386e_55:	dplcHeader
- dplcEntry 6, $32A
- dplcEntry $C, $330
-DPLC_386e_55_End
-
-DPLC_386e_56:	dplcHeader
- dplcEntry 6, $33C
- dplcEntry 8, $342
- dplcEntry 2, $34A
- dplcEntry 1, $34C
-DPLC_386e_56_End
-
-DPLC_386e_57:	dplcHeader
- dplcEntry 2, $34D
- dplcEntry 8, $34F
- dplcEntry 3, $357
- dplcEntry 1, $35A
-DPLC_386e_57_End
-
-DPLC_386e_58:	dplcHeader
- dplcEntry 3, $35B
- dplcEntry 3, $35E
- dplcEntry $10, $361
-DPLC_386e_58_End
-
-DPLC_386e_59:	dplcHeader
- dplcEntry $C, $371
- dplcEntry 8, $37D
- dplcEntry 1, $71
-DPLC_386e_59_End
-
-DPLC_386e_60:	dplcHeader
- dplcEntry 8, $385
- dplcEntry 4, $38D
- dplcEntry 3, $391
-DPLC_386e_60_End
-
-DPLC_386e_61:	dplcHeader
- dplcEntry 9, $394
-DPLC_386e_61_End
-
-DPLC_386e_62:	dplcHeader
- dplcEntry 8, $39D
- dplcEntry 1, $3A5
- dplcEntry 4, $3A6
-DPLC_386e_62_End
-
-DPLC_386e_63:	dplcHeader
- dplcEntry 8, $3AA
- dplcEntry 4, $3B2
- dplcEntry 3, $3B6
-DPLC_386e_63_End
-
-DPLC_386e_64:	dplcHeader
- dplcEntry $F, $3B9
-DPLC_386e_64_End
-
-DPLC_386e_65:	dplcHeader
- dplcEntry $C, $3C8
- dplcEntry 4, $3D4
- dplcEntry 1, $3D8
- dplcEntry 1, $3D9
-DPLC_386e_65_End
-
-DPLC_386e_66:	dplcHeader
- dplcEntry $C, $3DA
- dplcEntry 4, $3E6
- dplcEntry 1, $3EA
- dplcEntry 1, $3EB
-DPLC_386e_66_End
-
-DPLC_386e_67:	dplcHeader
- dplcEntry 9, $3EC
- dplcEntry 2, $3F5
- dplcEntry 6, $3F7
- dplcEntry 2, $3FD
- dplcEntry 1, $3FF
-DPLC_386e_67_End
-
-DPLC_386e_68:	dplcHeader
- dplcEntry 9, $400
- dplcEntry 2, $409
- dplcEntry 6, $3F7
- dplcEntry 2, $3FD
- dplcEntry 1, $3FF
-DPLC_386e_68_End
-
-DPLC_386e_69:	dplcHeader
- dplcEntry 9, $40B
- dplcEntry 8, $414
-DPLC_386e_69_End
-
-DPLC_386e_70:	dplcHeader
- dplcEntry 9, $41C
- dplcEntry 3, $425
- dplcEntry 2, $428
-DPLC_386e_70_End
-
-DPLC_386e_71:	dplcHeader
- dplcEntry 9, $42A
- dplcEntry 8, $433
-DPLC_386e_71_End
-
-DPLC_386e_72:	dplcHeader
- dplcEntry 9, $41C
- dplcEntry 3, $43B
- dplcEntry 2, $43E
-DPLC_386e_72_End
-
-DPLC_386e_73:	dplcHeader
- dplcEntry 6, $440
- dplcEntry $C, $446
-DPLC_386e_73_End
-
-DPLC_386e_74:	dplcHeader
- dplcEntry 9, $452
- dplcEntry 4, $45B
- dplcEntry 1, $45F
-DPLC_386e_74_End
-
-DPLC_386e_75:	dplcHeader
- dplcEntry 8, $460
- dplcEntry 2, $468
- dplcEntry $C, $46A
-DPLC_386e_75_End
-
-DPLC_386e_76:	dplcHeader
- dplcEntry 8, $476
- dplcEntry 2, $47E
- dplcEntry 6, $480
- dplcEntry 4, $486
- dplcEntry 1, $48A
-DPLC_386e_76_End
-
-DPLC_386e_77:	dplcHeader
- dplcEntry 8, $48B
- dplcEntry 2, $47E
- dplcEntry 6, $493
- dplcEntry 4, $486
- dplcEntry 1, $48A
-DPLC_386e_77_End
-
-DPLC_386e_78:	dplcHeader
- dplcEntry 3, $499
- dplcEntry $10, $49C
-DPLC_386e_78_End
-
-DPLC_386e_79:	dplcHeader
- dplcEntry 3, $4AC
- dplcEntry $C, $4AF
- dplcEntry 3, $4BB
-DPLC_386e_79_End
-
-DPLC_386e_80:	dplcHeader
- dplcEntry $C, $4BE
-DPLC_386e_80_End
-
-DPLC_386e_81:	dplcHeader
- dplcEntry 6, $4CA
-DPLC_386e_81_End
-
-DPLC_386e_82:	dplcHeader
- dplcEntry 2, $4D0
-DPLC_386e_82_End
-
-DPLC_386e_83:	dplcHeader
- dplcEntry 8, $385
- dplcEntry 4, $38D
- dplcEntry 3, $391
-DPLC_386e_83_End
-
-DPLC_386e_84:	dplcHeader
- dplcEntry 8, $39D
- dplcEntry 1, $3A5
- dplcEntry 4, $3A6
-DPLC_386e_84_End
-
-DPLC_386e_85:	dplcHeader
- dplcEntry $C, $4D2
- dplcEntry 2, $4DE
- dplcEntry 4, $4E0
-DPLC_386e_85_End
-
-DPLC_386e_86:	dplcHeader
- dplcEntry 6, $4E4
- dplcEntry $C, $4EA
- dplcEntry 2, $6D
-DPLC_386e_86_End
-
-DPLC_386e_87:	dplcHeader
- dplcEntry $10, $4F6
- dplcEntry 3, $506
-DPLC_386e_87_End
-
-DPLC_386e_88:	dplcHeader
- dplcEntry $10, $5AC
- dplcEntry 3, $5BC
-DPLC_386e_88_End
-
-DPLC_386e_89:	dplcHeader
- dplcEntry $10, $5BF
- dplcEntry 3, $5CF
-DPLC_386e_89_End
-
-DPLC_386e_90:	dplcHeader
- dplcEntry $10, $5D2
- dplcEntry 3, $5E2
-DPLC_386e_90_End
-
-DPLC_386e_91:	dplcHeader
- dplcEntry $10, $5E5
- dplcEntry 2, $5F5
-DPLC_386e_91_End
-
-DPLC_386e_92:	dplcHeader
- dplcEntry $10, $5F7
- dplcEntry 7, $607
-DPLC_386e_92_End
-
-DPLC_386e_93:	dplcHeader
- dplcEntry $10, $60E
- dplcEntry 5, $61E
-DPLC_386e_93_End
-
-DPLC_386e_94:	dplcHeader
- dplcEntry $10, $623
- dplcEntry 7, $633
-DPLC_386e_94_End
-
-DPLC_386e_95:	dplcHeader
- dplcEntry $10, $63A
- dplcEntry 5, $64A
-DPLC_386e_95_End
-
-DPLC_386e_96:	dplcHeader
- dplcEntry $10, $509
- dplcEntry 3, $519
-DPLC_386e_96_End
-
-DPLC_386e_97:	dplcHeader
- dplcEntry $10, $51C
- dplcEntry 3, $52C
-DPLC_386e_97_End
-
-DPLC_386e_98:	dplcHeader
- dplcEntry $10, $52F
- dplcEntry 3, $53F
-DPLC_386e_98_End
-
-DPLC_386e_99:	dplcHeader
- dplcEntry $10, $542
- dplcEntry 2, $552
-DPLC_386e_99_End
-
-DPLC_386e_100:	dplcHeader
- dplcEntry $10, $554
- dplcEntry 7, $564
-DPLC_386e_100_End
-
-DPLC_386e_101:	dplcHeader
- dplcEntry $10, $56B
- dplcEntry 5, $57B
-DPLC_386e_101_End
-
-DPLC_386e_102:	dplcHeader
- dplcEntry $10, $580
- dplcEntry 7, $590
-DPLC_386e_102_End
-
-DPLC_386e_103:	dplcHeader
- dplcEntry $10, $597
- dplcEntry 5, $5A7
-DPLC_386e_103_End
-
-DPLC_386e_104:	dplcHeader
- dplcEntry $C, $64F
-DPLC_386e_104_End
-
-DPLC_386e_105:	dplcHeader
- dplcEntry $10, $65B
- dplcEntry 5, $66B
-DPLC_386e_105_End
-
-DPLC_386e_106:	dplcHeader
- dplcEntry $10, $670
- dplcEntry 6, $680
-DPLC_386e_106_End
-
-DPLC_386e_107:	dplcHeader
- dplcEntry $10, $686
- dplcEntry 6, $696
-DPLC_386e_107_End
-
-DPLC_386e_108:	dplcHeader
- dplcEntry $10, $69C
- dplcEntry 8, $6AC
-DPLC_386e_108_End
-
-DPLC_386e_109:	dplcHeader
- dplcEntry $10, $6B4
- dplcEntry 5, $6C4
-DPLC_386e_109_End
-
-DPLC_386e_110:	dplcHeader
- dplcEntry $10, $6C9
- dplcEntry 5, $6D9
-DPLC_386e_110_End
-
-DPLC_386e_111:	dplcHeader
- dplcEntry $10, $6DE
- dplcEntry 5, $6EE
-DPLC_386e_111_End
-
-DPLC_386e_112:	dplcHeader
- dplcEntry $10, $8D1
- dplcEntry 7, $8E1
-DPLC_386e_112_End
-
-DPLC_386e_113:	dplcHeader
- dplcEntry $10, $8E8
- dplcEntry 6, $8F8
-DPLC_386e_113_End
-
-DPLC_386e_114:	dplcHeader
- dplcEntry $10, $8FE
- dplcEntry 2, $90E
-DPLC_386e_114_End
-
-DPLC_386e_115:	dplcHeader
- dplcEntry $10, $910
- dplcEntry 9, $920
-DPLC_386e_115_End
-
-DPLC_386e_116:	dplcHeader
- dplcEntry $10, $929
- dplcEntry 5, $939
-DPLC_386e_116_End
-
-DPLC_386e_117:	dplcHeader
- dplcEntry $10, $93E
- dplcEntry 8, $94E
-DPLC_386e_117_End
-
-DPLC_386e_118:	dplcHeader
- dplcEntry $10, $6F3
- dplcEntry 4, $703
-DPLC_386e_118_End
-
-DPLC_386e_119:	dplcHeader
- dplcEntry $10, $956
- dplcEntry 4, $966
-DPLC_386e_119_End
-
-DPLC_386e_120:	dplcHeader
- dplcEntry $10, $707
- dplcEntry 3, $717
-DPLC_386e_120_End
-
-DPLC_386e_121:	dplcHeader
- dplcEntry $10, $71A
- dplcEntry 7, $72A
-DPLC_386e_121_End
-
-DPLC_386e_122:	dplcHeader
- dplcEntry $10, $96A
- dplcEntry 7, $97A
-DPLC_386e_122_End
-
-DPLC_386e_123:	dplcHeader
- dplcEntry $10, $731
- dplcEntry 3, $741
-DPLC_386e_123_End
-
-DPLC_386e_124:	dplcHeader
- dplcEntry $10, $981
- dplcEntry 7, $991
-DPLC_386e_124_End
-
-DPLC_386e_125:	dplcHeader
- dplcEntry $10, $998
- dplcEntry 8, $9A8
-DPLC_386e_125_End
-
-DPLC_386e_126:	dplcHeader
- dplcEntry $10, $9B0
- dplcEntry 2, $9C0
-DPLC_386e_126_End
-
-DPLC_386e_127:	dplcHeader
- dplcEntry $10, $9C2
- dplcEntry 9, $9D2
-DPLC_386e_127_End
-
-DPLC_386e_128:	dplcHeader
- dplcEntry $10, $9DB
- dplcEntry 8, $9EB
-DPLC_386e_128_End
-
-DPLC_386e_129:	dplcHeader
- dplcEntry $10, $9F3
- dplcEntry 8, $A03
-DPLC_386e_129_End
-
-DPLC_386e_130:	dplcHeader
- dplcEntry $10, $744
- dplcEntry 6, $754
-DPLC_386e_130_End
-
-DPLC_386e_131:	dplcHeader
- dplcEntry $10, $A0B
- dplcEntry 4, $A1B
-DPLC_386e_131_End
-
-DPLC_386e_132:	dplcHeader
- dplcEntry $10, $A1F
- dplcEntry 3, $A2F
-DPLC_386e_132_End
-
-DPLC_386e_133:	dplcHeader
- dplcEntry $10, $75A
- dplcEntry 6, $76A
-DPLC_386e_133_End
-
-DPLC_386e_134:	dplcHeader
- dplcEntry $10, $A32
- dplcEntry 7, $A42
-DPLC_386e_134_End
-
-DPLC_386e_135:	dplcHeader
- dplcEntry $10, $A49
- dplcEntry 4, $A59
-DPLC_386e_135_End
-
-DPLC_386e_136:	dplcHeader
- dplcEntry $E, $770
-DPLC_386e_136_End
-
-DPLC_386e_137:	dplcHeader
- dplcEntry $10, $7B2
- dplcEntry 1, $7C2
-DPLC_386e_137_End
-
-DPLC_386e_138:	dplcHeader
- dplcEntry $E, $770
-DPLC_386e_138_End
-
-DPLC_386e_139:	dplcHeader
- dplcEntry $10, $7B2
- dplcEntry 1, $7C2
-DPLC_386e_139_End
-
-DPLC_386e_140:	dplcHeader
- dplcEntry $10, $77E
- dplcEntry 3, $78E
-DPLC_386e_140_End
-
-DPLC_386e_141:	dplcHeader
- dplcEntry $10, $7C3
- dplcEntry 3, $7D3
-DPLC_386e_141_End
-
-DPLC_386e_142:	dplcHeader
- dplcEntry $10, $77E
- dplcEntry 3, $78E
-DPLC_386e_142_End
-
-DPLC_386e_143:	dplcHeader
- dplcEntry $10, $7C3
- dplcEntry 3, $7D3
-DPLC_386e_143_End
-
-DPLC_386e_144:	dplcHeader
- dplcEntry $E, $791
-DPLC_386e_144_End
-
-DPLC_386e_145:	dplcHeader
- dplcEntry $10, $7D6
- dplcEntry 3, $7E6
-DPLC_386e_145_End
-
-DPLC_386e_146:	dplcHeader
- dplcEntry $E, $791
-DPLC_386e_146_End
-
-DPLC_386e_147:	dplcHeader
- dplcEntry $10, $7D6
- dplcEntry 3, $7E6
-DPLC_386e_147_End
-
-DPLC_386e_148:	dplcHeader
- dplcEntry $10, $79F
- dplcEntry 3, $7AF
-DPLC_386e_148_End
-
-DPLC_386e_149:	dplcHeader
- dplcEntry $10, $7E9
- dplcEntry 3, $7F9
-DPLC_386e_149_End
-
-DPLC_386e_150:	dplcHeader
- dplcEntry $10, $79F
- dplcEntry 3, $7AF
-DPLC_386e_150_End
-
-DPLC_386e_151:	dplcHeader
- dplcEntry $10, $7E9
- dplcEntry 3, $7F9
-DPLC_386e_151_End
-
-DPLC_386e_152:	dplcHeader
- dplcEntry $10, $7FC
- dplcEntry 7, $80C
-DPLC_386e_152_End
-
-DPLC_386e_153:	dplcHeader
- dplcEntry $10, $813
- dplcEntry 6, $823
-DPLC_386e_153_End
-
-DPLC_386e_154:	dplcHeader
- dplcEntry $10, $829
- dplcEntry 7, $839
-DPLC_386e_154_End
-
-DPLC_386e_155:	dplcHeader
- dplcEntry $10, $840
- dplcEntry 6, $850
-DPLC_386e_155_End
-
-DPLC_386e_156:	dplcHeader
- dplcEntry $F, $856
-DPLC_386e_156_End
-
-DPLC_386e_157:	dplcHeader
- dplcEntry $10, $865
- dplcEntry 2, $875
-DPLC_386e_157_End
-
-DPLC_386e_158:	dplcHeader
- dplcEntry $10, $877
- dplcEntry 2, $887
-DPLC_386e_158_End
-
-DPLC_386e_159:	dplcHeader
- dplcEntry $10, $889
- dplcEntry 2, $899
-DPLC_386e_159_End
-
-DPLC_386e_160:	dplcHeader
- dplcEntry $10, $89B
- dplcEntry 2, $8AB
-DPLC_386e_160_End
-
-DPLC_386e_161:	dplcHeader
- dplcEntry $10, $8AD
- dplcEntry 2, $8BD
-DPLC_386e_161_End
-
-DPLC_386e_162:	dplcHeader
- dplcEntry $10, $8BF
- dplcEntry 2, $8CF
-DPLC_386e_162_End
+; --------------------------------------------------------------------------------
+; Dynamic Pattern Loading Cues - output from ClownMapEd - MapMacros format
+; --------------------------------------------------------------------------------
+
+.offsets:	mappingsTable
+	mappingsTableEntry.w	.frame0
+	mappingsTableEntry.w	.frame1
+	mappingsTableEntry.w	.frame2
+	mappingsTableEntry.w	.frame3
+	mappingsTableEntry.w	.frame4
+	mappingsTableEntry.w	.frame5
+	mappingsTableEntry.w	.frame6
+	mappingsTableEntry.w	.frame7
+	mappingsTableEntry.w	.frame8
+	mappingsTableEntry.w	.frame9
+	mappingsTableEntry.w	.frame10
+	mappingsTableEntry.w	.frame11
+	mappingsTableEntry.w	.frame12
+	mappingsTableEntry.w	.frame13
+	mappingsTableEntry.w	.frame14
+	mappingsTableEntry.w	.frame15
+	mappingsTableEntry.w	.frame16
+	mappingsTableEntry.w	.frame17
+	mappingsTableEntry.w	.frame18
+	mappingsTableEntry.w	.frame19
+	mappingsTableEntry.w	.frame20
+	mappingsTableEntry.w	.frame21
+	mappingsTableEntry.w	.frame22
+	mappingsTableEntry.w	.frame23
+	mappingsTableEntry.w	.frame24
+	mappingsTableEntry.w	.frame25
+	mappingsTableEntry.w	.frame26
+	mappingsTableEntry.w	.frame27
+	mappingsTableEntry.w	.frame28
+	mappingsTableEntry.w	.frame29
+	mappingsTableEntry.w	.frame30
+	mappingsTableEntry.w	.frame31
+	mappingsTableEntry.w	.frame32
+	mappingsTableEntry.w	.frame33
+	mappingsTableEntry.w	.frame34
+	mappingsTableEntry.w	.frame35
+	mappingsTableEntry.w	.frame36
+	mappingsTableEntry.w	.frame37
+	mappingsTableEntry.w	.frame38
+	mappingsTableEntry.w	.frame39
+	mappingsTableEntry.w	.frame40
+	mappingsTableEntry.w	.frame41
+	mappingsTableEntry.w	.frame42
+	mappingsTableEntry.w	.frame43
+	mappingsTableEntry.w	.frame44
+	mappingsTableEntry.w	.frame45
+	mappingsTableEntry.w	.frame46
+	mappingsTableEntry.w	.frame47
+	mappingsTableEntry.w	.frame48
+	mappingsTableEntry.w	.frame49
+	mappingsTableEntry.w	.frame50
+	mappingsTableEntry.w	.frame51
+	mappingsTableEntry.w	.frame52
+	mappingsTableEntry.w	.frame53
+	mappingsTableEntry.w	.frame54
+	mappingsTableEntry.w	.frame55
+	mappingsTableEntry.w	.frame56
+	mappingsTableEntry.w	.frame57
+	mappingsTableEntry.w	.frame58
+	mappingsTableEntry.w	.frame59
+	mappingsTableEntry.w	.frame60
+	mappingsTableEntry.w	.frame61
+	mappingsTableEntry.w	.frame62
+	mappingsTableEntry.w	.frame63
+	mappingsTableEntry.w	.frame64
+	mappingsTableEntry.w	.frame65
+	mappingsTableEntry.w	.frame66
+	mappingsTableEntry.w	.frame67
+	mappingsTableEntry.w	.frame68
+	mappingsTableEntry.w	.frame69
+	mappingsTableEntry.w	.frame70
+	mappingsTableEntry.w	.frame71
+	mappingsTableEntry.w	.frame72
+	mappingsTableEntry.w	.frame73
+	mappingsTableEntry.w	.frame74
+	mappingsTableEntry.w	.frame75
+	mappingsTableEntry.w	.frame76
+	mappingsTableEntry.w	.frame77
+	mappingsTableEntry.w	.frame78
+	mappingsTableEntry.w	.frame79
+	mappingsTableEntry.w	.frame80
+	mappingsTableEntry.w	.frame81
+	mappingsTableEntry.w	.frame82
+	mappingsTableEntry.w	.frame83
+	mappingsTableEntry.w	.frame84
+	mappingsTableEntry.w	.frame85
+	mappingsTableEntry.w	.frame86
+	mappingsTableEntry.w	.frame87
+	mappingsTableEntry.w	.frame88
+	mappingsTableEntry.w	.frame89
+	mappingsTableEntry.w	.frame90
+	mappingsTableEntry.w	.frame91
+	mappingsTableEntry.w	.frame92
+	mappingsTableEntry.w	.frame93
+	mappingsTableEntry.w	.frame94
+	mappingsTableEntry.w	.frame95
+	mappingsTableEntry.w	.frame96
+	mappingsTableEntry.w	.frame97
+	mappingsTableEntry.w	.frame98
+	mappingsTableEntry.w	.frame99
+	mappingsTableEntry.w	.frame100
+	mappingsTableEntry.w	.frame101
+	mappingsTableEntry.w	.frame102
+	mappingsTableEntry.w	.frame103
+	mappingsTableEntry.w	.frame104
+	mappingsTableEntry.w	.frame105
+	mappingsTableEntry.w	.frame106
+	mappingsTableEntry.w	.frame107
+	mappingsTableEntry.w	.frame108
+	mappingsTableEntry.w	.frame109
+	mappingsTableEntry.w	.frame110
+	mappingsTableEntry.w	.frame111
+	mappingsTableEntry.w	.frame112
+	mappingsTableEntry.w	.frame113
+	mappingsTableEntry.w	.frame114
+	mappingsTableEntry.w	.frame115
+	mappingsTableEntry.w	.frame116
+	mappingsTableEntry.w	.frame117
+	mappingsTableEntry.w	.frame118
+	mappingsTableEntry.w	.frame119
+	mappingsTableEntry.w	.frame120
+	mappingsTableEntry.w	.frame121
+	mappingsTableEntry.w	.frame122
+	mappingsTableEntry.w	.frame123
+	mappingsTableEntry.w	.frame124
+	mappingsTableEntry.w	.frame125
+	mappingsTableEntry.w	.frame126
+	mappingsTableEntry.w	.frame127
+	mappingsTableEntry.w	.frame128
+	mappingsTableEntry.w	.frame129
+	mappingsTableEntry.w	.frame130
+	mappingsTableEntry.w	.frame131
+	mappingsTableEntry.w	.frame132
+	mappingsTableEntry.w	.frame133
+	mappingsTableEntry.w	.frame134
+	mappingsTableEntry.w	.frame135
+	mappingsTableEntry.w	.frame136
+	mappingsTableEntry.w	.frame137
+	mappingsTableEntry.w	.frame138
+	mappingsTableEntry.w	.frame139
+	mappingsTableEntry.w	.frame140
+	mappingsTableEntry.w	.frame141
+	mappingsTableEntry.w	.frame142
+	mappingsTableEntry.w	.frame143
+	mappingsTableEntry.w	.frame144
+	mappingsTableEntry.w	.frame145
+	mappingsTableEntry.w	.frame146
+	mappingsTableEntry.w	.frame147
+	mappingsTableEntry.w	.frame148
+	mappingsTableEntry.w	.frame149
+	mappingsTableEntry.w	.frame150
+	mappingsTableEntry.w	.frame151
+	mappingsTableEntry.w	.frame152
+	mappingsTableEntry.w	.frame153
+	mappingsTableEntry.w	.frame154
+	mappingsTableEntry.w	.frame155
+	mappingsTableEntry.w	.frame156
+	mappingsTableEntry.w	.frame157
+	mappingsTableEntry.w	.frame158
+	mappingsTableEntry.w	.frame159
+	mappingsTableEntry.w	.frame160
+	mappingsTableEntry.w	.frame161
+	mappingsTableEntry.w	.frame162
+
+.frame0:	dplcHeader
+.frame0_End
+
+.frame1:	dplcHeader
+	dplcEntry	16, 0
+	dplcEntry	1, 16
+.frame1_End
+
+.frame2:	dplcHeader
+	dplcEntry	15, 17
+.frame2_End
+
+.frame3:	dplcHeader
+	dplcEntry	15, 23
+.frame3_End
+
+.frame4:	dplcHeader
+	dplcEntry	6, 23
+	dplcEntry	9, 32
+.frame4_End
+
+.frame5:	dplcHeader
+	dplcEntry	6, 11
+	dplcEntry	9, 41
+.frame5_End
+
+.frame6:	dplcHeader
+	dplcEntry	16, 50
+	dplcEntry	6, 66
+.frame6_End
+
+.frame7:	dplcHeader
+	dplcEntry	8, 50
+	dplcEntry	12, 72
+.frame7_End
+
+.frame8:	dplcHeader
+	dplcEntry	15, 84
+.frame8_End
+
+.frame9:	dplcHeader
+	dplcEntry	6, 84
+	dplcEntry	14, 99
+.frame9_End
+
+.frame10:	dplcHeader
+	dplcEntry	6, 84
+	dplcEntry	12, 113
+.frame10_End
+
+.frame11:	dplcHeader
+	dplcEntry	8, 50
+	dplcEntry	10, 125
+.frame11_End
+
+.frame12:	dplcHeader
+	dplcEntry	16, 135
+	dplcEntry	6, 151
+.frame12_End
+
+.frame13:	dplcHeader
+	dplcEntry	6, 135
+	dplcEntry	16, 157
+	dplcEntry	1, 173
+.frame13_End
+
+.frame14:	dplcHeader
+	dplcEntry	16, 174
+	dplcEntry	3, 190
+.frame14_End
+
+.frame15:	dplcHeader
+	dplcEntry	16, 193
+	dplcEntry	7, 209
+.frame15_End
+
+.frame16:	dplcHeader
+	dplcEntry	6, 193
+	dplcEntry	13, 216
+.frame16_End
+
+.frame17:	dplcHeader
+	dplcEntry	6, 135
+	dplcEntry	1, 147
+	dplcEntry	2, 157
+	dplcEntry	11, 229
+.frame17_End
+
+.frame18:	dplcHeader
+	dplcEntry	16, 240
+	dplcEntry	6, 256
+.frame18_End
+
+.frame19:	dplcHeader
+	dplcEntry	8, 240
+	dplcEntry	12, 262
+.frame19_End
+
+.frame20:	dplcHeader
+	dplcEntry	15, 274
+.frame20_End
+
+.frame21:	dplcHeader
+	dplcEntry	6, 274
+	dplcEntry	14, 289
+.frame21_End
+
+.frame22:	dplcHeader
+	dplcEntry	6, 274
+	dplcEntry	12, 303
+.frame22_End
+
+.frame23:	dplcHeader
+	dplcEntry	8, 240
+	dplcEntry	1, 262
+	dplcEntry	9, 315
+.frame23_End
+
+.frame24:	dplcHeader
+	dplcEntry	16, 324
+	dplcEntry	5, 340
+.frame24_End
+
+.frame25:	dplcHeader
+	dplcEntry	6, 324
+	dplcEntry	1, 343
+	dplcEntry	16, 345
+.frame25_End
+
+.frame26:	dplcHeader
+	dplcEntry	16, 361
+	dplcEntry	3, 377
+.frame26_End
+
+.frame27:	dplcHeader
+	dplcEntry	16, 380
+	dplcEntry	6, 396
+.frame27_End
+
+.frame28:	dplcHeader
+	dplcEntry	6, 380
+	dplcEntry	13, 402
+.frame28_End
+
+.frame29:	dplcHeader
+	dplcEntry	6, 324
+	dplcEntry	1, 343
+	dplcEntry	2, 350
+	dplcEntry	11, 415
+.frame29_End
+
+.frame30:	dplcHeader
+	dplcEntry	16, 426
+	dplcEntry	2, 442
+.frame30_End
+
+.frame31:	dplcHeader
+	dplcEntry	6, 84
+	dplcEntry	12, 444
+.frame31_End
+
+.frame32:	dplcHeader
+	dplcEntry	6, 426
+	dplcEntry	12, 456
+.frame32_End
+
+.frame33:	dplcHeader
+	dplcEntry	6, 84
+	dplcEntry	12, 468
+.frame33_End
+
+.frame34:	dplcHeader
+	dplcEntry	16, 480
+	dplcEntry	5, 496
+.frame34_End
+
+.frame35:	dplcHeader
+	dplcEntry	16, 501
+	dplcEntry	4, 517
+.frame35_End
+
+.frame36:	dplcHeader
+	dplcEntry	6, 480
+	dplcEntry	1, 500
+	dplcEntry	14, 521
+.frame36_End
+
+.frame37:	dplcHeader
+	dplcEntry	8, 501
+	dplcEntry	12, 535
+.frame37_End
+
+.frame38:	dplcHeader
+	dplcEntry	16, 547
+	dplcEntry	2, 563
+.frame38_End
+
+.frame39:	dplcHeader
+	dplcEntry	6, 274
+	dplcEntry	12, 565
+.frame39_End
+
+.frame40:	dplcHeader
+	dplcEntry	6, 547
+	dplcEntry	12, 577
+.frame40_End
+
+.frame41:	dplcHeader
+	dplcEntry	6, 274
+	dplcEntry	12, 589
+.frame41_End
+
+.frame42:	dplcHeader
+	dplcEntry	16, 601
+	dplcEntry	5, 617
+.frame42_End
+
+.frame43:	dplcHeader
+	dplcEntry	16, 622
+	dplcEntry	4, 638
+.frame43_End
+
+.frame44:	dplcHeader
+	dplcEntry	6, 601
+	dplcEntry	1, 621
+	dplcEntry	14, 642
+.frame44_End
+
+.frame45:	dplcHeader
+	dplcEntry	8, 622
+	dplcEntry	12, 656
+.frame45_End
+
+.frame46:	dplcHeader
+	dplcEntry	16, 668
+.frame46_End
+
+.frame47:	dplcHeader
+	dplcEntry	16, 684
+.frame47_End
+
+.frame48:	dplcHeader
+	dplcEntry	16, 700
+.frame48_End
+
+.frame49:	dplcHeader
+	dplcEntry	16, 716
+.frame49_End
+
+.frame50:	dplcHeader
+	dplcEntry	16, 732
+.frame50_End
+
+.frame51:	dplcHeader
+	dplcEntry	15, 748
+.frame51_End
+
+.frame52:	dplcHeader
+	dplcEntry	16, 763
+.frame52_End
+
+.frame53:	dplcHeader
+	dplcEntry	15, 779
+.frame53_End
+
+.frame54:	dplcHeader
+	dplcEntry	16, 794
+.frame54_End
+
+.frame55:	dplcHeader
+	dplcEntry	16, 810
+	dplcEntry	2, 826
+.frame55_End
+
+.frame56:	dplcHeader
+	dplcEntry	16, 828
+	dplcEntry	1, 844
+.frame56_End
+
+.frame57:	dplcHeader
+	dplcEntry	14, 845
+.frame57_End
+
+.frame58:	dplcHeader
+	dplcEntry	16, 859
+	dplcEntry	6, 875
+.frame58_End
+
+.frame59:	dplcHeader
+	dplcEntry	1, 113
+	dplcEntry	16, 881
+	dplcEntry	4, 897
+.frame59_End
+
+.frame60:	dplcHeader
+	dplcEntry	15, 901
+.frame60_End
+
+.frame61:	dplcHeader
+	dplcEntry	9, 916
+.frame61_End
+
+.frame62:	dplcHeader
+	dplcEntry	13, 925
+.frame62_End
+
+.frame63:	dplcHeader
+	dplcEntry	15, 938
+.frame63_End
+
+.frame64:	dplcHeader
+	dplcEntry	15, 953
+.frame64_End
+
+.frame65:	dplcHeader
+	dplcEntry	16, 968
+	dplcEntry	2, 984
+.frame65_End
+
+.frame66:	dplcHeader
+	dplcEntry	16, 986
+	dplcEntry	2, 1002
+.frame66_End
+
+.frame67:	dplcHeader
+	dplcEntry	16, 1004
+	dplcEntry	4, 1020
+.frame67_End
+
+.frame68:	dplcHeader
+	dplcEntry	16, 1015
+	dplcEntry	4, 1031
+.frame68_End
+
+.frame69:	dplcHeader
+	dplcEntry	16, 1035
+	dplcEntry	1, 1051
+.frame69_End
+
+.frame70:	dplcHeader
+	dplcEntry	14, 1052
+.frame70_End
+
+.frame71:	dplcHeader
+	dplcEntry	16, 1066
+	dplcEntry	1, 1082
+.frame71_End
+
+.frame72:	dplcHeader
+	dplcEntry	9, 1052
+	dplcEntry	5, 1083
+.frame72_End
+
+.frame73:	dplcHeader
+	dplcEntry	16, 1088
+	dplcEntry	2, 1104
+.frame73_End
+
+.frame74:	dplcHeader
+	dplcEntry	14, 1106
+.frame74_End
+
+.frame75:	dplcHeader
+	dplcEntry	16, 1120
+	dplcEntry	6, 1136
+.frame75_End
+
+.frame76:	dplcHeader
+	dplcEntry	16, 1142
+	dplcEntry	5, 1158
+.frame76_End
+
+.frame77:	dplcHeader
+	dplcEntry	2, 1150
+	dplcEntry	16, 1158
+	dplcEntry	3, 1174
+.frame77_End
+
+.frame78:	dplcHeader
+	dplcEntry	16, 1177
+	dplcEntry	3, 1193
+.frame78_End
+
+.frame79:	dplcHeader
+	dplcEntry	16, 1196
+	dplcEntry	2, 1212
+.frame79_End
+
+.frame80:	dplcHeader
+	dplcEntry	12, 1214
+.frame80_End
+
+.frame81:	dplcHeader
+	dplcEntry	6, 1226
+.frame81_End
+
+.frame82:	dplcHeader
+	dplcEntry	2, 1232
+.frame82_End
+
+.frame83:	dplcHeader
+	dplcEntry	15, 901
+.frame83_End
+
+.frame84:	dplcHeader
+	dplcEntry	13, 925
+.frame84_End
+
+.frame85:	dplcHeader
+	dplcEntry	16, 1234
+	dplcEntry	2, 1250
+.frame85_End
+
+.frame86:	dplcHeader
+	dplcEntry	2, 109
+	dplcEntry	16, 1252
+	dplcEntry	2, 1268
+.frame86_End
+
+.frame87:	dplcHeader
+	dplcEntry	16, 1270
+	dplcEntry	3, 1286
+.frame87_End
+
+.frame88:	dplcHeader
+	dplcEntry	16, 1452
+	dplcEntry	3, 1468
+.frame88_End
+
+.frame89:	dplcHeader
+	dplcEntry	16, 1471
+	dplcEntry	3, 1487
+.frame89_End
+
+.frame90:	dplcHeader
+	dplcEntry	16, 1490
+	dplcEntry	3, 1506
+.frame90_End
+
+.frame91:	dplcHeader
+	dplcEntry	16, 1509
+	dplcEntry	2, 1525
+.frame91_End
+
+.frame92:	dplcHeader
+	dplcEntry	16, 1527
+	dplcEntry	7, 1543
+.frame92_End
+
+.frame93:	dplcHeader
+	dplcEntry	16, 1550
+	dplcEntry	5, 1566
+.frame93_End
+
+.frame94:	dplcHeader
+	dplcEntry	16, 1571
+	dplcEntry	7, 1587
+.frame94_End
+
+.frame95:	dplcHeader
+	dplcEntry	16, 1594
+	dplcEntry	5, 1610
+.frame95_End
+
+.frame96:	dplcHeader
+	dplcEntry	16, 1289
+	dplcEntry	3, 1305
+.frame96_End
+
+.frame97:	dplcHeader
+	dplcEntry	16, 1308
+	dplcEntry	3, 1324
+.frame97_End
+
+.frame98:	dplcHeader
+	dplcEntry	16, 1327
+	dplcEntry	3, 1343
+.frame98_End
+
+.frame99:	dplcHeader
+	dplcEntry	16, 1346
+	dplcEntry	2, 1362
+.frame99_End
+
+.frame100:	dplcHeader
+	dplcEntry	16, 1364
+	dplcEntry	7, 1380
+.frame100_End
+
+.frame101:	dplcHeader
+	dplcEntry	16, 1387
+	dplcEntry	5, 1403
+.frame101_End
+
+.frame102:	dplcHeader
+	dplcEntry	16, 1408
+	dplcEntry	7, 1424
+.frame102_End
+
+.frame103:	dplcHeader
+	dplcEntry	16, 1431
+	dplcEntry	5, 1447
+.frame103_End
+
+.frame104:	dplcHeader
+	dplcEntry	12, 1615
+.frame104_End
+
+.frame105:	dplcHeader
+	dplcEntry	16, 1627
+	dplcEntry	5, 1643
+.frame105_End
+
+.frame106:	dplcHeader
+	dplcEntry	16, 1648
+	dplcEntry	6, 1664
+.frame106_End
+
+.frame107:	dplcHeader
+	dplcEntry	16, 1670
+	dplcEntry	6, 1686
+.frame107_End
+
+.frame108:	dplcHeader
+	dplcEntry	16, 1692
+	dplcEntry	8, 1708
+.frame108_End
+
+.frame109:	dplcHeader
+	dplcEntry	16, 1716
+	dplcEntry	5, 1732
+.frame109_End
+
+.frame110:	dplcHeader
+	dplcEntry	16, 1737
+	dplcEntry	5, 1753
+.frame110_End
+
+.frame111:	dplcHeader
+	dplcEntry	16, 1758
+	dplcEntry	5, 1774
+.frame111_End
+
+.frame112:	dplcHeader
+	dplcEntry	16, 2257
+	dplcEntry	7, 2273
+.frame112_End
+
+.frame113:	dplcHeader
+	dplcEntry	16, 2280
+	dplcEntry	6, 2296
+.frame113_End
+
+.frame114:	dplcHeader
+	dplcEntry	16, 2302
+	dplcEntry	2, 2318
+.frame114_End
+
+.frame115:	dplcHeader
+	dplcEntry	16, 2320
+	dplcEntry	9, 2336
+.frame115_End
+
+.frame116:	dplcHeader
+	dplcEntry	16, 2345
+	dplcEntry	5, 2361
+.frame116_End
+
+.frame117:	dplcHeader
+	dplcEntry	16, 2366
+	dplcEntry	8, 2382
+.frame117_End
+
+.frame118:	dplcHeader
+	dplcEntry	16, 1779
+	dplcEntry	4, 1795
+.frame118_End
+
+.frame119:	dplcHeader
+	dplcEntry	16, 2390
+	dplcEntry	4, 2406
+.frame119_End
+
+.frame120:	dplcHeader
+	dplcEntry	16, 1799
+	dplcEntry	3, 1815
+.frame120_End
+
+.frame121:	dplcHeader
+	dplcEntry	16, 1818
+	dplcEntry	7, 1834
+.frame121_End
+
+.frame122:	dplcHeader
+	dplcEntry	16, 2410
+	dplcEntry	7, 2426
+.frame122_End
+
+.frame123:	dplcHeader
+	dplcEntry	16, 1841
+	dplcEntry	3, 1857
+.frame123_End
+
+.frame124:	dplcHeader
+	dplcEntry	16, 2433
+	dplcEntry	7, 2449
+.frame124_End
+
+.frame125:	dplcHeader
+	dplcEntry	16, 2456
+	dplcEntry	8, 2472
+.frame125_End
+
+.frame126:	dplcHeader
+	dplcEntry	16, 2480
+	dplcEntry	2, 2496
+.frame126_End
+
+.frame127:	dplcHeader
+	dplcEntry	16, 2498
+	dplcEntry	9, 2514
+.frame127_End
+
+.frame128:	dplcHeader
+	dplcEntry	16, 2523
+	dplcEntry	8, 2539
+.frame128_End
+
+.frame129:	dplcHeader
+	dplcEntry	16, 2547
+	dplcEntry	8, 2563
+.frame129_End
+
+.frame130:	dplcHeader
+	dplcEntry	16, 1860
+	dplcEntry	6, 1876
+.frame130_End
+
+.frame131:	dplcHeader
+	dplcEntry	16, 2571
+	dplcEntry	4, 2587
+.frame131_End
+
+.frame132:	dplcHeader
+	dplcEntry	16, 2591
+	dplcEntry	3, 2607
+.frame132_End
+
+.frame133:	dplcHeader
+	dplcEntry	16, 1882
+	dplcEntry	6, 1898
+.frame133_End
+
+.frame134:	dplcHeader
+	dplcEntry	16, 2610
+	dplcEntry	7, 2626
+.frame134_End
+
+.frame135:	dplcHeader
+	dplcEntry	16, 2633
+	dplcEntry	4, 2649
+.frame135_End
+
+.frame136:	dplcHeader
+	dplcEntry	14, 1904
+.frame136_End
+
+.frame137:	dplcHeader
+	dplcEntry	16, 1970
+	dplcEntry	1, 1986
+.frame137_End
+
+.frame138:	dplcHeader
+	dplcEntry	14, 1904
+.frame138_End
+
+.frame139:	dplcHeader
+	dplcEntry	16, 1970
+	dplcEntry	1, 1986
+.frame139_End
+
+.frame140:	dplcHeader
+	dplcEntry	16, 1918
+	dplcEntry	3, 1934
+.frame140_End
+
+.frame141:	dplcHeader
+	dplcEntry	16, 1987
+	dplcEntry	3, 2003
+.frame141_End
+
+.frame142:	dplcHeader
+	dplcEntry	16, 1918
+	dplcEntry	3, 1934
+.frame142_End
+
+.frame143:	dplcHeader
+	dplcEntry	16, 1987
+	dplcEntry	3, 2003
+.frame143_End
+
+.frame144:	dplcHeader
+	dplcEntry	14, 1937
+.frame144_End
+
+.frame145:	dplcHeader
+	dplcEntry	16, 2006
+	dplcEntry	3, 2022
+.frame145_End
+
+.frame146:	dplcHeader
+	dplcEntry	14, 1937
+.frame146_End
+
+.frame147:	dplcHeader
+	dplcEntry	16, 2006
+	dplcEntry	3, 2022
+.frame147_End
+
+.frame148:	dplcHeader
+	dplcEntry	16, 1951
+	dplcEntry	3, 1967
+.frame148_End
+
+.frame149:	dplcHeader
+	dplcEntry	16, 2025
+	dplcEntry	3, 2041
+.frame149_End
+
+.frame150:	dplcHeader
+	dplcEntry	16, 1951
+	dplcEntry	3, 1967
+.frame150_End
+
+.frame151:	dplcHeader
+	dplcEntry	16, 2025
+	dplcEntry	3, 2041
+.frame151_End
+
+.frame152:	dplcHeader
+	dplcEntry	16, 2044
+	dplcEntry	7, 2060
+.frame152_End
+
+.frame153:	dplcHeader
+	dplcEntry	16, 2067
+	dplcEntry	6, 2083
+.frame153_End
+
+.frame154:	dplcHeader
+	dplcEntry	16, 2089
+	dplcEntry	7, 2105
+.frame154_End
+
+.frame155:	dplcHeader
+	dplcEntry	16, 2112
+	dplcEntry	6, 2128
+.frame155_End
+
+.frame156:	dplcHeader
+	dplcEntry	15, 2134
+.frame156_End
+
+.frame157:	dplcHeader
+	dplcEntry	16, 2149
+	dplcEntry	2, 2165
+.frame157_End
+
+.frame158:	dplcHeader
+	dplcEntry	16, 2167
+	dplcEntry	2, 2183
+.frame158_End
+
+.frame159:	dplcHeader
+	dplcEntry	16, 2185
+	dplcEntry	2, 2201
+.frame159_End
+
+.frame160:	dplcHeader
+	dplcEntry	16, 2203
+	dplcEntry	2, 2219
+.frame160_End
+
+.frame161:	dplcHeader
+	dplcEntry	16, 2221
+	dplcEntry	2, 2237
+.frame161_End
+
+.frame162:	dplcHeader
+	dplcEntry	16, 2239
+	dplcEntry	2, 2255
+.frame162_End
 
 	even
