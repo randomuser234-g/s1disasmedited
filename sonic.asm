@@ -3714,14 +3714,21 @@ loc_47D4:
 		moveq	#palid_SSResult,d0
 		bsr.w	PalLoad	; load results screen palette
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicmap		; if not, load Sonic's mappings
-		moveq	#plcid_SSResultTails,d0
-		bra.s	.loadmap		; branch to rest of code
+		beq.s	.tailsresults		; if yes, load Tails' results
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklesresults		; if yes, load Knuckles' results
+		;otherwise load Sonic's
 
-	.sonicmap:
+	.sonicresults:
 		moveq	#plcid_SSResult,d0
+		bra.s	.loadresults		; branch to rest of code
+	.tailsresults:
+		moveq	#plcid_SSResultTails,d0
+		bra.s	.loadresults		; branch to rest of code
+	.knucklesresults:
+		moveq	#plcid_SSResultKnuckles,d0
 
-	.loadmap:
+	.loadresults:
 		bsr.w	AddPLC		; load results screen patterns
 		move.b	#1,(f_scorecount).w ; update score counter
 		move.b	#1,(f_endactbonus).w ; update ring bonus counter
@@ -4141,12 +4148,19 @@ GM_Continue:
 		bsr.w	NemDec
 		locVRAM	ArtTile_Mini_Sonic*tile_size
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicpatmini		; if not, load Sonic's patterns
-		lea	(Nem_MiniTails).l,a0 ; load continue screen patterns
-		bra.s	.loadpatmini		; branch to rest of code
+		beq.s	.tailspatmini		; if yes, load Tails' patterns
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklespatmini		; if yes, load Knuckles' patterns
+		;otherwise load Sonic's
 
 	.sonicpatmini:
 		lea	(Nem_MiniSonic).l,a0 ; load continue screen patterns
+		bra.s	.loadpatmini		; branch to rest of code
+	.tailspatmini:
+		lea	(Nem_MiniTails).l,a0 ; load continue screen patterns
+		bra.s	.loadpatmini		; branch to rest of code
+	.knucklespatmini:
+		lea	(Nem_MiniKnuckles).l,a0 ; load continue screen patterns
 
 	.loadpatmini:
 		bsr.w	NemDec
@@ -4264,7 +4278,7 @@ End_LoadData:
 		moveq	#plcid_EndingTails,d0	; load Tails' ending
 		bra.s	.loadmap		; branch to rest of code
 	.knucklesending:
-		moveq	#plcid_Ending,d0	; load Knuckles' ending (doesn't actually exist yet)
+		moveq	#plcid_EndingKnuckles,d0	; load Knuckles' ending (copy of Sonic's so far)
 	.loadmap:
 		bsr.w	QuickPLC	; load ending sequence patterns
 		jsr	(Hud_Base).l
@@ -8321,6 +8335,8 @@ Nem_MiniSonic:	binclude	"artnem/Continue Screen Stuff.nem"
 		even
 Nem_MiniTails:	binclude	"artnem/Continue Screen Stuff Tails.nem"
 		even
+Nem_MiniKnuckles:binclude	"artnem/Continue Screen Stuff Knuckles.nem"
+		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - animals
 ; ---------------------------------------------------------------------------
@@ -8413,6 +8429,8 @@ Nem_EndEm:	binclude	"artnem/Ending - Emeralds.nem"
 Nem_EndSonic:	binclude	"artnem/Ending - Sonic.nem"
 		even
 Nem_EndTails:	binclude	"artnem/Ending - Tails.nem"
+		even
+Nem_EndKnuckles:binclude	"artnem/Ending - Knuckles.nem"
 		even
 Nem_TryAgain:	binclude	"artnem/Ending - Try Again.nem"
 		even
