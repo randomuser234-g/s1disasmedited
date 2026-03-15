@@ -261,8 +261,8 @@ TailsCPU_Spawning:
 	move.w	(v_framecount).w,d0
 	andi.w	#$3F,d0
 	bne.s	return_1BB88
-	tst.b	(f_playerctrl2).w
-	beq.s	return_1BB88	;originally bne, not sure what's happening here, as is it stops tails from respawning
+	tst.b	(f_playerctrl).w	;is Sonic frozen?
+	bne.s	return_1BB88	 	;if yes, branch
 	move.b	obStatus(a1),d0
 	andi.b	#1<<1|1<<4|1<<6|1<<7,d0
 	bne.s	return_1BB88
