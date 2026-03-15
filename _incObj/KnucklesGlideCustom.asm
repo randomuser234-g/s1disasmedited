@@ -3,8 +3,8 @@ KnucklesGlideCustom:
 		bne.w	Knuckles_AlreadyClimbing	; if yes, branch
 		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
 		beq.s	KnucklesGlideCustom_StartGliding	;if yes, continue
-		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started?
-		beq.s	rts_KnucklesGlideCustom	;if yes, don't do more
+		cmpi.b	#id_Roll,obAnim(a0)	;is Knuckles rolling?
+		bne.s	rts_KnucklesGlideCustom	;if not, don't attempt to glide
 		move.b	(v_jpadpress2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
 		beq.s	rts_KnucklesGlideCustom
@@ -65,15 +65,32 @@ Knuckles_AlreadyClimbing:
 		clr.w	obVelY(a0)
 		move.b	(v_jpadpress2).w,d0
 		jsr	.jump
+		cmpi.b	#id_Roll,obAnim(a0)	;is Knuckles rolling?
+		beq.w	rts_KnucklesGlideCustom	;if yes, he must be jumping off, don't run any further code here
 		jsr	.dn
 		rts
 ;-----------------------------------------------------------------------------------
 		.jump:
 		andi.b	#btnABC,d0	; is A, B or C pressed?
-		beq.w	rts_KnucklesGlideCustom	; if yes, branch
-		move.b	#0,(f_doublejump).w ;clear thing for go on wall
-		move.b	#id_Roll,obAnim(a0)
-		bra.w	Knuckles_Jump	;jump up from the wall
+		beq.w	rts_KnucklesGlideCustom	; if not, do nothing
+		;more KIS2 code
+	move.w	#-$380,obVelY(a0)
+	move.w	#$400,obVelX(a0)
+
+	bchg	#0,obStatus(a0)
+	bne.s	+
+	neg.w	obVelX(a0)
++
+	bset	#1,obStatus(a0)
+	move.b	#1,jumping(a0)	;unsure what this is
+
+	move.b	#$E,obHeight(a0)
+	move.b	#7,obWidth(a0)
+
+	move.b	#id_Roll,obAnim(a0)
+	bset	#2,obStatus(a0)
+	move.b	#0,(f_doublejump).w
+		rts
 ;-----------------------------------------------------------------------------------
 		.dn:
 		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
