@@ -43,7 +43,8 @@ ptr_PLC_MainTails:	dc.w PLC_MainTails-ArtLoadCues
 ptr_PLC_SSResultTails:	dc.w PLC_SSResultTails-ArtLoadCues
 ptr_PLC_EndingTails:	dc.w PLC_EndingTails-ArtLoadCues
 ptr_PLC_MainKnuckles:		dc.w PLC_MainKnuckles-ArtLoadCues
-
+ptr_PLC_SSResultKnuckles:	dc.w PLC_SSResultKnuckles-ArtLoadCues
+ptr_PLC_EndingKnuckles:	dc.w PLC_EndingKnuckles-ArtLoadCues
 plcm:	macro gfx,vram
 		dc.l gfx
 		dc.w (vram)*$20
@@ -442,6 +443,36 @@ PLC_MainKnuckles:	dc.w ((PLC_Mainend-PLC_Main-2)/6)-1
 		plcm	Nem_Ring,   ArtTile_Ring          ; rings
 		plcm	Nem_Points, ArtTile_Points        ; points from enemy
 PLC_MainKnucklesend:
+; ---------------------------------------------------------------------------
+; Pattern load cues - special stage results screen
+; ---------------------------------------------------------------------------
+PLC_SSResultKnuckles:dc.w ((PLC_SpeStResultend-PLC_SSResult-2)/6)-1
+		plcm	Nem_ResultEm,  ArtTile_SS_Results_Emeralds ; emeralds
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
+		plcm	Nem_MiniKnuckles, ArtTile_Mini_Sonic          ; mini Knuckles
+PLC_SpeStResultKnucklesend:
+; ---------------------------------------------------------------------------
+; Pattern load cues - ending sequence with Knuckles
+; ---------------------------------------------------------------------------
+PLC_EndingKnuckles:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
+		plcm	Nem_GHZ_1st,   ArtTile_Level            ; GHZ main patterns
+		plcm	Nem_GHZ_2nd,   ArtTile_Level+$1CD       ; GHZ secondary patterns
+		plcm	Nem_Stalk,     ArtTile_GHZ_Flower_Stalk ; flower stalk
+		plcm	Nem_EndFlower, ArtTile_Ending_Flowers   ; flowers
+		plcm	Nem_EndEm,     ArtTile_Ending_Emeralds  ; emeralds
+		plcm	Nem_EndKnuckles,  ArtTile_Ending_Sonic     ; Sonic
+	if Revision=0
+		plcm	Nem_EndEggman, ArtTile_Ending_Eggman    ; Eggman's death (unused)
+	endif
+		plcm	Nem_Rabbit,    ArtTile_Ending_Rabbit    ; rabbit
+		plcm	Nem_Chicken,   ArtTile_Ending_Chicken   ; chicken
+		plcm	Nem_Penguin,   ArtTile_Ending_Penguin   ; penguin
+		plcm	Nem_Seal,      ArtTile_Ending_Seal      ; seal
+		plcm	Nem_Pig,       ArtTile_Ending_Pig       ; pig
+		plcm	Nem_Flicky,    ArtTile_Ending_Flicky    ; flicky
+		plcm	Nem_Squirrel,  ArtTile_Ending_Squirrel  ; squirrel
+		plcm	Nem_EndStH,    ArtTile_Ending_STH       ; "SONIC THE HEDGEHOG"
+PLC_EndingKnucklesend:
 
 plcid_Main:		equ (ptr_PLC_Main-ArtLoadCues)/2	; 0
 plcid_Main2:		equ (ptr_PLC_Main2-ArtLoadCues)/2	; 1
@@ -479,3 +510,5 @@ plcid_MainTails:	equ (ptr_PLC_MainTails-ArtLoadCues)/2	; 20
 plcid_SSResultTails:	equ (ptr_PLC_SSResultTails-ArtLoadCues)/2; $21
 plcid_EndingTails:	equ (ptr_PLC_EndingTails-ArtLoadCues)/2	; $22
 plcid_MainKnuckles:	equ (ptr_PLC_MainKnuckles-ArtLoadCues)/2	; 23
+plcid_SSResultKnuckles:	equ (ptr_PLC_SSResultKnuckles-ArtLoadCues)/2; $24
+plcid_EndingKnuckles:	equ (ptr_PLC_EndingKnuckles-ArtLoadCues)/2	; $25
