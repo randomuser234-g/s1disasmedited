@@ -16,6 +16,8 @@ AfterImg_Index:	dc.w SuperAfterImg_Init-AfterImg_Index
 ; ===========================================================================
 		; init
 SuperAfterImg_Init:
+		tst.w	(v_debuguse).w	; is debug mode being used?
+		bne.s	.end	; if yes, don't do things, avoid using debug mode object as mappings
 		addq.b	#2,obRoutine(a0)
 		move.l	(v_player+obMap),obMap(a0)	; load player mappings
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
@@ -31,6 +33,7 @@ SuperAfterImg_Init:
 		move.b	#$18,obWidth(a0)
 		move.b	#$18,obHeight(a0)
 		move.b	#4,obRender(a0)
+	.end:
 		rts
 ; ============================================================================
 Obj_HyperSonicKnux_Trail_Main:
