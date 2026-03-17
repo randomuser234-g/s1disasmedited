@@ -38,15 +38,13 @@ Knuckles is missing graphics
 
 Infinite flight (flight code ported from S3 prototype)
 
-one of the player's frames during animation are corrupted for some reason
-
 Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
 Tails can't interact with most objects as the second player
 
 No second controller works unlike Sonic 2
 
-go in debug during special stage, ring graphic is wrong
+ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
 
 may be other issues I don't know
 
