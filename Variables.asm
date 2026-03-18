@@ -450,7 +450,8 @@ v_scorecopy:		ds.l	1		; score, duplicate
 	else
 v_scorelife:		ds.l	1		; points required for an extra life (JP1 only)
 	endif
-			ds.b	$1C		; unused
+			ds.b	$1A		; unused
+v_spindashcount:		ds.w	1	; this is the spindash counter now, definition in Sonic Peelout2.asm
 f_levselcheat:		ds.b	1		; level select cheat flag
 f_slomocheat:		ds.b	1		; slow motion & frame advance cheat flag
 f_debugcheat:		ds.b	1		; debug mode cheat flag
@@ -460,7 +461,7 @@ v_title_ccount:		ds.w	1		; number of times C is pressed on title screen
 v_spindashtoggle	ds.b	1		; turn off spindash individually
 v_flighttoggle		ds.b	1		; turn off tails flight
 v_peelouttoggle:	ds.w	1		; used to decide whether peelout is available (replaces v_unused2)
-v_unused3:		ds.b	1		; this is the spindash counter now, definition in Sonic Peelout2.asm
+v_unused3:		ds.b	1		; unused
 v_unused4:		ds.b	1		; unused
 v_unused5:		ds.b	1		; unused
 v_unused6:		ds.b	1		; unused
