@@ -1,4 +1,4 @@
-spindash_counter = v_unused3
+spindash_counter = v_spindashcount
 
 Sonic_Peelout:
 		cmpi.b	#1,(v_peelouttoggle).w	; check if peelout flag to 1 (indicating disable it)
