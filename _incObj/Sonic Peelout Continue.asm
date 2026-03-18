@@ -77,11 +77,11 @@ Sonic_ChargingContPeelout:
 
 Sonic_ContPeelout_ResetScr:
 		addq.l	#4,sp
-		cmpi.w	#(224/2)-16,($FFFFEED8).w
+		cmpi.w	#(224/2)-16,(v_lookshift).w
 		beq.s	Sonic_ContPeeloutAngle
 		bhs.s	+
-		addq.w	#4,($FFFFEED8).w
-+		subq.w	#2,($FFFFEED8).w
+		addq.w	#4,(v_lookshift).w
++		subq.w	#2,(v_lookshift).w
 
 Sonic_ContPeeloutAngle:
 		bsr.w	Sonic_LevelBound

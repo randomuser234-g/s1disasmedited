@@ -111,11 +111,11 @@ Knuckles_ChargingSpindash:			; If still charging the dash...
 
 Knuckles_Spindash_ResetScr:
 		addq.l	#4,sp
-		cmpi.w	#(224/2)-16,($FFFFEED8).w
+		cmpi.w	#(224/2)-16,(v_lookshift).w
 		beq.s	Knuckles_SpinDashAngle
 		bhs.s	+
-		addq.w	#4,($FFFFEED8).w
-+		subq.w	#2,($FFFFEED8).w
+		addq.w	#4,(v_lookshift).w
++		subq.w	#2,(v_lookshift).w
 
 Knuckles_SpinDashAngle:
 		jsr	Sonic_LevelBound
