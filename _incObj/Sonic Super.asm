@@ -67,13 +67,17 @@ return_1ABA4:
 Sonic_Super:
 	tst.b	(v_super).w	; Ignore all this code if not Super Sonic
 	beq.w	return_1AC3C
-	tst.b	(f_timecount).w
-	beq.s	Sonic_RevertToNormal ; ?
+	tst.b	(f_timecount).w		;is the timer paused?
+	beq.s	Sonic_RevertToNormal	;if yes, don't be super
+
+	cmpa.w	#v_player,a0	;is player 1 using this code?
+	bne.w	return_1AC3C	;if not, don't do ring drain with cpu tails
+
 	subq.b	#$1,(v_superframecount).w
 	bpl.w	return_1AC3C
 	move.b	#$3C,(v_superframecount).w	; Reset frame counter to 60
-	tst.w	(v_rings).w
-	beq.s	Sonic_RevertToNormal
+	tst.w	(v_rings).w		;run out of rings?
+	beq.s	Sonic_RevertToNormal	;if yes, don't be super
 	ori.b	#1,(f_ringcount).w
 	cmpi.w	#1,(v_rings).w
 	beq.s	+
