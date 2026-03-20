@@ -22,7 +22,7 @@ Knuckles_SpinDash:
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
 		move.w	#0,spindash_counter(a0)
-		jsr	Sonic_LevelBound
+		jsr	Knuckles_LevelBound
 		jsr	Sonic_AnglePos
 Knuckles_SpinDashDoNothing:
 		rts
@@ -118,7 +118,7 @@ Knuckles_Spindash_ResetScr:
 +		subq.w	#2,(v_lookshift).w
 
 Knuckles_SpinDashAngle:
-		jsr	Sonic_LevelBound
+		jsr	Knuckles_LevelBound
 		jsr	Sonic_AnglePos
 		move.w	#$60,(v_lookshift).w
 		rts

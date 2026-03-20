@@ -93,11 +93,6 @@ Knuckles_AlreadyClimbing:
 		.dn:
 		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 		beq.w	.up	; if not, check if pressing up
-		addq.w	#1,obY(a0)	;go down on the wall
-		tst.b	(v_super).w	; Are we in non-super state?
-		beq.w	.animup		; If so, do nothing
-		addq.w	#1,obY(a0)	;go down faster
-		;wall check
 	move.w	obY(a0),d2
 	addi.w	#11,d2
 	bsr.w	GetDistanceFromWall
@@ -106,6 +101,12 @@ Knuckles_AlreadyClimbing:
 	; bottom of it) then make him let go.
 	tst.w	d1
 	bne.w	Knuckles_StopClimbing
+
+		addq.w	#1,obY(a0)	;go down on the wall
+		tst.b	(v_super).w	; Are we in non-super state?
+		beq.w	.animup		; If so, do nothing
+		addq.w	#1,obY(a0)	;go down faster
+		;wall check
 		cmpi.b	#$B7,(v_player+obFrame).w	;on this frame or lower?
 		ble.s	.loopdown			;if yes, set it to highest climbing frame to loop animation
 		subi.b	#$1,(v_player+obFrame).w	;cycle through climbing anim

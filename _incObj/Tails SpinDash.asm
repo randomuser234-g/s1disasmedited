@@ -24,7 +24,7 @@ Tails_SpinDash:
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
 		move.w	#0,spindash_counter(a0)
-		bsr.w	Sonic_LevelBound
+		bsr.w	Tails_LevelBound
 		bsr.w	Sonic_AnglePos
 Tails_SpinDashDoNothing:
 		rts
@@ -121,7 +121,7 @@ Tails_Spindash_ResetScr:
 +		subq.w	#2,(v_lookshift).w
 
 Tails_SpinDashAngle:
-		bsr.w	Sonic_LevelBound
+		bsr.w	Tails_LevelBound
 		bsr.w	Sonic_AnglePos
 		move.w	#$60,(v_lookshift).w
 		rts
