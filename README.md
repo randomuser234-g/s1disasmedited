@@ -30,13 +30,15 @@ there are leftover comments from SCHG sonic retro as the code isn't 100% origina
 
 known issues:
 
-different flight physics from sonic 3
+can't carry Sonic in air when flying
+
+Tails flies even if Sonic presses A
+
+Infinite flight (flight code ported from S3 prototype)
 
 Knuckles' glide and climbing physics are different from KIS2, be prepared for oddities
 
 Knuckles is missing graphics
-
-Infinite flight (flight code ported from S3 prototype)
 
 Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
