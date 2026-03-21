@@ -3249,9 +3249,12 @@ InitPlayers:
 		bne.s	.alone		; if not, check for characters alone
 		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
 		move.b	#id_TailsPlayer,(v_player2).w ; load Tails object
-		move.w	(v_player+obX).w,(v_player2+obX).w
+		move.w	(v_player+obX).w,(v_player2+obX).w ;load Tails at Sonic's x and y coordinates
 		move.w	(v_player+obY).w,(v_player2+obY).w
-		subi.w	#$20,(v_player2+obX).w
+		subi.w	#$20,(v_player2+obX).w		;then move him to the left
+		move.w	#0,(v_tailscpuroutine).w
+		move.w	#0,(v_tailscontrol).w
+		move.w	#0,(v_tailsrespawn).w
 		rts
 	.alone:
 		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
@@ -3263,6 +3266,9 @@ InitPlayers:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
 		bne.s	.knucklesalone		; if not, check for Knuckles alone
 		move.b	#id_TailsPlayer,(v_player).w ; load Tails object
+		move.w	#0,(v_tailscpuroutine).w
+		move.w	#1,(v_tailscontrol).w	;make sure he's set as human controlled so flying is possible
+		move.w	#0,(v_tailsrespawn).w
 		rts
 	.knucklesalone:
 		move.b	#id_KnucklesPlayer,(v_player).w ; load Knuckles object
