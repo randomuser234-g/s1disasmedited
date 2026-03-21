@@ -767,7 +767,10 @@ Tails_MdNormal:
 ; ===========================================================================
 
 ; Obj02_MdJump:
-Tails_MdJump:
+Tails_MdJump:	;flying thing here
+                tst.b   (f_doublejump).w                    ; is tails flying?
+                bne.s   .flying				;if yes, do this
+
 		bsr.w	Tails_JumpHeight
 		bsr.w	Tails_JumpDirection
 		bsr.w	Tails_LevelBound
@@ -780,6 +783,18 @@ Tails_MdJump:
 		bsr.w	Tails_JumpAngle
 		bsr.w	Tails_Floor
 		rts
+;Offset_0x00DBC2
+.flying:
+				bsr.w	Tails_StartFlying
+                bsr     Tails_JumpDirection                       ; Offset_0x00E0EC
+                bsr     Tails_LevelBound                  ; Offset_0x00E17C
+                jsr     (SpeedToPos)                           ; Offset_0x01111E
+                bsr     Tails_JumpAngle                        ; Offset_0x00E590
+                movem.l A4-A6, -(A7)
+                bsr     Tails_Floor                            ; Offset_0x00E5F0
+                movem.l (A7)+, A4-A6
+		rts
+		;where carrying sonic data would be
 ; ===========================================================================
 
 ; Obj02_MdRoll:
@@ -1906,6 +1921,7 @@ Tails_ResetOnFloor:
 		bclr	#5,obStatus(a0)	; clear push flag.
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
+                move.b  #$00, (f_doublejump).w              ; clear jump flag
 		btst	#2,obStatus(a0)	; check if Sonic is in a ball state.
 		beq.s	.notball	; if not, skip.
 		bclr	#2,obStatus(a0)	; clear ball flag.
