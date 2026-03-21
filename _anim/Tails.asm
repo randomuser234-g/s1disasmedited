@@ -46,9 +46,9 @@ TlsAni_Walk:	dc.b $FF, $10, $11,	$12, $13, $14, 15, $F, $E, afEnd
 		even
 TlsAni_Run:	dc.b $FF,  $2E,  $2F,  $30,  $31, afEnd,  afEnd, afEnd,     afEnd, afEnd
 		even
-TlsAni_Roll:	dc.b $FE,  $48,  $46,  $47,     afEnd, afEnd
+TlsAni_Roll:	dc.b $FE,  $48,  $47,  $46,     afEnd, afEnd
 		even
-TlsAni_Roll2:	dc.b $FE,  $48,  $46,  $47, afEnd
+TlsAni_Roll2:	dc.b $FE,  $48,  $47,  $46, afEnd
 		even
 TlsAni_Push:	dc.b $FD,  $63,  $64,  $65,  $66,     afEnd,     afEnd, afEnd
 		even
@@ -113,7 +113,7 @@ TlsAni_SpinDash: dc.b 0, $60, $61, $62, afEnd
 		 even
 TlsAni_RunFast	dc.b $FF,$3E,$3F,afEnd
 		dc.b afEnd,afEnd,afEnd,afEnd,afEnd,afEnd
-TlsAni_Fly: dc.b 0, $5E, $5F, afEnd
+TlsAni_Fly: dc.b 1, $5E, $5F, afEnd
 		 even
 TlsAni_Transform:	dc.b    2, $8B, $8B, $8C, $8D, $8C, $8D, $8C, $8D, $8C, $8D, $8C, $8D, afChange,   id_Walk
 		even
