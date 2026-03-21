@@ -28,11 +28,13 @@ Options menu available by simply pressing start
 
 there are leftover comments from SCHG sonic retro as the code isn't 100% original (reused from S2 spindash and Extended Camera and Extra characters and others)
 
+note some graphics are different from usual. 
+
+S2 simon wai for tails signpost, the big pose on the end screen are edited Sonic graphics for the 2 characters
+
 known issues:
 
 can't carry Sonic in air when flying
-
-Tails flies even if Sonic presses A
 
 Infinite flight (flight code ported from S3 prototype)
 
