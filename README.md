@@ -30,7 +30,7 @@ there are leftover comments from SCHG sonic retro as the code isn't 100% origina
 
 note some graphics are different from usual. 
 
-S2 simon wai for tails signpost, the big pose on the end screen are edited Sonic graphics for the 2 characters
+S2 nick arcade for tails signpost, the big pose on the end screen are edited Sonic graphics for the 2 characters
 
 known issues:
 
