@@ -21,10 +21,10 @@ Tails_Flight:
 		;move.b	#id_Walk,obAnim(a0)
 
 Offset_0x00E382:
-		move.b	#1,(f_doublejump).w
+		move.b	#1,(f_doublejumpp2).w
 		andi.b	#btnB|btnC,d0
 		beq.s	.20anim
-		move.b	#2,(f_doublejump).w
+		move.b	#2,(f_doublejumpp2).w
 
 ;Offset_0x00E394:
 .20anim:
@@ -40,10 +40,10 @@ Tails_StartFlying:
 		bne.s	.noflying		;if not, don't fly
 		bra.s	.flying			;otherwise fly
 	.noflying:
-		move.b	#0,(f_doublejump).w
+		move.b	#0,(f_doublejumpp2).w
 		rts
 	.flying:
-		cmpi.b	#1,(f_doublejump).w
+		cmpi.b	#1,(f_doublejumpp2).w
 		bne.s	FlyP1
 		move.b	(v_jpadhold2p2+1).w,d0
 		andi.b	#btnB|btnC,d0		;$30?
