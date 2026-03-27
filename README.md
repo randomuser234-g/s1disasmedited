@@ -8,7 +8,7 @@
 
 -Tails playable with flight and S2 spindash
 
--Sonic and tails can be played together
+-Sonic and tails can be played together, press option once to enable (lamppost sound), press again to disable (bumper sound)
 
 -knuckles is "implemented" in the game as well
 
@@ -47,6 +47,8 @@ Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 Tails can't interact with most objects as the second player
 
 No second controller works unlike Sonic 2
+
+Knuckles balancing on ledge is too big, can overwrite Tails sprites
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
 
