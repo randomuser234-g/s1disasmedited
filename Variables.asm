@@ -237,7 +237,8 @@ v_opl_screen:		ds.w	1		; ObjPosLoad - screen variable
 v_opl_data:		ds.b	$10		; ObjPosLoad - data buffer
 v_ssangle:		ds.w	1		; Special Stage angle
 v_ssrotate:		ds.w	1		; Special Stage rotation speed
-			ds.b	$C		; unused
+f_doublejumpp2:		ds.b	1		; double jump flag for tails 
+			ds.b	$B		; unused
 v_btnpushtime1:		ds.w	1		; button push duration - in level
 v_btnpushtime2:		ds.w	1		; button push duration - in demo
 v_palchgspeed:		ds.w	1		; palette fade/transition speed (0 is fastest)
@@ -450,7 +451,8 @@ v_scorecopy:		ds.l	1		; score, duplicate
 	else
 v_scorelife:		ds.l	1		; points required for an extra life (JP1 only)
 	endif
-			ds.b	$1A		; unused
+			ds.b	$19		; unused
+v_havepartner:			ds.b	1		; flag to have tails follow you
 v_spindashcount:		ds.w	1	; this is the spindash counter now, definition in Sonic Peelout2.asm
 f_levselcheat:		ds.b	1		; level select cheat flag
 f_slomocheat:		ds.b	1		; slow motion & frame advance cheat flag

@@ -2995,8 +2995,9 @@ OptionText:
 		dc.b "PAGE 1                  "
 		dc.b "SONIC ALONE             "
 		dc.b "TAILS ALONE             "
-		dc.b "SONIC AND TAILS         "
 		dc.b "KNUCKLES ALONE          "
+		dc.b "                        "
+		dc.b "PARTNER TAILS    ON-OFF "
 		dc.b "TAILS FLIGHT OFF        "
 		dc.b "SPINDASH OFF            "
 		dc.b "PEELOUT OFF             "
@@ -3005,7 +3006,6 @@ OptionText:
 		dc.b "CD STYLE PEELOUT        "
 		dc.b "                        "
 		dc.b "GO TO PAGE 2            "
-		dc.b "                        "
 		dc.b "                        "
 		dc.b "                        "
 		dc.b "-START A B C TO SELECT- " 
@@ -3245,21 +3245,11 @@ Level_SkipTtlCard:
 		move.b	#id_HUD,(v_hud).w ; load HUD object
 		bra.s	Level_ChkDebug
 InitPlayers:
-		cmpi.b	#2,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
-		bne.s	.alone		; if not, check for characters alone
-		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
-		move.b	#id_TailsPlayer,(v_player2).w ; load Tails object
-		move.w	(v_player+obX).w,(v_player2+obX).w ;load Tails at Sonic's x and y coordinates
-		move.w	(v_player+obY).w,(v_player2+obY).w
-		subi.w	#$20,(v_player2+obX).w		;then move him to the left
-		move.w	#0,(v_tailscpuroutine).w
-		move.w	#0,(v_tailscontrol).w
-		move.w	#0,(v_tailsrespawn).w
-		rts
 	.alone:
 		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
 		bne.s	.tailsalone		; if not, check for Tails alone
 		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		jsr	.loadpartner
 		rts
 
 	.tailsalone:
@@ -3272,6 +3262,19 @@ InitPlayers:
 		rts
 	.knucklesalone:
 		move.b	#id_KnucklesPlayer,(v_player).w ; load Knuckles object
+		jsr	.loadpartner
+		rts
+	.loadpartner:
+		cmpi.b	#1,(v_havepartner).w	; is the partner flag on
+		bne.s	.dontloadpartner		; if not, don't load partner
+		move.b	#id_TailsPlayer,(v_player2).w ; load Tails object
+		move.w	(v_player+obX).w,(v_player2+obX).w ;load Tails at Sonic's x and y coordinates
+		move.w	(v_player+obY).w,(v_player2+obY).w
+		subi.w	#$20,(v_player2+obX).w		;then move him to the left
+		move.w	#0,(v_tailscpuroutine).w
+		move.w	#0,(v_tailscontrol).w
+		move.w	#0,(v_tailsrespawn).w
+	.dontloadpartner:
 		rts
 Level_ChkDebug:
 		tst.b	(f_debugcheat).w ; has debug cheat been entered?
