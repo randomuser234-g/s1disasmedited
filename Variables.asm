@@ -284,8 +284,9 @@ v_obj6B:		ds.b	1		; object 6B (SBZ stomper) variable
 f_lockctrl:		ds.b	1		; flag set to lock controls during ending sequence
 f_bigring:		ds.b	1		; flag set when Sonic collects the giant ring
 f_obj56:		ds.b	1		; object 56 flag
-f_lockctrlp2		ds.b	1		; player 2 lock controls
-			ds.b	2		; unused
+f_lockctrlp2:	ds.b	1		; player 2 lock controls
+f_tailscarrysonic:	ds.b	1		; flag for tails to be carrying sonic
+			ds.b	1		; unused
 v_tailscontrol:		ds.w	1	; how long until the CPU takes control
 v_tailsrespawn:		ds.w	1
 v_tailscpuroutine:		ds.w	1
