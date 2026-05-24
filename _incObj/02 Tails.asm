@@ -793,8 +793,20 @@ Tails_MdJump:	;flying thing here
                 movem.l A4-A6, -(A7)
                 bsr     Tails_Floor                            ; Offset_0x00E5F0
                 movem.l (A7)+, A4-A6
-		rts
 		;where carrying sonic data would be
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		beq.w	.dontflysonic	;if yes, don't fly sonic
+		lea	objoff_30(a0),a2
+		lea	(v_player).w,a1 ; a1=character
+		move.w	(v_jpadhold1p2).w,d0
+		jsr	Tails_CarrySonic
+		rts
+	.dontflysonic:
+	btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
+	beq.s	.end	; if not, branch
+	move.b	#id_Roll,(v_player+obAnim).w ; use "jumping" animation, flight cancel
+	.end:
+		rts
 ; ===========================================================================
 
 ; Obj02_MdRoll:
@@ -2472,4 +2484,6 @@ Tails_LoadGfx:
 		jmp	(LoadDynPLC).l			; load DPLC
 .end:
 		rts					; return
+
+		include	"_incObj/Tails_CarrySonic.asm"
 ; End of function Tails_LoadGfx

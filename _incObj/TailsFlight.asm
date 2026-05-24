@@ -6,8 +6,11 @@ Tails_Flight:
 		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		beq.s	rts_TailsFlight		;if not, don't fly
+		btst	#bitUp,(v_jpadhold2p2).w ; is up being pressed?
+		bne.s	.skipcpucheck		;if yes, enable flying even with cpu
 		tst.w	(v_tailscontrol).w	;is Tails CPU controlled?
 		beq.s	rts_TailsFlight		;if yes, don't fly
+.skipcpucheck:
 		; we already checked this earlier...
 		btst	#2,obStatus(a0)
 		beq.s	Offset_0x00E382
