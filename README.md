@@ -34,7 +34,7 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-can't carry Sonic in air when flying
+wrong animation when carried
 
 Infinite flight (flight code ported from S3 prototype)
 
