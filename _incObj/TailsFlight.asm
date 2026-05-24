@@ -40,10 +40,10 @@ rts_TailsFlight:
 ;---------------------------------------------------------------------------------------------------------
 Tails_StartFlying:
 		cmpi.b	#id_Fly,obAnim(a0)	;is tails in flying animation?
-		bne.s	.noflying		;if not, don't fly
-		bra.s	.flying			;otherwise fly
+		beq.s	.flying		;if yes, fly
 	.noflying:
-		move.b	#0,(f_doublejumpp2).w
+		move.b	#0,(f_doublejumpp2).w	;otherwise, stop flying
+		clr.b	(f_tailscarrysonic).w
 		rts
 	.flying:
 		cmpi.b	#1,(f_doublejumpp2).w

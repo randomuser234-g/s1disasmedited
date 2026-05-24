@@ -455,6 +455,14 @@ TailsCPU_Normal_SonicOK:
 
 ; Tails wants to go left because that's where Sonic is
 ; loc_1BD76: TailsCPU_Normal_FollowLeft:
+		tst.b	(f_tailscarrysonic).w                   ; is tails flying?
+                beq.s   .dontflysonic				;if not, don't do this
+		btst	#bitR,(v_jpadhold2).w ; is left being pressed?
+		beq.s	+
+		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
+		ori.w	#(btnR<<8)|btnL,d1	; ...and give Tails his own
+		bra.s	+
+.dontflysonic:
 	cmpi.w	#$10,d2
 	blo.s	+
 	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
@@ -470,6 +478,14 @@ TailsCPU_Normal_SonicOK:
 ; Tails wants to go right because that's where Sonic is
 ; loc_1BD98:
 TailsCPU_Normal_FollowRight:
+		tst.b	(f_tailscarrysonic).w                   ; is tails flying?
+                beq.s   .dontflysonic				;if not, don't do this
+		btst	#bitR,(v_jpadhold2).w ; is left being pressed?
+		beq.s	+
+		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
+		ori.w	#(btnR<<8)|btnL,d1	; ...and give Tails his own
+		bra.s	+
+.dontflysonic:
 	cmpi.w	#$10,d2
 	blo.s	+
 	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input
@@ -770,7 +786,7 @@ Tails_MdNormal:
 Tails_MdJump:	;flying thing here
                 tst.b   (f_doublejumpp2).w                    ; is tails flying?
                 bne.s   .flying				;if yes, do this
-
+		move.b	#0,(f_tailscarrysonic).w
 		bsr.w	Tails_JumpHeight
 		bsr.w	Tails_JumpDirection
 		bsr.w	Tails_LevelBound
@@ -796,7 +812,6 @@ Tails_MdJump:	;flying thing here
 		;where carrying sonic data would be
 		cmpa.w	#v_player,a0	;is Tails player 1?
 		beq.w	.dontflysonic	;if yes, don't fly sonic
-		lea	objoff_30(a0),a2
 		lea	(v_player).w,a1 ; a1=character
 		move.w	(v_jpadhold1p2).w,d0
 		jsr	Tails_CarrySonic
@@ -2116,12 +2131,12 @@ Tails_ResetLevel:; Routine 8
 ; Tails when he's drowning
 ; ---------------------------------------------------------------------------
 Tails_Drowned:
-		bsr.w	SpeedToPos		; Make Sonic able to move
+		jsr	SpeedToPos		; Make Sonic able to move
 		addi.w	#$10,obVelY(a0)		; Apply gravity
 		bsr.w	Tails_RecordPosition	; Record position
 		bsr.w	Tails_Animate		; Animate Sonic
 		bsr.w	Tails_LoadGfx		; Load Sonic's DPLCs
-		bra.w	DisplaySprite		; And finally, display Sonic
+		jmp	DisplaySprite		; And finally, display Sonic
 ; End of function Tails_Drowned
 	endif
 		rts

@@ -1,25 +1,20 @@
 Tails_CarrySonic:
-	tst.b	2(a2)
-	beq.s	.afterthis
-	subq.b	#1,2(a2)
-	bne.w	.end
-.afterthis:
 	move.w	obX(a1),d0
 	sub.w	obX(a0),d0
 	addi.w	#$C,d0
 	cmpi.w	#$18,d0
-	bhs.w	.end
+	bhs.w	.stopcarrysonic
 	move.w	obY(a1),d1
 	sub.w	obY(a0),d1
 	subi.w	#$19,d1		;28
 	cmpi.w	#$D,d1		;10
-	bhs.w	.end
+	bhs.w	.stopcarrysonic
 	tst.b	(f_playerctrl).w
-	bmi.w	.end
+	bmi.w	.stopcarrysonic
 	cmpi.b	#4,obRoutine(a1)
-	bhs.s	.end
+	bhs.s	.stopcarrysonic
 	tst.w	(v_debuguse).w
-	bne.s	.end
+	bne.s	.stopcarrysonic
 	;face left or right
 	btst	#0,obStatus(a0)		;tails facing left?
 	bne.s	.notleft		;if not, don't face left
@@ -45,11 +40,13 @@ Tails_CarrySonic:
 	move.w	obVelY(a0),obVelY(a1)
 	addi.w	#$1D,obY(a1)	;30		; the 3 numbers edited here may be where on y axis tails should hold sonic
 	move.b	#id_LookUp,obAnim(a1)
-	;move.b	#1,(f_playerctrl).w		;can freeze sonic, disable as it's too easy to lock him in air
-	;move.b	#1,(a2)				;makes tails invulnerable, also disable
+	move.b	#1,(f_tailscarrysonic).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
 	move.b	#id_Roll,(v_player+obAnim).w ; use "jumping" animation, flight cancel
 	move.b	#id_Roll,(v_player2+obAnim).w ; use "jumping" animation
-.end:
+.stopcarrysonic:
+	move.b	#0,(f_tailscarrysonic).w
 		rts
+.end:
+	rts

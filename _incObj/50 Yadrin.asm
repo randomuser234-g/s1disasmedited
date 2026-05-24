@@ -21,7 +21,7 @@ loc_F828:
 
 loc_F82C:
 		not.w	d3
-		bsr.w	ObjHitWallLeft
+		jsr	ObjHitWallLeft
 		tst.w	d1
 		bmi.s	loc_F828
 
