@@ -46,7 +46,7 @@ Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
 Tails can't interact with most objects as the second player
 
-No second controller works unlike Sonic 2
+the occasional total crash or even sent to the credits??
 
 Knuckles balancing on ledge is too big, can overwrite Tails sprites
 
