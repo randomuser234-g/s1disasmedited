@@ -1024,6 +1024,7 @@ ReadJoypads:
 		lea	(v_jpadhold1).w,a0 ; address where joypad states are written
 		lea	(z80_port_1_data+1).l,a1	; first joypad port
 		bsr.s	.read		; do the first joypad
+		lea	(v_jpadhold1p2).w,a0 ; new line to support second joypad
 		addq.w	#2,a1		; do the second joypad
 
 .read:
