@@ -40,7 +40,7 @@ ptr2_Fly:	dc.w TlsAni_Fly-Ani_Tails
 ptr2_Transform:	dc.w TlsAni_Transform-Ani_Tails
 ptr2_Glide:	dc.w TlsAni_Glide-Ani_Tails
 ptr2_FallFromGlide:	dc.w TlsAni_FallFromGlide-Ani_Tails
-
+ptr2_HangFromTails:	dc.w TlsAni_HangFromTails-Ani_Tails
 
 TlsAni_Walk:	dc.b $FF, $10, $11,	$12, $13, $14, 15, $F, $E, afEnd
 		even
@@ -121,6 +121,9 @@ TlsAni_Glide: dc.b 0, $5E, $5F, afEnd
 		 even
 TlsAni_FallFromGlide: dc.b 0, $59, $59, afBack,1
 		 even
+TlsAni_HangFromTails:
+		dc.b $13,$85,$86,$FF
+		even
 
 id2_Walk:	equ (ptr_Walk-Ani_Tails)/2	; 0
 id2_Run:	equ (ptr_Run-Ani_Tails)/2	; 1
@@ -156,6 +159,7 @@ id2_Float4:	equ (ptr_Float4-Ani_Tails)/2	; $1E
 id2_SpinDash:	equ (ptr_SpinDash-Ani_Tails)/2	; $1F
 id2_RunFast:	equ (ptr_Fly-Ani_Tails)/2	; $20
 id2_Fly:	equ (ptr_Fly-Ani_Tails)/2	; $21
-id2_Transform:	equ (ptr_Transform-Ani_Tails)/2	; $21
-id2_Glide:	equ (ptr_Glide-Ani_Tails)/2	; $21
-id2_FallFromGlide:	equ (ptr_FallFromGlide-Ani_Tails)/2	; $21
+id2_Transform:	equ (ptr_Transform-Ani_Tails)/2	; $22
+id2_Glide:	equ (ptr_Glide-Ani_Tails)/2	; $23
+id2_FallFromGlide:	equ (ptr_FallFromGlide-Ani_Tails)/2	; $24
+id2_HangFromTails:	equ (ptr_HangFromTails-Ani_Tails)/2	; $25

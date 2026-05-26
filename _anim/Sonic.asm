@@ -40,6 +40,7 @@ ptr_Fly:	dc.w SonAni_Fly-Ani_Sonic
 ptr_Transform:	dc.w SonAni_Transform-Ani_Sonic
 ptr_Glide:	dc.w SonAni_Glide-Ani_Sonic
 ptr_FallFromGlide:	dc.w SonAni_FallFromGlide-Ani_Sonic
+ptr_HangFromTails:	dc.w SonAni_HangFromTails-Ani_Sonic
 
 SonAni_Walk:	dc.b $FF, fr_Walk13, fr_Walk14,	fr_Walk15, fr_Walk16, fr_Walk11, fr_Walk12, afEnd
 		even
@@ -121,6 +122,9 @@ SonAni_Glide:
 SonAni_FallFromGlide:
 		dc.b 7, fr_Spring, fr_Spring, afBack, 1
 		even
+SonAni_HangFromTails:
+		dc.b $A, $A5, $A6, $A7, $A6, $A5, $A4, $A3, $A4, afEnd
+		even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2	; 0
 id_Run:		equ (ptr_Run-Ani_Sonic)/2	; 1
@@ -154,11 +158,12 @@ id_Null:	equ (ptr_Null-Ani_Sonic)/2	; $1C
 id_Float3:	equ (ptr_Float3-Ani_Sonic)/2	; $1D
 id_Float4:	equ (ptr_Float4-Ani_Sonic)/2	; $1E
 id_SpinDash:	equ (ptr_SpinDash-Ani_Sonic)/2	; $1F
-id_RunFast:	equ (ptr_RunFast-Ani_Sonic)/2	; $1F
-id_Fly:		equ (ptr_Fly-Ani_Sonic)/2	; $1F
-id_Transform:		equ (ptr_Transform-Ani_Sonic)/2	; $1F
-id_Glide:		equ (ptr_Glide-Ani_Sonic)/2	; $1F
-id_FallFromGlide:		equ (ptr_FallFromGlide-Ani_Sonic)/2	; $1F
+id_RunFast:	equ (ptr_RunFast-Ani_Sonic)/2	; $20
+id_Fly:		equ (ptr_Fly-Ani_Sonic)/2	; $21
+id_Transform:		equ (ptr_Transform-Ani_Sonic)/2	; $22
+id_Glide:		equ (ptr_Glide-Ani_Sonic)/2	; $23
+id_FallFromGlide:		equ (ptr_FallFromGlide-Ani_Sonic)/2	; $24
+id_HangFromTails:		equ (ptr_HangFromTails-Ani_Sonic)/2	; $25
 ;---------------------------------------------------------------------------------------------------------
 Ani_SuperSonic:
 
@@ -199,6 +204,7 @@ ptrSS_Fly:	dc.w SupSonAni_Fly-Ani_SuperSonic
 ptrSS_Transform:	dc.w SupSonAni_Transform-Ani_SuperSonic
 ptrSS_Glide:	dc.w SupSonAni_Glide-Ani_SuperSonic
 ptrSS_FallFromGlide:	dc.w SupSonAni_FallFromGlide-Ani_SuperSonic
+ptrSS_HangFromTails:	dc.w SupSonAni_HangFromTails-Ani_SuperSonic
 
 SupSonAni_Walk:	dc.b $FF,$70,$71,$72,$73,$74,$75,$FF,$FF,$FF
 		even
@@ -281,6 +287,10 @@ SupSonAni_FallFromGlide:
 		dc.b 7, fr_Spring, fr_Spring, afBack, 1
 		even
 
+SupSonAni_HangFromTails:
+		dc.b $A, $A5, $A6, $A7, $A6, $A5, $A4, $A3, $A4, afEnd
+		even
+
 idSS_Walk:	equ (ptr_Walk-Ani_SuperSonic)/2	; 0
 idSS_Run:		equ (ptr_Run-Ani_SuperSonic)/2	; 1
 idSS_Roll:	equ (ptr_Roll-Ani_SuperSonic)/2	; 2
@@ -313,6 +323,9 @@ idSS_Null:	equ (ptr_Null-Ani_SuperSonic)/2	; $1C
 idSS_Float3:	equ (ptr_Float3-Ani_SuperSonic)/2	; $1D
 idSS_Float4:	equ (ptr_Float4-Ani_SuperSonic)/2	; $1E
 idSS_SpinDash:	equ (ptr_SpinDash-Ani_SuperSonic)/2	; $1F
-idSS_RunFast:	equ (ptr_RunFast-Ani_SuperSonic)/2	; $1F
-idSS_Fly:		equ (ptr_Glide-Ani_SuperSonic)/2	; $1F
-idSS_Transform:		equ (ptr_FallFromGlide-Ani_SuperSonic)/2	; $1F
+idSS_RunFast:	equ (ptr_RunFast-Ani_SuperSonic)/2	; $20
+idSS_Fly:		equ (ptr_Fly-Ani_SuperSonic)/2	; $21
+idSS_Transform:		equ (ptr_Transform-Ani_SuperSonic)/2	; $22
+idSS_Glide:		equ (ptr_Glide-Ani_SuperSonic)/2	; $23
+idSS_FallFromGlide:		equ (ptr_FallFromGlide-Ani_SuperSonic)/2	; $24
+idSS_HangFromTails:		equ (ptr_HangFromTails-Ani_SuperSonic)/2	; $25
