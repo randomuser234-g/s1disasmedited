@@ -39,7 +39,7 @@ Tails_CarrySonic:
 	move.w	obVelX(a0),obVelX(a1)	;velocity
 	move.w	obVelY(a0),obVelY(a1)
 	addi.w	#$1D,obY(a1)	;30		; the 3 numbers edited here may be where on y axis tails should hold sonic
-	move.b	#id_LookUp,obAnim(a1)
+	move.b	#id_HangFromTails,obAnim(a1)
 	move.b	#1,(f_tailscarrysonic).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch

@@ -2018,7 +2018,7 @@ Sonic_Animate2:
 ; LoadSonicDynPLC:
 Sonic_LoadGfx:
 	.sonictestanimnull:
-		cmpi.b	#$A2,obFrame(a0) ; higher than $A2?
+		cmpi.b	#$A7,obFrame(a0) ; higher than $A7?
 		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
 		bra.s	.movefromanimtest		; branch to rest of code
 .nullanim
