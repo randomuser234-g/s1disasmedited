@@ -4146,13 +4146,25 @@ GM_Continue:
 		lea	(Nem_TitleCard).l,a0 ; load title card patterns
 		bsr.w	NemDec
 		locVRAM	ArtTile_Continue_Sonic*tile_size
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.sonicpat		; if yes, load Sonic
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.sonicpat		; if not, load Sonic's patterns
-		lea	(Nem_ContTails).l,a0 ; load Tails patterns
-		bra.s	.loadpat		; branch to rest of code
+		beq.s	.tailspat		; if yes, load Tails
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 2 (Knuckles)?
+		beq.s	.knuxpat		; if yes, load knuckles
 
 	.sonicpat:
 		lea	(Nem_ContSonic).l,a0 ; load Sonic patterns
+		bra.s	.loadpat		; branch to rest of code
+
+	.tailspat:
+		lea	(Nem_ContTails).l,a0 ; load Tails patterns
+		bra.s	.loadpat		; branch to rest of code
+
+	.knuxpat:
+		lea	(Nem_ContKnux).l,a0 ; load Knuckles patterns
+		bra.s	.loadpat		; branch to rest of code
+		nop
 
 	.loadpat:
 		bsr.w	NemDec
@@ -8340,6 +8352,8 @@ Nem_Bonus:	binclude	"artnem/Hidden Bonuses.nem" ; hidden bonuses at end of a lev
 Nem_ContSonic:	binclude	"artnem/Continue Screen Sonic.nem"
 		even
 Nem_ContTails:	binclude	"artnem/Continue Screen Tails.nem"
+		even
+Nem_ContKnux:	binclude	"artnem/Continue Screen Knuckles.nem"
 		even
 Nem_MiniSonic:	binclude	"artnem/Continue Screen Stuff.nem"
 		even
