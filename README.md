@@ -6,7 +6,7 @@
 
 -Press B while paused to lose a life and restart the act (Game Over if used at 1 life)
 
--Tails playable with flight and S2 spindash
+-Tails playable with flight and S2 spindash, press down on D-pad mid flight to cancel
 
 -Sonic and tails can be played together, press option once to enable (lamppost sound), press again to disable (bumper sound)
 
@@ -34,13 +34,9 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-wrong animation when carried
-
-Infinite flight (flight code ported from S3 prototype)
+Infinite flight, no damaging badniks (flight code ported from S3 prototype)
 
 Knuckles' glide and climbing physics are different from KIS2, be prepared for oddities
-
-Knuckles is missing graphics
 
 Sonic and Tails' modes can be intertwined, if he's in water, you're slow
 
@@ -48,9 +44,13 @@ Tails can't interact with most objects as the second player
 
 the occasional total crash or even sent to the credits??
 
-Knuckles balancing on ledge is too big, can overwrite Tails sprites
+Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
+
+blue knuckles on the title screen
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
+
+certain graphics overwritten during loads (mini sonic on continue)
 
 may be other issues I don't know
 
