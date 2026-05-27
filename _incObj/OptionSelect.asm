@@ -163,7 +163,7 @@ OptionSelect2:
 		cmpi.w	#$13,d0		; have you selected item $13 (go back)?
 		bne.w	.soundtest	; if not, do nothing
 		move.b	#0,(v_menupage)
-		move.w	#$C,(v_levselitem).w	;reselect "GO TO PAGE 2"
+		move.w	#$D,(v_levselitem).w	;reselect "GO TO PAGE 2"
 		jsr	LevSelTextLoad
 		jmp	LevelSelect
 		rts

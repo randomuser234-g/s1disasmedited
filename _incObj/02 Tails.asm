@@ -50,7 +50,7 @@ Tails_Main:	; Routine 0
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#$18,obActWid(a0)
-		move.b	#1<<7|1<<2,obRender(a0) ; render_flags(Tails) = $80 | initial render_flags(Sonic)
+		move.b	#4,obRender(a0) ; render_flags(Tails) = $80 | initial render_flags(Sonic)
 		move.b	#0,(v_super).w	; turn off Super
 		move.b	#0,(v_shoes).w	; turn off speed shoes
 		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
@@ -934,6 +934,8 @@ Tails_LookUp:
 		btst	#bitUp,(v_jpadhold2p2).w ; is up being pressed?
 		beq.s	Tails_Duck	; if not, branch
 		move.b	#id_LookUp,obAnim(a0) ; use "looking up" animation
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	loc_12FC2Dup	;if not, do not look up
 		cmpi.w	#$C8,(v_lookshift).w
 		beq.s	loc_12FC2Dup
 		addq.w	#2,(v_lookshift).w
@@ -944,6 +946,8 @@ Tails_Duck:
 		btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
 		beq.s	Tails_ResetScr	; if not, branch
 		move.b	#id_Duck,obAnim(a0) ; use "ducking" animation
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	loc_12FC2Dup	;if not, do not look down
 		cmpi.w	#8,(v_lookshift).w
 		beq.s	loc_12FC2Dup
 		subq.w	#2,(v_lookshift).w
@@ -1959,7 +1963,10 @@ Tails_ResetOnFloor:
 
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.notplayer1	;if not, do not reset the score chain
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
+.notplayer1:
 		rts
 ; End of function Tails_ResetOnFloor
 
@@ -2047,7 +2054,7 @@ Tails_Death:	; Routine 6
 
 GameOverDup:
 	cmpa.w	#v_player,a0	;is Tails player 1?
-	beq.w	.gameover	;if not, cpu controls
+	beq.w	.gameover	;if not, don't end the game, just respawn player 2
 	;move.b	#1,(Scroll_lock_P2).w
 	move.b	#0,spindash_flag(a0)
 	move.w	(v_limittop2tails).w,d0
