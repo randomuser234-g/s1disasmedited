@@ -457,10 +457,10 @@ TailsCPU_Normal_SonicOK:
 ; loc_1BD76: TailsCPU_Normal_FollowLeft:
 		tst.b	(f_tailscarrysonic).w                   ; is tails flying?
                 beq.s   .dontflysonic				;if not, don't do this
-		btst	#bitR,(v_jpadhold2).w ; is left being pressed?
+		btst	#bitL,(v_jpadhold2).w ; is left being pressed?
 		beq.s	+
 		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
-		ori.w	#(btnR<<8)|btnL,d1	; ...and give Tails his own
+		ori.w	#(btnL<<8)|btnL,d1	; ...and give Tails his own
 		bra.s	+
 .dontflysonic:
 	cmpi.w	#$10,d2
@@ -483,7 +483,7 @@ TailsCPU_Normal_FollowRight:
 		btst	#bitR,(v_jpadhold2).w ; is left being pressed?
 		beq.s	+
 		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
-		ori.w	#(btnR<<8)|btnL,d1	; ...and give Tails his own
+		ori.w	#(btnR<<8)|btnR,d1	; ...and give Tails his own
 		bra.s	+
 .dontflysonic:
 	cmpi.w	#$10,d2
@@ -693,7 +693,7 @@ Tails_RecordPosition:
 		rts
 ; End of function Tails_RecordPosition
 ; ---------------------------------------------------------------------------
-; Subroutine for Sonic when he's underwater
+; Subroutine for Tails when he's underwater
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -710,7 +710,7 @@ Tails_Water:
 ; Obj02_InWater:
 .islabyrinth:
 		move.w	(v_waterpos1).w,d0
-		cmp.w	obY(a0),d0	; is Sonic above the water?
+		cmp.w	obY(a0),d0	; is Tails above the water?
 		bge.s	.abovewater	; if yes, branch
 		bset	#6,obStatus(a0)
 		bne.s	.exit
@@ -739,7 +739,7 @@ Tails_Water:
 		bclr	#6,obStatus(a0)
 		beq.s	.exit
 		bsr.w	ResumeMusic
-		tst.b	(v_super).w	; is Sonic Super?
+		tst.b	(v_super).w	; is Tails Super?
 		bne.s	.speedshoesexitwater		; if yes, branch
 		tst.b	(v_shoes).w	; does Sonic have speed shoes?
 		bne.s	.speedshoesexitwater		; if yes, branch
