@@ -93,6 +93,7 @@ Knuckles_AlreadyClimbing:
 		.dn:
 		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 		beq.w	.up	; if not, check if pressing up
+	; Get Knuckles' distance from the wall in 'd1'.
 	move.w	obY(a0),d2
 	addi.w	#11,d2
 	bsr.w	GetDistanceFromWall
@@ -102,6 +103,25 @@ Knuckles_AlreadyClimbing:
 	tst.w	d1
 	bne.w	Knuckles_StopClimbing
 
+	; Get Knuckles' distance from the floor in 'd1'.
+	move.b	obSolid(a0),d5
+	move.w	obY(a0),d2
+	addi.w	#9,d2
+	move.w	obX(a0),d3
+	bsr.w	CheckFloorDist_WithRadius
+
+	; Check if Knuckles has room below him.
+	tst.w	d1
+	bpl.s	.moveDown
+
+	; Knuckles has reached the floor.
+	add.w	d1,obY(a0)
+	move.b	(v_anglebuffer).w,obAngle(a0)
+	move.w	#0,obInertia(a0)
+	move.w	#0,obVelX(a0)
+	move.w	#0,obVelY(a0)
+	rts
+.moveDown:
 		addq.w	#1,obY(a0)	;go down on the wall
 		tst.b	(v_super).w	; Are we in non-super state?
 		beq.w	.animup		; If so, do nothing
@@ -123,6 +143,16 @@ Knuckles_AlreadyClimbing:
 	; ledge, so make Knuckles climb up onto it.
 	cmpi.w	#4,d1
 	bge.w	Knuckles_Ledge
+	tst.w	d1
+	bne.w	Knuckles_StoppedClimbing
+
+	; Get Knuckles' distance from the ceiling in 'd1'.
+	move.b	obSolid(a0),d5
+	move.w	obY(a0),d2
+	subq.w	#8,d2
+	move.w	obX(a0),d3
+	bsr.w	CheckCeilingDist_WithRadius
+
 	tst.w	d1
 	bpl.s	.moveup
 
@@ -196,3 +226,29 @@ GetDistanceFromWall:
 	subq.w	#1,d3
 	jmp	Sonic_HitWall
 ; End of function GetDistanceFromWall
+
+CheckCeilingDist_WithRadius:
+	move.b	obWidth(a0),d0
+	ext.w	d0
+	sub.w	d0,d2
+	eori.w	#$F,d2
+	lea	(v_anglebuffer).w,a4
+	move.w	#-16,a3
+	move.w	#$800,d6
+	jsr	FindFloor
+	move.b	#$80,d2
+	jmp	loc_14E0A
+
+; End of function CheckCeilingDist_WithRadius
+
+CheckFloorDist_WithRadius:
+	move.b	obWidth(a0),d0
+	ext.w	d0
+	add.w	d0,d2
+	lea	(v_anglebuffer).w,a4
+	move.w	#16,a3
+	move.w	#0,d6
+	jsr	FindFloor
+	move.b	#0,d2
+	jmp	loc_14E0A
+; End of function CheckFloorDist_WithRadius
