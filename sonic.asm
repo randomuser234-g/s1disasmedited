@@ -41,7 +41,8 @@ AddressSRAM = 3
 ZoneCount = 6
 ;	| Used for the zonewarning macro. Do not change, unless more zones get added.
 ;	| Discrete zones are: GHZ, LZ, MZ, SLZ, SYZ, and SBZ
-
+DebugBuild = 0
+;	| Instantly enable debug and level select
 ; ===========================================================================
 ; AS-specific macros and assembler settings
 	cpu 68000
@@ -390,7 +391,12 @@ GameInit:
 		bsr.w	VDPSetupGame
 		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
+    if DebugBuild
+	;instantly go to title
+		move.b	#id_Title,(v_gamemode).w ; go to title screen
+    else
 		move.b	#id_Sega,(v_gamemode).w ; set Game Mode to Sega Screen
+    endif
 
 MainGameLoop:
 		move.b	(v_gamemode).w,d0 ; load Game Mode
@@ -2304,6 +2310,14 @@ Tit_LoadText:
 		move.b	#bgm_Title,d0
 		bsr.w	QueueSound2	; play title screen music
 		move.b	#0,(f_debugmode).w ; disable debug mode
+    if DebugBuild
+	;instantly enable the level select and debug
+	move.b	#1,(f_levselcheat).w
+	move.b	#1,(f_slomocheat).w
+	move.b	#1,(f_debugcheat).w
+    else
+	nop
+    endif
 		move.w	#376,(v_generictimer).w ; run title screen for 376 frames
 		
 	if FixBugs
