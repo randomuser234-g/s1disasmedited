@@ -2824,6 +2824,7 @@ ptr_sndD1:	dc.l SoundD1
 ptr_sndD2:	dc.l SoundD2
 ptr_sndD3:	dc.l SoundD3
 ptr_sndD4:	dc.l SoundD4
+ptr_sndD5:	dc.l SoundD5
 ptr_extend
 ; ---------------------------------------------------------------------------
 ; Sound effect data
@@ -2937,6 +2938,8 @@ SoundD2:	include "sound/sfx/D2 - Peelout Release.asm"
 SoundD3:	include "sound/sfx/D3 - Peelout Stop.asm"
 		even
 SoundD4:	include "sound/sfx/D4 - Spin Dash Rev.asm"
+		even
+SoundD5:	include "sound/sfx/D5 - Flying.asm"
 		even
 
 ; ---------------------------------------------------------------------------
