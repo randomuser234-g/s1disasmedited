@@ -815,6 +815,8 @@ Tails_MdJump:	;flying thing here
 		lea	(v_player).w,a1 ; a1=character
 		move.w	(v_jpadhold1p2).w,d0
 		jsr	Tails_CarrySonic
+		tst.w	(v_tailscontrol).w	; if CPU has control
+		bne.w	.dontflysonic		; (if not, branch)
 		rts
 	.dontflysonic:
 	btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?

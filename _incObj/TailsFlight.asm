@@ -46,6 +46,13 @@ Tails_StartFlying:
 		clr.b	(f_tailscarrysonic).w
 		rts
 	.flying:
+		move.b	(v_framecount+1).w,d0
+		addq.b	#8,d0
+		andi.b	#$F,d0
+		bne.s	.skipsound
+	move.w	#sfx_Flying,d0
+	jsr	(QueueSound2).l	; play flying sound
+.skipsound:
 		cmpi.b	#1,(f_doublejumpp2).w
 		bne.s	FlyP1
 		move.b	(v_jpadhold2p2+1).w,d0
