@@ -197,9 +197,9 @@ loc_19F6A:
 		bne.s	loc_19F88
 		tst.b	obColProp(a0)	;is the boss hits at 0?
 		beq.s	.skiphitsafter0	;if yes, don't do damage
-		subq.b	#1,obColProp(a0)
+		subq.b	#1,obColProp(a0);otherwise lose 1 point of health
 	.skiphitsafter0:
-		subq.b	#1,obColProp(a0)
+		;removed a duplicate subq.b which invalidated the check for 0 health
 		move.b	#$64,objoff_35(a0)
 		move.w	#sfx_HitBoss,d0
 		jsr	(QueueSound2).l	; play boss damage sound

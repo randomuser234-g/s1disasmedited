@@ -821,7 +821,8 @@ Tails_MdJump:	;flying thing here
 	.dontflysonic:
 	btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
-	move.b	#id_Roll,(v_player+obAnim).w ; use "jumping" animation, flight cancel
+	move.b	#id_Roll,obAnim(a0); use "jumping" animation, flight cancel
+	;old one used v_player, even if p2 wanted to cancel oops
 	.end:
 		rts
 ; ===========================================================================
