@@ -684,12 +684,15 @@ return_1BF36:
 
 ; Sonic_RecordPos:
 Tails_RecordPosition:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.dontrecord	;if not, do not record player position
 		move.w	(v_trackpos).w,d0
 		lea	(v_tracksonic).w,a1
 		lea	(a1,d0.w),a1
 		move.w	obX(a0),(a1)+
 		move.w	obY(a0),(a1)+
 		addq.b	#4,(v_trackbyte).w
+.dontrecord
 		rts
 ; End of function Tails_RecordPosition
 ; ---------------------------------------------------------------------------

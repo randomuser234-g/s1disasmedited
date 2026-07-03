@@ -120,8 +120,19 @@ SSR_RingBonus:	; Routine 6
 		move.b	#1,(f_endactbonus).w ; set ring bonus update flag
 		tst.w	(v_ringbonus).w	; is ring bonus = zero?
 		beq.s	loc_C8C4	; if yes, branch
+		;instantly add ring bonus with ABC
+		move.b	(v_jpadpress1).w,d0
+		andi.b	#btnABC,d0	; is A, B or C pressed?
+		beq.w	.nobuttons	; if not, branch
+		moveq	#0,d0
+		add.w	(v_ringbonus).w,d0	;instantly add bonuses to d0, then clear
+		clr.w	(v_ringbonus).w
+		bra.s	.scoreavailable
+
+	.nobuttons:
 		subi.w	#10,(v_ringbonus).w ; subtract 10 from ring bonus
 		moveq	#10,d0		; add 10 to score
+	.scoreavailable:
 		jsr	(AddPoints).l
 		move.b	(v_vbla_byte).w,d0
 		andi.b	#3,d0

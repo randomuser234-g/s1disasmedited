@@ -118,6 +118,17 @@ Got_TimeBonus:	; Routine 6
 		bsr.w	DisplaySprite
 		move.b	#1,(f_endactbonus).w ; set time/ring bonus update flag
 		moveq	#0,d0
+		;instantly add score with ABC buttons
+		move.b	(v_jpadpress1).w,d0
+		andi.b	#btnABC,d0	; is A, B or C pressed?
+		beq.w	.nobuttons	; if not, branch
+		moveq	#0,d0
+		add.w	(v_timebonus).w,d0	;instantly add bonuses to d0, then clear
+		add.w	(v_ringbonus).w,d0
+		clr.w	(v_timebonus).w
+		clr.w	(v_ringbonus).w
+		bra.s	Got_ChkBonus
+.nobuttons:
 		tst.w	(v_timebonus).w	; is time bonus = zero?
 		beq.s	Got_RingBonus	; if yes, branch
 		addi.w	#10,d0		; add 10 to score
