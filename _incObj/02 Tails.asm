@@ -692,7 +692,7 @@ Tails_RecordPosition:
 		move.w	obX(a0),(a1)+
 		move.w	obY(a0),(a1)+
 		addq.b	#4,(v_trackbyte).w
-.dontrecord
+.dontrecord:
 		rts
 ; End of function Tails_RecordPosition
 ; ---------------------------------------------------------------------------
