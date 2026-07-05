@@ -198,8 +198,7 @@ RLoss_Count:	; Routine 0
 		move.w	#$288,d4
 		bra.s	.makerings
 ; ===========================================================================
-.calcsine:
-		jmp	CalcSine
+
 .loop:
 		bsr.w	FindFreeObj
 		bne.w	.resetcounter
@@ -226,7 +225,7 @@ RLoss_Count:	; Routine 0
 		tst.w	d4
 		bmi.s	.loc_9D62
 		move.w	d4,d0
-		bsr.w	.calcsine
+		jsr	.CalcSine
 		move.w	d4,d2
 		lsr.w	#8,d2
 		asl.w	d2,d0

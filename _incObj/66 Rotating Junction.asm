@@ -26,7 +26,7 @@ Jun_Main:	; Routine 0
 ; ===========================================================================
 
 .repeat:
-		bsr.w	.findfreeobj
+		jsr	FindFreeObj
 		bne.s	.fail
 		_move.b	#id_Junction,obID(a1)
 		addq.b	#4,obRoutine(a1) ; goto Jun_Display next
@@ -34,11 +34,6 @@ Jun_Main:	; Routine 0
 		move.w	obY(a0),obY(a1)
 		move.b	#3,obPriority(a1)
 		move.b	#$10,obFrame(a1) ; use large circular sprite
-		jmp	.makeitem
-		rts
-	.findfreeobj:
-		jsr	FindFreeObj
-		rts
 .makeitem:
 		move.l	#Map_Jun,obMap(a1)
 		move.w	#make_art_tile(ArtTile_SBZ_Junction,2,0),obGfx(a1)
@@ -97,8 +92,6 @@ Jun_Action:	; Routine 2
 		asr	obY(a1)
 
 Jun_Display:	; Routine 4
-		bra.w	.rememberstate
-	.rememberstate:
 		jmp	RememberState
 ; ===========================================================================
 
@@ -127,8 +120,6 @@ Jun_Release:	; Routine 6
 .dontrelease:
 		bsr.s	Jun_ChkSwitch
 		bsr.s	Jun_ChgPos
-		bra.w	.rememberstate
-.rememberstate:
 		jmp	RememberState
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 

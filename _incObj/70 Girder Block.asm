@@ -54,11 +54,8 @@ Gird_Action:	; Routine 2
 		move.b	obHeight(a0),d2
 		move.w	d2,d3
 		addq.w	#1,d3
-		bsr.w	.solidobject
-		jmp	.chkdel	
-		rts
-.solidobject:
-		jmp	SolidObject
+		jsr	SolidObject
+
 .chkdel:
 		out_of_range.s	.delete,gird_origX(a0)
 		jmp	(DisplaySprite).l

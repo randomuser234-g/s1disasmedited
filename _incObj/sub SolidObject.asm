@@ -35,11 +35,9 @@ SolidObject:
 
 .stand:
 		move.w	d4,d2
-		bsr.w	.mvsonic
+		jsr	MvSonicOnPtfm
 		moveq	#0,d4
 		rts
-.mvsonic:
-		jmp	MvSonicOnPtfm
 ; ===========================================================================
 
 SolidObject71:
@@ -66,11 +64,9 @@ SolidObject71:
 
 .stand:
 		move.w	d4,d2
-		bsr.w	.mvsonic2
+		jsr	MvSonicOnPtfm
 		moveq	#0,d4
 		rts
-.mvsonic2:
-		jmp	MvSonicOnPtfm
 ; ===========================================================================
 
 SolidObject2F:

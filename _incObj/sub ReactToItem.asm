@@ -284,7 +284,7 @@ HurtSonic:
 		move.b	#0,(v_shield).w	; remove shield
 .skiphasshield:
 		move.b	#4,obRoutine(a0)
-		bsr.w	.resetonfloor
+		jsr	Sonic_ResetOnFloor
 		bset	#1,obStatus(a0)
 		move.w	#-$400,obVelY(a0) ; make Sonic bounce away from the object
 		move.w	#-$200,obVelX(a0)
@@ -327,9 +327,6 @@ HurtSonic:
 		jsr	(QueueSound2).l
 		moveq	#-1,d0
 		rts
-.resetonfloor:
-		jmp	Sonic_ResetOnFloor
-		rts
 ; ===========================================================================
 
 .norings:
@@ -361,7 +358,7 @@ KillSonic:
 		move.b	#0,(v_super).w
 		.dontremovesuper:
 		move.b	#6,obRoutine(a0)
-		bsr.w	.resetonfloor
+		jsr	Sonic_ResetOnFloor
 		bset	#1,obStatus(a0)
 		move.w	#-$700,obVelY(a0)
 		move.w	#0,obVelX(a0)
@@ -395,9 +392,6 @@ KillSonic:
 
 .dontdie:
 		moveq	#-1,d0
-		rts
-.resetonfloor:
-		jmp	Sonic_ResetOnFloor
 		rts
 ; End of function KillSonic
 
