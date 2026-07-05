@@ -92,6 +92,10 @@ Tails_Control:	; Routine 2
 		bne.s	.ignoremodes	; if yes, branch
 		btst	#0,(f_playerctrl2).w ; are controls locked?
 		bne.s	.ignoremodes	; if yes, branch
+                tst.b   (f_doublejumpp2).w                    ; is tails flying?
+                bne.s   .flying				;if yes, branch
+		move.b	#0,(f_tailscarrysonic).w	;otherwise, stop thinking tails is carrying sonic
+.flying:
 		moveq	#0,d0
 		move.b	obStatus(a0),d0
 		andi.w	#6,d0
@@ -793,7 +797,6 @@ Tails_MdNormal:
 Tails_MdJump:	;flying thing here
                 tst.b   (f_doublejumpp2).w                    ; is tails flying?
                 bne.s   .flying				;if yes, do this
-		move.b	#0,(f_tailscarrysonic).w
 		bsr.w	Tails_JumpHeight
 		bsr.w	Tails_JumpDirection
 		bsr.w	Tails_LevelBound

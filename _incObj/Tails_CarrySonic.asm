@@ -12,7 +12,7 @@ Tails_CarrySonic:
 	tst.b	(f_playerctrl).w
 	bmi.w	.stopcarrysonic
 	cmpi.b	#4,obRoutine(a1)
-	bhs.s	.stopcarrysonic
+	bhs.w	.stopcarrysonic
 	tst.w	(v_debuguse).w
 	bne.s	.stopcarrysonic
 	;face left or right
@@ -41,6 +41,7 @@ Tails_CarrySonic:
 	addi.w	#$1D,obY(a1)	;30		; the 3 numbers edited here may be where on y axis tails should hold sonic
 	move.b	#id_HangFromTails,obAnim(a1)
 	move.b	#1,(f_tailscarrysonic).w
+	move.b	#0,(v_tailscpujump).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
 	move.b	#id_Roll,(v_player+obAnim).w ; use "jumping" animation, flight cancel
