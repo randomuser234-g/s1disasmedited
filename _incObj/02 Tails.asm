@@ -720,6 +720,8 @@ Tails_Water:
 		bsr.w	ResumeMusic
 		move.b	#id_DrownCount,(v_sonicbubbles).w ; load bubbles object from Sonic's mouth
 		move.b	#$81,(v_sonicbubbles+obSubtype).w
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	.skipspeedslow	;if not, don't change speeds
 		tst.b	(v_super).w	; is Sonic Super?
 		bne.s	.skipspeedslow		; if yes, branch
 		tst.b	(v_shoes).w	; does Sonic have speed shoes?
@@ -742,6 +744,8 @@ Tails_Water:
 		bclr	#6,obStatus(a0)
 		beq.s	.exit
 		bsr.w	ResumeMusic
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	.speedshoesexitwater	;if not, don't change speeds
 		tst.b	(v_super).w	; is Tails Super?
 		bne.s	.speedshoesexitwater		; if yes, branch
 		tst.b	(v_shoes).w	; does Sonic have speed shoes?
