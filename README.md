@@ -38,7 +38,7 @@ Infinite flight, no damaging badniks (flight code ported from S3 prototype)
 
 Knuckles' glide and climbing physics are different from KIS2, be prepared for oddities
 
-Sonic and Tails' modes can be intertwined, if he's in water, you're slow
+Sonic and Tails' modes can be intertwined (speeds are shared, both can be invincible, etc.)
 
 Tails can't interact with most objects as the second player
 
