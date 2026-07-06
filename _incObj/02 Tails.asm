@@ -16,11 +16,11 @@ TailsPlayer:
 ; Obj02_Normal:
 Tails_Normal:
 	cmpi.w	#1,(v_character).w
-	bne.s	+
+	bne.s	.nottailsalone
 	move.w	(v_limitleft2).w,(v_limitleft2tails).w
 	move.w	(v_limitright2).w,(v_limitright2tails).w
 	move.w	(v_limitbtm2).w,(v_limittop2tails).w
-+
+.nottailsalone:
 		moveq	#0,d0
 		move.b	obRoutine(a0),d0	
 		moveq	#0,d0
@@ -779,6 +779,7 @@ Tails_Water:
 
 ; Obj02_MdNormal:
 Tails_MdNormal:
+                move.b  #$00, (f_doublejumpp2).w              ; clear jump flag
 		bsr.w	TailsSetHeight
 		bsr.w	Tails_SpinDash
 		;bsr.w	Sonic_Peelout

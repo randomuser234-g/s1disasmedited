@@ -1452,6 +1452,12 @@ locret_1379E:
 
 
 Sonic_ResetOnFloor:
+		cmpi.w	#id_TailsPlayer,obID(a0) ; is Tails p1?
+		beq.w	Tails_ResetOnFloor		;if yes, run tails version of this code
+		cmpi.w	#id_KnucklesPlayer,obID(a0) ; is Knuckles p1?
+		bne.w	.notknuckles		;if not, run sonic's code
+		jmp	Knuckles_ResetOnFloor		;if yes, run knuckles version of this code
+.notknuckles:
 		btst	#4,obStatus(a0)	; is Sonic roll-jumping?
 		beq.s	.notrolljump	; if not, skip.
 		nop	; Unknown removed code.

@@ -25,12 +25,12 @@ Obj09_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
 		move.b	#$E,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		beq.s	.sonicmap		; if not, load Sonic's mappings
+		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
+		beq.s	.sonicmap		; if yes, load Sonic's mappings
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		beq.s	.tailsmap		; if not, load Sonic's mappings
-		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		beq.s	.knucklesmap		; if not, load Sonic's mappings
+		beq.s	.tailsmap		; if yes, load Tails' mappings
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		beq.s	.knucklesmap		; if yes, load Knuckles' mappings
 
 	.sonicmap:
 		move.l	#Map_Sonic,obMap(a0)
