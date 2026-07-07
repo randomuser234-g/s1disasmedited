@@ -5,19 +5,19 @@ Sonic_Peelout:
 		beq.w	rts_SonicPeelout	;if yes, don't perform it
 		cmpi.b	#1,(v_s1peelout).w	; check if s1 peelout flag to 1
 		beq.w	Sonic_ContPeelout	;do s1 style peelout, based on continue
-		cmpi.b	#2,spindash_flag(a0)
-		beq.s	Sonic_UpdatePeelout
-		cmpi.b	#id_LookUp,obAnim(a0)
-		bne.s	rts_SonicPeelout
-		move.b	(v_jpadpress2).w,d0
-		andi.b	#btnB|btnC|btnA,d0
-		beq.w	rts_SonicPeelout
-		move.b	#id_Walk,obAnim(a0)
+		cmpi.b	#2,spindash_flag(a0)	;already started peelout?
+		beq.s	Sonic_UpdatePeelout	;if yes, continue updating it
+		cmpi.b	#id_LookUp,obAnim(a0)	;is sonic looking up?
+		bne.s	rts_SonicPeelout	;if not, don't do it
+		move.b	(v_jpadpress2).w,d0	;a/b/c pressed?
+		andi.b	#btnB|btnC|btnA,d0	
+		beq.w	rts_SonicPeelout	;if not, don't do it
+		move.b	#id_Walk,obAnim(a0)	;set walking animation
 		move.w	#sfx_PeelCharge,d0
-		jsr	(QueueSound2).l
-		addq.l	#4,sp
-		move.b	#2,spindash_flag(a0)
-		move.w	#0,spindash_counter(a0)
+		jsr	(QueueSound2).l		;play peelout sound
+		addq.l	#4,sp	
+		move.b	#2,spindash_flag(a0)	;set flags
+		move.w	#0,spindash_counter(a0)	;clear spindash
 		bclr	#5,obStatus(a0)	; clear pushing flag.
 		bsr.w	Sonic_LevelBound
 		bsr.w	Sonic_AnglePos
@@ -25,7 +25,7 @@ Sonic_Peelout:
 rts_SonicPeelout:
 		rts
 Peelout_DoNothing:
-		move.w	#sfx_PeelStop,d0	; spindash zoom sound
+		move.w	#sfx_PeelStop,d0	; stop sound
 		jsr	(QueueSound2).l 
 		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter
@@ -45,18 +45,18 @@ Peelout_DoNothing:
 
 Sonic_UpdatePeelout:
 		bclr	#5,obStatus(a0)	; clear pushing flag.
-		move.b	#id_Walk,obAnim(a0)
-		move.b	(v_jpadhold2).w,d0 
+		move.b	#id_Walk,obAnim(a0)	;keep setting walk animation
+		move.b	(v_jpadhold2).w,d0 	;holding up?
 		btst	#bitUp,d0
-		bne.w	Sonic_ChargingPeelout
+		bne.w	Sonic_ChargingPeelout	;if yes, continue to charge
 
 		; unleash the charged spindash and start rolling quickly:
-		cmpi.w	#30,spindash_counter(a0)
-		blo.s	Peelout_DoNothing	; if not, branch
+		cmpi.w	#30,spindash_counter(a0)	;reached the minimum time?
+		blo.s	Peelout_DoNothing	; if not, cancel the peelout
 		move.b	#id_Walk,obAnim(a0)
 		clr.b	spindash_flag(a0)		; clear Spin Dash flag
 		clr.w	spindash_counter(a0)
-		move.w	#sfx_PeelRelease,d0	; spindash zoom sound
+		move.w	#sfx_PeelRelease,d0	; peelout zoom sound
 		jsr	(QueueSound2).l 
 		bra.s	.donothingloop
 		nop
@@ -69,11 +69,11 @@ Sonic_UpdatePeelout:
 Sonic_ChargingPeelout:			; If still charging the dash...
 		jsr	.buildspeed
 		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
-		beq.w	Sonic_Peelout_ResetScr
-		addi.w	#1,spindash_counter(a0)
-		cmpi.w	#30,spindash_counter(a0)
-		blo.s	Sonic_Peelout_ResetScr
-		move.w	#30,spindash_counter(a0)
+		beq.w	Sonic_Peelout_ResetScr	;if not, reset screen
+		addi.w	#1,spindash_counter(a0)	;increment timer
+		cmpi.w	#30,spindash_counter(a0)	;timer finished?
+		blo.s	Sonic_Peelout_ResetScr		;if not, branch
+		move.w	#30,spindash_counter(a0)	;cap the timer
 		addq.l	#4,sp
 		rts
 

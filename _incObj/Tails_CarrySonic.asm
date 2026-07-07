@@ -1,4 +1,6 @@
 Tails_CarrySonic:
+	cmpi.b	#0,(v_player+spindash_flag).w	;already started peelout?
+	bne.w	.stopcarrysonic	;if yes, don't carry sonic
 	move.w	obX(a1),d0
 	sub.w	obX(a0),d0
 	addi.w	#$C,d0

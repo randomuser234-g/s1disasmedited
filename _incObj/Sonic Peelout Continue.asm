@@ -3,16 +3,16 @@ Sonic_ContPeelout:
 		beq.w	rts_SonicContPeelout
 		cmpi.b	#2,spindash_flag(a0)
 		beq.s	Sonic_UpdateContPeelout
-		cmpi.b	#id_LookUp,obAnim(a0)
-		bne.s	rts_SonicContPeelout
+		cmpi.b	#id_LookUp,obAnim(a0)	;looking up?
+		bne.s	rts_SonicContPeelout	;if not, do nothing
 		move.b	(v_jpadpress2).w,d0
-		andi.b	#btnB|btnC|btnA,d0
-		beq.w	rts_SonicContPeelout
-		move.b	#id_Walk,obAnim(a0)
-		move.w	#sfx_Roll,d0
+		andi.b	#btnB|btnC|btnA,d0	;A/B/C pressed?
+		beq.w	rts_SonicContPeelout	;if not, do nothing
+		move.b	#id_Walk,obAnim(a0)	;walking animation
+		move.w	#sfx_Roll,d0		;roll sound
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
-		move.b	#2,spindash_flag(a0)
+		move.b	#2,spindash_flag(a0)	;set spindash flag
 		bclr	#5,obStatus(a0)	; clear pushing flag.
 		bsr.w	Sonic_LevelBound
 		bsr.w	Sonic_AnglePos
@@ -28,8 +28,8 @@ Sonic_UpdateContPeelout:
 		bclr	#5,obStatus(a0)	; clear pushing flag.
 		move.b	#id_Walk,obAnim(a0)
 		move.b	(v_jpadhold2).w,d0 
-		btst	#bitUp,d0
-		bne.w	Sonic_ChargingContPeelout
+		btst	#bitUp,d0		;holding up?
+		bne.w	Sonic_ChargingContPeelout	;if yes, continue to charge
 
 		; unleash the charged spindash and start rolling quickly:
 	cmpi.w	#$800,obInertia(a0) ; check Sonic's inertia
@@ -50,7 +50,7 @@ Sonic_UpdateContPeelout:
 .skipSuperSpeed:
 		btst	#0,obStatus(a0)			; Are we facing left?
 		beq.s	.skipleft		; If not, branch
-		neg.w	obInertia(a0)
+		neg.w	obInertia(a0)		;negate the inertia, it goes the other way
 	.skipleft:
 		move.b	#id_Walk,obAnim(a0)
 		clr.b	spindash_flag(a0)		; clear Spin Dash flag
@@ -66,9 +66,9 @@ Sonic_ChargingContPeelout:
 		bra.s	Sonic_ContPeelout_ResetScr
 		rts
 
-.buildspeedContinue:						;a part of the code copied from continue screen sonic
+.buildspeedContinue:						;this chunk copied from continue screen sonic
 		cmpi.w	#$800,obInertia(a0) ; check Sonic's inertia
-		blo.s	.addspeedContinue	; if too low, branch
+		blo.s	.addspeedContinue	; if too low, branch. If high enough, don't add more speed
 		rts
 
 .addspeedContinue:
