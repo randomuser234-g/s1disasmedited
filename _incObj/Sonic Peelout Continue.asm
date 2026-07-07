@@ -55,11 +55,7 @@ Sonic_UpdateContPeelout:
 		move.b	#id_Walk,obAnim(a0)
 		clr.b	spindash_flag(a0)		; clear Spin Dash flag
 		move.w	#sfx_Teleport,d0	; spindash zoom sound
-		jsr	(QueueSound2).l 
-		bra.s	.donothingloop
-		nop
-	.donothingloop:
-		rts
+		jmp	(QueueSound2).l 
 
 Sonic_ChargingContPeelout:
 		jsr	.buildspeedContinue
