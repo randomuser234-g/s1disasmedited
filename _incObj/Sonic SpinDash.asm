@@ -60,11 +60,7 @@ Sonic_UpdateSpinDash:
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter
 		bset	#2,obStatus(a0)
 		move.w	#sfx_PeelRelease,d0	; spindash zoom sound
-		jsr	(QueueSound2).l 
-		bra.s	.donothingloop
-		nop
-	.donothingloop:
-		rts
+		jmp	(QueueSound2).l 
 
 ; ===========================================================================
 

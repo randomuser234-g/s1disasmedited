@@ -57,11 +57,7 @@ Sonic_UpdatePeelout:
 		clr.b	spindash_flag(a0)		; clear Spin Dash flag
 		clr.w	spindash_counter(a0)
 		move.w	#sfx_PeelRelease,d0	; peelout zoom sound
-		jsr	(QueueSound2).l 
-		bra.s	.donothingloop
-		nop
-	.donothingloop:
-		rts
+		jmp	(QueueSound2).l 
 
 
 ; ===========================================================================
