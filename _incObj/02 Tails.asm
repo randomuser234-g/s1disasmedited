@@ -53,9 +53,12 @@ Tails_Main:	; Routine 0
 		move.b	#4,obRender(a0) ; render_flags(Tails) = $80 | initial render_flags(Sonic)
 		move.b	#0,(v_super).w	; turn off Super
 		move.b	#0,(v_shoes).w	; turn off speed shoes
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.nospeed	;if not, don't set speed
 		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
 		move.w	#$C,(v_sonspeedacc).w ; Sonic's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; Sonic's deceleration
+	.nospeed:
 		move.b	#id_TailsTails,(v_tailstails).w ; load Tails' tails object
 		move.w	a0,(v_tailstails+objoff_3E).w ; set Tails' tails parent object to the character
 
@@ -161,6 +164,8 @@ Tails_Display:
 		jsr	(DisplaySprite).l
 
 .chkinvincible:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.exit	;if not, don't do this
 		tst.b	(v_invinc).w	; does Sonic have invincibility?
 		beq.s	.chkshoes	; if not, branch
 		tst.w	invtime(a0)	; check time remaining for invinciblity
