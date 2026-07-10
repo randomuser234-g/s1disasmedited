@@ -58,7 +58,7 @@ Jun_Action:	; Routine 2
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		jsr	SolidObject
 		btst	#5,obStatus(a0)	; is Sonic pushing the disc?
 		beq.w	Jun_Display	; if not, branch
 

@@ -182,7 +182,14 @@ React_Enemy:
 .donthurtsonic:
 		tst.b	obColProp(a1)
 		beq.s	.breakenemy
+		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles gliding?
+		bne.s	.notgliding	;if not, don't cancel glide
 
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		move.b	#id_FallFromGlide,obAnim(a0)	;falling anim
+		move.b	#$13,obHeight(a0)	;standing heights and width
+		move.b	#9,obWidth(a0)
+	.notgliding:
 		neg.w	obVelX(a0)	; repel Sonic
 		neg.w	obVelY(a0)
 		asr	obVelX(a0)

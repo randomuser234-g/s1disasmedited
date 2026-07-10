@@ -1454,7 +1454,8 @@ Tails_LevelBound:
 		bra.s	.chkbottom
 ; End of function Tails_LevelBound
 ; ---------------------------------------------------------------------------
-; Subroutine allowing Sonic to roll when he's moving
+; Subroutine allowing Tails to roll when he's moving
+; also enables ducking while slow (s3 port)
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -1463,21 +1464,31 @@ Tails_LevelBound:
 Tails_Roll:
 		tst.b	(f_slidemode).w
 		bne.s	.noroll
+		move.b	(v_jpadhold2p2).w,d0
+		andi.b	#btnL+btnR,d0	; is left/right being pressed?
+		bne.s	.noroll		; if yes, branch
+		btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
+		beq.s	.tailschkwalk	; if yes, branch
 		move.w	obInertia(a0),d0
 		bpl.s	.ispositive
 		neg.w	d0
 
 .ispositive:
-		cmpi.w	#$80,d0		; is Sonic moving at $80 speed or faster?
-		blo.s	.noroll		; if not, branch
-		move.b	(v_jpadhold2p2).w,d0
-		andi.b	#btnL+btnR,d0	; is left/right being pressed?
-		bne.s	.noroll		; if yes, branch
-		btst	#bitDn,(v_jpadhold2p2).w ; is down being pressed?
-		bne.s	Tails_ChkRoll	; if yes, branch
-
-; Obj02_NoRoll
+		cmpi.w	#$100,d0		; is Tails moving at $100 speed or faster?
+		bhs.s	Tails_ChkRoll	; if yes, branch
+		btst	#3,obStatus(a0)
+		bne.s	.noroll
+		move.b	#id_Duck,obAnim(a0)	; if so, enter walking animation
+; obj02_NoRoll
 .noroll:
+		rts
+; ===========================================================================
+
+; obj02_ChkRoll
+.tailschkwalk:
+		cmpi.b	#id_Duck,obAnim(a0)	; is Sonic ducking?
+		bne.s	.noroll
+		move.b	#id_Walk,obAnim(a0)	; if so, enter walking animation
 		rts
 ; ===========================================================================
 

@@ -9,6 +9,10 @@ KnucklesGlideCustom:
 		andi.b	#btnB|btnC|btnA,d0	
 		beq.s	rts_KnucklesGlideCustom	;if not, don't glide
 		move.b	#id_Glide,obAnim(a0)	; start glide
+		move.w	#$400,obVelX(a0)
+		btst	#0,obStatus(a0)	;Knuckles facing left?
+		beq.s	rts_KnucklesGlideCustom		;if not, go right
+		neg.w	obVelX(a0)
 		rts
 
 rts_KnucklesGlideCustom:
@@ -24,7 +28,7 @@ KnucklesGlideCustom_StartGliding:
 		move.b	(v_jpadhold2).w,d0	;are you holding the button?
 		andi.b	#btnB|btnC|btnA,d0	;if not, cancel glide
 		beq.s	KnucklesGlideCustom_CancelGlide
-		subi.w	#$A,obVelY(a0)	;slow fall
+		subi.w	#$20,obVelY(a0)	;slow fall
 		btst	#0,obStatus(a0)	;Knuckles facing left?
 		beq.s	.right		;if not, go right
 		subi.w	#5,obVelX(a0)	;go left
@@ -33,9 +37,9 @@ KnucklesGlideCustom_StartGliding:
 		addi.w	#5,obVelX(a0)	;go right
 
 	.slowfall:
-		cmpi.w	#$50,obVelY(a0)	; apply to Y speed.
-		ble.s	rts_KnucklesGlideCustom	;if falling too slow, do nothing
-		move.w	#$50,obVelY(a0)	; ;if falling too fast, cap y speed
+		cmpi.w	#$80,obVelY(a0)	; apply to Y speed.
+		blt.s	rts_KnucklesGlideCustom	;if falling too slow, do nothing
+		subi.w	#$20,obVelY(a0)	; ;if falling too fast, cap y speed
 		rts
 		
 

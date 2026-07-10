@@ -185,7 +185,16 @@ loc_19F48:
 loc_19F50:
 		addq.w	#7,(v_random).w
 		cmpi.b	#id_Roll,(v_player+obAnim).w
-		bne.s	loc_19F48
+		beq.s	.validhit
+		cmpi.b	#id_Glide,(v_player+obAnim).w	;is gliding?
+		beq.s	.validhitwhilegliding		;if yes, hit
+		bra.s	loc_19F48			;otherwise don't hit
+	.validhitwhilegliding:
+		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		move.b	#id_FallFromGlide,(v_player+obAnim).w	;falling anim
+		move.b	#$13,(v_player+obHeight)	;standing heights and width
+		move.b	#9,(v_player+obWidth)
+	.validhit:
 		move.w	#$300,d0
 		btst	#0,obStatus(a0)
 		bne.s	loc_19F6A

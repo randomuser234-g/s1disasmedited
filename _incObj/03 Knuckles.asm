@@ -929,6 +929,7 @@ Knuckles_LevelBound:
 
 ; ---------------------------------------------------------------------------
 ; Subroutine allowing Knuckles to roll when he's moving
+; also enables ducking while slow (s3 port)
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -937,21 +938,31 @@ Knuckles_LevelBound:
 Knuckles_Roll:
 		tst.b	(f_slidemode).w
 		bne.s	.noroll
+		move.b	(v_jpadhold2).w,d0
+		andi.b	#btnL+btnR,d0	; is left/right being pressed?
+		bne.s	.noroll		; if yes, branch
+		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
+		beq.s	.knuckleschkwalk	; if yes, branch
 		move.w	obInertia(a0),d0
 		bpl.s	.ispositive
 		neg.w	d0
 
 .ispositive:
-		cmpi.w	#$80,d0		; is Knuckles moving at $80 speed or faster?
-		blo.s	.noroll		; if not, branch
-		move.b	(v_jpadhold2).w,d0
-		andi.b	#btnL+btnR,d0	; is left/right being pressed?
-		bne.s	.noroll		; if yes, branch
-		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
-		bne.s	Knuckles_ChkRoll	; if yes, branch
-
+		cmpi.w	#$100,d0		; is Knuckles moving at $100 speed or faster?
+		bhs.s	Knuckles_ChkRoll	; if yes, branch
+		btst	#3,obStatus(a0)
+		bne.s	.noroll
+		move.b	#id_Duck,obAnim(a0)	; if so, enter walking animation
 ; obj03_NoRoll
 .noroll:
+		rts
+; ===========================================================================
+
+; obj03_ChkRoll
+.knuckleschkwalk:
+		cmpi.b	#id_Duck,obAnim(a0)	; is Sonic ducking?
+		bne.s	.noroll
+		move.b	#id_Walk,obAnim(a0)	; if so, enter walking animation
 		rts
 ; ===========================================================================
 
@@ -1052,7 +1063,6 @@ Knuckles_Jump:
 Knuckles_JumpHeight:
 		tst.b	jumping(a0)	; has Knuckles jumped?
 		beq.s	.capyvel		; if not, just cap Y speed normally.
-		jsr	KnucklesGlideCustom
 		move.w	#-$400,d1		; set max jump height.
 		btst	#6,obStatus(a0)	; is Knuckles underwater?
 		beq.s	.notunderwater	; if not, continue.
@@ -1070,6 +1080,7 @@ Knuckles_JumpHeight:
 		rts
 .midairability:
 		jsr	Sonic_CheckGoSuper
+		jsr	KnucklesGlideCustom
 		rts
 
 .capyvel:
@@ -1461,9 +1472,15 @@ Knuckles_ResetOnFloor:
 		bclr	#2,obStatus(a0)	; clear ball flag.
 		move.b	#$13,obHeight(a0)	; set Knuckles's hitbox to standing.
 		move.b	#9,obWidth(a0)
+		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started gliding?
+		beq.s	.endedgliding	;if not, branch
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#5,obY(a0)	; raise Knuckles up 5 pixels so he's not inside the ground.
 		;jsr	Tails_HeightAfterLanding
+		bra.s	.notball
+.endedgliding:
+		clr.w	obVelX(a0)
+		move.w	#$F,locktime(a0)
 
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
