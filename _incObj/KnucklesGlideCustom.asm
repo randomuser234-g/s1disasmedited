@@ -21,14 +21,13 @@ KnucklesGlideCustom_StartGliding:
 		move.b	#10,obHeight(a0)	;gliding height and width
 		move.b	#10,obWidth(a0)
 		btst	#0,(f_doublejump).w ; is knuckles against a wall?
-		bne.s	KnucklesGlideCustom_ClimbWall	; if yes, start climbing
+		bne.w	KnucklesGlideCustom_ClimbWall	; if yes, start climbing
 		.continue:
 		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started?
 		beq.s	rts_KnucklesGlideCustom	;if yes, don't glide
 		move.b	(v_jpadhold2).w,d0	;are you holding the button?
 		andi.b	#btnB|btnC|btnA,d0	;if not, cancel glide
 		beq.s	KnucklesGlideCustom_CancelGlide
-		subi.w	#$20,obVelY(a0)	;slow fall
 		btst	#0,obStatus(a0)	;Knuckles facing left?
 		beq.s	.right		;if not, go right
 		subi.w	#5,obVelX(a0)	;go left
@@ -37,9 +36,17 @@ KnucklesGlideCustom_StartGliding:
 		addi.w	#5,obVelX(a0)	;go right
 
 	.slowfall:
+		btst	#6,obStatus(a0)	; is Knuckles underwater?
+		bne.s	.slowbutunderwater	; if yes, branch.
+
 		cmpi.w	#$80,obVelY(a0)	; apply to Y speed.
 		blt.s	rts_KnucklesGlideCustom	;if falling too slow, do nothing
-		subi.w	#$20,obVelY(a0)	; ;if falling too fast, cap y speed
+		subi.w	#$40,obVelY(a0)	; ;if falling too fast, cap y speed
+		rts
+	.slowbutunderwater:
+		cmpi.w	#$80,obVelY(a0)	; apply to Y speed.
+		blt.s	rts_KnucklesGlideCustom	;if falling too slow, do nothing
+		subi.w	#$40,obVelY(a0)	; ;if falling too fast, cap y speed
 		rts
 		
 
