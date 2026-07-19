@@ -435,6 +435,10 @@ TailsCPU_Normal_SonicOK:
 	bne.w	TailsCPU_Normal_HumanControl		; (if not, branch)
 	tst.b	(f_playerctrl2).w			; and Tails isn't fully object controlled (&$80)
 	bmi.w	TailsCPU_Normal_HumanControl		; (if not, branch)
+	tst.b	(f_tailscarrysonic).w                   ; is tails flying?
+        beq.s   .dontflysonic				;if not, don't do this
+	jmp	Tails_SonicControl
+.dontflysonic:
 	tst.w	locktime(a0)			; and Tails' movement is locked (usually because he just fell down a slope)
 	beq.s	+					; (if not, branch)
 	tst.w	obInertia(a0)			; and Tails is stopped, then...
@@ -464,14 +468,6 @@ TailsCPU_Normal_SonicOK:
 
 ; Tails wants to go left because that's where Sonic is
 ; loc_1BD76: TailsCPU_Normal_FollowLeft:
-		tst.b	(f_tailscarrysonic).w                   ; is tails flying?
-                beq.s   .dontflysonic				;if not, don't do this
-		btst	#bitL,(v_jpadhold2).w ; is left being pressed?
-		beq.s	+
-		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
-		ori.w	#(btnL<<8)|btnL,d1	; ...and give Tails his own
-		bra.s	+
-.dontflysonic:
 	cmpi.w	#$10,d2
 	blo.s	+
 	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
@@ -487,14 +483,6 @@ TailsCPU_Normal_SonicOK:
 ; Tails wants to go right because that's where Sonic is
 ; loc_1BD98:
 TailsCPU_Normal_FollowRight:
-		tst.b	(f_tailscarrysonic).w                   ; is tails flying?
-                beq.s   .dontflysonic				;if not, don't do this
-		btst	#bitR,(v_jpadhold2).w ; is left being pressed?
-		beq.s	+
-		andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
-		ori.w	#(btnR<<8)|btnR,d1	; ...and give Tails his own
-		bra.s	+
-.dontflysonic:
 	cmpi.w	#$10,d2
 	blo.s	+
 	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input

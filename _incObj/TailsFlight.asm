@@ -104,3 +104,17 @@ FlyP3:
 		addi.w	#8,obVelY(a0)
 		rts
 ; End of function Tails_StartFlying
+Tails_SonicControl:
+		move.b	(v_jpadhold2).w,d0
+		andi.b	#btnL|btnR,d0
+		beq.s	.ABC
+		or.b	(v_jpadhold2p2).w,d0
+		move.b	d0,(v_jpadhold2p2).w
+.ABC:
+		move.b	(v_jpadhold2).w,d0
+		andi.b	#btnA+btnB+btnC,d0	;little issue, only A responds to flying
+		beq.s	.donothing
+		or.b	(v_jpadhold2p2).w,d0
+		move.b	d0,(v_jpadhold2p2).w
+.donothing:
+		rts
