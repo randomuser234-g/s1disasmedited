@@ -5014,7 +5014,13 @@ CFlo_Data3:	dc.b $16, $1E, $1A, $12, 6, $E,	$A, 2
 
 
 SlopeObject2:
-		lea	(v_player).w,a1
+	lea	(v_player).w,a1 ; a1=character
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)
+	bsr.s	SlopeObject2_SkipPlayer
+	movem.l	(sp)+,d1-d4
+	lea	(v_player2).w,a1 ; a1=character
+	addq.b	#1,d6
 SlopeObject2_SkipPlayer:
 		btst	d6,obStatus(a0)
 		beq.s	locret_856E
