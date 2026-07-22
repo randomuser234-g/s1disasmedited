@@ -4882,7 +4882,7 @@ MvSonicOnPtfm2:
 MvSonic2:
 		tst.b	(f_playerctrl).w	;unedited
 		bmi.s	locret_7B62
-		cmpi.b	#6,(v_player+obRoutine).w	;unedited
+		cmpi.b	#6,obRoutine(a1)	;unedited
 		bhs.s	locret_7B62
 		tst.w	(v_debuguse).w
 		bne.s	locret_7B62
