@@ -53,9 +53,8 @@ Ledge_Collapse:	; Routine 4
 
 Ledge_WalkOff:	; Routine $A
 		move.w	#$30,d1
-	lea	(v_player).w,a1
-	moveq	#p1_standing_bit,d6
-	movem.l	d1-d4,-(sp)	; Backup input registers.
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	ExitPlatform
 		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
@@ -79,11 +78,14 @@ loc_82D0:
 		subq.b	#1,ledge_timedelay(a0)
 		bsr.w	Ledge_WalkOff
 		lea	(v_player).w,a1
-		btst	#3,obStatus(a1)
+		moveq	#p1_standing_bit,d6
+		btst	d6,obStatus(a0)
 		beq.s	loc_82FC
 		tst.b	ledge_timedelay(a0)
 		bne.s	locret_8308
 		bclr	#3,obStatus(a1)
+		bclr	d6,obStatus(a0)
+		bset	#1,obStatus(a1)
 		bclr	#5,obStatus(a1)
 		move.b	#id_Run,obPrevAni(a1) ; restart Sonic's animation
 

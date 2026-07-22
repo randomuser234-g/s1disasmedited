@@ -1,5 +1,7 @@
 
 Bri_Platform:	; Routine 4
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.s	Bri_WalkOff
 		bsr.w	DisplaySprite
 		bra.w	Bri_ChkDel

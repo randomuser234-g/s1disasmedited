@@ -169,8 +169,15 @@ loc_FAD0:
 		bhs.w	Solid_Ignore	; if yes, branch
 
 loc_FB0E:
+		cmpa.w	#v_player2,a1
+		beq.s	.player2ctrl
 		tst.b	(f_playerctrl).w ; are object interactions disabled?	;sonic only
 		bmi.w	Solid_Ignore	; if yes, branch
+		bra.s	.after
+.player2ctrl:
+		tst.b	(f_playerctrl2).w ; are object interactions disabled?	;tails only
+		bmi.w	Solid_Ignore	; if yes, branch
+.after:
 		cmpi.b	#6,obRoutine(a1) ; is Sonic dying?		;sonic only
 	if Revision=0
 		bcc.w	Solid_Ignore	; if yes, branch

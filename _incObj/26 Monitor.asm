@@ -66,8 +66,10 @@ Mon_Solid:	; Routine 2
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		addi.w	#$B,d1
+	lea	(v_player).w,a1 ; a1=character
+	moveq	#p1_standing_bit,d6
 		bsr.w	ExitPlatform
-		btst	#3,obStatus(a1) ; is Sonic on top of the monitor?
+		btst	d6,obStatus(a0) ; is Sonic on top of the monitor?
 		bne.w	.ontop		; if yes, branch
 		clr.b	ob2ndRout(a0)
 		bra.w	Mon_Animate
@@ -102,7 +104,7 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C		;if yes, no colision
 		cmpi.b	#2,spindash_flag(a1)	;is this a peelout?
 		beq.s	loc_A25C		;if yes, no collision
-		cmpi.b	#id_Glide,obAnim(a1) ; is Knuckles rolling?
+		cmpi.b	#id_Glide,obAnim(a1) ; is Knuckles gliding?
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		beq.s	loc_A25C	; if yes, branch
@@ -183,6 +185,7 @@ Mon_BreakOpen:	; Routine 4
 		move.b	obStatus(a0),d0
 		andi.b	#$78,d0					; is someone touching the monitor?
 		beq.s	.spawnicon			; if not, branch
+		bclr	d6,obStatus(a0)
 		andi.b	#5,(v_player+obStatus).w	;player on object -> player pushing
 		ori.b	#1,(v_player+obStatus).w	; in air flag, prevent Sonic from walking in the air
 .spawnicon:

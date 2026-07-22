@@ -9,6 +9,7 @@ Bri_MoveSonic:
 		addi.l	#v_objspace&$FFFFFF,d0
 		movea.l	d0,a2
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		move.w	obY(a2),d0
 		subq.w	#8,d0
 		moveq	#0,d1
