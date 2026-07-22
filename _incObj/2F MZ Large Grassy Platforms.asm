@@ -66,7 +66,9 @@ LGrass_Slope:
 		addi.w	#$B,d1
 		movea.l	objoff_30(a0),a2
 		move.w	obX(a0),d2
-		bsr.w	SlopeObject2
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
+		bsr.w	SlopeObject2_SkipPlayer
 		bra.s	LGrass_Display
 ; ===========================================================================
 
@@ -81,6 +83,8 @@ LGrass_Solid:
 
 loc_AF8E:
 		movea.l	objoff_30(a0),a2
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	SolidObject2F_SingleCharacter
 
 LGrass_Display:
@@ -152,7 +156,7 @@ loc_AFF2:
 
 LGrass_Type05:
 		move.b	objoff_34(a0),d0
-		btst	d6,obStatus(a0)
+		btst	#3,obStatus(a0)
 		bne.s	loc_B010
 		subq.b	#2,d0
 		bcc.s	loc_B01C
