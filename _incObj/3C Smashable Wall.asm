@@ -32,9 +32,10 @@ Smash_Solid:	; Routine 2
 		move.w	#$20,d3
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	SolidObject_Always_SingleCharacter
 		;bsr.w	SolidObject
-		btst	#5,obStatus(a1)	; is Sonic pushing against the wall?
+		btst	#5,obStatus(a0)	; is Sonic pushing against the wall?
 		bne.s	.chkroll	; if yes, branch
 
 
