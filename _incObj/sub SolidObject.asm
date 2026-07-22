@@ -172,7 +172,7 @@ loc_FAD0:
 loc_FB0E:
 		tst.b	(f_playerctrl).w ; are object interactions disabled?	;sonic only
 		bmi.w	Solid_Ignore	; if yes, branch
-		cmpi.b	#6,(v_player+obRoutine).w ; is Sonic dying?		;sonic only
+		cmpi.b	#6,obRoutine(a1) ; is Sonic dying?		;sonic only
 	if Revision=0
 		bcc.w	Solid_Ignore	; if yes, branch
 	else
