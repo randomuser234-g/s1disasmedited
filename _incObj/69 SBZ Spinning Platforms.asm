@@ -47,7 +47,7 @@ Spin_Main:	; Routine 0
 		lsl.w	#2,d1
 		subq.w	#1,d1
 		move.w	d1,objoff_36(a0)
-		bra.s	Spin_Spinner
+		bra.w	Spin_Spinner
 ; ===========================================================================
 
 Spin_Trapdoor:	; Routine 2
@@ -78,10 +78,17 @@ Spin_Trapdoor:	; Routine 2
 
 .notsolid:
 		btst	#3,obStatus(a0) ; is Sonic standing on the trapdoor?
-		beq.s	.display	; if not, branch
+		beq.s	.tails	; if not, branch
 		lea	(v_player).w,a1
 		bclr	#3,obStatus(a1)
-		bclr	#3,(v_player2+obStatus).w
+		bset	#1,obStatus(a1)
+		bclr	#3,obStatus(a0)
+		clr.b	obSolid(a0)
+.tails:
+		btst	#4,obStatus(a0) ; is Sonic standing on the trapdoor?
+		beq.s	.display	; if not, branch
+		bclr	#4,(v_player2+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 

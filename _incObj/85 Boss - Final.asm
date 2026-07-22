@@ -172,7 +172,8 @@ loc_19F2E:
 		move.w	#$14,d2
 		move.w	#$14,d3
 		move.w	obX(a0),d4
-		jsr	(SolidObject).l
+		lea	(v_player).w,a1
+		jsr	(SolidObject_SingleCharacter).l
 		tst.w	d4
 		bgt.s	loc_19F50
 

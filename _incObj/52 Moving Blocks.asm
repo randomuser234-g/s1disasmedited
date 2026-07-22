@@ -59,6 +59,7 @@ MBlock_Platform: ; Routine 2
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		jsr	(PlatformObject_SingleCharacter).l
 		bra.s	MBlock_ChkDel
 ; ===========================================================================
@@ -82,6 +83,7 @@ MBlock_StandOn:	; Routine 4
 	else
 		move.w	(sp)+,d2
 	endif
+		lea	(v_player).w,a1
 		jsr	(MvSonicOnPtfm2).l
 
 MBlock_ChkDel:
