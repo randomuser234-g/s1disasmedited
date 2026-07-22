@@ -38,7 +38,9 @@ Ledge_Touch:	; Routine 2
 .slope:
 		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
-		bsr.w	SlopeObject
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
+		bsr.w	SlopeObject_SingleCharacter
 		jmp	RememberState
 ; ===========================================================================
 
@@ -59,7 +61,7 @@ Ledge_WalkOff:	; Routine $A
 		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
 		move.w	obX(a0),d2
-		bsr.w	SlopeObject2
+		bsr.w	SlopeObject2_SkipPlayer
 		jmp	RememberState
 ; End of function Ledge_WalkOff
 

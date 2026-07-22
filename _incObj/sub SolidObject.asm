@@ -16,15 +16,15 @@ SolidObject:
 	lea	(v_player).w,a1
 	moveq	#p1_standing_bit,d6
 	movem.l	d1-d4,-(sp)	; Backup input registers.
-	bsr.s	.skiptails
+	bsr.s	SolidObject_SingleCharacter
 	movem.l	(sp)+,d1-d4	; Restore input registers.
 
 	; Collide player 2.
 	lea	(v_player2).w,a1
 	btst	#7,obRender(a1)
-	beq.w	.end	; Don't bother if Tails is not on-screen.
+	beq.w	SolidObject_End	; Don't bother if Tails is not on-screen.
 	addq.b	#p2_standing_bit-p1_standing_bit,d6
-.skiptails:
+SolidObject_SingleCharacter:
 		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		beq.w	Solid_ChkEnter	; if not, branch
 		move.w	d1,d2
@@ -51,7 +51,7 @@ SolidObject:
 		jsr	MvSonicOnPtfm
 		moveq	#0,d4
 		rts
-.end:
+SolidObject_End:
 		rts
 ; ===========================================================================
 

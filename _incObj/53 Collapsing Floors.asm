@@ -46,7 +46,9 @@ CFlo_Touch:	; Routine 2
 
 .solid:
 		move.w	#$20,d1
-		bsr.w	PlatformObject
+		lea	(v_player).w,a1
+		moveq	#3,d6
+		bsr.w	PlatformObject_SingleCharacter
 		tst.b	obSubtype(a0)
 		bpl.s	.remstate
 		btst	#3,obStatus(a1)
@@ -72,6 +74,7 @@ CFlo_Collapse:	; Routine 4
 
 CFlo_WalkOff:	; Routine $A
 		move.w	#$20,d1
+		lea	(v_player).w,a1
 		bsr.w	ExitPlatform
 		move.w	obX(a0),d2
 		bsr.w	MvSonicOnPtfm2

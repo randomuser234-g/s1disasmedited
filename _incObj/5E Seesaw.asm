@@ -73,7 +73,7 @@ See_Slope:	; Routine 2
 		lea	(v_player).w,a1
 		move.w	obVelY(a1),see_speed(a0)
 		move.w	#$30,d1
-		jsr	(SlopeObject).l
+		jsr	(SlopeObject_SingleCharacter).l
 		rts
 ; ===========================================================================
 
@@ -89,7 +89,7 @@ See_Slope2:	; Routine 4
 		jsr	(ExitPlatform).l
 		move.w	#$30,d1
 		move.w	obX(a0),d2
-		jsr	(SlopeObject2).l
+		jsr	(SlopeObject2_SkipPlayer).l
 		rts
 ; ===========================================================================
 
