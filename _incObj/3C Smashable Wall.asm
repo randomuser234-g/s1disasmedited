@@ -31,16 +31,19 @@ Smash_Solid:	; Routine 2
 		move.w	#$20,d2
 		move.w	#$20,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
-		btst	#5,obStatus(a0)	; is Sonic pushing against the wall?
+		lea	(v_player).w,a1
+		bsr.w	SolidObject_Always_SingleCharacter
+		;bsr.w	SolidObject
+		btst	#5,obStatus(a1)	; is Sonic pushing against the wall?
 		bne.s	.chkroll	; if yes, branch
+
 
 .donothing:
 		rts
 ; ===========================================================================
 
 .chkroll:
-		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
+		cmpi.b	#id_KnucklesPlayer,obID(a1)	; is the multiple character flag set to 3 (Knuckles)?
 		beq.s	.smashwall		; if yes, smash the wall
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		bne.s	.donothing	; if not, branch
