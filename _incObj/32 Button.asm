@@ -30,7 +30,7 @@ But_IsMZ:
 
 But_Pressed:	; Routine 2
 		tst.b	obRender(a0)
-		bpl.s	But_Display
+		bpl.w	But_Display
 		move.w	#$1B,d1
 		move.w	#5,d2
 		move.w	#5,d3
@@ -53,8 +53,19 @@ loc_BDB2:
 		bne.s	loc_BDC8
 
 loc_BDBE:
+		;tst.b	obSolid(a0)
+		;bne.s	loc_BDC8
+		btst	#3,obStatus(a0)	; is Sonic standing on the object?
+		beq.s	.tails
+		bra.s	loc_BDC8
+.tails:
+		btst	#4,obStatus(a0)	; is Sonic standing on the object?
+		beq.s	.original
+		bra.s	loc_BDC8
+.original:
 		tst.b	obSolid(a0)
 		bne.s	loc_BDC8
+.end:
 		bclr	d3,(a3)
 		bra.s	loc_BDDE
 ; ===========================================================================
