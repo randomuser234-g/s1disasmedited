@@ -56,15 +56,13 @@ SolidObject:
 ; ===========================================================================
 
 SolidObject71:
-	lea	(v_player).w,a1
+	lea	(v_player).w,a1 ; a1=character
 	moveq	#p1_standing_bit,d6
-	movem.l	d1-d4,-(sp)	; Backup input registers.
+	movem.l	d1-d4,-(sp)
 	bsr.s	SolidObject_Always_SingleCharacter
-	movem.l	(sp)+,d1-d4	; Restore input registers.
-
-	; Collide player 2.
-	lea	(v_player2).w,a1
-	addq.b	#p2_standing_bit-p1_standing_bit,d6
+	movem.l	(sp)+,d1-d4
+	lea	(v_player2).w,a1 ; a1=character
+	addq.b	#1,d6
 SolidObject_Always_SingleCharacter:
 		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		beq.w	loc_FAD0
@@ -98,13 +96,14 @@ SolidObject2F:
 	lea	(v_player).w,a1
 	moveq	#p1_standing_bit,d6
 	movem.l	d1-d4,-(sp)	; Backup input registers.
-	bsr.s	.skiptails
+	bsr.s	SlopedSolid_SingleCharacter
 	movem.l	(sp)+,d1-d4	; Restore input registers.
 
 	; Collide player 2.
 	lea	(v_player2).w,a1
 	addq.b	#p2_standing_bit-p1_standing_bit,d6
-.skiptails:
+; loc_F4FA:
+SlopedSolid_SingleCharacter:
 		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		bpl.w	Solid_Ignore
 		move.w	obX(a1),d0

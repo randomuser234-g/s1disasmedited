@@ -81,6 +81,7 @@ Spin_Trapdoor:	; Routine 2
 		beq.s	.display	; if not, branch
 		lea	(v_player).w,a1
 		bclr	#3,obStatus(a1)
+		bclr	#3,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 
@@ -122,6 +123,7 @@ Spin_Spinner:	; Routine 4
 		beq.s	.display
 		lea	(v_player).w,a1
 		bclr	#3,obStatus(a1)
+		bclr	#3,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 

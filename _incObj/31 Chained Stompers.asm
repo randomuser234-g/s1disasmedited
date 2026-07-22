@@ -123,12 +123,19 @@ loc_B798:	; Routine 2
 		move.w	#$D,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
-		btst	#3,obStatus(a0)
+		;btst	#3,obStatus(a0)
+		btst	d6,obStatus(a0)
 		beq.s	CStom_Display
 		cmpi.b	#$10,objoff_32(a0)
 		bhs.s	CStom_Display
 		movea.l	a0,a2
+		cmpi.w	#4,d6		;did tails get crushed?
+		beq.s	.player2died	;if yes, kill tails
 		lea	(v_player).w,a0
+		bra.s	.decidewhodied
+.player2died:
+		lea	(v_player2).w,a0
+.decidewhodied:
 		jsr	(KillSonic).l
 		movea.l	a2,a0
 
