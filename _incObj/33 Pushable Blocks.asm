@@ -189,7 +189,9 @@ loc_C104:
 		move.w	(sp)+,d4
 		lea	(v_player).w,a1
 		bclr	#3,obStatus(a1)
+		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a0)
+		bclr	d6,obStatus(a0)
 		bra.w	loc_BFE6
 ; ===========================================================================
 
@@ -238,15 +240,21 @@ loc_C186:
 		beq.w	loc_C218
 		subq.b	#2,d0
 		bne.s	loc_C1AA
+		lea	(v_player).w,a1	;bandaid
+		moveq	#p1_standing_bit,d6
 		bsr.w	ExitPlatform
-		btst	#3,obStatus(a1)
+		btst	d6,obStatus(a0)
 		bne.s	loc_C1A4
+		;btst	#3,obStatus(a1)
+		;bne.s	loc_C1A4
 		clr.b	obSolid(a0)
 		rts
 ; ===========================================================================
 
 loc_C1A4:
 		move.w	d4,d2
+		lea	(v_player).w,a1	;bandaid
+		moveq	#p1_standing_bit,d6
 		bra.w	MvSonicOnPtfm
 ; ===========================================================================
 
@@ -288,7 +296,13 @@ loc_C1F2:
 ; ===========================================================================
 
 loc_C218:
+	lea	(v_player).w,a1		;bandaid
+	moveq	#p1_standing_bit,d6
 		bsr.w	Solid_ChkEnter
+		btst	d6,obStatus(a0)		;check for new standing state
+		beq.s	.notonplatform		;if not, branch
+		move.b	#2,obSolid(a0)		;replicate old behavior for this object
+.notonplatform:
 		tst.w	d4
 		beq.w	locret_C2E4
 		bmi.w	locret_C2E4
