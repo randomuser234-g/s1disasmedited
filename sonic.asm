@@ -4687,7 +4687,15 @@ LevLoad_Row:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 PlatformObject:
-		lea	(v_player).w,a1
+	lea	(v_player).w,a1 ; a1=character
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)
+	bsr.s	PlatformObject_SingleCharacter
+	movem.l	(sp)+,d1-d4
+	lea	(v_player2).w,a1 ; a1=character
+	addq.b	#1,d6
+; loc_19C48:
+PlatformObject_SingleCharacter:
 		tst.w	obVelY(a1)	; is Sonic moving up/jumping?
 		bmi.w	Plat_Exit	; if yes, branch
 
@@ -4757,6 +4765,8 @@ loc_74DC:
 
 loc_7512:
 		bset	#3,obStatus(a1)
+		bclr	#1,obStatus(a1)
+		bset	d6,obStatus(a0)
 		bset	#3,obStatus(a0)
 
 Plat_Exit:
@@ -4771,7 +4781,16 @@ Plat_Exit:
 
 
 SlopeObject:
-		lea	(v_player).w,a1
+	lea	(v_player).w,a1 ; a1=character
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)
+	bsr.s	SlopeObject_SingleCharacter
+	movem.l	(sp)+,d1-d4
+	lea	(v_player2).w,a1 ; a1=character
+	addq.b	#1,d6
+; loc_19CA0:
+;SlopedPlatform_SingleCharacter:
+SlopeObject_SingleCharacter:
 		tst.w	obVelY(a1)
 		bmi.w	Plat_Exit
 		move.w	obX(a1),d0
@@ -4831,7 +4850,7 @@ ExitPlatform:
 
 ExitPlatform2:
 		add.w	d2,d2
-		lea	(v_player).w,a1
+		;lea	(v_player).w,a1
 		btst	#1,obStatus(a1)
 		bne.s	loc_75E0
 		move.w	obX(a1),d0
@@ -4843,6 +4862,8 @@ ExitPlatform2:
 
 loc_75E0:
 		bclr	#3,obStatus(a1)
+		bset	#1,obStatus(a1)
+		bclr	d6,obStatus(a0)
 		move.b	#2,obRoutine(a0)
 		bclr	#3,obStatus(a0)
 
@@ -4981,6 +5002,7 @@ CFlo_Data3:	dc.b $16, $1E, $1A, $12, 6, $E,	$A, 2
 
 SlopeObject2:
 		lea	(v_player).w,a1
+SlopeObject2_SkipPlayer:
 		btst	#3,obStatus(a1)
 		beq.s	locret_856E
 		move.w	obX(a1),d0
@@ -5113,7 +5135,7 @@ Obj44_SolidWall2:
 		bhs.s	loc_8B48
 		tst.b	(f_playerctrl).w
 		bmi.s	loc_8B48
-		cmpi.b	#6,(v_player+obRoutine).w
+		cmpi.b	#6,obRoutine(a1)	;edited from v_player
 		bhs.s	loc_8B48
 		tst.w	(v_debuguse).w
 		bne.s	loc_8B48
