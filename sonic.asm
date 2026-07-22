@@ -4723,9 +4723,15 @@ Platform3:
 		bhi.w	Plat_Exit
 		cmpi.w	#-$10,d0
 		blo.w	Plat_Exit
-
+		cmpa.w	#v_player2,a1
+		beq.s	.player2ctrl
 		tst.b	(f_playerctrl).w
 		bmi.w	Plat_Exit
+		bra.s	.after
+.player2ctrl:
+		tst.b	(f_playerctrl2).w
+		bmi.w	Plat_Exit
+.after
 		cmpi.b	#6,obRoutine(a1)
 		bhs.w	Plat_Exit
 		add.w	d0,d2
@@ -4901,9 +4907,16 @@ MvSonicOnPtfm2:
 		subi.w	#9,d0
 
 MvSonic2:
-		tst.b	(f_playerctrl).w	;unedited
-		bmi.s	locret_7B62
-		cmpi.b	#6,obRoutine(a1)	;unedited
+		cmpa.w	#v_player2,a1
+		beq.s	.player2ctrl
+		tst.b	(f_playerctrl).w
+		bmi.w	locret_7B62
+		bra.s	.after
+.player2ctrl:
+		tst.b	(f_playerctrl2).w
+		bmi.w	locret_7B62
+.after
+		cmpi.b	#6,obRoutine(a1)	;edited
 		bhs.s	locret_7B62
 		tst.w	(v_debuguse).w
 		bne.s	locret_7B62
@@ -5003,7 +5016,7 @@ CFlo_Data3:	dc.b $16, $1E, $1A, $12, 6, $E,	$A, 2
 SlopeObject2:
 		lea	(v_player).w,a1
 SlopeObject2_SkipPlayer:
-		btst	#3,obStatus(a1)
+		btst	d6,obStatus(a0)
 		beq.s	locret_856E
 		move.w	obX(a1),d0
 		sub.w	obX(a0),d0
