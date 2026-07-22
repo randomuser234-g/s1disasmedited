@@ -68,9 +68,26 @@ Spring_Up:	; Routine 2
 		move.w	#8,d2
 		move.w	#$10,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
-		tst.b	obSolid(a0)	; is Sonic on top of the spring?
-		bne.s	Spring_BounceUp	; if yes, branch
+		lea	(v_player).w,a1
+		moveq	#3,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_Always_SingleCharacter
+		;bsr.w	SolidObject
+		;tst.b	obSolid(a0)	; is Sonic on top of the spring?
+		btst	#3,obStatus(a0)	; is Sonic standing on the object?
+		beq.s	Spring_UpTails
+		bsr.s	Spring_BounceUp
+		;bne.s	Spring_BounceUp	; if yes, branch
+Spring_UpTails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#4,d6
+		bsr.w	SolidObject_Always_SingleCharacter
+		btst	#4,obStatus(a0)
+		beq.s	.end
+		bsr.s	Spring_BounceUp
+		bra.s	Spring_AniUp
+.end:
 		rts
 ; ===========================================================================
 
@@ -83,7 +100,8 @@ Spring_BounceUp:
 		move.b	#id_Spring,obAnim(a1) ; use "bouncing" animation
 		move.b	#2,obRoutine(a1)
 		bclr	#3,obStatus(a0)
-		clr.b	obSolid(a0)
+		bclr	d6,obStatus(a0)	; is Sonic standing on the object?
+		;clr.b	obSolid(a0)
 		move.w	#sfx_Spring,d0
 		jsr	(QueueSound2).l	; play spring sound
 
@@ -103,14 +121,28 @@ Spring_LR:	; Routine 8
 		move.w	#$E,d2
 		move.w	#$F,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		lea	(v_player).w,a1
+		moveq	#3,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_Always_SingleCharacter
+		;bsr.w	SolidObject
 		cmpi.b	#2,obRoutine(a0)
 		bne.s	loc_DC0C
 		move.b	#8,obRoutine(a0)
 
 loc_DC0C:
 		btst	#5,obStatus(a0)
-		bne.s	Spring_BounceLR
+		beq.s	.tails		;change from bne.s and Spring_BounceLR
+		bsr.s	Spring_BounceLR
+.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#4,d6
+		bsr.w	SolidObject_Always_SingleCharacter
+		btst	#6,obStatus(a0)
+		beq.s	.end
+		bsr.s	Spring_BounceLR
+.end:
 		rts
 ; ===========================================================================
 
@@ -153,16 +185,29 @@ Spring_Dwn:	; Routine $E
 		move.w	#8,d2
 		move.w	#$10,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		lea	(v_player).w,a1
+		moveq	#3,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_Always_SingleCharacter
+		;bsr.w	SolidObject
 		cmpi.b	#2,obRoutine(a0)
 		bne.s	loc_DCA4
 		move.b	#$E,obRoutine(a0)
 
 loc_DCA4:
-		tst.b	obSolid(a0)
+		;tst.b	obSolid(a0)
+		;bne.s	locret_DCAE
+		cmpi.w	#-2,d4
+		bne.s	.tails
+		bsr.s	Spring_BounceDwn
+.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#4,d6
+		bsr.w	SolidObject_Always_SingleCharacter
+		cmpi.w	#-2,d4
 		bne.s	locret_DCAE
-		tst.w	d4
-		bmi.s	Spring_BounceDwn
+		bsr.s	Spring_BounceDwn
 
 locret_DCAE:
 		rts

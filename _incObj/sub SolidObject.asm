@@ -12,11 +12,23 @@
 
 
 SolidObject:
-		tst.b	obSolid(a0)	; is Sonic standing on the object?
+	; Collide player 1.
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)	; Backup input registers.
+	bsr.s	.skiptails
+	movem.l	(sp)+,d1-d4	; Restore input registers.
+
+	; Collide player 2.
+	lea	(v_player2).w,a1
+	btst	#7,obRender(a1)
+	beq.w	.end	; Don't bother if Tails is not on-screen.
+	addq.b	#p2_standing_bit-p1_standing_bit,d6
+.skiptails:
+		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		beq.w	Solid_ChkEnter	; if not, branch
 		move.w	d1,d2
 		add.w	d2,d2
-		lea	(v_player).w,a1
 		btst	#1,obStatus(a1)	; is Sonic in the air?
 		bne.s	.leave		; if yes, branch
 		move.w	obX(a1),d0
@@ -28,8 +40,9 @@ SolidObject:
 
 .leave:
 		bclr	#3,obStatus(a1)	; clear Sonic's standing flag
-		bclr	#3,obStatus(a0)	; clear object's standing flag
-		clr.b	obSolid(a0)
+		bset	#1,obStatus(a1)	; set "in air" flag
+		bclr	d6,obStatus(a0)	; clear object's standing flag
+		;clr.b	obSolid(a0)
 		moveq	#0,d4
 		rts
 
@@ -38,14 +51,25 @@ SolidObject:
 		jsr	MvSonicOnPtfm
 		moveq	#0,d4
 		rts
+.end:
+		rts
 ; ===========================================================================
 
 SolidObject71:
-		tst.b	obSolid(a0)
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)	; Backup input registers.
+	bsr.s	SolidObject_Always_SingleCharacter
+	movem.l	(sp)+,d1-d4	; Restore input registers.
+
+	; Collide player 2.
+	lea	(v_player2).w,a1
+	addq.b	#p2_standing_bit-p1_standing_bit,d6
+SolidObject_Always_SingleCharacter:
+		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		beq.w	loc_FAD0
 		move.w	d1,d2
 		add.w	d2,d2
-		lea	(v_player).w,a1
 		btst	#1,obStatus(a1)
 		bne.s	.leave
 		move.w	obX(a1),d0
@@ -56,9 +80,10 @@ SolidObject71:
 		blo.s	.stand
 
 .leave:
-		bclr	#3,obStatus(a1)
-		bclr	#3,obStatus(a0)
-		clr.b	obSolid(a0)
+		bclr	#3,obStatus(a1)	; clear Sonic's standing flag
+		bset	#1,obStatus(a1)	; set "in air" flag
+		bclr	d6,obStatus(a0)	; clear object's standing flag
+		;clr.b	obSolid(a0)
 		moveq	#0,d4
 		rts
 
@@ -70,8 +95,17 @@ SolidObject71:
 ; ===========================================================================
 
 SolidObject2F:
-		lea	(v_player).w,a1
-		tst.b	obRender(a0)
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)	; Backup input registers.
+	bsr.s	.skiptails
+	movem.l	(sp)+,d1-d4	; Restore input registers.
+
+	; Collide player 2.
+	lea	(v_player2).w,a1
+	addq.b	#p2_standing_bit-p1_standing_bit,d6
+.skiptails:
+		btst	d6,obStatus(a0)	; is Sonic standing on the object?
 		bpl.w	Solid_Ignore
 		move.w	obX(a1),d0
 		sub.w	obX(a0),d0
@@ -114,7 +148,6 @@ Solid_ChkEnter:
 		bpl.w	Solid_Ignore
 
 loc_FAD0:
-		lea	(v_player).w,a1
 		move.w	obX(a1),d0
 		sub.w	obX(a0),d0
 		add.w	d1,d0
@@ -137,9 +170,9 @@ loc_FAD0:
 		bhs.w	Solid_Ignore	; if yes, branch
 
 loc_FB0E:
-		tst.b	(f_playerctrl).w ; are object interactions disabled?
+		tst.b	(f_playerctrl).w ; are object interactions disabled?	;sonic only
 		bmi.w	Solid_Ignore	; if yes, branch
-		cmpi.b	#6,(v_player+obRoutine).w ; is Sonic dying?
+		cmpi.b	#6,(v_player+obRoutine).w ; is Sonic dying?		;sonic only
 	if Revision=0
 		bcc.w	Solid_Ignore	; if yes, branch
 	else
@@ -190,20 +223,30 @@ Solid_Centre:
 		sub.w	d0,obX(a1)	; correct Sonic's position
 		btst	#1,obStatus(a1)	; is Sonic in the air?
 		bne.s	Solid_SideAir	; if yes, branch
-		bset	#5,obStatus(a1)	; make Sonic push object
-		bset	#5,obStatus(a0)	; make object be pushed
+	move.l	d6,d4
+	addq.b	#pushing_bit_delta,d4	; Character is pushing, not standing
+	bset	d4,obStatus(a0)		; make object be pushed
+	bset	#5,obStatus(a1)	; make Sonic push object
+	move.w	d6,d4
+	addi.b	#($10-p1_standing_bit+p1_touch_side_bit),d4
+	bset	d4,d6	; This sets bits 0 (Sonic) or 1 (Tails) of high word of d6		
 		moveq	#1,d4		; return side collision
 		rts
 ; ===========================================================================
 
 Solid_SideAir:
 		bsr.s	Solid_NotPushing
+	move.w	d6,d4
+	addi.b	#($10-p1_standing_bit+p1_touch_side_bit),d4
+	bset	d4,d6	; This sets bits 0 (Sonic) or 1 (Tails) of high word of d6
 		moveq	#1,d4		; return side collision
 		rts
 ; ===========================================================================
 
 Solid_Ignore:
-		btst	#5,obStatus(a0)	; is Sonic pushing?
+	move.l	d6,d4
+	addq.b	#pushing_bit_delta,d4
+	btst	d4,obStatus(a0)		; is Sonic pushing?
 		beq.s	Solid_Debug	; if not, branch
 	if FixBugs
 		; Fix the Walk-Jump bug
@@ -219,7 +262,9 @@ Solid_Ignore:
 		move.w	#id_Run,obAnim(a1) ; use running animation
 
 Solid_NotPushing:
-		bclr	#5,obStatus(a0)	; clear pushing flag
+		move.l	d6,d4
+		addq.b	#pushing_bit_delta,d4
+		bclr	d4,obStatus(a0)	; clear pushing flag
 		bclr	#5,obStatus(a1)	; clear Sonic's pushing flag
 
 Solid_Debug:
@@ -230,8 +275,11 @@ Solid_Debug:
 Solid_TopBottom:
 		tst.w	d3		; is Sonic below the object?
 		bmi.s	Solid_Below	; if yes, branch
+;SolidObject_InsideTop:
 		cmpi.w	#$10,d3		; has Sonic landed on the object?
 		blo.s	Solid_Landed	; if yes, branch
+		cmpi.w	#$14,d3				; has Sonic landed on the object?
+		blo.s	Solid_Landed		; if yes, branch
 		bra.s	Solid_Ignore
 ; ===========================================================================
 
@@ -241,11 +289,15 @@ Solid_Below:
 		bpl.s	Solid_TopBtmAir	; if moving downwards, branch
 		tst.w	d3		; is Sonic above the object?
 		bpl.s	Solid_TopBtmAir	; if yes, branch
-		sub.w	d3,obY(a1)	; correct Sonic's position
 		move.w	#0,obVelY(a1)	; stop Sonic moving
 
 Solid_TopBtmAir:
-		moveq	#-1,d4
+		sub.w	d3,obY(a1)	; correct Sonic's position
+	move.w	d6,d4
+	addi.b	#($10-p1_standing_bit+p1_touch_bottom_bit),d4
+	bset	d4,d6	; This sets bits 2 (Sonic) or 3 (Tails) of high word of d6
+	moveq	#-2,d4			; Return bottom collision.
+		moveq	#-2,d4	;change from -1
 		rts
 ; ===========================================================================
 
@@ -253,10 +305,14 @@ Solid_Squash:
 		btst	#1,obStatus(a1)	; is Sonic in the air?
 		bne.s	Solid_TopBtmAir	; if yes, branch
 		move.l	a0,-(sp)
+		movea.l	a0,a2	;added
 		movea.l	a1,a0
 		jsr	(KillSonic).l	; kill Sonic
 		movea.l	(sp)+,a0
-		moveq	#-1,d4
+	move.w	d6,d4
+	addi.b	#($10-p1_standing_bit+p1_touch_bottom_bit),d4
+	bset	d4,d6	; This sets bits 2 (Sonic) or 3 (Tails) of high word of d6
+		moveq	#-2,d4	;change from -1
 		rts
 ; ===========================================================================
 
@@ -276,8 +332,9 @@ Solid_Landed:
 		sub.w	d3,obY(a1)	; correct Sonic's position
 		subq.w	#1,obY(a1)
 		bsr.s	Solid_ResetFloor
-		move.b	#2,obSolid(a0) ; set standing flags
-		bset	#3,obStatus(a0)
+		move.w	d6,d4
+		addi.b	#($10-p1_standing_bit+p1_touch_top_bit),d4
+		bset	d4,d6	; This sets bits 4 (Sonic) or 5 (Tails) of high word of d6
 		moveq	#-1,d4		; return top/bottom collision
 		rts
 ; ===========================================================================
@@ -301,7 +358,7 @@ Solid_ResetFloor:
 		addi.l	#(v_objspace&$FFFFFF),d0
 		movea.l	d0,a2
 		bclr	#3,obStatus(a2)	; clear object's standing flags
-		clr.b	obSolid(a2)
+		bclr	d6,obStatus(a3)
 
 .notonobj:
 		move.w	a0,d0
@@ -321,6 +378,7 @@ Solid_ResetFloor:
 
 .notinair:
 		bset	#3,obStatus(a1)	; set object standing flag
-		bset	#3,obStatus(a0)	; set Sonic standing on object flag
+		bclr	#1,obStatus(a1)
+		bset	d6,obStatus(a0)	; set Sonic standing on object flag
 		rts
 ; End of function Solid_ResetFloor

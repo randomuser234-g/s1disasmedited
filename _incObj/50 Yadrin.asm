@@ -10,7 +10,7 @@ Yad_ChkWall:
 		move.b	obActWid(a0),d3
 		tst.w	obVelX(a0)
 		bmi.s	loc_F82C
-		bsr.w	ObjHitWallRight
+		jsr	ObjHitWallRight
 		tst.w	d1
 		bpl.s	loc_F836
 

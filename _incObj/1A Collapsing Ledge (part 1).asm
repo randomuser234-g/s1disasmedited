@@ -58,7 +58,7 @@ Ledge_WalkOff:	; Routine $A
 		lea	(Ledge_SlopeData).l,a2
 		move.w	obX(a0),d2
 		bsr.w	SlopeObject2
-		bra.w	RememberState
+		jmp	RememberState
 ; End of function Ledge_WalkOff
 
 ; ===========================================================================
