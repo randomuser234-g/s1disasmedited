@@ -58,13 +58,15 @@ MBlock_Platform: ; Routine 2
 		bsr.w	MBlock_Move
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		jsr	(PlatformObject).l
+		lea	(v_player).w,a1
+		jsr	(PlatformObject_SingleCharacter).l
 		bra.s	MBlock_ChkDel
 ; ===========================================================================
 
 MBlock_StandOn:	; Routine 4
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+		lea	(v_player).w,a1
 		jsr	(ExitPlatform).l
 	if FixBugs
 		; MBlock_Move manipulates the stack pointer, potentially

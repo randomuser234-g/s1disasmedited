@@ -84,6 +84,7 @@ Elev_Platform:	; Routine 2
 Elev_Action:	; Routine 4
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+	lea	(v_player).w,a1
 		jsr	(ExitPlatform).l
 		move.w	obX(a0),-(sp)
 		bsr.w	Elev_Types

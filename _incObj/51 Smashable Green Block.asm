@@ -34,10 +34,12 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 		move.w	#$10,d2
 		move.w	#$11,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
-		btst	#3,obStatus(a0)	; has Sonic landed on the block?
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+	bsr.w	SolidObject_SingleCharacter
+		;bsr.w	SolidObject
+		btst	d6,obStatus(a0)	; has Sonic landed on the block?
 		bne.s	.smash		; if yes, branch
-
 .notspinning:
 		rts
 ; ===========================================================================
@@ -54,6 +56,7 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
+		bclr	d6,obStatus(a0)
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 		move.b	#1,obFrame(a0)

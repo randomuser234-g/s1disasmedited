@@ -32,13 +32,16 @@ Circ_Main:	; Routine 0
 Circ_Platform:	; Routine 2
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		jsr	(PlatformObject).l
+		lea	(v_player).w,a1		;bandaid
+		moveq	#p1_standing_bit,d6
+		jsr	(PlatformObject_SingleCharacter).l
 		bra.w	Circ_Types
 ; ===========================================================================
 
 Circ_Action:	; Routine 4
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+		lea	(v_player).w,a1		;bandaid
 		jsr	(ExitPlatform).l
 		move.w	obX(a0),-(sp)
 		bsr.w	Circ_Types

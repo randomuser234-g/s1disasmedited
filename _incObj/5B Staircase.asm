@@ -89,10 +89,13 @@ Stair_Solid:	; Routine 4
 		move.b	d4,objoff_36(a2)
 
 loc_10F92:
-		btst	#3,obStatus(a0)
+		btst	#p1_standing_bit,obStatus(a0)
+		beq.s	.tails
+		move.b	#1,objoff_36(a2)
+.tails:
+		btst	#p2_standing_bit,obStatus(a0)
 		beq.s	locret_10FA0
 		move.b	#1,objoff_36(a2)
-
 locret_10FA0:
 		rts
 ; ===========================================================================
