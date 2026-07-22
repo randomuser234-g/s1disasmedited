@@ -53,6 +53,9 @@ Ledge_Collapse:	; Routine 4
 
 Ledge_WalkOff:	; Routine $A
 		move.w	#$30,d1
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)	; Backup input registers.
 		bsr.w	ExitPlatform
 		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2

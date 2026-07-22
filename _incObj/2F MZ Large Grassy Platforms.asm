@@ -46,7 +46,9 @@ LGrass_Main:	; Routine 0
 
 LGrass_Action:	; Routine 2
 		bsr.w	LGrass_Types
-		tst.b	obSolid(a0)
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+		btst	d6,obStatus(a0)
 		beq.s	LGrass_Solid
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
@@ -54,7 +56,7 @@ LGrass_Action:	; Routine 2
 		bsr.w	ExitPlatform
 		btst	#3,obStatus(a1)
 		bne.w	LGrass_Slope
-		clr.b	obSolid(a0)
+		bclr	d6,obStatus(a0)
 		bra.s	LGrass_Display
 ; ===========================================================================
 
@@ -79,7 +81,7 @@ LGrass_Solid:
 
 loc_AF8E:
 		movea.l	objoff_30(a0),a2
-		bsr.w	SolidObject2F
+		bsr.w	SolidObject2F_SingleCharacter
 
 LGrass_Display:
 	if FixBugs=0
@@ -150,7 +152,7 @@ loc_AFF2:
 
 LGrass_Type05:
 		move.b	objoff_34(a0),d0
-		tst.b	obSolid(a0)
+		btst	d6,obStatus(a0)
 		bne.s	loc_B010
 		subq.b	#2,d0
 		bcc.s	loc_B01C

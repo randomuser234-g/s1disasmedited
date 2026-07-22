@@ -59,7 +59,8 @@ Plat_Solid:	; Routine 2
 loc_7EE0:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		bsr.w	PlatformObject
+		lea	(v_player).w,a1
+		bsr.w	PlatformObject_SingleCharacter
 
 Plat_Action:	; Routine 8
 		bsr.w	Plat_Move
@@ -76,6 +77,7 @@ Plat_Action2:	; Routine 4
 loc_7F06:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+		lea	(v_player).w,a1
 		bsr.w	ExitPlatform
 		move.w	obX(a0),-(sp)
 		bsr.w	Plat_Move

@@ -96,16 +96,16 @@ SolidObject2F:
 	lea	(v_player).w,a1
 	moveq	#p1_standing_bit,d6
 	movem.l	d1-d4,-(sp)	; Backup input registers.
-	bsr.s	SlopedSolid_SingleCharacter
+	bsr.s	SolidObject2F_SingleCharacter
 	movem.l	(sp)+,d1-d4	; Restore input registers.
 
 	; Collide player 2.
 	lea	(v_player2).w,a1
 	addq.b	#p2_standing_bit-p1_standing_bit,d6
 ; loc_F4FA:
-SlopedSolid_SingleCharacter:
-		btst	d6,obStatus(a0)	; is Sonic standing on the object?
-		bpl.w	Solid_Ignore
+SolidObject2F_SingleCharacter:
+		tst.b	obRender(a0)	; is the object visible?
+		bpl.w	Solid_Ignore		;if not, branch
 		move.w	obX(a1),d0
 		sub.w	obX(a0),d0
 		add.w	d1,d0

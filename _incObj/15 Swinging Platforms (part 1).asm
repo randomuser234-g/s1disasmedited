@@ -131,6 +131,8 @@ Swing_Action:	; Routine $C
 Swing_Action2:	; Routine 4
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
 		bsr.w	ExitPlatform
 		move.w	obX(a0),-(sp)
 		bsr.w	Swing_Move
@@ -138,7 +140,6 @@ Swing_Action2:	; Routine 4
 		moveq	#0,d3
 		move.b	obHeight(a0),d3
 		addq.b	#1,d3
-		lea	(v_player).w,a1	;bandaid, reverts sonic's behavior but tails is unaltered (broken)
 		bsr.w	MvSonicOnPtfm
 		bsr.w	DisplaySprite
 		bra.w	Swing_ChkDel
