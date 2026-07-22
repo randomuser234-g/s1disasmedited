@@ -170,6 +170,56 @@ objoff_3F:	equ $3F
 object_size_bits:	equ 6
 object_size:	equ 1<<object_size_bits
 
+; ---------------------------------------------------------------------------
+; Bits 3-6 of an object's status after a SolidObject call is a
+; bitfield with the following meaning:
+status.npc.p1_standing = 3
+status.npc.p1_pushing = 5
+p1_standing_bit   = status.npc.p1_standing
+p2_standing_bit   = p1_standing_bit + 1
+
+p1_standing       = 1<<p1_standing_bit
+p2_standing       = 1<<p2_standing_bit
+
+pushing_bit_delta = status.npc.p1_pushing-status.npc.p1_standing
+p1_pushing_bit    = p1_standing_bit + pushing_bit_delta
+p2_pushing_bit    = p1_pushing_bit + 1
+
+p1_pushing        = 1<<p1_pushing_bit
+p2_pushing        = 1<<p2_pushing_bit
+
+
+standing_mask     = p1_standing|p2_standing
+pushing_mask      = p1_pushing|p2_pushing
+
+; ---------------------------------------------------------------------------
+; The high word of d6 after a SolidObject call is a bitfield
+; with the following meaning:
+p1_touch_side_bit   = 0
+p2_touch_side_bit   = p1_touch_side_bit + 1
+
+p1_touch_side       = 1<<p1_touch_side_bit
+p2_touch_side       = 1<<p2_touch_side_bit
+
+touch_side_mask     = p1_touch_side|p2_touch_side
+
+p1_touch_bottom_bit = p1_touch_side_bit + pushing_bit_delta
+p2_touch_bottom_bit = p1_touch_bottom_bit + 1
+
+p1_touch_bottom     = 1<<p1_touch_bottom_bit
+p2_touch_bottom     = 1<<p2_touch_bottom_bit
+
+touch_bottom_mask   = p1_touch_bottom|p2_touch_bottom
+
+p1_touch_top_bit   = p1_touch_bottom_bit + pushing_bit_delta
+p2_touch_top_bit   = p1_touch_top_bit + 1
+
+p1_touch_top       = 1<<p1_touch_top_bit
+p2_touch_top       = 1<<p2_touch_top_bit
+
+touch_top_mask     = p1_touch_top|p2_touch_top
+
+
 ; Animation flags
 afEnd:		equ $FF	; return to beginning of animation
 afBack:		equ $FE	; go back (specified number) bytes

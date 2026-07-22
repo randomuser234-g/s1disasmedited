@@ -41,7 +41,7 @@ AddressSRAM = 3
 ZoneCount = 6
 ;	| Used for the zonewarning macro. Do not change, unless more zones get added.
 ;	| Discrete zones are: GHZ, LZ, MZ, SLZ, SYZ, and SBZ
-DebugBuild = 0
+DebugBuild = 1
 ;	| Instantly enable debug and level select
 ; ===========================================================================
 ; AS-specific macros and assembler settings
@@ -4863,7 +4863,6 @@ Map_Bri:	include	"_maps/Bridge.asm"
 
 
 MvSonicOnPtfm:
-		lea	(v_player).w,a1
 		move.w	obY(a0),d0
 		sub.w	d3,d0
 		bra.s	MvSonic2
@@ -4877,14 +4876,13 @@ MvSonicOnPtfm:
 
 
 MvSonicOnPtfm2:
-		lea	(v_player).w,a1
 		move.w	obY(a0),d0
 		subi.w	#9,d0
 
 MvSonic2:
-		tst.b	(f_playerctrl).w
+		tst.b	(f_playerctrl).w	;unedited
 		bmi.s	locret_7B62
-		cmpi.b	#6,(v_player+obRoutine).w
+		cmpi.b	#6,(v_player+obRoutine).w	;unedited
 		bhs.s	locret_7B62
 		tst.w	(v_debuguse).w
 		bne.s	locret_7B62
