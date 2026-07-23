@@ -5532,6 +5532,7 @@ M_Got_RBonus:	spriteHeader	; Ring Bonus tally
 	spritePiece	$28, -8, 4, 2, -8, 0, 0, 0, 0	; Tally (first four digits)
 	spritePiece	$48, -8, 1, 2, $170, 0, 0, 0, 0	; Tally (second four digits)
 M_Got_RBonus_End
+	even
 
 
 ; ---------------------------------------------------------------------------
