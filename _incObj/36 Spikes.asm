@@ -55,12 +55,14 @@ Spik_SideWays:
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
+		bsr.w	SolidObject_SingleCharacter
 		btst	#3,obStatus(a0)
-		bne.s	Spik_Display
+		bne.w	Spik_Display
 		cmpi.w	#1,d4
 		beq.s	Spik_Hurt
-		bra.s	Spik_Display
+		bra.w	Spik_Display
 ; ===========================================================================
 
 ; Spikes types $0x, $2x, $3x and $4x face up or down
@@ -75,21 +77,36 @@ Spik_Upright:
 		bsr.w	SolidObject
 		btst	#3,obStatus(a0)
 		bne.s	Spik_Hurt
+		btst	#4,obStatus(a0)
+		bne.s	Spik_Hurt
 		tst.w	d4
 		bpl.s	Spik_Display
 
 Spik_Hurt:
 		tst.b	(v_invinc).w	; is Sonic invincible?
 		bne.s	Spik_Display	; if yes, branch
+		btst	#4,obStatus(a0)		;added
+		bne.s	.checktailsflashtime
 	if FixBugs
 		; (Proper) Spike Bug Fix
 		; https://info.sonicretro.org/SCHG_How-to:Change_Spike_behavior_in_Sonic_1
 		tst.w	(v_player+flashtime).w	; is Sonic invulnerable?
 		bne.s	Spik_Display		; if yes, branch
+		bra.s	.afterflashtime		;added
+.checktailsflashtime:
+		tst.w	(v_player2+flashtime).w	; is Tails invulnerable?
+		bne.s	Spik_Display		; if yes, branch
 	endif
+.afterflashtime:
 		move.l	a0,-(sp)
 		movea.l	a0,a2
+		btst	#4,obStatus(a0)
+		bne.s	.tailshit
 		lea	(v_player).w,a0
+		bra.s	.after
+.tailshit:
+		lea	(v_player2).w,a0
+.after:
 		cmpi.b	#4,obRoutine(a0)
 		bhs.s	loc_CF20
 
