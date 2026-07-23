@@ -56,30 +56,33 @@ Obj05_Main:
 ; chooses which animation script to run depending on what Tails is doing
 ; byte_1D29E:
 Obj05AniSelection:
-	dc.b	0,0	; TlsAni_Walk,Run	->
-	dc.b	3	; TlsAni_Roll		-> Directional
-	dc.b	3	; TlsAni_Roll2	-> Directional
-	dc.b	9	; TlsAni_Push		-> Pushing
-	dc.b	1	; TlsAni_Wait		-> Swish
-	dc.b	0	; TlsAni_Balance	-> Blank
-	dc.b	2	; TlsAni_LookUp	-> Flick
-	dc.b	1	; TlsAni_Duck		-> Swish
-	dc.b	0,0,0,0	; TlsAni_Warp1,2,3,4	->
-	dc.b	8	; TlsAni_Stop		-> Skidding
-	dc.b	0,0	; TlsAni_Float1,2	->
-	dc.b	0	; TlsAni_Spring	->
-	dc.b	0	; TlsAni_Hang		->
-	dc.b	0,0	; TlsAni_Leap1,2	->
-	dc.b	$A	; TlsAni_Surf	-> Hanging
-	dc.b	0	; TlsAni_GetAir	->
+	dc.b	0,0	; TlsAni_Walk,Run			->
+	dc.b	3	; TlsAni_Roll				-> Directional
+	dc.b	3	; TlsAni_Roll2				-> Directional
+	dc.b	9	; TlsAni_Push				-> Pushing
+	dc.b	1	; TlsAni_Wait				-> Swish
+	dc.b	0	; TlsAni_Balance			-> Blank
+	dc.b	2	; TlsAni_LookUp				-> Flick
+	dc.b	1	; TlsAni_Duck				-> Swish
+	dc.b	0,0,0,0	; TlsAni_Warp1,2,3,4			->
+	dc.b	8	; TlsAni_Stop				-> Skidding
+	dc.b	0,0	; TlsAni_Float1,2			->
+	dc.b	0	; TlsAni_Spring				->
+	dc.b	0	; TlsAni_Hang				->
+	dc.b	0,0	; TlsAni_Leap1,2			->
+	dc.b	$A	; TlsAni_Surf				-> Hanging
+	dc.b	0	; TlsAni_GetAir				->
 	dc.b	0,0,0,0	; TlsAni_Burnt,Drown,Death,Shrink	->
-	dc.b	0,0	; TlsAni_Hurt,WaterSlide	->
-	dc.b	0	; TlsAni_Null	->
-	dc.b	0,0	; TlsAni_Float3,4	->
-	dc.b	7	; TlsAni_SpinDash	-> Spindash
-	dc.b	0	; TlsAni_RunFast	->
-	dc.b	0	; TlsAni_Fly		->
-	dc.b	0	; TlsAni_Transform	->
+	dc.b	0,0	; TlsAni_Hurt,WaterSlide		->
+	dc.b	0	; TlsAni_Null				->
+	dc.b	0,0	; TlsAni_Float3,4			->
+	dc.b	7	; TlsAni_SpinDash			-> Spindash
+	dc.b	0	; TlsAni_RunFast			->
+	dc.b	0	; TlsAni_Fly				->
+	dc.b	0	; TlsAni_Transform			->
+	dc.b	0	; TlsAni_Glide				->
+	dc.b	0	; TlsAni_FallFromGlide			->
+	dc.b	0	; TlsAni_HangFromTails			->
 	even
 ; ---------------------------------------------------------------------------
 ; Animation script - Tails' tails
@@ -135,7 +138,7 @@ LoadTailsTailsDynPLC:
 		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
 		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
 		bra.s	.movefromanimtest		; branch to rest of code
-.nullanim
+.nullanim:
 		move.b	#0,obFrame(a0)	; load sprite number
 		rts
 	.movefromanimtest:

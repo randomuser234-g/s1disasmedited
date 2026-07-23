@@ -2510,7 +2510,7 @@ Tails_LoadGfx:
 		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
 		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
 		bra.s	.movefromanimtest		; branch to rest of code
-.nullanim
+.nullanim:
 		move.b	#0,obFrame(a0)	; load sprite number
 		rts
 	.movefromanimtest:
