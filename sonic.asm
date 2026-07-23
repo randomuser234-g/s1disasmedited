@@ -3130,7 +3130,7 @@ InitPlayers:
 		move.w	(v_player+obY).w,(v_player2+obY).w
 		subi.w	#$20,(v_player2+obX).w		;then move him to the left
 		move.w	#0,(v_tailscpuroutine).w
-		move.w	#0,(v_tailscontrol).w
+		move.w	#$18,(v_tailscontrol).w		;pause him for a long time, enough for valid pos data
 		move.w	#0,(v_tailsrespawn).w
 	.dontloadpartner:
 		rts
@@ -4871,7 +4871,7 @@ loc_75E0:
 		bset	#1,obStatus(a1)
 		bclr	d6,obStatus(a0)
 		move.b	#2,obRoutine(a0)
-		bclr	#3,obStatus(a0)
+		;bclr	#3,obStatus(a0)
 
 locret_75F2:
 		rts
@@ -5532,7 +5532,7 @@ M_Got_RBonus:	spriteHeader	; Ring Bonus tally
 	spritePiece	$28, -8, 4, 2, -8, 0, 0, 0, 0	; Tally (first four digits)
 	spritePiece	$48, -8, 1, 2, $170, 0, 0, 0, 0	; Tally (second four digits)
 M_Got_RBonus_End
-	even
+
 
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - special stage results screen
