@@ -41,24 +41,23 @@ v_ttlsonichide	= v_objspace+object_size*4	; object variable space for hiding par
 
 ; Level objects
 v_player	= v_objspace+object_size*0	; object variable space for Sonic ($40 bytes)
-v_hud		= v_objspace+object_size*1	; object variable space for the HUD ($40 bytes)
+v_player2	= v_objspace+object_size*1	; object variable space for Tails as P2 ($40 bytes)
+v_hud		= v_objspace+object_size*2	; object variable space for the HUD ($40 bytes)
 
-v_titlecard	= v_objspace+object_size*2	; object variable space for the title card ($100 bytes)
+v_titlecard	= v_objspace+object_size*3	; object variable space for the title card ($100 bytes)
 v_ttlcardname	= v_titlecard+object_size*0		; object variable space for the title card zone name text ($40 bytes)
 v_ttlcardzone	= v_titlecard+object_size*1	; object variable space for the title card "ZONE" text ($40 bytes)
 v_ttlcardact	= v_titlecard+object_size*2	; object variable space for the title card act text ($40 bytes)
 v_ttlcardoval	= v_titlecard+object_size*3	; object variable space for the title card oval ($40 bytes)
 
-v_gameovertext1	= v_objspace+object_size*2	; object variable space for the "GAME"/"TIME" in "GAME OVER"/"TIME OVER" text ($40 bytes)
-v_gameovertext2	= v_objspace+object_size*3	; object variable space for the "OVER" in "GAME OVER"/"TIME OVER" text ($40 bytes)
+v_gameovertext1	= v_objspace+object_size*3	; object variable space for the "GAME"/"TIME" in "GAME OVER"/"TIME OVER" text ($40 bytes)
+v_gameovertext2	= v_objspace+object_size*4	; object variable space for the "OVER" in "GAME OVER"/"TIME OVER" text ($40 bytes)
 
-v_shieldobj	= v_objspace+object_size*6	; object variable space for the shield ($40 bytes)
-v_tailstails	= v_objspace+object_size*7	; object variable space for Tails' tails ($40 bytes)
-v_starsobj1	= v_objspace+object_size*8	; object variable space for the invincibility stars #1 ($40 bytes)
-v_starsobj2	= v_objspace+object_size*9	; object variable space for the invincibility stars #2 ($40 bytes)
-v_starsobj4	= v_objspace+object_size*10	; object variable space for the invincibility stars #4 ($40 bytes)
-v_player2	= v_objspace+object_size*11	; object variable space for Tails as P2 #3 ($40 bytes)
-
+v_shieldobj	= v_objspace+object_size*7	; object variable space for the shield ($40 bytes)
+v_tailstails	= v_objspace+object_size*8	; object variable space for Tails' tails ($40 bytes)
+v_starsobj1	= v_objspace+object_size*9	; object variable space for the invincibility stars #1 ($40 bytes)
+v_starsobj2	= v_objspace+object_size*10	; object variable space for the invincibility stars #2 ($40 bytes)
+v_starsobj4	= v_objspace+object_size*11	; object variable space for the invincibility stars #4 ($40 bytes)
 v_splash	= v_objspace+object_size*12	; object variable space for the water splash ($40 bytes)
 v_sonicbubbles	= v_objspace+object_size*13	; object variable space for the bubbles that come out of Sonic's mouth/drown countdown ($40 bytes)
 v_watersurface1	= v_objspace+object_size*30	; object variable space for the water surface #1 ($40 bytes)
