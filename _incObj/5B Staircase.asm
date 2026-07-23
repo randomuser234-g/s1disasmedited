@@ -85,10 +85,16 @@ Stair_Solid:	; Routine 4
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
 		moveq	#p1_standing_bit,d6
+		movem.l	d1-d4,-(sp)
 		bsr.w	SolidObject_SingleCharacter
 		tst.b	d4
-		bpl.s	loc_10F92
+		bpl.s	.tails
 		move.b	d4,objoff_36(a2)
+	.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#p2_standing_bit,d6
+		bsr.w	SolidObject_Always_SingleCharacter
 
 loc_10F92:
 		btst	#p1_standing_bit,obStatus(a0)

@@ -36,10 +36,22 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 		move.w	obX(a0),d4
 	lea	(v_player).w,a1
 	moveq	#p1_standing_bit,d6
+	movem.l	d1-d4,-(sp)
 	bsr.w	SolidObject_SingleCharacter
 		;bsr.w	SolidObject
 		btst	d6,obStatus(a0)	; has Sonic landed on the block?
-		bne.s	.smash		; if yes, branch
+		beq.s	.tails		; if yes, branch
+		bsr.s	.smash		; if yes, branch
+
+.tails:
+	movem.l	(sp)+,d1-d4
+	move.b	(v_player2+obAnim).w,sonicAniFrame(a0) ; load Sonic's animation number
+	lea	(v_player2).w,a1
+	moveq	#p2_standing_bit,d6
+	bsr.w	SolidObject_SingleCharacter
+	btst	d6,obStatus(a0)	; has Sonic landed on the block?
+	beq.s	.notspinning		; if yes, branch
+	bsr.s	.smash		; if yes, branch
 .notspinning:
 		rts
 ; ===========================================================================
