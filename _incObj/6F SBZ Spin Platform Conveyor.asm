@@ -146,11 +146,22 @@ loc_163D8:	; Routine 2
 ; ===========================================================================
 
 loc_16404:
-		btst	#3,obStatus(a0)
-		beq.s	loc_16420
-		lea	(v_player).w,a1
-		bclr	#3,obStatus(a1)
+		btst	#3,obStatus(a0) ; is Sonic standing on the conveyer?
+		beq.s	.tails	; if not, branch
+		;lea	(v_player).w,a1
+		bclr	#3,(v_player+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
+		clr.b	obSolid(a0)
+.tails:
+		btst	#4,obStatus(a0) ; is Tails standing on the conveyer?
+		beq.s	loc_16420	; if not, branch
+		bclr	#4,(v_player2+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player2+obStatus).w
+		bclr	#4,obStatus(a0)
 		clr.b	obSolid(a0)
 
 loc_16420:

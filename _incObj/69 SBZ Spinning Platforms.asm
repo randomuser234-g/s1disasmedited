@@ -79,17 +79,21 @@ Spin_Trapdoor:	; Routine 2
 .notsolid:
 		btst	#3,obStatus(a0) ; is Sonic standing on the trapdoor?
 		beq.s	.tails	; if not, branch
-		lea	(v_player).w,a1
-		bclr	#3,obStatus(a1)
-		bset	#1,obStatus(a1)
+		;lea	(v_player).w,a1
+		bclr	#3,(v_player+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 .tails:
-		btst	#4,obStatus(a0) ; is Sonic standing on the trapdoor?
+		btst	#4,obStatus(a0) ; is Tails standing on the trapdoor?
 		beq.s	.display	; if not, branch
+		move.b	sfx_Ring,d0
+		jsr	QueueSound2
 		bclr	#4,(v_player2+obStatus).w
 		bset	#1,(v_player2+obStatus).w
-		bclr	#3,obStatus(a0)
+		bclr	#4,obStatus(a0)
 		clr.b	obSolid(a0)
 
 .display:
@@ -126,12 +130,22 @@ Spin_Spinner:	; Routine 4
 ; ===========================================================================
 
 .notsolid2:
-		btst	#3,obStatus(a0)
-		beq.s	.display
-		lea	(v_player).w,a1
-		bclr	#3,obStatus(a1)
+		btst	#3,obStatus(a0) ; is Sonic standing on the trapdoor?
+		beq.s	.tails	; if not, branch
+		;lea	(v_player).w,a1
+		bclr	#3,(v_player+obStatus).w
 		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
+		clr.b	obSolid(a0)
+.tails:
+		btst	#4,obStatus(a0) ; is Tails standing on the trapdoor?
+		beq.s	.display	; if not, branch
+		bclr	#4,(v_player2+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player2+obStatus).w
+		bclr	#4,obStatus(a0)
 		clr.b	obSolid(a0)
 
 .display:
