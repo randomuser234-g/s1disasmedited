@@ -69,6 +69,8 @@ Pri_BodyMain:	; Routine 2
 		clr.b	ob2ndRout(a0)
 		bclr	#3,(v_player+obStatus).w
 		bset	#1,(v_player+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 
 .open:
 		move.b	#2,obFrame(a0)	; use frame number 2 (destroyed prison)
@@ -92,9 +94,13 @@ Pri_Switched:	; Routine 4
 		lea	(Ani_Pri).l,a1
 		jsr	(AnimateSprite).l
 		move.w	pri_origY(a0),obY(a0)
+		btst	#3,obStatus(a0)
+		bne.s	.openup2
+		btst	#4,obStatus(a0)
+		bne.s	.openup2
 		tst.b	ob2ndRout(a0)	; has prison already been opened?
 		beq.s	.open2		; if yes, branch
-
+.openup2:
 		addq.w	#8,obY(a0)
 		move.b	#$A,obRoutine(a0)
 		move.w	#60,obTimeFrame(a0) ; set time between animal spawns
@@ -105,6 +111,8 @@ Pri_Switched:	; Routine 4
 		clr.b	ob2ndRout(a0)
 		bclr	#3,(v_player+obStatus).w
 		bset	#1,(v_player+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
+		bset	#1,(v_player2+obStatus).w
 
 .open2:
 		rts
