@@ -253,7 +253,9 @@ Solid_Ignore:
 	move.l	d6,d4
 	addq.b	#pushing_bit_delta,d4
 	btst	d4,obStatus(a0)		; is Sonic pushing?
-		beq.s	Solid_Debug	; if not, branch
+	beq.s	Solid_Debug	; if not, branch
+	cmpi.b	#id_Roll,obAnim(a1)	;is sonic rolling?
+	beq.s	Solid_NotPushing	;if yes, don't push
 	if FixBugs
 		; Fix the Walk-Jump bug
 		; https://info.sonicretro.org/SCHG_How-to:Fix_the_Walk-Jump_Bug_in_Sonic_1
@@ -263,6 +265,8 @@ Solid_Ignore:
 		cmpi.b	#id_Drown,d4		; is Sonic in his drowning animation?
 		beq.s	Solid_NotPushing	; if so, branch
 		cmpi.b	#id_Hurt,d4		; is Sonic in his hurt animation?
+		beq.s	Solid_NotPushing	; if so, branch
+		cmpi.b	#id_Fly,d4		; is Tails in his flying animation?
 		beq.s	Solid_NotPushing	; if so, branch
 	endif
 		move.w	#id_Run,obAnim(a1) ; use running animation

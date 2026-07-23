@@ -1,21 +1,28 @@
-; ---------------------------------------------------------------------------
-; Object 26 - monitors
-; ---------------------------------------------------------------------------
-
+; ===========================================================================
+; ----------------------------------------------------------------------------
+; Object 26 - Monitor
+;
+; The power-ups themselves are handled by the next object. This just does the
+; monitor collision and graphics.
+; ----------------------------------------------------------------------------
+; Obj_Monitor:
 Monitor:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Mon_Index(pc,d0.w),d1
-		jmp	Mon_Index(pc,d1.w)
+	moveq	#0,d0
+	move.b	obRoutine(a0),d0
+	move.w	Mon_Index(pc,d0.w),d1
+	jmp	Mon_Index(pc,d1.w)
 ; ===========================================================================
-Mon_Index:	dc.w Mon_Main-Mon_Index
-		dc.w Mon_Solid-Mon_Index
-		dc.w Mon_BreakOpen-Mon_Index
-		dc.w Mon_Animate-Mon_Index
-		dc.w Mon_Display-Mon_Index
+; obj_26_subtbl:
+;Obj26_Index:
+Mon_Index:
+		dc.w Obj26_Init-Mon_Index			; 0
+		dc.w Mon_Solid-Mon_Index			; 2
+		dc.w Mon_BreakOpen-Mon_Index			; 4
+		dc.w Mon_Animate-Mon_Index			; 6
+		dc.w BranchTo2_MarkObjGone-Mon_Index		; 8
 ; ===========================================================================
-
-Mon_Main:	; Routine 0
+; obj_26_sub_0: Obj_26_Init:
+Obj26_Init:
 		addq.b	#2,obRoutine(a0)
 		move.b	#$E,obHeight(a0)
 		move.b	#$E,obWidth(a0)
@@ -34,8 +41,7 @@ Mon_Main:	; Routine 0
 		move.b	#8,obRoutine(a0) ; run "Mon_Display" routine
 		move.b	#$B,obFrame(a0)	; use broken monitor frame
 		rts
-; ===========================================================================
-
+; ---------------------------------------------------------------------------
 .notbroken:
 		move.b	#$46,obColType(a0)
 		move.b	obSubtype(a0),obAnim(a0)
@@ -56,103 +62,37 @@ Mon_Main:	; Routine 0
 		move.b	#$A,obAnim(a0)		; apply tails monitor
 		move.b	#$A,obSubtype(a0)
 
-Mon_Solid:	; Routine 2
-		move.b	ob2ndRout(a0),d0 ; is monitor set to fall?
-		beq.s	.normal		; if not, branch
-		subq.b	#2,d0
-		bne.s	.fall
-
-		; 2nd Routine 2
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		addi.w	#$B,d1
+;obj_26_sub_2:
+;Obj26_Main:
+Mon_Solid:
+	move.b	ob2ndRout(a0),d0
+	beq.s	SolidObject_Monitor
+	; only when secondary routine isn't 0
+	; make monitor fall
+	bsr.w	ObjectFall
+	jsr	(ObjFloorDist).l
+	tst.w	d1			; is monitor in the ground?
+	bpl.w	SolidObject_Monitor	; if not, branch
+	add.w	d1,obY(a0)		; move monitor out of the ground
+	clr.w	obVelY(a0)
+	clr.b	ob2ndRout(a0)	; stop monitor from falling
+; loc_1271C:
+SolidObject_Monitor:
+	move.w	#$1A,d1	; monitor's width
+	move.w	#$F,d2
+	move.w	d2,d3
+	addq.w	#1,d3
+	move.w	obX(a0),d4
 	lea	(v_player).w,a1 ; a1=character
 	moveq	#p1_standing_bit,d6
-		bsr.w	ExitPlatform
-		btst	d6,obStatus(a0) ; is Sonic on top of the monitor?
-		bne.w	.ontop		; if yes, branch
-		clr.b	ob2ndRout(a0)
-		bra.w	Mon_Animate
-; ===========================================================================
+	movem.l	d1-d4,-(sp)
+	bsr.w	SolidObject_Monitor_Sonic
+	movem.l	(sp)+,d1-d4
+	lea	(v_player2).w,a1 ; a1=character
+	moveq	#p2_standing_bit,d6
+	bsr.w	SolidObject_Monitor_Tails
 
-.ontop:
-		move.w	#$10,d3
-		move.w	obX(a0),d2
-		bsr.w	MvSonicOnPtfm
-		bra.w	Mon_Animate
-; ===========================================================================
-
-.fall:		; 2nd Routine 4
-		bsr.w	ObjectFall
-		jsr	(ObjFloorDist).l
-		tst.w	d1
-		bpl.w	Mon_Animate
-		add.w	d1,obY(a0)
-		clr.w	obVelY(a0)
-		clr.b	ob2ndRout(a0)
-		bra.w	Mon_Animate
-; ===========================================================================
-
-.normal:	; 2nd Routine 0
-		move.w	#$1A,d1
-		move.w	#$F,d2
-		bsr.w	Mon_SolidSides
-		beq.w	loc_A25C
-		tst.w	obVelY(a1)
-		bmi.s	loc_A20A
-		cmpi.b	#1,spindash_flag(a1)	;is this a spindash?
-		beq.s	loc_A25C		;if yes, no colision
-		cmpi.b	#2,spindash_flag(a1)	;is this a peelout?
-		beq.s	loc_A25C		;if yes, no collision
-		cmpi.b	#id_Glide,obAnim(a1) ; is Knuckles gliding?
-		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
-		beq.s	loc_A25C	; if yes, branch
-
-loc_A20A:
-		tst.w	d1
-		bpl.s	loc_A220
-		sub.w	d3,obY(a1)
-		bsr.w	loc_74AE
-		move.b	#2,ob2ndRout(a0)
-		bra.w	Mon_Animate
-; ===========================================================================
-
-loc_A220:
-		tst.w	d0
-		beq.w	loc_A246
-		bmi.s	loc_A230
-		tst.w	obVelX(a1)
-		bmi.s	loc_A246
-		bra.s	loc_A236
-; ===========================================================================
-
-loc_A230:
-		tst.w	obVelX(a1)
-		bpl.s	loc_A246
-
-loc_A236:
-		sub.w	d0,obX(a1)
-		move.w	#0,obInertia(a1)
-		move.w	#0,obVelX(a1)
-
-loc_A246:
-		btst	#1,obStatus(a1)
-		bne.s	loc_A26A
-		bset	#5,obStatus(a1)
-		bset	#5,obStatus(a0)
-		bra.s	Mon_Animate
-; ===========================================================================
-
-loc_A25C:
-		btst	#5,obStatus(a0)
-		beq.s	Mon_Animate
-		move.w	#1,obAnim(a1)	; clear obAnim and set obNextAni to 1
-
-loc_A26A:
-		bclr	#5,obStatus(a0)
-		bclr	#5,obStatus(a1)
-
+;Obj26_Animate
 Mon_Animate:	; Routine 6
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		beq.s	.checksonicmonitor	; if yes, check the type of monitor
@@ -175,19 +115,87 @@ Mon_Animate:	; Routine 6
 		lea	(Ani_Monitor).l,a1
 		bsr.w	AnimateSprite
 
-Mon_Display:	; Routine 8
-		bsr.w	DisplaySprite
-		out_of_range.w	DeleteObject
-		rts
-; ===========================================================================
+BranchTo2_MarkObjGone ; BranchTo
+	bra.w	RememberState
 
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+; sub_12756:
+SolidObject_Monitor_Sonic:
+	btst	d6,obStatus(a0)			; is Sonic standing on the monitor?
+	bne.s	Obj26_ChkOverEdge		; if yes, branch
+	cmpi.b	#1,spindash_flag(a1)	;is this a spindash?
+	beq.s	.nocol		;if yes, no colision
+	cmpi.b	#2,spindash_flag(a1)	;is this a peelout?
+	beq.s	.nocol		;if yes, no collision
+	cmpi.b	#id_Glide,obAnim(a1) ; is Knuckles gliding?
+	beq.s	.nocol	; if yes, branch
+	cmpi.b	#id_Roll,obAnim(a1)		; is Sonic spinning?
+	beq.s	.nocol	; if yes, branch
+	bra.w	Solid_ChkEnter		; if not, branch
+.nocol:
+	rts
+; End of function SolidObject_Monitor_Sonic
+
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+; sub_12768:
+SolidObject_Monitor_Tails:
+	btst	d6,obStatus(a0)			; is Tails standing on the monitor?
+	bne.s	Obj26_ChkOverEdge		; if yes, branch
+	bra.w	Solid_ChkEnter		;no 2p checks here
+	;tst.w	(Two_player_mode).w		; is it two player mode?
+	;beq.w	Solid_ChkEnter		; if not, branch
+	; in one player mode monitors always behave as solid for Tails
+	;cmpi.b	#id_Roll,obAnim(a1)	; is Tails spinning?
+	;bne.w	Solid_ChkEnter		; if not, branch
+	;rts
+; End of function SolidObject_Monitor_Tails
+
+; ---------------------------------------------------------------------------
+; Checks if the player has walked over the edge of the monitor.
+; ---------------------------------------------------------------------------
+;loc_12782:
+Obj26_ChkOverEdge:
+	move.w	d1,d2
+	add.w	d2,d2
+	btst	#1,obStatus(a1)	; is the character in the air?
+	bne.s	+		; if yes, branch
+	; check, if character is standing on
+	move.w	obX(a1),d0
+	sub.w	obX(a0),d0
+	add.w	d1,d0
+	bmi.s	+	; branch, if character is behind the left edge of the monitor
+	cmp.w	d2,d0
+	blo.s	Obj26_CharStandOn	; branch, if character is not beyond the right edge of the monitor
++
+	; if the character isn't standing on the monitor
+	bclr	#3,obStatus(a1)	; clear 'on object' bit
+	bset	#1,obStatus(a1)	; set 'in air' bit
+	bclr	d6,obStatus(a0)	; clear 'standing on' bit for the current character
+	moveq	#0,d4
+	rts
+; ---------------------------------------------------------------------------
+;loc_127B2:
+Obj26_CharStandOn:
+	move.w	d4,d2
+	bsr.w	MvSonicOnPtfm
+	moveq	#0,d4
+	rts
+; ===========================================================================
 Mon_BreakOpen:	; Routine 4
 		move.b	obStatus(a0),d0
-		andi.b	#$78,d0					; is someone touching the monitor?
-		beq.s	.spawnicon			; if not, branch
-		bclr	d6,obStatus(a0)
-		andi.b	#5,(v_player+obStatus).w	;player on object -> player pushing
-		ori.b	#1,(v_player+obStatus).w	; in air flag, prevent Sonic from walking in the air
+		andi.b	#standing_mask|pushing_mask,d0	; is someone touching the monitor?
+		beq.s	.spawnicon	; if not, branch
+		move.b	d0,d1
+		andi.b	#p1_standing|p1_pushing,d1	; is it the main character?
+		beq.s	.tailsbroke		; if not, branch
+	andi.b	#~(1<<3|1<<5),(v_player+obStatus).w
+	ori.b	#1<<1,(v_player+obStatus).w	; prevent Sonic from walking in the air
+.tailsbroke:
+	andi.b	#p2_standing|p2_pushing,d0	; is it the sidekick?
+	beq.s	.spawnicon	; if not, branch
+	andi.b	#~(1<<3|1<<5),(v_player2+obStatus).w
+	ori.b	#1<<1,(v_player2+obStatus).w	; prevent Tails from walking in the air
 .spawnicon:
 		addq.b	#2,obRoutine(a0)
 		move.b	#0,obColType(a0)
@@ -215,3 +223,4 @@ Mon_Explode:
 	.dontpermbreak:
 		move.b	#9,obAnim(a0)	; set monitor type to broken
 		bra.w	DisplaySprite
+
