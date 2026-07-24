@@ -68,7 +68,8 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
-		bclr	d6,obStatus(a0)
+		bclr	#3,(v_player+obStatus).w
+		bclr	#3,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		clr.b	obSolid(a0)
 		move.b	#1,obFrame(a0)
