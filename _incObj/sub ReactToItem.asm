@@ -3,10 +3,12 @@
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
+;note this may be buggy with sonic & tails and can cause crash
+;touching rings with both characters at the same time can crash the game
 
 ReactToItem:
 		nop	
+			;jsr to touch rings
 		move.w	obX(a0),d2	; load Sonic's x-axis position
 		move.w	obY(a0),d3	; load Sonic's y-axis position
 		subq.w	#8,d2
@@ -26,7 +28,7 @@ ReactToItem:
 		move.w	#(v_lvlobjend-v_lvlobjspace)/$40-1,d6
 
 .loop:
-		tst.b	obRender(a1)
+		tst.b	obRender(a1)		;not here in sonic 2
 		bpl.s	.next
 		move.b	obColType(a1),d0 ; load collision type
 		bne.s	.proximity	; if nonzero, branch
@@ -130,11 +132,17 @@ ReactToItem:
 		andi.b	#$3F,d0
 		cmpi.b	#6,d0		; is collision type $46 ?
 		beq.s	React_Monitor	; if yes, branch
+		cmpi.b	#7,d0		; is collision type $47 ?	(ring)
+		beq.s	.ring	; if yes, branch
 		cmpi.w	#90,flashtime(a0)	; is Sonic invincible?
 		bhs.w	.invincible	; if yes, branch
 		addq.b	#2,obRoutine(a1) ; advance the object's routine counter
 
 .invincible:
+		rts
+.ring:
+		move.b	#4,obRoutine(a1) ; advance the object's routine counter
+		;note moving it to 4 directly rather than advancing is important, this would be run twice in case of a sonic and tails mode if they both touch at same time, causing routine to go out of bounds and crash
 		rts
 ; ===========================================================================
 
@@ -163,7 +171,7 @@ React_Monitor:
 		bne.w	.donothing	;if not, don't break monitor
 		.breakmonitor:
 		neg.w	obVelY(a0)	; reverse Sonic's y-motion
-		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
+		move.b	#4,obRoutine(a1) ; advance the monitor's routine counter;changed from addq 2 to move 4
 
 .donothing:
 		rts
