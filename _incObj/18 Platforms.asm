@@ -60,6 +60,7 @@ loc_7EE0:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	PlatformObject_SingleCharacter
 
 Plat_Action:	; Routine 8
@@ -83,6 +84,7 @@ loc_7F06:
 		bsr.w	Plat_Move
 		bsr.w	Plat_Nudge
 		move.w	(sp)+,d2
+		lea	(v_player).w,a1
 		bsr.w	MvSonicOnPtfm2
 		bsr.w	DisplaySprite
 		bra.w	Plat_ChkDel
@@ -217,6 +219,7 @@ Plat_Move:
 		bne.s	.loc_8048
 		btst	#3,obStatus(a0)
 		beq.s	.loc_8042
+		lea	(v_player).w,a1
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
