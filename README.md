@@ -42,8 +42,6 @@ Sonic and Tails' modes can be intertwined (speeds are shared, both can be invinc
 
 Tails can't interact with most objects as the second player
 
-the occasional total crash or even sent to the credits??
-
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
 blue knuckles on the title screen
