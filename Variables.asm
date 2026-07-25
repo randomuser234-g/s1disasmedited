@@ -451,9 +451,11 @@ v_scorecopy:		ds.l	1		; score, duplicate
 	else
 v_scorelife:		ds.l	1		; points required for an extra life (JP1 only)
 	endif
-			ds.b	$19		; unused
-v_havepartner:			ds.b	1		; flag to have tails follow you
-v_spindashcount:		ds.w	1	; this is the spindash counter now, definition in Sonic Peelout2.asm
+			ds.b	$16		; unused
+v_spindashcountp2:		ds.w	1		; spindash counter but for p2 tails
+			ds.b	1		;unused
+v_havepartner:		ds.b	1		; flag to have tails follow you
+v_spindashcount:	ds.w	1	; this is the spindash counter now, definition in Sonic Peelout2.asm
 f_levselcheat:		ds.b	1		; level select cheat flag
 f_slomocheat:		ds.b	1		; slow motion & frame advance cheat flag
 f_debugcheat:		ds.b	1		; debug mode cheat flag
