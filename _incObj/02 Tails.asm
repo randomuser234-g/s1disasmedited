@@ -287,7 +287,7 @@ TailsCPU_Respawn:
 	move.w	d0,obY(a0)
 	ori.w	#(1<<15),obGfx(a0)
 	move.b	#0,spindash_flag(a0)
-	move.w	#0,spindash_counter(a0)
+	move.w	#0,(v_spindashcountp2).w
 
 return_1BB88:
 	rts
@@ -422,7 +422,7 @@ TailsCPU_Normal:
 	; Sonic's dead; fly down to his corpse
 	move.w	#4,(v_tailscpuroutine).w	; => TailsCPU_Flying
 	move.b	#0,spindash_flag(a0)
-	move.w	#0,spindash_counter(a0)
+	move.w	#0,(v_spindashcountp2).w
 	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
 	move.b	#1<<1,obStatus(a0)
 	move.b	#id_Fly,obAnim(a0)

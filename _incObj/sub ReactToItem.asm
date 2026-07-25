@@ -317,7 +317,15 @@ HurtSonic:
 
 .isleft:
 		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
+		cmpa.w	#v_player,a0		;main character?
+		bne.s	.player2hurt		;if not, branch
+		cmpi.b	#id_TailsPlayer,obID(a0) ; is this Tails object
+		beq.s	.player2hurt
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter 
+		bra.s	.afterremovespindash
+.player2hurt:
+		clr.w	(v_spindashcountp2).w	; clear Spin Dash counter 
+.afterremovespindash:
 		move.w	#0,obInertia(a0)
 		move.b	#id_Hurt,obAnim(a0)
 		move.w	#120,flashtime(a0)	; set temp invincible time to 2 seconds

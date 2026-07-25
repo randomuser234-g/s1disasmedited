@@ -23,7 +23,7 @@ Tails_SpinDash:
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
-		move.w	#0,spindash_counter(a0)
+		move.w	#0,(v_spindashcountp2).w
 		bsr.w	Tails_LevelBound
 		bsr.w	Sonic_AnglePos
 Tails_SpinDashDoNothing:
@@ -52,7 +52,7 @@ Tails_UpdateSpindash:
 		jsr	TailsRollHeight
 		bclr	#0,spindash_flag(a0)		; clear Spin Dash flag
 		moveq	#0,d0
-		move.b	spindash_counter(a0),d0
+		move.b	(v_spindashcountp2).w,d0
 		add.w	d0,d0
 		move.w	TailsSpindashSpeeds(pc,d0.w),obInertia(a0)
 	tst.b	v_super			; Do we have super sonic?
@@ -76,7 +76,7 @@ Tails_UpdateSpindash:
 		bset	#2,obStatus(a0)
 		move.w	#sfx_Teleport,d0	; spindash zoom sound
 		jsr	(QueueSound2).l 
-		move.w	#0,spindash_counter(a0)
+		move.w	#0,(v_spindashcountp2).w
 		bra.s	Tails_Spindash_ResetScr
 ; ===========================================================================
 TailsSpindashSpeeds:
@@ -92,13 +92,13 @@ TailsSpindashSpeeds:
 ; ===========================================================================
 
 Tails_ChargingSpindash:			; If still charging the dash...
-		tst.w	spindash_counter(a0)
+		tst.w	(v_spindashcountp2).w
 		beq.s	+
-		move.w	spindash_counter(a0),d0
+		move.w	(v_spindashcountp2).w,d0
 		lsr.w	#5,d0
-		sub.w	d0,spindash_counter(a0)
+		sub.w	d0,(v_spindashcountp2).w
 		bcc.s	+
-		move.w	#0,spindash_counter(a0)
+		move.w	#0,(v_spindashcountp2).w
 +
 		move.b	(v_jpadpress2p2).w,d0
 		andi.b	#btnB|btnC|btnA,d0
@@ -107,10 +107,10 @@ Tails_ChargingSpindash:			; If still charging the dash...
 		move.w	#sfx_SpinDash,d0
 		jsr	(QueueSound2).l
 		beq.w	Tails_Spindash_ResetScr
-		addi.w	#$200,spindash_counter(a0)
-		cmpi.w	#$800,spindash_counter(a0)
+		addi.w	#$200,(v_spindashcountp2).w
+		cmpi.w	#$800,(v_spindashcountp2).w
 		blo.s	Tails_Spindash_ResetScr
-		move.w	#$800,spindash_counter(a0)
+		move.w	#$800,(v_spindashcountp2).w
 
 Tails_Spindash_ResetScr:
 		addq.l	#4,sp
