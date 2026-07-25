@@ -1,6 +1,8 @@
 Tails_CarrySonic:
 	cmpi.b	#0,(v_player+spindash_flag).w	;already started peelout?
 	bne.w	.stopcarrysonic	;if yes, don't carry sonic
+	cmpi.b	#0,(f_doublejump).w	;already started glide/climbing?
+	bne.w	.stopcarrysonic	;if yes, don't carry knuckles
 	move.w	obX(a1),d0
 	sub.w	obX(a0),d0
 	addi.w	#$C,d0
