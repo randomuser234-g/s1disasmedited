@@ -311,7 +311,7 @@ LZWindTunnels:
 		blo.s	.chknext
 	endif
 		cmp.w	6(a2),d2
-		bhs.s	.chknext	; branch if Sonic is outside a range
+		bhs.w	.chknext	; branch if Sonic is outside a range
 	if FixBugs
 		; d0 is overwritten but later used as if it wasn't!
 		move.w	d0,d1
@@ -327,6 +327,7 @@ LZWindTunnels:
 		bne.w	.quit	; if yes, branch
 		cmpi.b	#4,obRoutine(a1) ; is Sonic hurt/dying?
 		bhs.s	.clrquit	; if yes, branch
+		clr.b	(f_doublejump).w
 		move.b	#1,(f_wtunnelmode).w
 	if FixBugs
 		; See above.
