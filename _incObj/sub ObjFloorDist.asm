@@ -25,6 +25,7 @@ ObjFloorDist2:
 		move.b	obHeight(a0),d0
 		ext.w	d0
 		add.w	d0,d2
+ObjFloorDist3:			;knuckles
 		lea	(v_anglebuffer).w,a4
 		move.b	#0,(a4)
 		movea.w	#$10,a3		; height of a 16x16 tile

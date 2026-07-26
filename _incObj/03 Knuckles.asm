@@ -64,7 +64,10 @@ Knuckles_Control:	; Routine 2
 
 .ignorecontrols:
 		btst	#0,(f_playerctrl).w ; are controls locked?
-		bne.s	.ignoremodes	; if yes, branch
+		beq.s	.controlsnotlocked	;if not, branch
+		move.b	#0,(f_doublejump).w
+		bra.s	.ignoremodes
+.controlsnotlocked:
 		moveq	#0,d0
 		move.b	obStatus(a0),d0
 		andi.w	#6,d0
@@ -295,6 +298,9 @@ Knuckles_MdNormal:
 
 ; obj03_MdJump:
 Knuckles_MdJump:
+	tst.b	(f_doublejump).w
+	bne.w	Obj01_MdAir_Gliding
+
 		bsr.w	Knuckles_JumpHeight
 		bsr.w	Knuckles_JumpDirection
 		bsr.w	Knuckles_LevelBound
@@ -1080,7 +1086,8 @@ Knuckles_JumpHeight:
 		rts
 .midairability:
 		jsr	Sonic_CheckGoSuper
-		jsr	KnucklesGlideCustom
+		;jsr	KnucklesGlideCustom
+		jsr	Knuckles_BeginGlide
 		rts
 
 .capyvel:
@@ -1472,19 +1479,14 @@ Knuckles_ResetOnFloor:
 		bclr	#2,obStatus(a0)	; clear ball flag.
 		move.b	#$13,obHeight(a0)	; set Knuckles's hitbox to standing.
 		move.b	#9,obWidth(a0)
-		cmpi.b	#id_FallFromGlide,obAnim(a0)	;already started gliding?
-		beq.s	.endedgliding	;if not, branch
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#5,obY(a0)	; raise Knuckles up 5 pixels so he's not inside the ground.
 		;jsr	Tails_HeightAfterLanding
-		bra.s	.notball
-.endedgliding:
-		clr.w	obVelX(a0)
-		move.w	#$F,locktime(a0)
 
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
+		move.b	#0,(f_doublejump).w
 		rts
 ; End of function Knuckles_ResetOnFloor
 
