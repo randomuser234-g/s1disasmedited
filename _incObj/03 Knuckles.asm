@@ -1470,7 +1470,6 @@ Knuckles_ResetOnFloor:
 		nop	
 
 .notrolljump:
-		move.b	#0,(f_doublejump).w ;clear on wall flag
 		bclr	#5,obStatus(a0)	; clear push flag.
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.

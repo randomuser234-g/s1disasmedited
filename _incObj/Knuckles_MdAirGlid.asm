@@ -107,7 +107,7 @@ Knuckles_BeginClimb:
 	;tst.b	(Disable_wall_grab).w
 	;bmi.w	.fail
 
-	;move.b	lrb_solid_bit(a0),d5
+	move.b	obSolid(a0),d5		;lrb_solid_bit
 	move.b	(v_doublejumpprop).w,d0
 	addi.b	#$40,d0
 	bpl.s	.right
@@ -115,7 +115,7 @@ Knuckles_BeginClimb:
 ;.left:
 	bset	#0,obStatus(a0)
 
-	;bsr.w	CheckLeftCeilingDist
+	jsr	loc_14FD6		;CheckLeftCeilingDist
 	or.w	d0,d1
 	bne.s	.checkFloorLeft
 
@@ -125,7 +125,7 @@ Knuckles_BeginClimb:
 .right:
 	bclr	#0,obStatus(a0)
 
-	;bsr.w	CheckRightCeilingDist
+	jsr	sub_14E50		;CheckRightCeilingDist
 	or.w	d0,d1
 	bne.w	.checkFloorRight
 ; loc_3157E8:
@@ -254,7 +254,7 @@ Knuckles_FallingFromGlide:
 +
 	jsr	Knuckles_ResetOnFloor	;Sonic_ResetOnFloor_Part2
 	move.w	#$F,locktime(a0)
-	move.b	#id_Duck,obAnim(a0)		;#AniIDKnuxAni_LandAfterGlide
+	move.b	#id_LandFromGlide,obAnim(a0)		;#AniIDKnuxAni_LandAfterGlide
 ; return_315900:
 .return:
 	rts
@@ -296,7 +296,7 @@ Knuckles_Sliding:
 	jsr	Knuckles_ResetOnFloor	;Sonic_ResetOnFloor_Part2
 
 	move.w	#$F,locktime(a0)
-	;move.b	#AniIDKnuxAni_ClimbLedge,obAnim(a0)
+	move.b	#id_Float4,obAnim(a0)	;#AniIDKnuxAni_ClimbLedge,obAnim(a0)
 
 	rts
 ; ---------------------------------------------------------------------------
@@ -368,12 +368,12 @@ Knuckles_Climbing_Wall:
 	move.w	#0,obVelX(a0)
 	move.w	#0,obVelY(a0)
 
-	;move.l	#Primary_Collision,(Collision_addr).w
-	;cmpi.b	#$D,lrb_solid_bit(a0)
+	;move.l	#Primary_Collision,(v_collindex).w
+	;cmpi.b	#$D,obSolid(a0)		;lrb_solid_bit
 	;beq.s	+
-	;move.l	#Secondary_Collision,(Collision_addr).w
+	;move.l	#Secondary_Collision,(v_collindex).w
 +
-	;move.b	lrb_solid_bit(a0),d5
+	move.b	obSolid(a0),d5	;lrb_solid_bit
 
 	; These two lines aren't in S3K.
 	move.b	#10,obHeight(a0)
@@ -401,7 +401,7 @@ Knuckles_Climbing_Wall:
 	bne.w	.notMoving
 
 	; Get Knuckles' distance from the ceiling in 'd1'.
-	;move.b	lrb_solid_bit(a0),d5
+	move.b	obSolid(a0),d5		;lrb_solid_bit
 	move.w	obY(a0),d2
 	subq.w	#8,d2
 	move.w	obX(a0),d3
@@ -859,12 +859,12 @@ Knuckles_GlideSpeedControl:
 	asr.w	obInertia(a0)
 ; loc_315D88:
 .doNotKillspeed:
-	;cmpi.w	#$60,(Camera_Y_pos_bias).w
-	;beq.s	.doNotModifyBias
-	;bhs.s	+
-	;addq.w	#2*2,(Camera_Y_pos_bias).w
-;+
-	;subq.w	#2,(Camera_Y_pos_bias).w
+	cmpi.w	#$60,(v_lookshift).w
+	beq.s	.doNotModifyBias
+	bhs.s	+
+	addq.w	#2*2,(v_lookshift).w
++
+	subq.w	#2,(v_lookshift).w
 ; return_315D9A:
 .doNotModifyBias:
 	rts
@@ -976,7 +976,7 @@ loc_13602KnucklesGlide:
 	add.w	d1,obY(a0)
 	move.b	d3,obAngle(a0)
 	move.w	#0,obVelY(a0)
-	bclr	#1,(v_glidecolflags).w
+	bclr	#1,(v_glidecolflags).w	;airborne
 
 return_1AF8A_2:
 	rts
@@ -1066,7 +1066,7 @@ loc_1373EKnucklesGlide:			;Sonic_HitRightWall_2
 		bpl.s	loc_13758KnucklesGlide
 		add.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
-		move.w	obVelY(a0),obInertia(a0)
+		bset	#5,(v_glidecolflags).w ;set thing for go on wall
 		rts
 ; ===========================================================================
 

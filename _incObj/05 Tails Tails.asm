@@ -83,6 +83,7 @@ Obj05AniSelection:
 	dc.b	0	; TlsAni_Glide				->
 	dc.b	0	; TlsAni_FallFromGlide			->
 	dc.b	0	; TlsAni_HangFromTails			->
+	dc.b	1	; TlsAni_LandFromGlide				-> Swish
 	even
 ; ---------------------------------------------------------------------------
 ; Animation script - Tails' tails
