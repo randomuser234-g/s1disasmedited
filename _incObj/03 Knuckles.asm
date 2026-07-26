@@ -1266,10 +1266,10 @@ Knuckles_Floor:
 		bpl.s	loc_135F0Knuckles
 		sub.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
-		;gliding code
-		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
-		bne.s	loc_135F0Knuckles	;if not, don't do this part
-		move.b	#1,(f_doublejump).w ;set thing for go on wall
+		;old gliding code
+		;cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
+		;bne.s	loc_135F0Knuckles	;if not, don't do this part
+		;move.b	#1,(f_doublejump).w ;set thing for go on wall
 		
 
 loc_135F0Knuckles:
@@ -1278,10 +1278,10 @@ loc_135F0Knuckles:
 		bpl.s	loc_13602Knuckles
 		add.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
-		;gliding code
-		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
-		bne.s	loc_13602Knuckles	;if not, don't do this part
-		move.b	#1,(f_doublejump).w ;set thing for go on wall
+		;old gliding code
+		;cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles already gliding
+		;bne.s	loc_13602Knuckles	;if not, don't do this part
+		;move.b	#1,(f_doublejump).w ;set thing for go on wall
 		
 
 loc_13602Knuckles:
