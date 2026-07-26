@@ -76,6 +76,7 @@ Spring_Up:	; Routine 2
 		;tst.b	obSolid(a0)	; is Sonic on top of the spring?
 		btst	#3,obStatus(a0)	; is Sonic standing on the object?
 		beq.s	Spring_UpTails
+		clr.b	(f_doublejump).w
 		bsr.s	Spring_BounceUp
 		;bne.s	Spring_BounceUp	; if yes, branch
 Spring_UpTails:
@@ -85,6 +86,7 @@ Spring_UpTails:
 		bsr.w	SolidObject_Always_SingleCharacter
 		btst	#4,obStatus(a0)
 		beq.s	.end
+		clr.b	(f_doublejumpp2).w
 		bsr.s	Spring_BounceUp
 		bra.s	Spring_AniUp
 .end:

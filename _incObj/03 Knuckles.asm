@@ -1469,10 +1469,18 @@ Knuckles_ResetOnFloor:
 		nop	
 		nop	
 
-.notrolljump:
-		bclr	#5,obStatus(a0)	; clear push flag.
-		bclr	#1,obStatus(a0)	; clear in-air flag.
-		bclr	#4,obStatus(a0)	; clear roll-jump flag.
+.notrolljump:		;kis2 landing code
+	move.b	obHeight(a0),d0
+	move.b	#19,obHeight(a0)
+	move.b	#9,obWidth(a0)
+	btst	#2,obStatus(a0)
+	beq.s	.notball
+	bclr	#2,obStatus(a0)
+	move.b	#id_Walk,obAnim(a0)	; use running/walking/standing animation
+	subi.b	#19,d0
+	ext.w	d0
+	add.w	d0,obY(a0)
+
 		btst	#2,obStatus(a0)	; check if Knuckles is in a ball state.
 		beq.s	.notball	; if not, skip.
 		bclr	#2,obStatus(a0)	; clear ball flag.
@@ -1483,6 +1491,9 @@ Knuckles_ResetOnFloor:
 		;jsr	Tails_HeightAfterLanding
 
 .notball:
+		bclr	#5,obStatus(a0)	; clear push flag.
+		bclr	#1,obStatus(a0)	; clear in-air flag.
+		bclr	#4,obStatus(a0)	; clear roll-jump flag.
 		move.b	#0,jumping(a0)	; clear jump flag.
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
 		move.b	#0,(f_doublejump).w

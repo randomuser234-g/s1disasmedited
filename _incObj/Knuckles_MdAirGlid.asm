@@ -119,7 +119,7 @@ Knuckles_BeginClimb:
 	or.w	d0,d1
 	bne.s	.checkFloorLeft
 
-	addq.w	#1,obX(a0)
+	;addq.w	#1,obX(a0)		;no idea why this is here, removing it seems to make left facing walls work more reliably
 	bra.s	.success
 
 .right:
@@ -1008,7 +1008,7 @@ locret_136B2KnucklesGlide:
 		rts
 
 loc_316A08:
-	jsr	Sonic_HitWall
+	jsr	sub_14EB4
 	tst.w	d1
 	bpl.s	return_316A20
 	add.w	d1,obX(a0)
@@ -1055,7 +1055,6 @@ loc_13706KnucklesGlide:
 		tst.w	d1
 		bpl.s	.end
 		sub.w	d1,obY(a0)
-		move.b	d3,d0
 		move.w	#0,obVelY(a0)
 .end:
 		rts
@@ -1067,7 +1066,6 @@ loc_1373EKnucklesGlide:			;Sonic_HitRightWall_2
 		add.w	d1,obX(a0)
 		move.w	#0,obVelX(a0)
 		bset	#5,(v_glidecolflags).w ;set thing for go on wall
-		rts
 ; ===========================================================================
 
 loc_13758KnucklesGlide:			;Sonic_HitCeiling2_2
