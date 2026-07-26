@@ -173,6 +173,7 @@ loc_19F2E:
 		move.w	#$14,d3
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		jsr	(SolidObject_SingleCharacter).l
 		tst.w	d4
 		bgt.s	loc_19F50
@@ -476,6 +477,7 @@ loc_1A248:
 		blo.s	loc_1A260
 		tst.b	obRender(a0)
 		bmi.s	loc_1A260
+		;jsr	GotThroughAct
 		move.b	#id_Ending,(v_gamemode).w
 		bra.w	BossFinal_Delete
 ; ===========================================================================

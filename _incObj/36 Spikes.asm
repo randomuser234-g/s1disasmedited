@@ -74,13 +74,25 @@ Spik_Upright:
 		move.w	#$10,d2
 		move.w	#$11,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_SingleCharacter
 		btst	#3,obStatus(a0)
-		bne.s	Spik_Hurt
-		btst	#4,obStatus(a0)
-		bne.s	Spik_Hurt
+		beq.s	.sonicnospikehurt
+		bsr.s	Spik_Hurt
+.sonicnospikehurt:
 		tst.w	d4
-		bpl.s	Spik_Display
+		bpl.s	.tails
+		bsr.s	Spik_Hurt
+.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#p2_standing_bit,d6
+		bsr.w	SolidObject_SingleCharacter
+		btst	#4,obStatus(a0)
+		beq.s	Spik_Display
+		;continue to Spik_Hurt
 
 Spik_Hurt:
 		tst.b	(v_invinc).w	; is Sonic invincible?

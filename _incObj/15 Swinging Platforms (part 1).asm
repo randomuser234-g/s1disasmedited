@@ -121,6 +121,7 @@ Swing_SetSolid:	; Routine 2
 		moveq	#0,d3
 		move.b	obHeight(a0),d3
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	Swing_Solid
 
 Swing_Action:	; Routine $C

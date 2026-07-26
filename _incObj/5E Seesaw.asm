@@ -70,9 +70,10 @@ See_Slope:	; Routine 2
 		lea	(See_DataFlat).l,a2
 
 .notflat:
-		lea	(v_player).w,a1
 		move.w	obVelY(a1),see_speed(a0)
 		move.w	#$30,d1
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		jsr	(SlopeObject_SingleCharacter).l
 		rts
 ; ===========================================================================
@@ -86,6 +87,8 @@ See_Slope2:	; Routine 4
 
 .notflat:
 		move.w	#$30,d1
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		jsr	(ExitPlatform).l
 		move.w	#$30,d1
 		move.w	obX(a0),d2
@@ -252,6 +255,7 @@ See_Spring:
 		neg.w	obVelY(a2)
 		bset	#1,obStatus(a2)
 		bclr	#3,obStatus(a2)
+		bclr	d6,obStatus(a0)
 		clr.b	jumping(a2)
 		move.b	#id_Spring,obAnim(a2) ; change Sonic's animation to "spring" ($10)
 		move.b	#2,obRoutine(a2)

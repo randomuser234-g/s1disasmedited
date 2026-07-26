@@ -372,6 +372,7 @@ KillSonic:
 		bne.s	.dontdie	; if yes, branch
 		cmpa.w	#v_player,a0	;did player 1 die?
 		bne.w	.dontremovesuper;if not, don't remove buffs
+		clr.b	(f_doublejump).w	;remove knux doublejump flag
 		move.b	#0,(v_invinc).w	; remove invincibility
 		move.b	#0,(v_shoes).w	; clear speed shoes
 		tst.b	(v_super).w	; is Sonic already Super?
