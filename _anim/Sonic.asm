@@ -209,7 +209,7 @@ ptrSS_Transform:	dc.w SupSonAni_Transform-Ani_SuperSonic
 ptrSS_Glide:	dc.w SupSonAni_Glide-Ani_SuperSonic
 ptrSS_FallFromGlide:	dc.w SupSonAni_FallFromGlide-Ani_SuperSonic
 ptrSS_HangFromTails:	dc.w SupSonAni_HangFromTails-Ani_SuperSonic
-ptrSS_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_Sonic
+ptrSS_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_SuperSonic
 
 SupSonAni_Walk:	dc.b $FF,$70,$71,$72,$73,$74,$75,$FF,$FF,$FF
 		even
