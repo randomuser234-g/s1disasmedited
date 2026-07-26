@@ -79,12 +79,12 @@ loc_7F06:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
 		bsr.w	ExitPlatform
 		move.w	obX(a0),-(sp)
 		bsr.w	Plat_Move
 		bsr.w	Plat_Nudge
 		move.w	(sp)+,d2
-		lea	(v_player).w,a1
 		bsr.w	MvSonicOnPtfm2
 		bsr.w	DisplaySprite
 		bra.w	Plat_ChkDel

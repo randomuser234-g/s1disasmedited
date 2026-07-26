@@ -114,6 +114,8 @@ Tails_ChargingSpindash:			; If still charging the dash...
 
 Tails_Spindash_ResetScr:
 		addq.l	#4,sp
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	Tails_SpinDashAngle	;if not, don't touch the camera
 		cmpi.w	#(224/2)-16,(v_lookshift).w
 		beq.s	Tails_SpinDashAngle
 		bhs.s	+
@@ -123,6 +125,8 @@ Tails_Spindash_ResetScr:
 Tails_SpinDashAngle:
 		bsr.w	Tails_LevelBound
 		bsr.w	Sonic_AnglePos
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	Tails_SpinDashDoNothing	;if not, don't touch the camera
 		move.w	#$60,(v_lookshift).w
 		rts
 ; End of function Tails_UpdateSpindash

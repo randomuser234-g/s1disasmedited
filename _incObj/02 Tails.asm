@@ -7,7 +7,7 @@
 ; Obj02:
 TailsPlayer:
 		cmpa.w	#v_player,a0	;is Tails player 1?
-		bne.w	Tails_Normal;if not, don't do debug mode
+		bne.s	Tails_Normal;if not, don't do debug mode
 		tst.w	(v_debuguse).w	; is debug mode being used?
 		beq.s	Tails_Normal	; if not, branch
 		jmp	(DebugMode).l
@@ -963,6 +963,8 @@ Tails_Duck:
 
 ; Obj02_ResetScr
 Tails_ResetScr:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	loc_12FC2Dup	;if not, don't touch the camera
 		cmpi.w	#$60,(v_lookshift).w ; is screen in its default position?
 		beq.s	loc_12FC2Dup	; if yes, branch
 		bcc.s	loc_12FBEDup
@@ -1323,6 +1325,8 @@ Obj02_JumpMove:
 		move.w	d0,obVelX(a0)	; change Sonic's horizontal speed
 
 Obj02_ResetScr2:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	loc_132A4Dup	;if not, don't touch the camera
 		cmpi.w	#$60,(v_lookshift).w ; is the screen in its default position?
 		beq.s	loc_132A4Dup	; if yes, branch
 		bcc.s	loc_132A0Dup
