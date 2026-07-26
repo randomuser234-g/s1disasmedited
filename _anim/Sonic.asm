@@ -41,6 +41,7 @@ ptr_Transform:	dc.w SonAni_Transform-Ani_Sonic
 ptr_Glide:	dc.w SonAni_Glide-Ani_Sonic
 ptr_FallFromGlide:	dc.w SonAni_FallFromGlide-Ani_Sonic
 ptr_HangFromTails:	dc.w SonAni_HangFromTails-Ani_Sonic
+ptr_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_Sonic
 
 SonAni_Walk:	dc.b $FF, fr_Walk13, fr_Walk14,	fr_Walk15, fr_Walk16, fr_Walk11, fr_Walk12, afEnd
 		even
@@ -125,6 +126,8 @@ SonAni_FallFromGlide:
 SonAni_HangFromTails:
 		dc.b $A, $A5, $A6, $A7, $A6, $A5, $A4, $A3, $A4, afEnd
 		even
+SonAni_LandFromGlide:dc.b  $F,$3F,afChange,  id_Walk
+	even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2	; 0
 id_Run:		equ (ptr_Run-Ani_Sonic)/2	; 1
@@ -164,6 +167,7 @@ id_Transform:		equ (ptr_Transform-Ani_Sonic)/2	; $22
 id_Glide:		equ (ptr_Glide-Ani_Sonic)/2	; $23
 id_FallFromGlide:		equ (ptr_FallFromGlide-Ani_Sonic)/2	; $24
 id_HangFromTails:		equ (ptr_HangFromTails-Ani_Sonic)/2	; $25
+id_LandFromGlide:		equ (ptr_LandFromGlide-Ani_Sonic)/2	; $26
 ;---------------------------------------------------------------------------------------------------------
 Ani_SuperSonic:
 
@@ -205,6 +209,7 @@ ptrSS_Transform:	dc.w SupSonAni_Transform-Ani_SuperSonic
 ptrSS_Glide:	dc.w SupSonAni_Glide-Ani_SuperSonic
 ptrSS_FallFromGlide:	dc.w SupSonAni_FallFromGlide-Ani_SuperSonic
 ptrSS_HangFromTails:	dc.w SupSonAni_HangFromTails-Ani_SuperSonic
+ptrSS_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_Sonic
 
 SupSonAni_Walk:	dc.b $FF,$70,$71,$72,$73,$74,$75,$FF,$FF,$FF
 		even
@@ -329,3 +334,4 @@ idSS_Transform:		equ (ptr_Transform-Ani_SuperSonic)/2	; $22
 idSS_Glide:		equ (ptr_Glide-Ani_SuperSonic)/2	; $23
 idSS_FallFromGlide:		equ (ptr_FallFromGlide-Ani_SuperSonic)/2	; $24
 idSS_HangFromTails:		equ (ptr_HangFromTails-Ani_SuperSonic)/2	; $25
+idSS_LandFromGlide:		equ (ptr_LandFromGlide-Ani_Sonic)/2	; $25

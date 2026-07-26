@@ -41,6 +41,7 @@ ptr2_Transform:	dc.w TlsAni_Transform-Ani_Tails
 ptr2_Glide:	dc.w TlsAni_Glide-Ani_Tails
 ptr2_FallFromGlide:	dc.w TlsAni_FallFromGlide-Ani_Tails
 ptr2_HangFromTails:	dc.w TlsAni_HangFromTails-Ani_Tails
+ptr2_LandFromGlide:	dc.w TlsAni_LandFromGlide-Ani_Tails
 
 TlsAni_Walk:	dc.b $FF, $10, $11,	$12, $13, $14, 15, $F, $E, afEnd
 		even
@@ -124,6 +125,8 @@ TlsAni_FallFromGlide: dc.b 0, $59, $59, afBack,1
 TlsAni_HangFromTails:
 		dc.b $13,$85,$86,$FF
 		even
+TlsAni_LandFromGlide:dc.b  $F,$5B,afChange,  id_Walk
+	even
 
 id2_Walk:	equ (ptr_Walk-Ani_Tails)/2	; 0
 id2_Run:	equ (ptr_Run-Ani_Tails)/2	; 1
@@ -163,3 +166,4 @@ id2_Transform:	equ (ptr_Transform-Ani_Tails)/2	; $22
 id2_Glide:	equ (ptr_Glide-Ani_Tails)/2	; $23
 id2_FallFromGlide:	equ (ptr_FallFromGlide-Ani_Tails)/2	; $24
 id2_HangFromTails:	equ (ptr_HangFromTails-Ani_Tails)/2	; $25
+id2_LandFromGlide:	equ (ptr_LandFromGlide-Ani_Tails)/2	; $25

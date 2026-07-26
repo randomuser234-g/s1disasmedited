@@ -41,6 +41,7 @@ ptr_TransformKnuckles:	dc.w KnucklesAni_Transform-Ani_Knuckles
 ptr_GlideKnuckles:	dc.w KnucklesAni_Glide-Ani_Knuckles
 ptr_FallFromGlideKnuckles:	dc.w KnucklesAni_FallFromGlide-Ani_Knuckles
 ptr_HangFromTailsKnuckles:	dc.w KnucklesAni_HangFromTails-Ani_Knuckles
+ptr_LandFromGlideKnuckles:	dc.w KnucklesAni_LandFromGlide-Ani_Knuckles
 
 KnucklesAni_Walk:	dc.b $FF,  7,	8,  1,	2,  3,	4,  5,	6, afEnd
 		even
@@ -113,7 +114,7 @@ KnucklesAni_Null:	dc.b $77, fr_Null, afChange, id_Walk
 		even
 KnucklesAni_Float3:	dc.b	5,$C0,$C1,$C2,$C3,$C4,$C5,$C6,$C7,$C8,$C9,afEnd
 		even
-KnucklesAni_Float4:dc.b   3,$CF,$C8,$C9,$CA,$CB,afChange, id_Walk	  ; 0 ; ...
+KnucklesAni_Float4:dc.b  $F,$CD,afChange,  id_Walk
 		even
 KnucklesAni_SpinDash: dc.b 0, $86, $87, $86, $88, $86, $89
 		 dc.b $86, $8A, $86, $8B, afEnd
@@ -132,6 +133,9 @@ KnucklesAni_FallFromGlide:	dc.b   7,$CA,$CB,afBack,	 1
 	even
 KnucklesAni_HangFromTails:	dc.b  $13, $90, $91, $92, $92, $92, $91,  $FF
 	even
+KnucklesAni_LandFromGlide:dc.b  $F,$9C,afChange,  id_Walk
+	even
+
 
 
 id_WalkKnuckles:	equ (ptr_WalkKnuckles-Ani_Knuckles)/2	; 0
@@ -172,4 +176,5 @@ id_TransformKnuckles:		equ (ptr_TransformKnuckles-Ani_Knuckles)/2	; $22
 id_GlideKnuckles:	equ (ptr_GlideKnuckles-Ani_Knuckles)/2	; $23
 id_FallFromGlideKnuckles:	equ (ptr_FallFromGlideKnuckles-Ani_Knuckles)/2	; $24
 id_HangFromTailsKnuckles:	equ (ptr_HangFromTailsKnuckles-Ani_Knuckles)/2	; $25
+id_LandFromGlideKnuckles:	equ (ptr_LandFromGlideKnuckles-Ani_Knuckles)/2	; $25
 ;---------------------------------------------------------------------------------------------------------
