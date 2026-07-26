@@ -899,6 +899,8 @@ CheckFloorDist_WithRadius:
 
 
 Knuckles_BeginGlide:
+	cmpi.b	#id_Transform,obAnim(a0)			; is Knuckles transforming?
+	beq.w	return_3165D2						;if yes, don't glide
 	tst.b	(f_doublejump).w
 	bne.w	return_3165D2
 	move.b	(v_jpadpress2).w,d0
