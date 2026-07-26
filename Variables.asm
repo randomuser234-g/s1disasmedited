@@ -237,7 +237,9 @@ v_opl_data:		ds.b	$10		; ObjPosLoad - data buffer
 v_ssangle:		ds.w	1		; Special Stage angle
 v_ssrotate:		ds.w	1		; Special Stage rotation speed
 f_doublejumpp2:		ds.b	1		; double jump flag for tails 
-			ds.b	$B		; unused
+v_doublejumpprop:	ds.b	1		; property for knux glide
+v_glidecolflags:	ds.b	1		;gliding collision stuff
+			ds.b	$9		; unused
 v_btnpushtime1:		ds.w	1		; button push duration - in level
 v_btnpushtime2:		ds.w	1		; button push duration - in demo
 v_palchgspeed:		ds.w	1		; palette fade/transition speed (0 is fastest)

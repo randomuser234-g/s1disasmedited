@@ -8750,7 +8750,8 @@ ObjPos_Null:	dc.b $FF, $FF, 0, 0, 0,	0
 SoundDriver:	include "s1.sounddriver.asm"
 		include	"_incObj/03 Knuckles.asm"
 		include	"_incObj/Knuckles SpinDash.asm"
-		include	"_incObj/KnucklesGlideCustom.asm"
+		include	"_incObj/Knuckles_MdAirGlid.asm"
+		;include	"_incObj/KnucklesGlideCustom.asm"
 		even
 ; =============================================================
 ; --------------------------------------------------------------
