@@ -193,7 +193,7 @@ React_Enemy:
 		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles gliding?
 		bne.s	.notgliding	;if not, don't cancel glide
 
-		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		move.b	#2,(f_doublejump).w ;clear thing for go on wall
 		move.b	#id_FallFromGlide,obAnim(a0)	;falling anim
 		move.b	#$13,obHeight(a0)	;standing heights and width
 		move.b	#9,obWidth(a0)

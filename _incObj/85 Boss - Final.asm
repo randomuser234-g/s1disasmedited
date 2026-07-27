@@ -192,7 +192,7 @@ loc_19F50:
 		beq.s	.validhitwhilegliding		;if yes, hit
 		bra.s	loc_19F48			;otherwise don't hit
 	.validhitwhilegliding:
-		move.b	#0,(f_doublejump).w ;clear thing for go on wall
+		move.b	#2,(f_doublejump).w ;clear thing for go on wall
 		move.b	#id_FallFromGlide,(v_player+obAnim).w	;falling anim
 		move.b	#$13,(v_player+obHeight)	;standing heights and width
 		move.b	#9,(v_player+obWidth)
