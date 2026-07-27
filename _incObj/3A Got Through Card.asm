@@ -47,7 +47,7 @@ Got_Loop:
 .charactercheck:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.knuckles	; if not, check if Knuckles
-		moveq	#9,d0		; load "TAILS HAS" text
+		moveq	#$9,d0		; load "TAILS HAS" text
 		move.b	d0,obFrame(a0)
 		bra.s	Got_LoopActNum
 	.knuckles:
@@ -59,13 +59,17 @@ Got_Loop:
 Got_LoopActNum:
 		cmpi.b	#6,d0
 		bne.s	loc_C5CA
+		cmpi.w	#(id_SBZ<<8)+2,(v_zone).w ; check if level is FZ
+		beq.w	Got_DontLoadActText			;if yes, don't load "ACT #" text
 		add.b	(v_act).w,d0	; add act number to frame number
+	
 
 loc_C5CA:
 		move.b	d0,obFrame(a1)
 		move.l	#Map_Got,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Title_Card,0,1),obGfx(a1)
 		move.b	#0,obRender(a1)
+Got_DontLoadActText:
 		lea	object_size(a1),a1
 		dbf	d1,Got_Loop	; repeat 6 times
 
@@ -184,9 +188,14 @@ Got_NextLevel:	; Routine $A
 
 Got_ChkSS:
 		clr.b	(v_lastlamp).w	; clear lamppost counter
+		cmpi.b	#id_EndZ,(v_zone).w	;credits zone?
+		beq.s	.ending		;if yes, go to ending mode
 		tst.b	(f_bigring).w	; has Sonic jumped into a giant ring?
 		beq.s	loc_C6EA	; if not, branch
 		move.b	#id_Special,(v_gamemode).w ; set game mode to Special Stage (10)
+		bra.s	Got_Display2
+.ending:
+		move.b	#id_Ending,(v_gamemode).w ; set game mode to Ending ($18)
 		bra.s	Got_Display2
 ; ===========================================================================
 
@@ -233,7 +242,7 @@ LevelOrder:
 		; Scrap Brain Zone
 		dc.b id_SBZ, 1	; Act 1
 		dc.b id_LZ, 3	; Act 2
-		dc.b 0, 0	; Final Zone
+		dc.b id_EndZ, 0	; Final Zone
 		dc.b 0, 0
 		even
 		zonewarning LevelOrder,8
