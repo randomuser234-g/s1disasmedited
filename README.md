@@ -34,13 +34,13 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-Infinite flight, no damaging badniks (flight code ported from S3 prototype)
+when flight assist is used, only A works instead of A/B/C like tails alone
 
-Knuckles' glide and climbing physics are different from KIS2, be prepared for oddities
+Knuckles' glide and climbing physics are mostly from KIS2, but collision has not been updated to use it, be prepared for oddities (clip through ceilings, some walls are buggy)
 
 Sonic and Tails' modes can be intertwined (speeds are shared, both can be invincible, etc.)
 
-Tails can't interact with most objects as the second player
+Tails can't interact with some objects as the second player (platforms, bridges, eggman in FZ, MZ push block, most spikes, upside down SLZ staircases)
 
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
@@ -51,6 +51,8 @@ ring in special stage uses a different art tile, debug doesn't know this, it use
 certain graphics overwritten during loads (mini sonic on continue)
 
 may be other issues I don't know
+
+look at current commits for changes and other stuff
 
 try to view [old commits](https://github.com/sonicretro/s1disasm/commit/f48cbbc167091fd49d76a2de9718e0cb9bec4069#diff-0797f287edabc701a0e46b035545aab8938ab840addb20a2661f13b40ecfe52e), it still kind of works if you keep viewing parent
 
