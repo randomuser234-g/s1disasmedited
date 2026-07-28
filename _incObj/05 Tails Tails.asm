@@ -78,12 +78,20 @@ Obj05AniSelection:
 	dc.b	0,0	; TlsAni_Float3,4			->
 	dc.b	7	; TlsAni_SpinDash			-> Spindash
 	dc.b	0	; TlsAni_RunFast			->
-	dc.b	0	; TlsAni_Fly				->
+	dc.b	$B	; TlsAni_Fly				->
 	dc.b	0	; TlsAni_Transform			->
 	dc.b	0	; TlsAni_Glide				->
 	dc.b	0	; TlsAni_FallFromGlide			->
-	dc.b	0	; TlsAni_HangFromTails			->
+	dc.b	$A	; TlsAni_HangFromTails			->
 	dc.b	1	; TlsAni_LandFromGlide				-> Swish
+	dc.b	$B	; TlsAni_Carry				->
+	dc.b	$B	; TlsAni_CarryUp				->
+	dc.b	$B	; TlsAni_FlyTired				->
+	dc.b	$B	; TlsAni_CarryTired				->
+	dc.b	0	; TlsAni_Swim			->
+	dc.b	0	; TlsAni_SwimUp			->
+	dc.b	0	; TlsAni_SwimCarry				->
+	dc.b	0	; TlsAni_SwimTired			->
 	even
 ; ---------------------------------------------------------------------------
 ; Animation script - Tails' tails
@@ -101,6 +109,7 @@ Obj05AniData:
 		dc.w Obj05Ani_Skidding-Obj05AniData	;  8
 		dc.w Obj05Ani_Pushing-Obj05AniData	;  9
 		dc.w Obj05Ani_Hanging-Obj05AniData	; $A
+		dc.w Obj05Ani_Flying-Obj05AniData	; $B
 
 Obj05Ani_Blank:		dc.b $20,  0,$FF
 	even
@@ -124,6 +133,8 @@ Obj05Ani_Pushing:	dc.b   9,$87,$88,$89,$8A,$FF
 	even
 Obj05Ani_Hanging:	dc.b   9,$81,$82,$83,$84,$FF
 	even
+Obj05Ani_Flying:	dc.b   1,$8E,$8F,$FF
+	even
 
 ; ===========================================================================
 ; ===========================================================================
@@ -136,7 +147,7 @@ Obj05Ani_Hanging:	dc.b   9,$81,$82,$83,$84,$FF
 
 ; loc_1D184:
 LoadTailsTailsDynPLC:
-		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
+		cmpi.b	#$8F,obFrame(a0) ; higher than $8D?
 		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
 		bra.s	.movefromanimtest		; branch to rest of code
 .nullanim:

@@ -273,7 +273,8 @@ TailsCPU_Spawning:
 	tst.b	(f_playerctrl).w	;is Sonic frozen?
 	bne.s	return_1BB88	 	;if yes, branch
 	move.b	obStatus(a1),d0
-	andi.b	#1<<1|1<<4|1<<6|1<<7,d0
+	;andi.b	#1<<1|1<<4|1<<6|1<<7,d0
+	andi.b	#1<<1|1<<4|1<<7,d0	;no underwater check
 	bne.s	return_1BB88
 ; loc_1BB54:
 TailsCPU_Respawn:
@@ -307,12 +308,13 @@ TailsCPU_Flying:
 	move.b	#1<<1,obStatus(a0)
 	move.w	#0,obX(a0)
 	move.w	#0,obY(a0)
-	move.b	#id_Fly,obAnim(a0)
+	jsr	Tails_FlyAnimNoTimer	;flying animation
 	rts
 ; ---------------------------------------------------------------------------
 ; loc_1BBC8:
 TailsCPU_FlyingOnscreen:
 	move.w	#0,(v_tailsrespawn).w
+	jsr	Tails_FlyAnimNoTimer
 ; loc_1BBCE:
 TailsCPU_Flying_Part2:
 		move.w	(v_trackpos).w,d0
@@ -323,13 +325,13 @@ TailsCPU_Flying_Part2:
 		move.w	(a1)+,d3			; Use previous player y_pos  d3 = earlier y position of Sonic
 	move.w	d2,(v_tailscputargetx).w
 	move.w	d3,(v_tailscputargety).w
-	tst.b	(f_water).w
-	beq.s	+
-	move.w	(v_waterpos1).w,d0
-	subi.w	#$10,d0
-	cmp.w	(v_tailscputargety).w,d0
-	bge.s	+
-	move.w	d0,(v_tailscputargety).w
+	;tst.b	(f_water).w	;remove water checks, he can swim
+	;beq.s	+
+	;move.w	(v_waterpos1).w,d0
+	;subi.w	#$10,d0
+	;cmp.w	(v_tailscputargety).w,d0
+	;bge.s	+
+	;move.w	d0,(v_tailscputargety).w
 +
 	move.w	obX(a0),d0
 	sub.w	(v_tailscputargetx).w,d0
@@ -425,7 +427,7 @@ TailsCPU_Normal:
 	move.w	#0,(v_spindashcountp2).w
 	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
 	move.b	#1<<1,obStatus(a0)
-	move.b	#id_Fly,obAnim(a0)
+	jsr	Tails_FlyAnimNoTimer		;flying animation
 	rts
 ; ---------------------------------------------------------------------------
 ; loc_1BD0E:
@@ -563,7 +565,7 @@ TailsCPU_Despawn:
 	move.b	#1<<1,obStatus(a0)
 	move.w	#$4000,obX(a0)
 	move.w	#0,obY(a0)
-	move.b	#id_Fly,obAnim(a0)
+	jsr	Tails_FlyAnimNoTimer	;flying animation
 	rts
 ; ===========================================================================
 ; sub_1BE66:
@@ -714,11 +716,11 @@ Tails_Water:
 		bge.s	.abovewater	; if yes, branch
 		bset	#6,obStatus(a0)
 		bne.s	.exit
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.s	.skipspeedslow	;if not, don't change speeds, don't change air either
 		bsr.w	ResumeMusic
 		move.b	#id_DrownCount,(v_sonicbubbles).w ; load bubbles object from Sonic's mouth
 		move.b	#$81,(v_sonicbubbles+obSubtype).w
-		cmpa.w	#v_player,a0	;is Tails player 1?
-		bne.s	.skipspeedslow	;if not, don't change speeds
 		tst.b	(v_super).w	; is Sonic Super?
 		bne.s	.skipspeedslow		; if yes, branch
 		tst.b	(v_shoes).w	; does Sonic have speed shoes?
@@ -1975,6 +1977,7 @@ Tails_ResetOnFloor:
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
                 move.b  #$00, (f_doublejumpp2).w              ; clear jump flag
+		move.w	#60*8,(v_flytimer).w	;refill flight timer, 8 seconds
 		btst	#2,obStatus(a0)	; check if Sonic is in a ball state.
 		beq.s	.notball	; if not, skip.
 		bclr	#2,obStatus(a0)	; clear ball flag.
@@ -2511,7 +2514,7 @@ TlsAniData:	include	"_anim/Tails.asm"
 ; LoadMilesDynPLC:
 
 Tails_LoadGfx:
-		cmpi.b	#$8D,obFrame(a0) ; higher than $8D?
+		cmpi.b	#$9F,obFrame(a0) ; higher than $9F?
 		bhi.s	.nullanim		; if yes, branch to avoid invalid animations
 		bra.s	.movefromanimtest		; branch to rest of code
 .nullanim:

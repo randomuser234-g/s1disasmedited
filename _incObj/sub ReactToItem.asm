@@ -185,7 +185,23 @@ React_Enemy:
 		cmpi.b	#id_Glide,obAnim(a0)	;is Knuckles gliding?
 		beq.s	.donthurtsonic	;if yes, hurt the enemy
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
-		bne.w	React_ChkHurt	; if not, branch
+		beq.w	.donthurtsonic	; if yes, hurt the enemy
+		;s3 final tails code
+		cmpi.b	#id_TailsPlayer,obID(a0)			; Is player Tails?
+		bne.w	React_ChkHurt				; If not, branch
+		tst.b	(f_doublejumpp2).w			; Is Tails flying ("gravity-affected")?
+		beq.w	React_ChkHurt				; If not, branch
+		btst	#6,obStatus(a0)		; Is Tails underwater?
+		bne.w	React_ChkHurt				; If not, branch
+		move.w	obX(a0),d1
+		move.w	obY(a0),d2
+		sub.w	obX(a1),d1
+		sub.w	obY(a1),d2
+		jsr	(CalcAngle).l				;calculate the angle
+		subi.b	#$20,d0
+		cmpi.b	#$40,d0					;above Tails?
+		bhs.w	React_ChkHurt				;if not, branch
+
 
 .donthurtsonic:
 		tst.b	obColProp(a1)
