@@ -42,6 +42,14 @@ ptr_Glide:	dc.w SonAni_Glide-Ani_Sonic
 ptr_FallFromGlide:	dc.w SonAni_FallFromGlide-Ani_Sonic
 ptr_HangFromTails:	dc.w SonAni_HangFromTails-Ani_Sonic
 ptr_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_Sonic
+ptr_Carry:	dc.w SonAni_Carry-Ani_Sonic
+ptr_CarryUp:	dc.w SonAni_CarryUp-Ani_Sonic	
+ptr_FlyTired:	dc.w SonAni_FlyTired-Ani_Sonic
+ptr_CarryTired:	dc.w SonAni_CarryTired-Ani_Sonic
+ptr_Swim:	dc.w SonAni_Swim-Ani_Sonic
+ptr_SwimUp:	dc.w SonAni_SwimUp-Ani_Sonic
+ptr_SwimCarry:	dc.w SonAni_SwimCarry-Ani_Sonic
+ptr_SwimTired:	dc.w SonAni_SwimTired-Ani_Sonic
 
 SonAni_Walk:	dc.b $FF, fr_Walk13, fr_Walk14,	fr_Walk15, fr_Walk16, fr_Walk11, fr_Walk12, afEnd
 		even
@@ -128,6 +136,22 @@ SonAni_HangFromTails:
 		even
 SonAni_LandFromGlide:dc.b  $F,$3F,afChange,  id_Walk
 	even
+SonAni_Carry:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_CarryUp:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_FlyTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_CarryTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_Swim:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_SwimUp:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_SwimCarry:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+SonAni_SwimTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2	; 0
 id_Run:		equ (ptr_Run-Ani_Sonic)/2	; 1
@@ -168,6 +192,14 @@ id_Glide:		equ (ptr_Glide-Ani_Sonic)/2	; $23
 id_FallFromGlide:		equ (ptr_FallFromGlide-Ani_Sonic)/2	; $24
 id_HangFromTails:		equ (ptr_HangFromTails-Ani_Sonic)/2	; $25
 id_LandFromGlide:		equ (ptr_LandFromGlide-Ani_Sonic)/2	; $26
+id_Carry:	equ (ptr_Carry-Ani_Sonic)/2	; $27
+id_CarryUp:	equ (ptr_CarryUp-Ani_Sonic)/2	; $28
+id_FlyTired:	equ (ptr_FlyTired-Ani_Sonic)/2	; $29
+id_CarryTired:	equ (ptr_CarryTired-Ani_Sonic)/2	; $2A
+id_Swim:	equ (ptr_Swim-Ani_Sonic)/2	; $2B
+id_SwimUp:	equ (ptr_SwimUp-Ani_Sonic)/2	; $2C
+id_SwimCarry:	equ (ptr_SwimCarry-Ani_Sonic)/2	; $2D
+id_SwimTired:	equ (ptr_SwimTired-Ani_Sonic)/2	; $2E
 ;---------------------------------------------------------------------------------------------------------
 Ani_SuperSonic:
 
@@ -210,6 +242,14 @@ ptrSS_Glide:	dc.w SupSonAni_Glide-Ani_SuperSonic
 ptrSS_FallFromGlide:	dc.w SupSonAni_FallFromGlide-Ani_SuperSonic
 ptrSS_HangFromTails:	dc.w SupSonAni_HangFromTails-Ani_SuperSonic
 ptrSS_LandFromGlide:	dc.w SonAni_LandFromGlide-Ani_SuperSonic
+ptrSS_Carry:	dc.w SonAni_Carry-Ani_SuperSonic
+ptrSS_CarryUp:	dc.w SonAni_CarryUp-Ani_SuperSonic	
+ptrSS_FlyTired:	dc.w SonAni_FlyTired-Ani_SuperSonic
+ptrSS_CarryTired:	dc.w SonAni_CarryTired-Ani_SuperSonic
+ptrSS_Swim:	dc.w SonAni_Swim-Ani_SuperSonic
+ptrSS_SwimUp:	dc.w SonAni_SwimUp-Ani_SuperSonic
+ptrSS_SwimCarry:	dc.w SonAni_SwimCarry-Ani_SuperSonic
+ptrSS_SwimTired:	dc.w SonAni_SwimTired-Ani_SuperSonic
 
 SupSonAni_Walk:	dc.b $FF,$70,$71,$72,$73,$74,$75,$FF,$FF,$FF
 		even
@@ -334,4 +374,12 @@ idSS_Transform:		equ (ptr_Transform-Ani_SuperSonic)/2	; $22
 idSS_Glide:		equ (ptr_Glide-Ani_SuperSonic)/2	; $23
 idSS_FallFromGlide:		equ (ptr_FallFromGlide-Ani_SuperSonic)/2	; $24
 idSS_HangFromTails:		equ (ptr_HangFromTails-Ani_SuperSonic)/2	; $25
-idSS_LandFromGlide:		equ (ptr_LandFromGlide-Ani_Sonic)/2	; $25
+idSS_LandFromGlide:		equ (ptr_LandFromGlide-Ani_Sonic)/2	; $26
+idSS_Carry:	equ (ptr_Carry-Ani_Sonic)/2	; $27
+idSS_CarryUp:	equ (ptr_CarryUp-Ani_Sonic)/2	; $28
+idSS_FlyTired:	equ (ptr_FlyTired-Ani_Sonic)/2	; $29
+idSS_CarryTired:	equ (ptr_CarryTired-Ani_Sonic)/2	; $2A
+idSS_Swim:	equ (ptr_Swim-Ani_Sonic)/2	; $2B
+idSS_SwimUp:	equ (ptr_SwimUp-Ani_Sonic)/2	; $2C
+idSS_SwimCarry:	equ (ptr_SwimCarry-Ani_Sonic)/2	; $2D
+idSS_SwimTired:	equ (ptr_SwimTired-Ani_Sonic)/2	; $2E

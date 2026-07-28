@@ -42,6 +42,14 @@ ptr2_Glide:	dc.w TlsAni_Glide-Ani_Tails
 ptr2_FallFromGlide:	dc.w TlsAni_FallFromGlide-Ani_Tails
 ptr2_HangFromTails:	dc.w TlsAni_HangFromTails-Ani_Tails
 ptr2_LandFromGlide:	dc.w TlsAni_LandFromGlide-Ani_Tails
+ptr2_Carry:	dc.w TlsAni_Carry-Ani_Tails
+ptr2_CarryUp:	dc.w TlsAni_CarryUp-Ani_Tails	
+ptr2_FlyTired:	dc.w TlsAni_FlyTired-Ani_Tails
+ptr2_CarryTired:	dc.w TlsAni_CarryTired-Ani_Tails
+ptr2_Swim:	dc.w TlsAni_Swim-Ani_Tails
+ptr2_SwimUp:	dc.w TlsAni_SwimUp-Ani_Tails
+ptr2_SwimCarry:	dc.w TlsAni_SwimCarry-Ani_Tails
+ptr2_SwimTired:	dc.w TlsAni_SwimTired-Ani_Tails
 
 TlsAni_Walk:	dc.b $FF, $10, $11,	$12, $13, $14, 15, $F, $E, afEnd
 		even
@@ -114,7 +122,7 @@ TlsAni_SpinDash: dc.b 0, $60, $61, $62, afEnd
 		 even
 TlsAni_RunFast	dc.b $FF,$3E,$3F,afEnd
 		dc.b afEnd,afEnd,afEnd,afEnd,afEnd,afEnd
-TlsAni_Fly: dc.b 1, $5E, $5F, afEnd
+TlsAni_Fly: dc.b 1, $5E, $5F, afEnd,afEnd,afEnd, afEnd
 		 even
 TlsAni_Transform:	dc.b    2, $8B, $8B, $8C, $8D, $8C, $8D, $8C, $8D, $8C, $8D, $8C, $8D, afChange,   id_Walk
 		even
@@ -127,6 +135,22 @@ TlsAni_HangFromTails:
 		even
 TlsAni_LandFromGlide:dc.b  $F,$5B,afChange,  id_Walk
 	even
+TlsAni_Carry: dc.b 1, $90, afEnd, afEnd, afEnd,afEnd, afEnd
+		 even
+TlsAni_CarryUp: dc.b 1, $91, afEnd, afEnd,afEnd,afEnd,afEnd, afEnd
+		 even
+TlsAni_FlyTired: dc.b $B, $92, $93, afEnd, afEnd, afEnd, afEnd
+		 even
+TlsAni_CarryTired: dc.b $B, $94, $95, afEnd, afEnd, afEnd, afEnd
+		 even
+TlsAni_Swim: dc.b 7, $96, $97, $98, $99, $9A, afEnd
+		 even
+TlsAni_SwimUp: dc.b 3, $96, $97, $98, $99, $9A, afEnd
+		 even
+TlsAni_SwimCarry: dc.b 4, $9B, $9C, afEnd, afEnd, afEnd, afEnd
+		 even
+TlsAni_SwimTired: dc.b $B, $9D, $9E, $9F, afEnd, afEnd, afEnd
+		 even
 
 id2_Walk:	equ (ptr_Walk-Ani_Tails)/2	; 0
 id2_Run:	equ (ptr_Run-Ani_Tails)/2	; 1
@@ -166,4 +190,12 @@ id2_Transform:	equ (ptr_Transform-Ani_Tails)/2	; $22
 id2_Glide:	equ (ptr_Glide-Ani_Tails)/2	; $23
 id2_FallFromGlide:	equ (ptr_FallFromGlide-Ani_Tails)/2	; $24
 id2_HangFromTails:	equ (ptr_HangFromTails-Ani_Tails)/2	; $25
-id2_LandFromGlide:	equ (ptr_LandFromGlide-Ani_Tails)/2	; $25
+id2_LandFromGlide:	equ (ptr_LandFromGlide-Ani_Tails)/2	; $26
+id2_Carry:	equ (ptr_Carry-Ani_Tails)/2	; $27
+id2_CarryUp:	equ (ptr_CarryUp-Ani_Tails)/2	; $28
+id2_FlyTired:	equ (ptr_FlyTired-Ani_Tails)/2	; $29
+id2_CarryTired:	equ (ptr_CarryTired-Ani_Tails)/2	; $2A
+id2_Swim:	equ (ptr_Swim-Ani_Tails)/2	; $2B
+id2_SwimUp:	equ (ptr_SwimUp-Ani_Tails)/2	; $2B
+id2_SwimCarry:	equ (ptr_SwimCarry-Ani_Tails)/2	; $2C
+id2_SwimTired:	equ (ptr_SwimTired-Ani_Tails)/2	; $2D

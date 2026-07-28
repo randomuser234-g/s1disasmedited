@@ -42,6 +42,14 @@ ptr_GlideKnuckles:	dc.w KnucklesAni_Glide-Ani_Knuckles
 ptr_FallFromGlideKnuckles:	dc.w KnucklesAni_FallFromGlide-Ani_Knuckles
 ptr_HangFromTailsKnuckles:	dc.w KnucklesAni_HangFromTails-Ani_Knuckles
 ptr_LandFromGlideKnuckles:	dc.w KnucklesAni_LandFromGlide-Ani_Knuckles
+ptr_CarryKnuckles:	dc.w KnucklesAni_Carry-Ani_Knuckles
+ptr_CarryUpKnuckles:	dc.w KnucklesAni_CarryUp-Ani_Knuckles	
+ptr_FlyTiredKnuckles:	dc.w KnucklesAni_FlyTired-Ani_Knuckles
+ptr_CarryTiredKnuckles:	dc.w KnucklesAni_CarryTired-Ani_Knuckles
+ptr_SwimKnuckles:	dc.w KnucklesAni_Swim-Ani_Knuckles
+ptr_SwimUpKnuckles:	dc.w KnucklesAni_SwimUp-Ani_Knuckles
+ptr_SwimCarryKnuckles:	dc.w KnucklesAni_SwimCarry-Ani_Knuckles
+ptr_SwimTiredKnuckles:	dc.w KnucklesAni_SwimTired-Ani_Knuckles
 
 KnucklesAni_Walk:	dc.b $FF,  7,	8,  1,	2,  3,	4,  5,	6, afEnd
 		even
@@ -135,7 +143,22 @@ KnucklesAni_HangFromTails:	dc.b  $13, $90, $91, $92, $92, $92, $91,  $FF
 	even
 KnucklesAni_LandFromGlide:dc.b  $F,$9C,afChange,  id_Walk
 	even
-
+KnucklesAni_Carry:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_CarryUp:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_FlyTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_CarryTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_Swim:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_SwimUp:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_SwimCarry:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
+KnucklesAni_SwimTired:	dc.b $77, fr_Null, afEnd,afEnd,afEnd,afEnd,afEnd
+		even
 
 
 id_WalkKnuckles:	equ (ptr_WalkKnuckles-Ani_Knuckles)/2	; 0
@@ -177,4 +200,12 @@ id_GlideKnuckles:	equ (ptr_GlideKnuckles-Ani_Knuckles)/2	; $23
 id_FallFromGlideKnuckles:	equ (ptr_FallFromGlideKnuckles-Ani_Knuckles)/2	; $24
 id_HangFromTailsKnuckles:	equ (ptr_HangFromTailsKnuckles-Ani_Knuckles)/2	; $25
 id_LandFromGlideKnuckles:	equ (ptr_LandFromGlideKnuckles-Ani_Knuckles)/2	; $25
+id_CarryKnuckles:	equ (ptr_CarryKnuckles-Ani_Knuckles)/2	; $27
+id_CarryUpKnuckles:	equ (ptr_CarryUpKnuckles-Ani_Knuckles)/2	; $28
+id_FlyTiredKnuckles:	equ (ptr_FlyTiredKnuckles-Ani_Knuckles)/2	; $29
+id_CarryTiredKnuckles:	equ (ptr_CarryTiredKnuckles-Ani_Knuckles)/2	; $2A
+id_SwimKnuckles:	equ (ptr_SwimKnuckles-Ani_Knuckles)/2	; $2B
+id_SwimUpKnuckles:	equ (ptr_SwimUpKnuckles-Ani_Knuckles)/2	; $2C
+id_SwimCarryKnuckles:	equ (ptr_SwimCarryKnuckles-Ani_Knuckles)/2	; $2D
+id_SwimTiredKnuckles:	equ (ptr_SwimTiredKnuckles-Ani_Knuckles)/2	; $2E
 ;---------------------------------------------------------------------------------------------------------
