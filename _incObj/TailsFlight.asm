@@ -148,10 +148,13 @@ Tails_FlyAnimNoTimer:
 		clr.b	(v_tailscpujump).w		;clear cpu thing, prevent spam of jump
 		btst	#6,obStatus(a0)			;underwater?	
 		bne.s	.underwater			;if yes, play underwater animations
+		cmpi.w	#4,(v_tailscpuroutine).w	; is tails flying in?
+		beq.s	.nottired			;if yes, ignore other animations
 		cmpi.b	#1,(f_tailscarrysonic).w		;carrying sonic?
 		beq.s	.carry				;if yes, carrying animation
 		cmpi.w	#0,(v_flytimer).w		;out of time?
 		beq.s	.flytired			;if yes, tired animation
+.nottired:
 		move.b	#id_Fly,obAnim(a0)
 .sound:
 		;sound effect
@@ -180,11 +183,17 @@ Tails_FlyAnimNoTimer:
 
 		rts
 .underwater:
+		cmpi.w	#4,(v_tailscpuroutine).w	; is tails flying in?
+		beq.s	.nottired2			;if yes, ignore other animations
 		cmpi.b	#1,(f_tailscarrysonic).w		;carrying sonic?
 		beq.s	.swimcarry				;if yes, carrying animation
 		cmpi.w	#0,(v_flytimer).w		;out of time
 		beq.s	.swimtired			;if yes, tired animation
+.nottired2:
 		move.b	#id_Swim,obAnim(a0)
+		cmpi.w	#4,(v_tailscpuroutine).w	; is tails flying in?
+		beq.s	.skipsound			;if yes, ignore other animations
+
 		tst.w	obVelY(a0)			;flying higher?
 		bpl.s	.skipsound				;if not, don't do anim
 		move.b	#id_SwimUp,obAnim(a0)		;otherwise, carry up animation
