@@ -134,10 +134,17 @@ Tails_SonicControl:
 		move.b	d0,(v_jpadhold2p2).w
 .ABC:
 		move.b	(v_jpadhold2).w,d0
-		andi.b	#btnA+btnB+btnC,d0	;little issue, only A responds to flying
-		beq.s	.donothing
+		andi.b	#btnA,d0	;little issue, only A responds to flying
+		beq.s	.BConly
 		or.b	(v_jpadhold2p2).w,d0
 		move.b	d0,(v_jpadhold2p2).w
+.BConly:
+		move.b	(v_jpadpress2).w,d0		;fix, B anc C in separate instructions from A
+		andi.b	#btnB|btnC,d0
+		beq.s	.donothing
+		or.b	(v_jpadpress2p2).w,d0
+		move.b	d0,(v_jpadpress2p2).w
+
 .donothing:
 		rts
 Tails_SetFlyingAnimation:
