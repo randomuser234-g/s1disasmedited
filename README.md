@@ -34,8 +34,6 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-when flight assist is used, only A works instead of A/B/C like tails alone
-
 Knuckles' glide and climbing physics are mostly from KIS2, but collision has not been updated to use it, be prepared for oddities (clip through ceilings, some walls are buggy)
 
 Sonic and Tails' modes can be intertwined (speeds are shared, both can be invincible, etc.)
