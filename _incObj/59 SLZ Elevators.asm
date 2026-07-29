@@ -77,7 +77,9 @@ Elev_Main:	; Routine 0
 Elev_Platform:	; Routine 2
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		jsr	(PlatformObject).l
+	lea	(v_player).w,a1
+	moveq	#p1_standing_bit,d6
+		jsr	(PlatformObject_SingleCharacter).l
 		bra.w	Elev_Types
 ; ===========================================================================
 
