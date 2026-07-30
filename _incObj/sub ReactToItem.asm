@@ -449,7 +449,7 @@ React_Special:
 		cmpi.b	#$17,d1		; is collision type $D7 ?
 		beq.s	.D7orE1		; if yes, branch
 		cmpi.b	#$21,d1		; is collision type $E1 ?
-		beq.s	.D7orE1		; if yes, branch
+		beq.s	.E1		; if yes, branch		;used to call .D7orE1, labyrinth poles use E1 so vanilla behavior
 		rts
 ; ===========================================================================
 
@@ -488,6 +488,10 @@ React_Special:
 ; ===========================================================================
 
 .D7orE1:
+	cmpa.w	#v_player,a0
+	beq.s	.E1
+	addq.b	#1,obColProp(a1)
+.E1:
 		addq.b	#1,obColProp(a1)
 		rts
 ; End of function React_Special

@@ -35,6 +35,13 @@ Sonic_PanCamera:
     skip:
         cmpi.w    #$600,d0                ; is sonic's inertia greater than $600
         bcs.s    reset_pan                ; if not, recenter the screen (if needed)
+	tst.b	(f_doublejump).w	;is knuckles gliding?
+	beq.s	.notgliding			;if not, check for left the usual way
+        btst    #0,obStatus(a0)            ; check the direction that knuckles is facing
+        bne.s    pan_right                ; if he's facing right, pan the camera to the right
+        bra.s    pan_left                ; otherwise, pan the camera to the left
+
+.notgliding:
         tst.w    obInertia(a0)            ; otherwise, check the direction of inertia (by subtracting it from 0)
         bpl.s    pan_left                ; if the result was positive, then inertia was negative, so we pan the screen left
 

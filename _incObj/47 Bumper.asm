@@ -22,10 +22,23 @@ Bump_Main:	; Routine 0
 		move.b	#$D7,obColType(a0)
 
 Bump_Hit:	; Routine 2
-		tst.b	obColProp(a0)	; has Sonic touched the bumper?
+		tst.b	obColProp(a0)	; has anyone touched the bumper?
 		beq.w	.display	; if not, branch
+	lea	(v_player).w,a1 ; a1=character
+	bclr	#0,obColProp(a0)	;has Sonic touched the bumper?
+	beq.s	.player2hit		;if not, check for Tails
+	bsr.s	.bumpcharacter		;otherwise, bump Sonic, then check for Tails
+.player2hit:
+	lea	(v_player2).w,a1 ; a1=character
+	bclr	#1,obColProp(a0)	;has Tails touched the bumper?
+	beq.w	.noonehit		;if not, assume noone valid hit it, clear collision then display
+	bsr.s	.bumpcharacter		;otherwise, Tails hit it, bump him
+.noonehit:
 		clr.b	obColProp(a0)
-		lea	(v_player).w,a1
+		bra.w	.display
+.bumpcharacter:
+		;clr.b	obColProp(a0)
+		;lea	(v_player).w,a1
 		move.w	obX(a0),d1
 		move.w	obY(a0),d2
 		sub.w	obX(a1),d1
