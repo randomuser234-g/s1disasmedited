@@ -32,7 +32,12 @@ Obj05_Main:
 	move.b	obAngle(a2),obAngle(a0)
 	move.b	obStatus(a2),obStatus(a0)
 	move.w	obX(a2),obX(a0)
-	move.w	obY(a2),obY(a0)
+	move.w	obY(a2),obY(a0)			;chunk setting obGfx was missing earlier, existed in S2 but i forgot
+	andi.w	#$7FFF,obGfx(a0)		;#drawing_mask,art_tile
+	tst.w	obGfx(a2)
+	bpl.s	.skiparttile
+	ori.w	#(1<<15),obGfx(a0)		;#high_priority,art_tile
+.skiparttile:
 	moveq	#0,d0
 	move.b	obAnim(a2),d0
 	btst	#5,obStatus(a2)	; is Tails pushing something?
