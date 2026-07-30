@@ -57,11 +57,18 @@ Spik_SideWays:
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
 		moveq	#p1_standing_bit,d6
-		bsr.w	SolidObject_SingleCharacter
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_Always_SingleCharacter
 		btst	#3,obStatus(a0)
-		bne.w	Spik_Display
+		bne.w	.tails
 		cmpi.w	#1,d4
-		beq.s	Spik_Hurt
+		bne.s	.tails
+		bsr.s	Spik_Hurt
+.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#4,d6
+		bsr.w	SolidObject_Always_SingleCharacter
 		bra.w	Spik_Display
 ; ===========================================================================
 
