@@ -1,8 +1,8 @@
 ; ---------------------------------------------------------------------------
 ; Object 02 - Tails	(placeholder, this mostly just does Sonic's code)
 ; ---------------------------------------------------------------------------
-;top_solid_bit = 	$3E ; the bit to check for top solidity (either $C or $E)
-;lrb_solid_bit =		$3F ; the bit to check for left/right/bottom solidity (either $D or $F)
+;top_solid_bit = 	$3E???? ; the bit to check for top solidity (either $C or $E)
+;lrb_solid_bit =		obSolid ; the bit to check for left/right/bottom solidity (either $D or $F)
 ;move_lock =		locktime, it's same between oil ocean slides and labyrinth
 ; Obj02:
 TailsPlayer:
@@ -15,11 +15,11 @@ TailsPlayer:
 
 ; Obj02_Normal:
 Tails_Normal:
-	cmpi.w	#1,(v_character).w
-	bne.s	.nottailsalone
-	move.w	(v_limitleft2).w,(v_limitleft2tails).w
-	move.w	(v_limitright2).w,(v_limitright2tails).w
-	move.w	(v_limitbtm2).w,(v_limittop2tails).w
+	;cmpi.w	#1,(v_character).w
+	;bne.s	.nottailsalone
+	;move.w	(v_limitleft2).w,(v_limitleft2tails).w		;tails boundaries aren't necessary, may have been useful for versus mode but not 1 player games, the normal boundaries appear to work fine
+	;move.w	(v_limitright2).w,(v_limitright2tails).w
+	;move.w	(v_limitbtm2).w,(v_limittop2tails).w
 .nottailsalone:
 		moveq	#0,d0
 		move.b	obRoutine(a0),d0	
@@ -2082,7 +2082,8 @@ GameOverDup:
 	beq.w	.gameover	;if not, don't end the game, just respawn player 2
 	;move.b	#1,(Scroll_lock_P2).w
 	move.b	#0,spindash_flag(a0)
-	move.w	(v_limittop2tails).w,d0
+	;move.w	(v_limitbtm2tails).w,d0	;unused, thought tails' own level bounds were useful, but p1 level bounds works fine
+	move.w	(v_limitbtm2).w,d0	;make sure to use right variable, if limittop, instantly despawns tails!
 	addi.w	#$100,d0
 	cmp.w	obY(a0),d0
 	bge.w	locret_13900Dup
