@@ -41,7 +41,7 @@ AddressSRAM = 3
 ZoneCount = 6
 ;	| Used for the zonewarning macro. Do not change, unless more zones get added.
 ;	| Discrete zones are: GHZ, LZ, MZ, SLZ, SYZ, and SBZ
-DebugBuild = 1
+DebugBuild = 0
 ;	| Instantly enable debug and level select
 ; ===========================================================================
 ; AS-specific macros and assembler settings
@@ -3168,6 +3168,7 @@ Level_SkipClr:
 		move.b	d0,(v_invinc).w	; clear invincibility
 		move.b	d0,(v_shoes).w	; clear speed shoes
 		move.b	d0,(v_unused1).w
+		move.b	d0,(v_super).w ; clear super
 		move.w	d0,(v_debuguse).w
 		move.w	d0,(f_restart).w
 		move.w	d0,(v_framecount).w
@@ -6996,6 +6997,7 @@ loc_14FD6:
 		moveq	#$E,d5
 		bsr.w	FindWall
 		move.w	d1,-(sp)
+
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
 		moveq	#0,d0
