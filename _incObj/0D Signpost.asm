@@ -10,9 +10,8 @@ Signpost:
 		lea	(Ani_Sign).l,a1
 		bsr.w	AnimateSprite
 
-		bsr.w	ChkPartiallyVisible
-		cmpi.w	#1,d0		;is the signpost visible?
-		beq.s	.offscreen	;if not, don't render it
+		btst	#7,obRender(a0)		;is the signpost visible?
+		beq.s	.offscreen	;if not, don't update the tiles
 
 		move.b	obFrame(a0),d0		; load current frame to d0
 		lea	DPLC_Sign(pc),a2	; load signpost DPLCs to a2
