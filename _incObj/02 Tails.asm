@@ -742,9 +742,9 @@ Tails_Water:
 .abovewater:
 		bclr	#6,obStatus(a0)
 		beq.s	.exit
-		bsr.w	ResumeMusic
 		cmpa.w	#v_player,a0	;is Tails player 1?
 		bne.s	.speedshoesexitwater	;if not, don't change speeds
+		bsr.w	ResumeMusic
 		tst.b	(v_super).w	; is Tails Super?
 		bne.s	.speedshoesexitwater		; if yes, branch
 		tst.b	(v_shoes).w	; does Sonic have speed shoes?
