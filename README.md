@@ -46,8 +46,6 @@ blue knuckles on the title screen
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
 
-certain graphics overwritten during loads (mini sonic on continue)
-
 may be other issues I don't know
 
 look at current commits for changes and other stuff
