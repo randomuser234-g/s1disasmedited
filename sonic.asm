@@ -2936,6 +2936,17 @@ MusicList:
 ; ---------------------------------------------------------------------------
 
 GM_Level:
+
+		bset	#7,(v_gamemode).w ; add $80 to screen mode (for pre level sequence)
+		tst.w	(f_demo).w
+		bmi.s	Level_NoMusicFade
+		move.b	#bgm_Fade,d0
+		bsr.w	QueueSound2 ; fade out music
+
+Level_NoMusicFade:
+		bsr.w	ClearPLC
+		bsr.w	PaletteFadeOut
+		;code for loading mainplc
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.knucklesplc		; if not, load Sonic's life icon
 		moveq	#plcid_MainTails,d0	;
@@ -2959,16 +2970,8 @@ GM_Level:
 		bsr.w	RunPLC
 		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
 		bne.s	.LevelStart_WaitLoop	; if not, branch
+		;end of code
 
-		bset	#7,(v_gamemode).w ; add $80 to screen mode (for pre level sequence)
-		tst.w	(f_demo).w
-		bmi.s	Level_NoMusicFade
-		move.b	#bgm_Fade,d0
-		bsr.w	QueueSound2 ; fade out music
-
-Level_NoMusicFade:
-		bsr.w	ClearPLC
-		bsr.w	PaletteFadeOut
 		tst.w	(f_demo).w	; is an ending sequence demo running?
 		bmi.s	Level_ClrRam	; if yes, branch
 		disable_ints
