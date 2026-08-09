@@ -3047,7 +3047,11 @@ Level_LoadPal:
 
 		moveq	#palid_LZSonWater,d0 ; palette number $F (LZ)
 		cmpi.b	#3,(v_act).w	; is act number 3?
-		bne.s	Level_WaterPal	; if not, branch
+		beq.s	.sbzwater	; if yes, sbz3 palette
+		cmpi.b	#id_SBZ,(v_zone).w	;is Scrap Brain Zone?
+		beq.s	.sbzwater		;if yes, sbz3 palette
+		bra.s	Level_WaterPal		;otherwise, continue loading labyrinth palette
+.sbzwater:
 		moveq	#palid_SBZ3SonWat,d0 ; palette number $10 (SBZ3)
 
 Level_WaterPal:
@@ -3209,7 +3213,11 @@ Level_ChkWaterPal:
 		bne.s	Level_Delay	; if not, branch
 		moveq	#palid_LZWater,d0 ; palette $B (LZ underwater)
 		cmpi.b	#3,(v_act).w	; is level SBZ3?
-		bne.s	Level_WtrNotSbz	; if not, branch
+		beq.s	.sbzwater	; if yes, sbz3 palette
+		cmpi.b	#id_SBZ,(v_zone).w	;is Scrap Brain Zone 1+2?
+		beq.s	.sbzwater		;if yes, sbz3 palette
+		bra.s	Level_WtrNotSbz		;otherwise, continue loading labyrinth palette
+.sbzwater:
 		moveq	#palid_SBZ3Water,d0 ; palette $D (SBZ3 underwater)
 
 Level_WtrNotSbz:
