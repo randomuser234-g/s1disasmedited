@@ -2289,7 +2289,7 @@ Tit_ChkLevSel:
 		move.w	#bgm_LevSel,d0
 		jsr	(QueueSound1).l	; play level select music, song from sonic 2
 		move.b	#0,(v_menupage)		;set page to 0 which is first page of options
-		move.w	#1,(v_levselitem).w	;select "SONIC ALONE"
+		move.w	#2,(v_levselitem).w	;select "SONIC ALONE"
 ; ---------------------------------------------------------------------------
 
 Tit_EnterLevelSelect:
@@ -2850,27 +2850,27 @@ OptionText:
 	charset 'Y','Z',$0F ; Y and Z come before A-X
 	charset 'A','X',$11
 
-		dc.b "PAGE 1                  "
-		dc.b "SONIC ALONE             "
-		dc.b "TAILS ALONE             "
-		dc.b "KNUCKLES ALONE          "
-		dc.b "                        "
-		dc.b "PARTNER TAILS    ON-OFF "
-		dc.b "TAILS FLIGHT OFF        "
-		dc.b "SPINDASH OFF            "
-		dc.b "PEELOUT OFF             "
-		dc.b "RE-ENABLE ALL MOVES     "
-		dc.b "S1 STYLE PEELOUT        "
-		dc.b "CD STYLE PEELOUT        "
-		dc.b "                        "
-		dc.b "GO TO PAGE 2            "
-		dc.b "                        "
-		dc.b "                        "
-		dc.b "-START A B C TO SELECT- " 
-		dc.b "ONLY 1 BONUS TOGGLEABLE "
-		dc.b "                        "
-		dc.b "START GAME              "
-		dc.b "SOUND SELECT            "
+		dc.b "PAGE 1                  "	;0
+		dc.b "-PLAYER SELECT-         "	;1
+		dc.b "SONIC                   "	;2
+		dc.b "MILES TAILS PROWER      "	;3
+		dc.b "KNUCKLES                "	;4
+		dc.b "                        "	;5
+		dc.b "PARTNER TAILS    ON-OFF "	;6
+		dc.b "TAILS FLIGHT OFF        "	;7
+		dc.b "SPINDASH OFF            "	;8
+		dc.b "PEELOUT OFF             "	;9
+		dc.b "RE-ENABLE ALL MOVES     "	;A
+		dc.b "S1 STYLE PEELOUT        "	;B
+		dc.b "CD STYLE PEELOUT        "	;C
+		dc.b "                        "	;D
+		dc.b "GO TO PAGE 2            "	;E
+		dc.b "                        "	;F
+		dc.b "-START A B C TO SELECT- "	;10
+		dc.b "ONLY 1 BONUS TOGGLEABLE "	;11
+		dc.b "                        "	;12
+		dc.b "START GAME              "	;13
+		dc.b "SOUND SELECT            "	;14
 
 	charset
 	even
@@ -2949,10 +2949,16 @@ Level_NoMusicFade:
 		;code for loading mainplc
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.knucklesplc		; if not, load Sonic's life icon
-		moveq	#plcid_MainTails,d0	;
+		tst.b	(v_megadrive).w
+		bmi.s	.tailsplc ; branch if Mega Drive is American
+		moveq	#plcid_MainMiles,d0	;
 		bsr.w	NewPLC		;
 		bra.s	.LevelStart_WaitLoop		; branch to rest of code
 
+.tailsplc:
+		moveq	#plcid_MainTails,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LevelStart_WaitLoop		; branch to rest of code
 	.knucklesplc:
 		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Knuckles)?
 		bne.s	.sonicplc		; if not, load Sonic's life icon
@@ -5466,6 +5472,7 @@ Map_Got:	mappingsTable
 	mappingsTableEntry.w	M_Card_Act3	; Act number 3
 	;	Extra characters are put here so they get unique text without touching elsewhere
 	mappingsTableEntry.w	M_Got_TailsHas	; "TAILS HAS" text
+	mappingsTableEntry.w	M_Got_MilesHas	; "MILES HAS" text
 	mappingsTableEntry.w	M_Got_KnucklesHas	; "KNUCKLES HAS" text
 	
 M_Got_SonicHas:	spriteHeader	; SONIC HAS
@@ -5490,6 +5497,18 @@ M_Got_TailsHas:	spriteHeader		; TAILS HAS
 	spritePiece	$20, -8, 2, 2, 0, 0, 0, 0, 0
 	spritePiece	$30, -8, 2, 2, $3E, 0, 0, 0, 0
 M_Got_TailsHas_End
+
+M_Got_MilesHas:	spriteHeader		; MILES HAS
+	spritePiece	-$48, -8, 2, 2, $2A, 0, 0, 0, 0	;m
+	spritePiece	-$38, -8, 1, 2, $20, 0, 0, 0, 0	;i
+	spritePiece	-$30, -8, 2, 2, $26, 0, 0, 0, 0	;l
+	spritePiece	-$20, -8, 2, 2, $10, 0, 0, 0, 0	;e
+	spritePiece	-$10, -8, 2, 2, $3E, 0, 0, 0, 0	;s
+	spritePiece	$10, -8, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	$20, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, $3E, 0, 0, 0, 0
+M_Got_MilesHas_End
+
 M_Got_KnucklesHas:
 	dc.b 11	; KNUCKLES HAS
 		dc.b $F8, $05, $00, $22, $80	; K
@@ -5562,6 +5581,7 @@ Map_SSR:	mappingsTable
 	mappingsTableEntry.w	M_SSR_GotAll	; "SONIC GOT THEM ALL" text
 	;	extra characters text for getting all emeralds
 	mappingsTableEntry.w	M_SSR_TailsGotAll;"TAILS GOT THEM ALL" text
+	mappingsTableEntry.w	M_SSR_MilesGotAll;"MILES GOT THEM ALL" text
 	mappingsTableEntry.w	M_SSR_KnucklesGotAll;"KNUCKLES GOT THEM ALL" text
 
 M_SSR_Chaos:	spriteHeader	; CHAOS EMERALDS
@@ -5674,6 +5694,23 @@ M_SSR_TailsGotAll:	spriteHeader		; "TAILS GOT THEM ALL"
 	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0
 M_SSR_TailsGotAll_End
+M_SSR_MilesGotAll:	spriteHeader		; "MILES GOT THEM ALL"
+	spritePiece	-$78, -8, 2, 2, $2A, 0, 0, 0, 0	;m
+	spritePiece	-$68, -8, 1, 2, $20, 0, 0, 0, 0	;i
+	spritePiece	-$60, -8, 2, 2, $26, 0, 0, 0, 0	;l
+	spritePiece	-$50, -8, 2, 2, $10, 0, 0, 0, 0	;e
+	spritePiece	-$40, -8, 2, 2, $3E, 0, 0, 0, 0	;s
+	spritePiece	-$28, -8, 2, 2, $18, 0, 0, 0, 0
+	spritePiece	-$18, -8, 2, 2, $32, 0, 0, 0, 0
+	spritePiece	-8, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$10, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$20, -8, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	$40, -8, 2, 2, $2A, 0, 0, 0, 0
+	spritePiece	$58, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$68, -8, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	$78, -8, 2, 2, $26, 0, 0, 0, 0
+M_SSR_MilesGotAll_End
 M_SSR_KnucklesGotAll:	spriteHeader
 	spritePiece	-$68, -8, 2, 2, $22, 0, 0, 0, 0	;K
 	spritePiece	-$58, -8, 2, 2, $42, 0, 0, 0, 0	;T
@@ -8231,6 +8268,8 @@ Nem_Hud:	binclude	"artnem/HUD.nem"	; HUD (rings, time, score)
 Nem_Lives:	binclude	"artnem/HUD - Life Counter Icon.nem"
 		even
 Nem_TailsLives:	binclude	"artnem/Tails life counter.nem"
+		even
+Nem_MilesLives:	binclude	"artnem/Miles life counter.nem"
 		even
 Nem_KnucklesLives:	binclude	"artnem/Knuckles Life Icon.bin"
 		even
