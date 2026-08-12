@@ -47,14 +47,18 @@ Got_Loop:
 .charactercheck:
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		bne.s	.knuckles	; if not, check if Knuckles
-		moveq	#$9,d0		; load "TAILS HAS" text
-		move.b	d0,obFrame(a0)
+		tst.b	(v_megadrive).w
+		bmi.s	.tails ; branch if Mega Drive is Japanese
+		moveq	#$A,d0		; load "MILES HAS" text
 		bra.s	Got_LoopActNum
+	.tails:
+		moveq	#$9,d0		; load "TAILS HAS" text
+		bra.s	Got_LoopActNum
+
 	.knuckles:
 		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
 		bne.s	Got_LoopActNum		; if not, do nothing which continues "SONIC HAS" to load
-		moveq	#$A,d0		; load "KNUCKLES HAS" text
-		move.b	d0,obFrame(a0)
+		moveq	#$B,d0		; load "KNUCKLES HAS" text
 		
 Got_LoopActNum:
 		cmpi.b	#6,d0

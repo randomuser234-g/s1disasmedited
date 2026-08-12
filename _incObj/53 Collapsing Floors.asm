@@ -60,7 +60,7 @@ CFlo_Touch:	; Routine 2
 		bset	#0,obRender(a0)
 
 .remstate:
-		bra.w	RememberState
+		jmp	RememberState
 ; ===========================================================================
 
 CFlo_Collapse:	; Routine 4
@@ -78,7 +78,7 @@ CFlo_WalkOff:	; Routine $A
 		bsr.w	ExitPlatform
 		move.w	obX(a0),d2
 		bsr.w	MvSonicOnPtfm2
-		bra.w	RememberState
+		jmp	RememberState
 ; End of function CFlo_WalkOff
 
 ; ===========================================================================
