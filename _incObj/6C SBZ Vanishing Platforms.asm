@@ -79,13 +79,16 @@ VanP_Appear:	; Routine 4
 		bne.s	.loc_160D6
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		jsr	(PlatformObject).l
+		lea	(v_player).w,a1
+		moveq	#p1_standing_bit,d6
+		jsr	(PlatformObject_SingleCharacter).l
 		jmp	RememberState
 ; ===========================================================================
 
 .loc_160D6:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
+		lea	(v_player).w,a1
 		jsr	(ExitPlatform).l
 		move.w	obX(a0),d2
 		jsr	(MvSonicOnPtfm2).l
