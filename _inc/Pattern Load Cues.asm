@@ -45,6 +45,7 @@ ptr_PLC_EndingTails:	dc.w PLC_EndingTails-ArtLoadCues
 ptr_PLC_MainKnuckles:		dc.w PLC_MainKnuckles-ArtLoadCues
 ptr_PLC_SSResultKnuckles:	dc.w PLC_SSResultKnuckles-ArtLoadCues
 ptr_PLC_EndingKnuckles:	dc.w PLC_EndingKnuckles-ArtLoadCues
+ptr_PLC_MainMiles:	dc.w PLC_MainMiles-ArtLoadCues
 plcm:	macro gfx,vram
 		dc.l gfx
 		dc.w (vram)*$20
@@ -473,6 +474,16 @@ PLC_EndingKnuckles:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
 		plcm	Nem_Squirrel,  ArtTile_Ending_Squirrel  ; squirrel
 		plcm	Nem_EndStH,    ArtTile_Ending_STH       ; "SONIC THE HEDGEHOG"
 PLC_EndingKnucklesend:
+; ---------------------------------------------------------------------------
+; Pattern load cues - standard block 1 but for Miles (japanese)
+; ---------------------------------------------------------------------------
+PLC_MainMiles:	dc.w ((PLC_Mainend-PLC_Main-2)/6)-1
+		plcm	Nem_Lamp,   ArtTile_Lamppost      ; lamppost
+		plcm	Nem_Hud,    ArtTile_HUD           ; HUD
+		plcm	Nem_MilesLives,  ArtTile_Lives_Counter ; lives counter
+		plcm	Nem_Ring,   ArtTile_Ring          ; rings
+		plcm	Nem_Points, ArtTile_Points        ; points from enemy
+PLC_MainMilesend:
 
 plcid_Main:		equ (ptr_PLC_Main-ArtLoadCues)/2	; 0
 plcid_Main2:		equ (ptr_PLC_Main2-ArtLoadCues)/2	; 1
@@ -512,3 +523,4 @@ plcid_EndingTails:	equ (ptr_PLC_EndingTails-ArtLoadCues)/2	; $22
 plcid_MainKnuckles:	equ (ptr_PLC_MainKnuckles-ArtLoadCues)/2	; 23
 plcid_SSResultKnuckles:	equ (ptr_PLC_SSResultKnuckles-ArtLoadCues)/2; $24
 plcid_EndingKnuckles:	equ (ptr_PLC_EndingKnuckles-ArtLoadCues)/2	; $25
+plcid_MainMiles:	equ (ptr_PLC_MainMiles-ArtLoadCues)/2	; 26
