@@ -1933,7 +1933,7 @@ Pal_SBZ3SonWat:	bincludeEndMarker	"palette/Sonic - SBZ3 Underwater.bin"
 Pal_SSResult:	bincludeEndMarker	"palette/Special Stage Results.bin"
 Pal_Continue:	bincludeEndMarker	"palette/Special Stage Continue Bonus.bin"
 Pal_Ending:		bincludeEndMarker	"palette/Ending.bin"
-
+Pal_TitleKnux:		bincludeEndMarker	"palette/Title Screen Knuckles.bin"
 ; ---------------------------------------------------------------------------
 ; Subroutine to wait for VBlank routines to complete
 ; ---------------------------------------------------------------------------
@@ -2148,7 +2148,13 @@ Tit_LoadText:
 		locVRAM	ArtTile_Level*tile_size
 		lea	(Nem_GHZ_1st).l,a0 ; load GHZ patterns
 		bsr.w	NemDec
+		cmpi.b	#3,(v_character).w	;picked Knuckles?
+		beq.s	.isknuckles		;if yes, branch
 		moveq	#palid_Title,d0	; load title screen palette
+		bra.s	.afterpalette
+.isknuckles:
+		moveq	#palid_TitleKnux,d0	; load knux title screen palette	
+.afterpalette:
 		bsr.w	PalLoad_Fade
 		move.b	#bgm_Title,d0
 		bsr.w	QueueSound2	; play title screen music
