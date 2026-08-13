@@ -38,4 +38,5 @@ palid_SBZ3SonWat:	makePalEntry	Pal_SBZ3SonWat,		v_palette_line_1
 palid_SSResult:		makePalEntry	Pal_SSResult, 		v_palette_line_1
 palid_Continue:		makePalEntry	Pal_Continue, 		v_palette_line_1
 palid_Ending:		makePalEntry	Pal_Ending, 		v_palette_line_1
+palid_TitleKnux:	makePalEntry	Pal_TitleKnux,		v_palette_line_1
 	even
