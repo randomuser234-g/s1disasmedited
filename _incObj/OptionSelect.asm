@@ -95,15 +95,19 @@ OptionSelect:
 	.soundtest:
 		cmpi.w	#$14,d0		; have you selected item $14 (sound test)?
 		bne.w	.donothing	; if not, do nothing
+		btst	#bitStart,(v_jpadpress1).w	;pressed start on this option?
+		bne.s	.title				;if yes, go to title
 		bra.w	.soundtestsel
+;-----------------------------------------------------------------------------------------------------------
 	.donothing:
 		jmp	LevelSelect
-;-----------------------------------------------------------------------------------------------------------
 .optionplaysound:
 		jsr	QueueSound2	; jump to the subroutine that plays the sound currently in d0
 		rts
 .soundtestsel:
 		jmp	SoundTestSelection
+.title:
+		jmp	GM_Title
 .levsel:
 		move.b	#1,(v_menupage)
 		move.w	#$0,(v_levselitem).w	;go to top of list
@@ -153,9 +157,16 @@ OptionSelect2:
 ;-----------------------------------------------------------------------------------------------------------
 	.credits:
 		cmpi.w	#$A,d0		; have you selected item $A (credits)?
-		bne.w	.goback	; if not, do nothing
+		bne.w	.reigonswap	; if not, do nothing
 		move.b	#0,(v_emeralds).w
 		bra.w	.playcredits		; if yes, branch
+;-----------------------------------------------------------------------------------------------------------
+	.reigonswap:
+		cmpi.w	#$C,d0		; have you selected item $C (reigon swap)?
+		bne.w	.goback	; if not, do nothing
+		bchg	#7,(v_megadrive).w	;change between USA or JPN
+		move.b	#sfx_Ring,d0		; put value of Ring sound into d0
+		bsr.w	.optionplaysound
 ;-----------------------------------------------------------------------------------------------------------
 	.goback:
 		cmpi.w	#$13,d0		; have you selected item $13 (go back)?
@@ -168,6 +179,8 @@ OptionSelect2:
 	.soundtest:
 		cmpi.w	#$14,d0		; have you selected item $14 (sound test)?
 		bne.w	.donothing	; if not, do nothing
+		btst	#bitStart,(v_jpadpress1).w	;pressed start on this option?
+		bne.s	.title				;if yes, go to title
 		bra.w	.soundtestsel
 ;-----------------------------------------------------------------------------------------------------------
 	.donothing:
@@ -181,6 +194,8 @@ OptionSelect2:
 		move.b	#id_Ending,(v_gamemode).w ; set screen mode to $18 (Ending)
 		move.w	#(id_EndZ<<8),(v_zone).w  ; set level to 0600 (good Ending)
 		rts
+.title:
+		jmp	GM_Title
 .playcredits:
 		move.b	#id_Credits,(v_gamemode).w ; set screen mode to $1C (Credits)
 		move.b	#bgm_Credits,d0		; set credits music
