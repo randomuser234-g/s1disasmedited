@@ -2350,6 +2350,8 @@ LevSel_SelectionMade:
 		cmpi.w	#levsel_sndtest_row,d0	; have you selected item $14 (sound test)?
 		bne.s	LevSel_Level_SS		; if not, go to Level/SS subroutine
 SoundTestSelection:
+		btst	#bitStart,(v_jpadpress1).w	;pressed start on this option?
+		bne.w	GM_Title				;if yes, go to title
 		move.w	(v_levselsound).w,d0	; get currently selected sound test entry
 		addi.w	#$80,d0			; make it $80-based
 		tst.b	(f_creditscheat).w	; is Japanese Credits cheat on?
@@ -2908,7 +2910,7 @@ PageI:
 		dc.b "BAD ENDING              "
 		dc.b "CREDITS                 "
 		dc.b "                        "
-		dc.b "                        "
+		dc.b "REIGON SWAP             "
 		dc.b "                        "
 		dc.b "                        "
 		dc.b "                        "
@@ -2954,7 +2956,7 @@ Level_NoMusicFade:
 		bsr.w	PaletteFadeOut
 		;code for loading mainplc
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.knucklesplc		; if not, load Sonic's life icon
+		bne.s	.knucklesplc		; if not, check for Knuckles
 		tst.b	(v_megadrive).w
 		bmi.s	.tailsplc ; branch if Mega Drive is American
 		moveq	#plcid_MainMiles,d0	;
