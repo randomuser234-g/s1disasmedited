@@ -42,8 +42,6 @@ Tails can't interact with some objects as the second player (platforms, bridges,
 
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
-blue knuckles on the title screen
-
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
 
 may be other issues I don't know
