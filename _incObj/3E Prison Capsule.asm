@@ -65,12 +65,32 @@ Pri_BodyMain:	; Routine 2
 
 .chkopened:
 		tst.b	ob2ndRout(a0)	; has the prison been opened?
-		beq.s	.open		; if yes, branch
+		beq.s	.checkiftouched		; if yes, branch
 		clr.b	ob2ndRout(a0)
 		bclr	#3,(v_player+obStatus).w
 		bset	#1,(v_player+obStatus).w
 		bclr	#3,(v_player2+obStatus).w
 		bset	#1,(v_player2+obStatus).w
+
+.checkiftouched:
+		btst	#3,obStatus(a0)	;sonic ontop of the block?
+		beq.s	.tails		;if not check for tails P2
+		bsr.s	.p1standing	;otherwise, stop sonic from standing ontop
+.tails:
+		btst	#4,obStatus(a0)	;tails ontop of the block?
+		beq.s	.nostanding	;if not, return
+		bsr.s	.p2standing	;otherwise, stop tails from standing ontop
+.nostanding:
+		bra.s	.open
+.p1standing:
+		bclr	#3,(v_player+obStatus).w	;clear standing on p1
+		bclr	#3,obStatus(a0)			;clear p1 standing bit
+		rts
+.p2standing:
+		bclr	#3,(v_player2+obStatus).w	;clear standing on p2
+		bclr	#4,obStatus(a0)			;clear p2 standing bit
+		rts
+
 
 .open:
 		move.b	#2,obFrame(a0)	; use frame number 2 (destroyed prison)

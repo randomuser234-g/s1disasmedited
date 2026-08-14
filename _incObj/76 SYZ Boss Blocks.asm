@@ -50,10 +50,34 @@ BossBlock_Action:	; Routine 2
 		move.b	objoff_29(a0),d0
 		cmp.b	obSubtype(a0),d0
 		beq.s	BossBlock_Solid
+		bsr.s	.checkiftouched
 		tst.b	d0
 		bmi.s	loc_19718
+		bra.s	loc_19712
+
+.checkiftouched:
+		btst	#3,obStatus(a0)	;sonic ontop of the block?
+		beq.s	.tails		;if not, check for tails P2
+		bsr.s	.p1standing	;otherwise, stop sonic from standing ontop
+.tails:
+		btst	#4,obStatus(a0)	;tails ontop of the block?
+		beq.s	.nostanding	;if not, return
+		bsr.s	.p2standing	;otherwise, stop tails from standing ontop
+.nostanding:
+		rts
+.p1standing:
+		bclr	#3,(v_player+obStatus).w	;clear standing on p1
+		bclr	#3,obStatus(a0)			;clear p1 standing bit
+		rts
+.p2standing:
+		bclr	#3,(v_player2+obStatus).w	;clear standing on p2
+		bclr	#4,obStatus(a0)			;clear p2 standing bit
+		rts
 
 loc_19712:
+		;bclr	#3,(v_player+obStatus).w
+		;bclr	#3,(v_player2+obStatus).w
+		;bclr	#3,obStatus(a0)
 		bsr.w	BossBlock_Break
 		bra.s	BossBlock_Display
 ; ===========================================================================
