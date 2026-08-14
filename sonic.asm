@@ -4211,6 +4211,18 @@ End_LoadSonic:
 		move.b	#1,(f_lockctrl).w ; lock controls
 		move.w	#(btnL<<8),(v_jpadhold2).w ; move Sonic to the left
 		move.w	#-$800,(v_player+obInertia).w ; set Sonic's speed
+		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
+		bne.s	.skipp2tails		;if not, skip relevant code
+;instantly despawn p2 tails
+	move.w	#0,(v_tailscontrol).w
+	move.w	#0,(v_tailsrespawn).w
+	move.w	#2,(v_tailscpuroutine).w	; => TailsCPU_Spawning
+	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
+	move.b	#1<<1,obStatus(a0)
+	move.w	#$4000,obX(a0)
+	move.w	#0,obY(a0)
+	move.b	#id_Fly,(v_player2+obAnim).w
+.skipp2tails:
 		;move.b	#id_HUD,(v_hud).w ; load HUD object
 		jsr	(ObjPosLoad).l
 		jsr	(ExecuteObjects).l
