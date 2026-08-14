@@ -8,7 +8,7 @@
 
 ; loc_1AB38: test_set_SS:
 Sonic_CheckGoSuper:
-	cmpi.b	#0,(f_tailscarrysonic).w		;Is Sonic holding onto Tails
+	tst.b	(f_tailscarrysonic).w		;Is Sonic holding onto Tails
 	bne.w	return_1ABA4				;if yes, don't go super
 	move.b	(v_jpadpress2).w,d0
 	andi.b	#btnB|btnC|btnA,d0

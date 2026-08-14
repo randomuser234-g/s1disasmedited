@@ -27,6 +27,7 @@ Bump_Hit:	; Routine 2
 	lea	(v_player).w,a1 ; a1=character
 	bclr	#0,obColProp(a0)	;has Sonic touched the bumper?
 	beq.s	.player2hit		;if not, check for Tails
+	clr.b	(f_tailscarrysonic).w	;stop carrying sonic right now
 	bsr.s	.bumpcharacter		;otherwise, bump Sonic, then check for Tails
 .player2hit:
 	lea	(v_player2).w,a1 ; a1=character
