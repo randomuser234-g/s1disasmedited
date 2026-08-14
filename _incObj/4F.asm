@@ -39,6 +39,8 @@ SuperAfterImg_Init:
 Obj_HyperSonicKnux_Trail_Main:
 		tst.b	(v_super).w	; Are we in non-super state?
 		beq.w	DeleteObject		; If so, branch and delete
+		tst.w	(v_debuguse).w	; is debug mode being used?
+		bne.s	.end	; if yes, don't do things, avoid displaying weird frames
 		moveq	#$C,d1				; This will be subtracted from Pos_table_index, giving the object an older entry
 		btst	#0,(v_framecount+1).w	; Even frame? (Think of it as 'every other number' logic)
 		beq.s	.evenframe			; If so, branch
@@ -57,3 +59,5 @@ Obj_HyperSonicKnux_Trail_Main:
 		move.b	(v_player+obRender).w,obRender(a0)	; Use player's current render_flags
 		move.w	(v_player+obPriority).w,obPriority(a0)		; Use player's current priority
 		bra.w	DisplaySprite
+.end:
+		rts
