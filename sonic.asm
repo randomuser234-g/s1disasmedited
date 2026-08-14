@@ -4218,8 +4218,8 @@ End_LoadSonic:
 	move.w	#0,(v_tailsrespawn).w
 	move.w	#2,(v_tailscpuroutine).w	; => TailsCPU_Spawning
 	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
-	move.b	#1<<1,(v_player2+obStatus)
-	move.w	#$4000,(v_player2+obX)
+	move.b	#1<<1,(v_player2+obStatus).w
+	move.w	#$4000,(v_player2+obX).w
 	move.w	#0,(v_player2+obY).w
 	move.b	#id_Fly,(v_player2+obAnim).w
 .skipp2tails:
