@@ -91,10 +91,15 @@ Tails_Control:	; Routine 2
 	bsr.w	TailsCPU_Control
 
 .ignorecontrols:
+		cmpa.w	#v_player,a0	;is Tails player 1?
+		bne.w	.p2checkiflocked	;if not, check p2 flag
 		btst	#0,(f_playerctrl).w ; are controls locked?
 		bne.s	.ignoremodes	; if yes, branch
+		bra.s	.checkifflying
+.p2checkiflocked:
 		btst	#0,(f_playerctrl2).w ; are controls locked?
 		bne.s	.ignoremodes	; if yes, branch
+.checkifflying:
                 tst.b   (f_doublejumpp2).w                    ; is tails flying?
                 bne.s   .flying				;if yes, branch
 		move.b	#0,(f_tailscarrysonic).w	;otherwise, stop thinking tails is carrying sonic
@@ -419,7 +424,7 @@ return_1BCDE:
 ; ---------------------------------------------------------------------------
 ; loc_1BCE0:
 TailsCPU_Normal:
-			cmpi.b	#6,(v_player+obRoutine).w	; is Sonic dead?
+	cmpi.b	#6,(v_player+obRoutine).w	; is Sonic dead?
 	blo.s	TailsCPU_Normal_SonicOK		; if not, branch
 	; Sonic's dead; fly down to his corpse
 	move.w	#4,(v_tailscpuroutine).w	; => TailsCPU_Flying
@@ -442,11 +447,19 @@ TailsCPU_Normal_SonicOK:
 	jmp	Tails_SonicControl
 .dontflysonic:
 	tst.w	locktime(a0)			; and Tails' movement is locked (usually because he just fell down a slope)
-	beq.s	+					; (if not, branch)
+	beq.s	.nopanic					; (if not, branch)
 	tst.w	obInertia(a0)			; and Tails is stopped, then...
-	bne.s	+					; (if not, branch)
+	bne.s	.nopanic					; (if not, branch)
 	move.w	#8,(v_tailscpuroutine).w	; => TailsCPU_Panic
-+
+.nopanic:
+	cmpi.b	#id_EndSonic,(v_player).w ; does Sonic's ending object exist?
+	bne.s	.chkbigring	; if yes, don't move tails
+	rts
+.chkbigring:
+	tst.b	(f_bigring).w	;is sonic in a giant ring?
+	beq.w	.followsonic	;if not, find sonic
+	rts	;otherwise do nothing
+.followsonic:
 		move.w	(v_trackpos).w,d0
 		lea	(v_tracksonic).w,a1
 		sub.b	d1,d0
@@ -458,18 +471,20 @@ TailsCPU_Normal_SonicOK:
 	move.b	2(a1,d0.w),d4	; d4 = earlier status of Sonic
 	move.w	d1,d0
 	btst	#5,obStatus(a0)	; is Tails pushing against something?
-	beq.s	+					; if not, branch
+	beq.s	.notpushing					; if not, branch
 	btst	#5,d4		; was Sonic pushing against something?
 	beq.w	TailsCPU_Normal_FilterAction_Part2	; if not, branch elsewhere
 
 ; either Tails isn't pushing, or Tails and Sonic are both pushing
-+	sub.w	obX(a0),d2
+.notpushing:
+	sub.w	obX(a0),d2
 	beq.s	TailsCPU_Normal_Stand ; branch if Tails is already lined up horizontally with Sonic
 	bpl.s	TailsCPU_Normal_FollowRight
 	neg.w	d2
 
 ; Tails wants to go left because that's where Sonic is
-; loc_1BD76: TailsCPU_Normal_FollowLeft:
+; loc_1BD76: 
+TailsCPU_Normal_FollowLeft:
 	cmpi.w	#$10,d2
 	blo.s	+
 	andi.w	#~(((btnL|btnR)<<8)|(btnL|btnR)),d1	; AND out Sonic's left/right input...
@@ -1977,6 +1992,7 @@ Tails_ResetOnFloor:
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
                 move.b  #$00, (f_doublejumpp2).w              ; clear jump flag
+		clr.b	(f_tailscarrysonic).w                   ; clear tails carrying sonic
 		move.w	#60*8,(v_flytimer).w	;refill flight timer, 8 seconds
 		btst	#2,obStatus(a0)	; check if Sonic is in a ball state.
 		beq.s	.notball	; if not, skip.

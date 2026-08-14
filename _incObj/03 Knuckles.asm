@@ -298,8 +298,8 @@ Knuckles_MdNormal:
 
 ; obj03_MdJump:
 Knuckles_MdJump:
-	tst.b	(f_doublejump).w
-	bne.w	Obj01_MdAir_Gliding
+	tst.b	(f_doublejump).w	;doublejump flag is active?
+	bne.w	Obj01_MdAir_Gliding	;if yes, run gliding code
 
 		bsr.w	Knuckles_JumpHeight
 		bsr.w	Knuckles_JumpDirection
@@ -1463,6 +1463,7 @@ locret_1379EKnuckles:
 
 
 Knuckles_ResetOnFloor:
+		clr.b	(f_tailscarrysonic).w                   ; clear tails carrying sonic
 		btst	#4,obStatus(a0)	; is Knuckles roll-jumping?
 		beq.s	.notrolljump	; if not, skip.
 		nop	; Unknown removed code.
@@ -1480,15 +1481,6 @@ Knuckles_ResetOnFloor:
 	subi.b	#19,d0
 	ext.w	d0
 	add.w	d0,obY(a0)
-
-		btst	#2,obStatus(a0)	; check if Knuckles is in a ball state.
-		beq.s	.notball	; if not, skip.
-		bclr	#2,obStatus(a0)	; clear ball flag.
-		move.b	#$13,obHeight(a0)	; set Knuckles's hitbox to standing.
-		move.b	#9,obWidth(a0)
-		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
-		subq.w	#5,obY(a0)	; raise Knuckles up 5 pixels so he's not inside the ground.
-		;jsr	Tails_HeightAfterLanding
 
 .notball:
 		bclr	#5,obStatus(a0)	; clear push flag.

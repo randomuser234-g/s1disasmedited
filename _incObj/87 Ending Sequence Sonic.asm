@@ -34,16 +34,23 @@ ESon_Main2:
 		clr.b	obStatus(a0)
 		move.b	#2,obPriority(a0)
 		move.b	#0,obFrame(a0)
+		cmpi.b	#1,(v_character).w	;tails alone game?
+		bne.s	.dontdeletetails		;if not, don't delete the tails
 		move.b	#0,(v_tailstails).w ; delete tails' tails object
+.dontdeletetails:
 		move.w	#80,eson_time(a0) ; set duration for Sonic to pause
 
 ESon_MakeEmeralds:
 		; Routine 2
+		move.b	#1,(f_playerctrl2).w		;freeze p2
 		subq.w	#1,eson_time(a0) ; subtract 1 from duration
 		bne.s	ESon_Wait
 		addq.b	#2,ob2ndRout(a0)
 		move.w	#1,obAnim(a0)
 		move.b	#id_EndChaos,(v_endemeralds).w ; load chaos emeralds objects
+		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
+		bne.s	ESon_Wait		;if not, skip relevant code
+		move.b	#id_LookUp,(v_player2+obAnim).w	;make p2 look up
 
 ESon_Wait:
 		rts
@@ -80,6 +87,12 @@ ESon_Wait2:
 ; ===========================================================================
 
 Obj87_MakeLogo:	; Routine $C
+		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
+		bne.s	.skipp2tails		;if not, skip relevant code
+		move.b	#1,(f_playerctrl2).w		;freeze p2
+		move.b	#id_Wait,(v_player2+obAnim).w	;make p2 look in surprise
+		move.b	#$21,(v_player2+obAniFrame).w
+.skipp2tails:
 		subq.w	#1,eson_time(a0)
 		bne.s	ESon_Wait3
 		addq.b	#2,ob2ndRout(a0)
@@ -107,8 +120,17 @@ Obj87_Leap:	; Routine $10
 		move.b	#2,obPriority(a0)
 		move.b	#5,obFrame(a0)
 		move.b	#2,obAnim(a0)	; use "leaping" animation
+		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
+		bne.s	.skipp2tails		;if not, skip relevant code
+		move.b	#1,(f_playerctrl2).w		;freeze p2
+		move.b	#id_Wait,(v_player2+obAnim).w	;make p2 look in surprise
+		move.b	#$21,(v_player2+obAniFrame).w
+.skipp2tails:
 		move.b	#id_EndSTH,(v_endlogo).w ; load "SONIC THE HEDGEHOG" object
+		cmpi.b	#1,(v_character).w	;tails alone game?
+		bne.s	.dontdeletetails		;if not, don't delete the tails
 		move.b	#0,(v_tailstails).w ; delete tails' tails object
+.dontdeletetails:
 		bra.s	Obj87_Animate
 ; ===========================================================================
 
