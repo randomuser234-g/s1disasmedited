@@ -18,12 +18,12 @@ Tails_CarrySonic:
 	bne.w	.stopcarrysonic		;if yes, stop carrying sonic
 
 	tst.b	(f_tailscarrysonic).w	;is tails already carrying sonic?
-	bne.w	.leftorright		;if yes, skip coordinate checks
+	bne.w	.chkspeed		;if yes, skip coordinate checks
 
 
 	move.w	obX(a1),d0		;distance between players
 	sub.w	obX(a0),d0
-	addi.w	#$C,d0			;more to the right
+	addi.w	#$C,d0
 	cmpi.w	#$18,d0			;is sonic a certain distance toward tails?
 	bhs.w	.stopcarrysonic		;if not, stop carrying sonic
 	move.w	obY(a1),d1		
@@ -31,8 +31,38 @@ Tails_CarrySonic:
 	subi.w	#$20,d1		;32	;more down
 	cmpi.w	#$10,d1		;16	;is sonic a certain distance toward tails?
 	bhs.w	.stopcarrysonic		;if not, stop carrying sonic
-
+	bra.s	.leftorright		;instantly start grabbing
 	;face left or right
+.chkspeed:
+	btst	#1,obStatus(a1)		;is Sonic in the air
+	beq.w	.stopcarrysonic	;if not, stop carrying sonic
+
+	btst	#3,obStatus(a1)		;is Sonic on an object?
+	bne.w	.stopcarrysonic	;if yes, stop carrying sonic
+
+;debugging thing, test how far sonic can be from tails
+	;btst	#bitUp,(v_jpadhold2).w	;held Up?
+	;beq.s	.skipup			;if not, branch
+	;subi.w	#$14,obY(a0)		;seeming boundaries up before detach
+	;bra.s	.skipc
+;.skipup:
+	;btst	#bitC,(v_jpadhold2).w	;held C?
+	;beq.s	.skipc			;if not, branch
+	;addi.w	#$1F,obY(a0)		;seeming boundaries down before detach
+;.skipc:
+	move.w	obX(a1),d0		;distance between players
+	sub.w	obX(a0),d0
+	addi.w	#$10,d0
+	cmpi.w	#$20,d0			;is sonic a certain distance toward tails?
+	bhs.w	.bumpandstopcarrysonic		;if not, stop carrying sonic
+	;with these values, seems to be about sonic's hand at tails outward shoe before detach
+	
+	move.w	obY(a1),d0		;distance between players
+	sub.w	obY(a0),d0
+	cmpi.w	#$30,d0			;is sonic a certain distance toward tails?
+	bhs.w	.stopcarrysonic		;if not, stop carrying sonic
+
+
 .leftorright:
 	btst	#0,obStatus(a0)		;tails facing left?
 	bne.s	.notleft		;if not, don't face left
@@ -45,11 +75,11 @@ Tails_CarrySonic:
 .afterdirections:
 	;be airborne
 	btst	#1,obStatus(a0)		;tails in the air?
-	bne.s	.notairborne		;if not, don't be airborne
-	bclr	#1,obStatus(a1)		;try to copy being in the air
+	bne.s	.isairborne		;if yes, be airborne
+	bclr	#1,obStatus(a1)		;try to copy not being in the air
 	bra.s	.afteraircheck
 
-.notairborne:
+.isairborne:
 	bset	#1,obStatus(a1)		;try to copy being in the air
 
 .afteraircheck:
@@ -64,10 +94,15 @@ Tails_CarrySonic:
 	move.b	#id_HangFromTails,obAnim(a1)
 	move.b	#1,(f_tailscarrysonic).w	;set carrying sonic flag
 	move.b	#0,(v_tailscpujump).w
+	;move.w	obVelX(a0),(v_copyxvel).w
+	;move.w	obVelY(a0),(v_copyxvel).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
 	move.b	#id_Roll,obAnim(a0) ; use "jumping" animation
 	move.b	#id_Roll,obAnim(a1) ; use "jumping" animation, flight cancel
+	bra.s	.stopcarrysonic
+.bumpandstopcarrysonic:
+	move.w	#-$100,obVelY(a1)		; make a slight upwards push
 .stopcarrysonic:
 	move.b	#0,(f_tailscarrysonic).w
 		rts

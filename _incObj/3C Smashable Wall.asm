@@ -54,7 +54,7 @@ Smash_Solid:	; Routine 2
 ; ===========================================================================
 
 .chkroll:
-		cmpi.b	#id_KnucklesPlayer,obID(a1)	; is the multiple character flag set to 3 (Knuckles)?
+		cmpi.b	#id_KnucklesPlayer,obID(a1)	; is the character Knuckles?
 		beq.s	.smashwall		; if yes, smash the wall
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
 		bne.s	.donothing	; if not, branch

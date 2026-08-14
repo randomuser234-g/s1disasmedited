@@ -1469,6 +1469,7 @@ Sonic_ResetOnFloor:
 		bne.w	.notknuckles		;if not, run sonic's code
 		jmp	Knuckles_ResetOnFloor		;if yes, run knuckles version of this code
 .notknuckles:
+		clr.b	(f_tailscarrysonic).w                   ; clear tails carrying sonic
 		btst	#4,obStatus(a0)	; is Sonic roll-jumping?
 		beq.s	.notrolljump	; if not, skip.
 		nop	; Unknown removed code.
