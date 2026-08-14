@@ -17,6 +17,9 @@ Tails_CarrySonic:
 	tst.w	(v_debuguse).w		;debug used?
 	bne.w	.stopcarrysonic		;if yes, stop carrying sonic
 
+	tst.b	(f_tailscarrysonic).w	;carrying sonic?
+	bne.s	.chkdistance		;if yes, check distance between the two with old parameters
+
 	move.w	obX(a1),d0
 	sub.w	obX(a0),d0
 	addi.w	#$C,d0
@@ -24,9 +27,28 @@ Tails_CarrySonic:
 	bhs.w	.stopcarrysonic
 	move.w	obY(a1),d1
 	sub.w	obY(a0),d1
-	subi.w	#$19,d1		;28
-	cmpi.w	#$D,d1		;10
+	subi.w	#$1E,d1		;30
+	cmpi.w	#$10,d1		;16
 	bhs.w	.stopcarrysonic
+	bra.s	.leftorright
+.chkdistance:
+	btst	#1,obStatus(a1)	;is sonic airborne?
+	beq.w	.stopcarrysonic	;if he isn't make sure to cancel
+
+	btst	#3,obStatus(a1)	;is sonic on an object?
+	bne.w	.stopcarrysonic	;if he is make sure to cancel
+
+	move.w	obX(a1),d0	;get distance between tails and sonic by subtracting difference
+	sub.w	obX(a0),d0		
+	addi.w	#$C,d0		;enable a little range by adding $C
+	cmpi.w	#$18,d0		;is he #$18 units away from this spot
+	bhs.w	.bumpandstopcarrysonic	;if higher, then don't carry sonic
+	move.w	obY(a1),d1
+	sub.w	obY(a0),d1
+	subi.w	#$19,d1		;25
+	cmpi.w	#$D,d1		;13
+	bhs.w	.stopcarrysonic
+.leftorright:
 	;face left or right
 	btst	#0,obStatus(a0)		;tails facing left?
 	bne.s	.notleft		;if not, don't face left
@@ -58,6 +80,9 @@ Tails_CarrySonic:
 	beq.s	.end	; if not, branch
 	move.b	#id_Roll,(a0) ; use "jumping" animation, flight cancel
 	move.b	#id_Roll,(a1) ; use "jumping" animation
+	bra.s	.stopcarrysonic
+.bumpandstopcarrysonic:
+	move.w	#-$100,obVelY(a1)
 .stopcarrysonic:
 	move.b	#0,(f_tailscarrysonic).w
 		rts
