@@ -17,9 +17,6 @@ Tails_CarrySonic:
 	tst.w	(v_debuguse).w		;debug used?
 	bne.w	.stopcarrysonic		;if yes, stop carrying sonic
 
-	tst.b	(f_tailscarrysonic).w	;is tails already carrying sonic?
-	bne.w	.chkspeed		;if yes, skip coordinate checks
-
 	move.w	obX(a1),d0
 	sub.w	obX(a0),d0
 	addi.w	#$C,d0
@@ -55,7 +52,7 @@ Tails_CarrySonic:
 	move.w	obVelY(a0),obVelY(a1)
 	addi.w	#$1D,obY(a1)	;30		; the 3 numbers edited here may be where on y axis tails should hold sonic
 	move.b	#id_HangFromTails,obAnim(a1)
-	move.b	#1,(f_tailscarrysonic).w	;flight flag
+	move.b	#1,(f_tailscarrysonic).w
 	move.b	#0,(v_tailscpujump).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
