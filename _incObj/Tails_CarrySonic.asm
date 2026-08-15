@@ -78,8 +78,9 @@ Tails_CarrySonic:
 	move.b	#0,(v_tailscpujump).w
 	btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 	beq.s	.end	; if not, branch
-	move.b	#id_Roll,(a0) ; use "jumping" animation, flight cancel
-	move.b	#id_Roll,(a1) ; use "jumping" animation
+;bug forgot to put obAnim and it moved object 2 "tails" into p1 turning sonic into tails
+	move.b	#id_Roll,obAnim(a1) ; use "jumping" animation
+	move.b	#id_Roll,obAnim(a0) ; use "jumping" animation, flight cancel
 	bra.s	.stopcarrysonic
 .bumpandstopcarrysonic:
 	move.w	#-$100,obVelY(a1)

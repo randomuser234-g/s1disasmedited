@@ -54,6 +54,8 @@ Smash_Solid:	; Routine 2
 ; ===========================================================================
 
 .chkroll:
+		cmpi.b	#4,obRoutine(a0) ;is the wall already broken?
+		beq.s	.donothing	;if yes, don't break it again
 		cmpi.b	#id_KnucklesPlayer,obID(a1)	; is the character Knuckles?
 		beq.s	.smashwall		; if yes, smash the wall
 		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
