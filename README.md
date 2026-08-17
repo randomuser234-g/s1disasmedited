@@ -38,7 +38,9 @@ Knuckles' glide and climbing physics are mostly from KIS2, but collision has not
 
 Sonic and Tails' modes can be intertwined (speeds are shared, both can be invincible, etc.)
 
-Tails can't interact with some objects as the second player (platforms, bridges, eggman in FZ, MZ push block, most spikes, upside down SLZ staircases)
+Tails can't interact with some objects as the second player (eggman in FZ, MZ push block, MZ grassy platforms, most spikes, upside down SLZ staircases, wind tunnels and waterfalls)
+
+the swing is more prone to dropping Sonic if standing at the edges
 
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
