@@ -70,11 +70,12 @@ See_Slope:	; Routine 2
 		lea	(See_DataFlat).l,a2
 
 .notflat:
+	move.b	obStatus(a0),d0
+	andi.b	#standing_mask,d0
+	bne.s	See_Slope2
 		move.w	obVelY(a1),see_speed(a0)
 		move.w	#$30,d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		jsr	(SlopeObject_SingleCharacter).l
+		jsr	(SlopeObject).l
 		rts
 ; ===========================================================================
 
@@ -87,18 +88,28 @@ See_Slope2:	; Routine 4
 
 .notflat:
 		move.w	#$30,d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		jsr	(ExitPlatform).l
 		move.w	#$30,d1
-		move.w	obX(a0),d2
-		jsr	(SlopeObject2_SkipPlayer).l
+		move.w	obX(a0),d4
+		moveq	#8,d3
+		jsr	(SlopeObject).l
 		rts
 ; ===========================================================================
 
 See_ChkSide:
 		moveq	#2,d1
+		btst	#3,obStatus(a0)	;is sonic on the seesaw?
+		beq.s	.tails		;if not, check tails
 		lea	(v_player).w,a1
+		bra.s	.moveseesaw		;skip tails if sonic is on the seesaw
+.tails:
+		btst	#4,obStatus(a0)	;is tails on the seesaw?
+		beq.w	.noflip		;if not, don't affect seesaw
+		lea	(v_player2).w,a1
+		;the person last gets to move seesaw, make sonic last in checking
+		bsr.s	.moveseesaw
+.noflip:
+		rts
+.moveseesaw:
 		move.w	obX(a0),d0
 		sub.w	obX(a1),d0	; is Sonic on the left side of the seesaw?
 		bcc.s	.leftside	; if yes, branch
@@ -234,7 +245,7 @@ loc_118BA:
 		move.w	see_origY(a0),d1
 		add.w	(a2,d0.w),d1
 		cmp.w	obY(a0),d1
-		bgt.s	locret_11938
+		bgt.w	locret_11938
 		movea.l	see_parent(a0),a1
 		moveq	#2,d1
 		tst.w	obVelX(a0)
@@ -247,12 +258,29 @@ See_Spring:
 		cmp.b	obFrame(a1),d1
 		beq.s	loc_1192C
 		bclr	#3,obStatus(a1)
+		beq.s	.tails
+		lea	(v_player).w,a2
+		bsr.s	.seesawspringup
+		bsr.s	loc_1192C
+		bclr	#4,obStatus(a1)		;check if both were on top
+		beq.s	locret_11938
+		lea	(v_player2).w,a2
+		move.w	(v_player+obVelY).w,obVelY(a2)
+		bsr.s	.seesawtails
+		bra.s	locret_11938
+	
+.tails:
+		bclr	#4,obStatus(a1)
 		beq.s	loc_1192C
+		lea	(v_player2).w,a2
+		bsr.s	.seesawspringup
+		bra.s	locret_11938
+.seesawspringup:
 		clr.b	ob2ndRout(a1)
 		move.b	#2,obRoutine(a1)
-		lea	(v_player).w,a2
 		move.w	obVelY(a0),obVelY(a2)
 		neg.w	obVelY(a2)
+.seesawtails:
 		bset	#1,obStatus(a2)
 		bclr	#3,obStatus(a2)
 		bclr	d6,obStatus(a0)
@@ -261,6 +289,7 @@ See_Spring:
 		move.b	#2,obRoutine(a2)
 		move.w	#sfx_Spring,d0
 		jsr	(QueueSound2).l	; play spring sound
+		rts
 
 loc_1192C:
 		clr.w	obVelX(a0)

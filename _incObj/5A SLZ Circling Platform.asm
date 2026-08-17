@@ -30,23 +30,21 @@ Circ_Main:	; Routine 0
 		move.w	obY(a0),circ_origY(a0)
 
 Circ_Platform:	; Routine 2
+		bra.w	Circ_Action
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1		;bandaid
-		moveq	#p1_standing_bit,d6
-		jsr	(PlatformObject_SingleCharacter).l
+		jsr	(PlatformObject).l
 		bra.w	Circ_Types
 ; ===========================================================================
 
 Circ_Action:	; Routine 4
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1		;bandaid
-		jsr	(ExitPlatform).l
 		move.w	obX(a0),-(sp)
 		bsr.w	Circ_Types
-		move.w	(sp)+,d2
-		jmp	(MvSonicOnPtfm2).l
+		moveq	#0,d1
+		move.b	obActWid(a0),d1
+		moveq	#8,d3
+		move.w	(sp)+,d4
+		jmp	(PlatformObject).l
 ; ===========================================================================
 
 Circ_Types:

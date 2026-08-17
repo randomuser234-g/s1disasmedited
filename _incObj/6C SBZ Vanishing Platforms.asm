@@ -77,33 +77,35 @@ VanP_Appear:	; Routine 4
 		bne.s	.notsolid	; if yes, branch
 		cmpi.b	#2,obRoutine(a0)
 		bne.s	.loc_160D6
+		bra.s	.loc_160D6
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		jsr	(PlatformObject_SingleCharacter).l
+		jsr	(PlatformObject).l
 		jmp	RememberState
 ; ===========================================================================
 
 .loc_160D6:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		jsr	(ExitPlatform).l
-		move.w	obX(a0),d2
-		jsr	(MvSonicOnPtfm2).l
+		move.w	obX(a0),d4
+		moveq	#9,d3
+		jsr	(PlatformObject).l
 		jmp	RememberState
 ; ===========================================================================
 
 .notsolid:
 		btst	#3,obStatus(a0)
-		beq.s	.display
-		;lea	(v_player).w,a1
+		beq.s	.tails
 		bclr	#3,(v_player+obStatus).w
-		bclr	#3,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
 		move.b	#2,obRoutine(a0)
 		clr.b	obSolid(a0)
-
+.tails:
+		btst	#4,obStatus(a0)
+		beq.s	.display
+		bclr	#3,(v_player2+obStatus).w
+		bclr	#4,obStatus(a0)
+		move.b	#2,obRoutine(a0)
+		clr.b	obSolid(a0)
 .display:
 		jmp	RememberState

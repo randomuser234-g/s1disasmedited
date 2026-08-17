@@ -75,25 +75,27 @@ Elev_Main:	; Routine 0
 		move.w	obY(a0),elev_origY(a0)
 
 Elev_Platform:	; Routine 2
+	move.b	obStatus(a0),d0
+	andi.b	#standing_mask,d0
+	beq.s	Elev_Action
+	move.b	#4,obRoutine(a0)
+	bra.s	Elev_Action
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-	lea	(v_player).w,a1
-	moveq	#p1_standing_bit,d6
-		jsr	(PlatformObject_SingleCharacter).l
+		jsr	(PlatformObject).l
 		bra.w	Elev_Types
 ; ===========================================================================
 
 Elev_Action:	; Routine 4
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-	lea	(v_player).w,a1
-		jsr	(ExitPlatform).l
 		move.w	obX(a0),-(sp)
 		bsr.w	Elev_Types
-		move.w	(sp)+,d2
+		moveq	#0,d1
+		move.b	obActWid(a0),d1
+		moveq	#8,d3
+		move.w	(sp)+,d4
 		_tst.b	obID(a0)
 		beq.s	.deleted
-		jmp	(MvSonicOnPtfm2).l
+		jmp	(PlatformObject).l
 
 .deleted:
 	if FixBugs
@@ -189,9 +191,18 @@ Elev_Types:
 .typereset:
 		btst	#3,obStatus(a0)
 		beq.s	.delete
+		lea	(v_player).w,a1
+		bsr.s	.fall
+		btst	#4,obStatus(a0)
+		beq.s	.delete
+		lea	(v_player2).w,a1
+		bsr.s	.fall
+		bra.s	.delete
+.fall:
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
+		rts
 
 .delete:
 		bra.w	DeleteObject

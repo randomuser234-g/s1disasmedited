@@ -45,10 +45,13 @@ CFlo_Touch:	; Routine 2
 		subq.b	#1,cflo_timedelay(a0) ; subtract 1 from time
 
 .solid:
-		move.w	#$20,d1
-		lea	(v_player).w,a1
-		moveq	#3,d6
-		bsr.w	PlatformObject_SingleCharacter
+		;bsr.s	.tstremstate
+		move.b	obStatus(a0),d0
+		andi.b	#standing_mask,d0
+		beq.s	CFlo_WalkOff
+		move.b	#4,obRoutine(a0)
+		bra.s	CFlo_WalkOff
+.tstremstate:
 		tst.b	obSubtype(a0)
 		bpl.s	.remstate
 		btst	#3,obStatus(a1)
@@ -74,10 +77,9 @@ CFlo_Collapse:	; Routine 4
 
 CFlo_WalkOff:	; Routine $A
 		move.w	#$20,d1
-		lea	(v_player).w,a1
-		bsr.w	ExitPlatform
-		move.w	obX(a0),d2
-		bsr.w	MvSonicOnPtfm2
+		move.w	obX(a0),d4
+		moveq	#9,d3
+		bsr.w	PlatformObject
 		jmp	RememberState
 ; End of function CFlo_WalkOff
 
@@ -95,14 +97,20 @@ CFlo_Display:	; Routine 6
 loc_8402:
 		subq.b	#1,cflo_timedelay(a0)
 		bsr.w	CFlo_WalkOff
-		lea	(v_player).w,a1
-		btst	#3,obStatus(a1)
-		beq.s	loc_842E
 		tst.b	cflo_timedelay(a0)
 		bne.s	locret_843A
+		lea	(v_player).w,a1
+		bsr.s	.checkfalloff
+		lea	(v_player2).w,a1
+		bsr.s	.checkfalloff
+		bra.s	loc_842E
+.checkfalloff
+		btst	#3,obStatus(a1)
+		beq.s	locret_843A
 		bclr	#3,obStatus(a1)
 		bclr	#5,obStatus(a1)
 		move.b	#id_Run,obPrevAni(a1) ; restart Sonic's animation
+		rts
 
 loc_842E:
 		move.b	#0,cflo_collapse_flag(a0)

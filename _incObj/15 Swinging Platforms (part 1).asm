@@ -116,12 +116,20 @@ Swing_Main:	; Routine 0
 		beq.s	Swing_Action	; if yes, branch
 
 Swing_SetSolid:	; Routine 2
+	move.b	obStatus(a0),d0
+	andi.b	#standing_mask,d0
+	bne.s	Swing_Action2
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		moveq	#0,d3
 		move.b	obHeight(a0),d3
 		lea	(v_player).w,a1
 		moveq	#p1_standing_bit,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	Swing_Solid
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#p2_standing_bit,d6
 		bsr.w	Swing_Solid
 
 Swing_Action:	; Routine $C
@@ -131,18 +139,15 @@ Swing_Action:	; Routine $C
 ; ===========================================================================
 
 Swing_Action2:	; Routine 4
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		bsr.w	ExitPlatform
 		move.w	obX(a0),-(sp)
 		bsr.w	Swing_Move
-		move.w	(sp)+,d2
+		moveq	#0,d1
+		move.b	obActWid(a0),d1
+		move.w	(sp)+,d4
 		moveq	#0,d3
 		move.b	obHeight(a0),d3
 		addq.b	#1,d3
-		lea	(v_player).w,a1
-		bsr.w	MvSonicOnPtfm
+		bsr.w	PlatformObject
 		bsr.w	DisplaySprite
 		bra.w	Swing_ChkDel
 

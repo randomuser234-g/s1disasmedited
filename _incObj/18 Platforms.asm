@@ -52,16 +52,19 @@ Plat_Main:	; Routine 0
 		move.b	d1,obFrame(a0)	; set frame to d1
 
 Plat_Solid:	; Routine 2
+	move.b	obStatus(a0),d0
+	andi.b	#standing_mask,d0
+	bne.s	Plat_Action2
 		tst.b	objoff_38(a0)
-		beq.s	loc_7EE0
+		beq.s	loc_7F06;loc_7EE0
 		subq.b	#4,objoff_38(a0)
-
+		bra.s	loc_7F06
 loc_7EE0:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		bsr.w	PlatformObject_SingleCharacter
+		;lea	(v_player).w,a1
+		;moveq	#p1_standing_bit,d6
+		bsr.w	PlatformObject;_SingleCharacter
 
 Plat_Action:	; Routine 8
 		bsr.w	Plat_Move
@@ -76,16 +79,14 @@ Plat_Action2:	; Routine 4
 		addq.b	#4,objoff_38(a0)
 
 loc_7F06:
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		bsr.w	ExitPlatform
 		move.w	obX(a0),-(sp)
 		bsr.w	Plat_Move
 		bsr.w	Plat_Nudge
-		move.w	(sp)+,d2
-		bsr.w	MvSonicOnPtfm2
+		moveq	#0,d1
+		move.b	obActWid(a0),d1
+		moveq	#8,d3
+		move.w	(sp)+,d4
+		jsr	PlatformObject
 		bsr.w	DisplaySprite
 		bra.w	Plat_ChkDel
 
@@ -197,8 +198,12 @@ Plat_Move:
 .type03:
 		tst.w	objoff_3A(a0)		; is time delay set?
 		bne.s	.type03_wait	; if yes, branch
-		btst	#3,obStatus(a0)	; is Sonic standing on the platform?
-		beq.s	.type03_nomove	; if not, branch
+		btst	#3,obStatus(a0)	; is Sonic or Tails standing on the platform?
+		bne.s	.type03_delaytomove	; if yes, set timer
+		btst	#4,obStatus(a0)	; is Sonic or Tails standing on the platform?
+		bne.s	.type03_delaytomove	; if yes, set timer
+		bra.s	.type03_nomove		; if not, branch
+.type03_delaytomove:
 		move.w	#30,objoff_3A(a0)	; set time delay to 0.5 seconds
 
 .type03_nomove:
@@ -217,15 +222,24 @@ Plat_Move:
 		beq.s	.loc_8048
 		subq.w	#1,objoff_3A(a0)
 		bne.s	.loc_8048
-		btst	#3,obStatus(a0)
-		beq.s	.loc_8042
-		lea	(v_player).w,a1
+	bclr	#p1_standing_bit,obStatus(a0)
+	beq.s	+
+	lea	(v_player).w,a1 ; a1=character
+	bsr.s	.fallofftype4
++
+	bclr	#p2_standing_bit,obStatus(a0)
+	beq.s	.loc_8042
+	lea	(v_player2).w,a1 ; a1=character
+	bsr.s	.fallofftype4
+	bra.s	.loc_8042
+.fallofftype4:
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
 		bclr	#3,obStatus(a0)
 		clr.b	objoff_25(a0)
 		move.w	obVelY(a0),obVelY(a1)
+		rts
 
 .loc_8042:
 		move.b	#8,obRoutine(a0)

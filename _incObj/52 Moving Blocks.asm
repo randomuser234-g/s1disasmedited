@@ -55,20 +55,17 @@ loc_FE60:
 		andi.b	#$F,obSubtype(a0)
 
 MBlock_Platform: ; Routine 2
+		move.b	obStatus(a0),d0
+		andi.b	#standing_mask,d0
+		bne.s	MBlock_StandOn	
 		bsr.w	MBlock_Move
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		jsr	(PlatformObject_SingleCharacter).l
+		jsr	(PlatformObject).l
 		bra.s	MBlock_ChkDel
 ; ===========================================================================
 
 MBlock_StandOn:	; Routine 4
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		lea	(v_player).w,a1
-		jsr	(ExitPlatform).l
 	if FixBugs
 		; MBlock_Move manipulates the stack pointer, potentially
 		; resulting in a crash. To avoid this, don't store data on
@@ -78,13 +75,15 @@ MBlock_StandOn:	; Routine 4
 		move.w	obX(a0),-(sp)
 	endif
 		bsr.w	MBlock_Move
+		moveq	#0,d1
+		move.b	obActWid(a0),d1
+		moveq	#8,d3
 	if FixBugs
-		move.w	objoff_38(a0),d2
+		move.w	objoff_38(a0),d4
 	else
-		move.w	(sp)+,d2
+		move.w	(sp)+,d4
 	endif
-		lea	(v_player).w,a1
-		jsr	(MvSonicOnPtfm2).l
+		jsr	(PlatformObject).l
 
 MBlock_ChkDel:
 		out_of_range.w	DeleteObject,mblock_origX(a0)
@@ -127,9 +126,18 @@ loc_FF26:
 ; ===========================================================================
 
 MBlock_Type02:
-		cmpi.b	#4,obRoutine(a0) ; is Sonic standing on the platform?
-		bne.s	MBlock_02_Wait
+		btst	#3,obStatus(a0) ; is Sonic standing on the platform?
+		beq.s	.tails
 		addq.b	#1,obSubtype(a0) ; if yes, add 1 to type
+		bra.s	MBlock_02_Wait
+.tails:
+		btst	#4,obStatus(a0) ; is Sonic standing on the platform?
+		beq.s	MBlock_02_Wait
+		addq.b	#1,obSubtype(a0) ; if yes, add 1 to type
+		;bra.s	MBlock_02_Wait
+		;cmpi.b	#4,obRoutine(a0) ; is Sonic standing on the platform?
+		;bne.s	MBlock_02_Wait
+		;addq.b	#1,obSubtype(a0) ; if yes, add 1 to type
 
 MBlock_02_Wait:
 		rts

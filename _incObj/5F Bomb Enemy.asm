@@ -140,7 +140,7 @@ Bom_Action:	; Routine 2
 Bom_Display:	; Routine 4
 		bsr.s	loc_11B70
 		lea	(Ani_Bomb).l,a1
-		bsr.w	AnimateSprite
+		jsr	AnimateSprite
 		bra.w	RememberState
 ; ===========================================================================
 

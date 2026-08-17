@@ -36,11 +36,15 @@ Ledge_Touch:	; Routine 2
 		subq.b	#1,ledge_timedelay(a0) ; subtract 1 from time
 
 .slope:
+		move.b	obStatus(a0),d0
+		andi.b	#standing_mask,d0
+		beq.s	Ledge_WalkOff
+		move.b	#4,obRoutine(a0)
+		bra.s	Ledge_WalkOff
+	;unused
 		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		bsr.w	SlopeObject_SingleCharacter
+		bsr.w	SlopeObject;_SingleCharacter
 		jmp	RememberState
 ; ===========================================================================
 
@@ -55,13 +59,9 @@ Ledge_Collapse:	; Routine 4
 
 Ledge_WalkOff:	; Routine $A
 		move.w	#$30,d1
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		bsr.w	ExitPlatform
-		move.w	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
-		move.w	obX(a0),d2
-		bsr.w	SlopeObject2_SkipPlayer
+		move.w	obX(a0),d4
+		bsr.w	SlopeObject;2_SkipPlayer
 		jmp	RememberState
 ; End of function Ledge_WalkOff
 
@@ -79,12 +79,14 @@ Ledge_Display:	; Routine 6
 loc_82D0:
 		subq.b	#1,ledge_timedelay(a0)
 		bsr.w	Ledge_WalkOff
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
-		btst	d6,obStatus(a0)
-		beq.s	loc_82FC
 		tst.b	ledge_timedelay(a0)
 		bne.s	locret_8308
+		lea	(v_player).w,a1
+		bsr.s	.falloffcollapsingplatform
+		lea	(v_player2).w,a1
+.falloffcollapsingplatform:
+		btst	#3,obStatus(a1)
+		beq.s	loc_82FC
 		bclr	#3,obStatus(a1)
 		bclr	d6,obStatus(a0)
 		bset	#1,obStatus(a1)
