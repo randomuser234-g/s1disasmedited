@@ -41,7 +41,7 @@ AddressSRAM = 3
 ZoneCount = 6
 ;	| Used for the zonewarning macro. Do not change, unless more zones get added.
 ;	| Discrete zones are: GHZ, LZ, MZ, SLZ, SYZ, and SBZ
-DebugBuild = 0
+DebugBuild = 1
 ;	| Instantly enable debug and level select
 ; ===========================================================================
 ; AS-specific macros and assembler settings
@@ -4732,8 +4732,36 @@ PlatformObject:
 	movem.l	(sp)+,d1-d4
 	lea	(v_player2).w,a1 ; a1=character
 	addq.b	#1,d6
-; loc_19C48:
 PlatformObject_SingleCharacter:
+	btst	d6,obStatus(a0)
+	beq.w	PlatformObject_cont
+	move.w	d1,d2
+	add.w	d2,d2
+	btst	#1,obStatus(a1)	;in_air status
+	bne.s	.notstanding
+	move.w	obX(a1),d0
+	sub.w	obX(a0),d0
+	add.w	d1,d0
+	bmi.s	.notstanding
+	cmp.w	d2,d0
+	blo.s	.mvsonic
+.notstanding:
+
+	bclr	#3,obStatus(a1)	;on object status
+	bset	#1,obStatus(a1)	;in air status
+	bclr	d6,obStatus(a0)
+	moveq	#0,d4
+	rts
+; ---------------------------------------------------------------------------
+.mvsonic:
+	move.w	d4,d2
+	bsr.w	MvSonicOnPtfm
+	moveq	#0,d4
+	rts
+; ===========================================================================
+
+
+PlatformObject_cont:
 		tst.w	obVelY(a1)	; is Sonic moving up/jumping?
 		bmi.w	Plat_Exit	; if yes, branch
 
@@ -4748,7 +4776,7 @@ PlatformObject_SingleCharacter:
 
 Plat_NoXCheck:
 		move.w	obY(a0),d0
-		subq.w	#8,d0
+		subq.w	#8,d0	;different
 
 Platform3:
 ;		perform y-axis range check
@@ -4775,7 +4803,7 @@ Platform3:
 		add.w	d0,d2
 		addq.w	#3,d2
 		move.w	d2,obY(a1)
-		addq.b	#2,obRoutine(a0)
+		;addq.b	#2,obRoutine(a0)	;when removed, seems to work for platforms, some objects rely on this so more edits needed (mz moving blocks, etc)
 
 loc_74AE:
 		btst	#3,obStatus(a1)
@@ -4811,7 +4839,7 @@ loc_7512:
 		bset	#3,obStatus(a1)
 		bclr	#1,obStatus(a1)
 		bset	d6,obStatus(a0)
-		bset	#3,obStatus(a0)
+		;bset	#3,obStatus(a0)
 
 Plat_Exit:
 		rts
@@ -4835,15 +4863,73 @@ SlopeObject:
 ; loc_19CA0:
 ;SlopedPlatform_SingleCharacter:
 SlopeObject_SingleCharacter:
+	btst	d6,obStatus(a0)
+	beq.w	SlopeObject_cont
+	move.w	d1,d2
+	add.w	d2,d2
+	btst	#1,obStatus(a1)
+	bne.s	.notstanding
+	move.w	obX(a1),d0
+	sub.w	obX(a0),d0
+	add.w	d1,d0
+	bmi.s	.notstanding
+	cmp.w	d2,d0
+	blo.s	.mvsonic
+
+;S2_loc_19CC4:
+.notstanding:
+	bclr	#3,obStatus(a1)
+	bset	#1,obStatus(a1)
+	bclr	d6,obStatus(a0)
+	moveq	#0,d4
+	rts
+; ---------------------------------------------------------------------------
+;S2_loc_19CD8:
+.mvsonic:
+	move.w	d4,d2
+	bsr.s	MvSonicOnSlope
+	;bsr.w	MvSonicOnPlatform
+	moveq	#0,d4
+	rts
+
+MvSonicOnSlope:
+	btst	#3,obStatus(a1)	;is sonic on the platform?
+	beq.s	.end		;if not, end code
+	move.w	obX(a1),d0
+	sub.w	obX(a0),d0
+	add.w	d1,d0
+	lsr.w	#1,d0
+	btst	#0,obRender(a0)	;object is flipped?
+	beq.s	.mvsoniconslopep2		;if not, branch
+	not.w	d0
+	add.w	d1,d0
+
+.mvsoniconslopep2:
+	move.b	(a2,d0.w),d1
+	ext.w	d1
+	move.w	obY(a0),d0
+	sub.w	d1,d0
+	moveq	#0,d1
+	move.b	obHeight(a1),d1
+	sub.w	d1,d0
+	move.w	d0,obY(a1)
+	sub.w	obX(a0),d2
+	sub.w	d2,obX(a1)
+
+.end:
+	rts
+; ===========================================================================
+
+SlopeObject_cont:
 		tst.w	obVelY(a1)
 		bmi.w	Plat_Exit
 		move.w	obX(a1),d0
 		sub.w	obX(a0),d0
 		add.w	d1,d0
-		bmi.s	Plat_Exit
+		bmi.w	Plat_Exit
 		add.w	d1,d1
 		cmp.w	d1,d0
-		bhs.s	Plat_Exit
+		bhs.w	Plat_Exit
 		btst	#0,obRender(a0)
 		beq.s	loc_754A
 		not.w	d0
@@ -4863,7 +4949,6 @@ loc_754A:
 
 
 Swing_Solid:
-		lea	(v_player).w,a1
 		tst.w	obVelY(a1)
 		bmi.w	Plat_Exit
 		move.w	obX(a1),d0
