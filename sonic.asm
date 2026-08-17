@@ -4759,6 +4759,21 @@ PlatformObject_SingleCharacter:
 	moveq	#0,d4
 	rts
 ; ===========================================================================
+; ===========================================================================
+; Used only by EHZ/HPZ log bridges. Very similar to PlatformObject_cont, but
+; d2 already has the full width of the log.
+;loc_19D9C:
+PlatformObject11_cont:
+	tst.w	obVelY(a1)
+	bmi.w	Plat_Exit
+	move.w	obX(a1),d0
+	sub.w	obX(a0),d0
+	add.w	d1,d0
+	bmi.w	Plat_Exit
+	cmp.w	d2,d0
+	bhs.w	Plat_Exit
+	bra.s	Plat_NoXCheck
+; ===========================================================================
 
 
 PlatformObject_cont:
