@@ -71,34 +71,51 @@ Bri_Main:	; Routine 0
 		dbf	d1,.buildloop ; repeat d1 times (length of bridge)
 
 Bri_Action:	; Routine 2
-		bsr.s	Bri_Solid
+	move.b	obStatus(a0),d0
+	andi.b	#standing_mask,d0
+	bne.s	+
 		tst.b	objoff_3E(a0)
-		beq.s	.display
+		beq.s	Bri_Solid
 		subq.b	#4,objoff_3E(a0)
-		bsr.w	Bri_Bend
+		bra.s	.loc_F7B8
+
++
+	andi.b	#p2_standing,d0
+	beq.s	++
+	move.b	objoff_3F(a0),d0
+	sub.b	objoff_3B(a0),d0
+	beq.s	++
+	bcc.s	+
+	addq.b	#1,objoff_3F(a0)
+	bra.s	++
+; ---------------------------------------------------------------------------
++
+	subq.b	#1,objoff_3F(a0)
++
+	cmpi.b	#$40,objoff_3E(a0)
+	beq.s	.loc_F7B8
+	addq.b	#4,objoff_3E(a0)
+	bra.s	.loc_F7B8
 
 .display:
 		bsr.w	DisplaySprite
 		bra.w	Bri_ChkDel
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
+.loc_F7B8:
+	bsr.w	Bri_Bend
 
 Bri_Solid:
-		moveq	#0,d1
-		move.b	obSubtype(a0),d1
-		lsl.w	#3,d1
-		move.w	d1,d2
-		addq.w	#8,d1
-		add.w	d2,d2
-		lea	(v_player).w,a1
-		tst.w	obVelY(a1)
-		bmi.w	Plat_Exit
-		move.w	obX(a1),d0
-		sub.w	obX(a0),d0
-		add.w	d1,d0
-		bmi.w	Plat_Exit
-		cmp.w	d2,d0
-		bhs.w	Plat_Exit
-		bra.s	Plat_NoXCheck
+	moveq	#0,d1
+	move.b	obSubtype(a0),d1
+	lsl.w	#3,d1
+	move.w	d1,d2
+	addq.w	#8,d1
+	add.w	d2,d2
+	moveq	#8,d3
+	move.w	obX(a0),d4
+	bsr.w	Bri_WalkOff
+	bsr.w	DisplaySprite
+	bra.w	Bri_ChkDel
+	
 ; End of function Bri_Solid

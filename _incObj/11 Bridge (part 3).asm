@@ -2,20 +2,21 @@
 
 
 Bri_MoveSonic:
-		moveq	#0,d0
+	lsr.w	#4,d0
+	move.b	d0,(a0,d5.w)
+		;moveq	#0,d0
 		move.b	objoff_3F(a0),d0
 		move.b	objoff_29(a0,d0.w),d0
 		lsl.w	#object_size_bits,d0
 		addi.l	#v_objspace&$FFFFFF,d0
 		movea.l	d0,a2
-		lea	(v_player).w,a1
-		moveq	#p1_standing_bit,d6
 		move.w	obY(a2),d0
 		subq.w	#8,d0
 		moveq	#0,d1
 		move.b	obHeight(a1),d1
 		sub.w	d1,d0
 		move.w	d0,obY(a1)	; change Sonic's position on y-axis
+.end:
 		rts
 ; End of function Bri_MoveSonic
 
@@ -41,6 +42,7 @@ Bri_Bend:
 		andi.w	#$F,d3
 		lsl.w	#4,d3
 		lea	(a4,d3.w),a3
+		;difference between s1 and 2
 		lea	objoff_29(a0),a2
 
 loc_765C:
