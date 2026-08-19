@@ -31,10 +31,12 @@ PalCycle_SuperSonic:
 	move.l	4(a0,d0.w),(a1)
 	; underwater palettes
 	lea	(CyclingPal_CPZUWTransformation).l,a0
-	cmpi.b	#3,(v_act).w	; is act number 3?
-	beq.s	+
 	cmpi.b	#1,(f_water).w	; is there water?
 	bne.s	.return
+	cmpi.b	#id_SBZ,(v_zone).w	;is Scrap Brain Zone 1+2?
+	beq.s	+		;if yes, sbz3 palette
+	cmpi.b	#3,(v_act).w	; is act number 3?
+	beq.s	+
 	lea	(CyclingPal_ARZUWTransformation).l,a0
 +	lea	(v_palette_water+4).w,a1
 	move.l	(a0,d0.w),(a1)+
@@ -62,10 +64,12 @@ PalCycle_SuperSonic:
 	move.l	4(a0,d0.w),(a1)
 	; underwater palettes
 	lea	(CyclingPal_CPZUWTransformation).l,a0
-	cmpi.b	#3,(v_act).w	; is act number 3? scrap brain zone
-	beq.s	+
 	cmpi.b	#1,(f_water).w	; is there water?
 	bne.s	.return
+	cmpi.b	#id_SBZ,(v_zone).w	;is Scrap Brain Zone 1+2?
+	beq.s	+		;if yes, sbz3 palette
+	cmpi.b	#3,(v_act).w	; is act number 3? scrap brain zone
+	beq.s	+
 	lea	(CyclingPal_ARZUWTransformation).l,a0
 +	lea	(v_palette_water+4).w,a1
 	move.l	(a0,d0.w),(a1)+
@@ -92,10 +96,12 @@ PalCycle_SuperSonic:
 	move.l	4(a0,d0.w),(a1)
 	; underwater palettes
 	lea	(CyclingPal_CPZUWTransformation).l,a0
-	cmpi.b	#3,(v_act).w	; is act number 3?
-	beq.s	+
 	cmpi.b	#1,(f_water).w	; is there water?
 	bne.w	.return
+	cmpi.b	#id_SBZ,(v_zone).w	;is Scrap Brain Zone 1+2?
+	beq.s	+		;if yes, sbz3 palette
+	cmpi.b	#3,(v_act).w	; is act number 3? scrap brain zone
+	beq.s	+
 	lea	(CyclingPal_ARZUWTransformation).l,a0
 +	lea	(v_palette_water+4).w,a1
 	move.l	(a0,d0.w),(a1)+
