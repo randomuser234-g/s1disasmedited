@@ -1,7 +1,6 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "dd2839bc-94ec-493e-bf08-a51f4897ec2c",
     "objects": [
         {
             "name": "Common",
@@ -12,7 +11,7 @@
                     "palettes": [
                         {
                             "path": "palette/Title Screen.bin",
-                            "length": 3
+                            "length": 4
                         }
                     ],
                     "art": {
@@ -29,32 +28,346 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "dd2839bc-94ec-493e-bf08-a51f4897ec2c"
+                    "config": {
+                        "mapMacros": true
+                    }
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Title Screen - Tails",
+                    "palettes": [
+                        {
+                            "path": "palette/Title Screen.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem/Title Screen Tails.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps/Title Screen Tails.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": true
+                    }
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Title Screen - Knuckles",
+                    "palettes": [
+                        {
+                            "path": "palette/Title Screen Knuckles.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem/Title Screen KnucklesAlt.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps/Title Screen Knuckles keep original maps for some.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": true
+                    }
                 },
                 {
                     "name": "Sonic",
+                    "children": [
+                        {
+                            "name": "Sonic (ending)",
+                            "palettes": [
+                                {
+                                    "path": "palette/Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artnem\\Ending - Sonic.nem",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Ending Sequence Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        },
+                        {
+                            "name": "Sonic (SBz)",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - SBZ3 Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Sonic.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        },
+                        {
+                            "name": "Sonic (Lz)",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - LZ Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Sonic.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        },
+                        {
+                            "name": "Sonic",
+                            "palettes": [
+                                {
+                                    "path": "palette/Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Sonic.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": true,
+                    "config": {}
+                },
+                {
+                    "name": "Tails",
+                    "children": [
+                        {
+                            "name": "Tails (continue)",
+                            "palettes": [
+                                {
+                                    "path": "palette/Special Stage Continue Bonus.bin",
+                                    "length": 2
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artnem\\Continue Screen Tails.nem",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Continue Screen.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        },
+                        {
+                            "name": "Tails (Lz)",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - LZ Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Tails.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Tails.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "config": {}
+                        },
+                        {
+                            "name": "Tails (SBz)",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - SBZ3 Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Tails.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Tails.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "config": {}
+                        },
+                        {
+                            "name": "Tails (ending)",
+                            "palettes": [
+                                {
+                                    "path": "palette/Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artnem\\Ending - Tails.nem",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Ending Sequence Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "config": {
+                                "mapMacros": true
+                            }
+                        },
+                        {
+                            "name": "Tails",
+                            "palettes": [
+                                {
+                                    "path": "palette/Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 2.js",
+                            "art": {
+                                "path": "artunc/Tails.bin",
+                                "compression": "Uncompressed",
+                                "offset": "0"
+                            },
+                            "mappings": {
+                                "path": "_maps/Tails.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Tails DPLC.asm",
+                                "label": ""
+                            },
+                            "expanded": true,
+                            "config": {
+                                "mapMacros": true
+                            }
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": true,
+                    "config": {}
+                },
+                {
+                    "name": "Knuckles",
                     "palettes": [
                         {
                             "path": "palette/Sonic.bin",
                             "length": 1
                         }
                     ],
-                    "format": "Sonic 1.js",
+                    "format": "Sonic 2.js",
                     "art": {
-                        "path": "artunc/Sonic.bin",
+                        "path": "artunc/Knuckles.bin",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "_maps/Sonic.asm",
+                        "path": "_maps/Knuckles.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                        "path": "_maps/Knuckles - Dynamic Gfx Script.asm",
                         "label": ""
                     },
-                    "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
+                    "config": {
+                        "mapMacros": true
+                    }
                 },
                 {
                     "name": "Signpost",
@@ -64,10 +377,10 @@
                             "length": 1
                         }
                     ],
-                    "format": "Sonic 1.js",
+                    "format": "Sonic 2.js",
                     "art": {
-                        "path": "artnem/Signpost.nem",
-                        "compression": "Nemesis",
+                        "path": "artunc/Signpost.bin",
+                        "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
@@ -75,11 +388,13 @@
                         "label": ""
                     },
                     "dplcs": {
-                        "enabled": false,
-                        "path": "",
+                        "enabled": true,
+                        "path": "_maps\\Signpost - Dynamic Gfx Script.asm",
                         "label": ""
                     },
-                    "uuid": "472ab9f3-6355-46ce-a3a8-3fd70d6d9cd8"
+                    "config": {
+                        "mapMacros": true
+                    }
                 },
                 {
                     "name": "Ring",
@@ -104,7 +419,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "2ab9f363-55e6-4ee3-a83f-d70d6d9cd886"
+                    "config": {}
                 },
                 {
                     "name": "Monitor",
@@ -129,7 +444,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "b9f36355-e6ce-43a8-bfd7-0d6d9cd8865f"
+                    "config": {}
                 },
                 {
                     "name": "Spikes",
@@ -154,7 +469,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "f36355e6-cee3-483f-970d-6d9cd8865fb1"
+                    "config": {}
                 },
                 {
                     "name": "Egg Prison",
@@ -179,7 +494,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6355e6ce-e3a8-4fd7-8d6d-9cd8865fb147"
+                    "config": {}
                 },
                 {
                     "name": "Spring",
@@ -204,7 +519,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "55e6cee3-a83f-470d-ad9c-d8865fb14792"
+                    "config": {}
                 },
                 {
                     "name": "Giant ring",
@@ -229,7 +544,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e6cee3a8-3fd7-4d6d-9cd8-865fb1479299"
+                    "config": {}
                 },
                 {
                     "name": "Invisible solid block",
@@ -254,7 +569,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e3a83fd7-0d6d-4cd8-865f-b147929999ea"
+                    "config": {}
                 },
                 {
                     "name": "Lamppost",
@@ -279,7 +594,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "a83fd70d-6d9c-4886-9fb1-47929999eaa2"
+                    "config": {}
                 },
                 {
                     "name": "Hidden Point Bonus",
@@ -304,18 +619,17 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3fd70d6d-9cd8-465f-b147-929999eaa239"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
-            "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
+            "expanded": true,
+            "config": {}
         },
         {
             "name": "GHZ",
             "children": [
                 {
-                    "uuid": "00cd250e-813f-440e-b06c-e8c1cfd2387d",
                     "format": "Sonic 1.js",
                     "name": "Ball",
                     "palettes": [],
@@ -332,7 +646,8 @@
                         "enabled": false,
                         "path": "",
                         "label": ""
-                    }
+                    },
+                    "config": {}
                 },
                 {
                     "name": "Bridge",
@@ -361,7 +676,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "0d6d9cd8-865f-4147-9299-99eaa239c304"
+                    "config": {}
                 },
                 {
                     "name": "Swinging Platform",
@@ -390,7 +705,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6d9cd886-5fb1-4792-9999-eaa239c3047f"
+                    "config": {}
                 },
                 {
                     "name": "Helix of spikes on a pole",
@@ -419,7 +734,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "9cd8865f-b147-4299-99ea-a239c3047fd4"
+                    "config": {}
                 },
                 {
                     "name": "Platform",
@@ -448,7 +763,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d8865fb1-4792-4999-aaa2-39c3047fd4d4"
+                    "config": {}
                 },
                 {
                     "name": "Collapsing Cliff",
@@ -477,7 +792,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "865fb147-9299-49ea-a239-c3047fd4d422"
+                    "config": {}
                 },
                 {
                     "name": "Bridge stump",
@@ -506,7 +821,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5fb14792-9999-4aa2-b9c3-047fd4d422f4"
+                    "config": {}
                 },
                 {
                     "name": "Crabmeat",
@@ -535,7 +850,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "b1479299-99ea-4239-8304-7fd4d422f43f"
+                    "config": {}
                 },
                 {
                     "name": "Buzz Bomber",
@@ -564,7 +879,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "47929999-eaa2-49c3-847f-d4d422f43f5e"
+                    "config": {}
                 },
                 {
                     "name": "Chopper",
@@ -593,7 +908,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "929999ea-a239-4304-bfd4-d422f43f5ed1"
+                    "config": {}
                 },
                 {
                     "name": "Purple rock",
@@ -622,7 +937,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "9999eaa2-39c3-447f-94d4-22f43f5ed13c"
+                    "config": {}
                 },
                 {
                     "name": "Breakable Wall",
@@ -651,7 +966,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "99eaa239-c304-4fd4-9422-f43f5ed13c29"
+                    "config": {}
                 },
                 {
                     "name": "Moto Bug",
@@ -680,7 +995,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "eaa239c3-047f-44d4-a2f4-3f5ed13c29d5"
+                    "config": {}
                 },
                 {
                     "name": "Newtron",
@@ -709,7 +1024,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "a239c304-7fd4-4422-b43f-5ed13c29d58b"
+                    "config": {}
                 },
                 {
                     "name": "Wall Barrier",
@@ -738,12 +1053,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "39c3047f-d4d4-42f4-bf5e-d13c29d58b5f"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "d70d6d9c-d886-4fb1-8792-9999eaa239c3"
+            "config": {}
         },
         {
             "name": "LZ",
@@ -775,7 +1090,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "047fd4d4-22f4-4f5e-913c-29d58b5f0d2c"
+                    "config": {}
                 },
                 {
                     "name": "Flapping Door",
@@ -804,7 +1119,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "7fd4d422-f43f-4ed1-bc29-d58b5f0d2c6b"
+                    "config": {}
                 },
                 {
                     "name": "Harpoon",
@@ -833,7 +1148,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d4d422f4-3f5e-413c-a9d5-8b5f0d2c6bda"
+                    "config": {}
                 },
                 {
                     "name": "Jaws",
@@ -862,7 +1177,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d422f43f-5ed1-4c29-958b-5f0d2c6bdae6"
+                    "config": {}
                 },
                 {
                     "name": "Burrobot",
@@ -891,7 +1206,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "22f43f5e-d13c-49d5-8b5f-0d2c6bdae612"
+                    "config": {}
                 },
                 {
                     "name": "Switch",
@@ -920,7 +1235,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "f43f5ed1-3c29-458b-9f0d-2c6bdae612ef"
+                    "config": {}
                 },
                 {
                     "name": "Moving Block Platform",
@@ -949,7 +1264,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3f5ed13c-29d5-4b5f-8d2c-6bdae612ef85"
+                    "config": {}
                 },
                 {
                     "name": "Door",
@@ -978,7 +1293,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5ed13c29-d58b-4f0d-ac6b-dae612ef85be"
+                    "config": {}
                 },
                 {
                     "name": "Spikeball on Chain",
@@ -1007,7 +1322,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d13c29d5-8b5f-4d2c-abda-e612ef85be41"
+                    "config": {}
                 },
                 {
                     "name": "Orbinaut",
@@ -1036,7 +1351,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3c29d58b-5f0d-4c6b-9ae6-12ef85be41a2"
+                    "config": {}
                 },
                 {
                     "name": "Gargoyle",
@@ -1065,7 +1380,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "29d58b5f-0d2c-4bda-a612-ef85be41a2ca"
+                    "config": {}
                 },
                 {
                     "name": "Conveyor Belt",
@@ -1094,7 +1409,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d58b5f0d-2c6b-4ae6-92ef-85be41a2ca52"
+                    "config": {}
                 },
                 {
                     "name": "Bubbles",
@@ -1123,7 +1438,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8b5f0d2c-6bda-4612-af85-be41a2ca5284"
+                    "config": {}
                 },
                 {
                     "name": "Block/Cork",
@@ -1152,7 +1467,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5f0d2c6b-dae6-42ef-85be-41a2ca5284d1"
+                    "config": {}
                 },
                 {
                     "name": "Waterfall",
@@ -1181,12 +1496,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "0d2c6bda-e612-4f85-be41-a2ca5284d18b"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "c3047fd4-d422-443f-9ed1-3c29d58b5f0d"
+            "config": {}
         },
         {
             "name": "MZ",
@@ -1218,7 +1533,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6bdae612-ef85-4e41-a2ca-5284d18ba250"
+                    "config": {}
                 },
                 {
                     "name": "Buzz Bomber",
@@ -1247,7 +1562,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e612ef85-be41-42ca-9284-d18ba25059c7"
+                    "config": {}
                 },
                 {
                     "name": "Grass Platform",
@@ -1276,7 +1591,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "12ef85be-41a2-4a52-84d1-8ba25059c71d"
+                    "config": {}
                 },
                 {
                     "name": "Large Glass Pillar",
@@ -1305,7 +1620,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "ef85be41-a2ca-4284-918b-a25059c71df9"
+                    "config": {}
                 },
                 {
                     "name": "Switch",
@@ -1334,7 +1649,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "85be41a2-ca52-44d1-8ba2-5059c71df96d"
+                    "config": {}
                 },
                 {
                     "name": "Movable Block",
@@ -1363,7 +1678,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "be41a2ca-5284-418b-a250-59c71df96d67"
+                    "config": {}
                 },
                 {
                     "name": "Sideways Stomper",
@@ -1392,7 +1707,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "41a2ca52-84d1-4ba2-9059-c71df96d676a"
+                    "config": {}
                 },
                 {
                     "name": "Brick",
@@ -1421,7 +1736,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "a2ca5284-d18b-4250-99c7-1df96d676a04"
+                    "config": {}
                 },
                 {
                     "name": "Wall of Lava",
@@ -1450,7 +1765,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "ca5284d1-8ba2-4059-871d-f96d676a0423"
+                    "config": {}
                 },
                 {
                     "name": "Yadrin",
@@ -1479,7 +1794,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5284d18b-a250-49c7-9df9-6d676a04238a"
+                    "config": {}
                 },
                 {
                     "name": "Smashable Block",
@@ -1508,7 +1823,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "84d18ba2-5059-471d-b96d-676a04238a07"
+                    "config": {}
                 },
                 {
                     "name": "Moving Block Platform",
@@ -1537,7 +1852,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d18ba250-59c7-4df9-ad67-6a04238a0756"
+                    "config": {}
                 },
                 {
                     "name": "Collapsing Floor",
@@ -1566,7 +1881,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8ba25059-c71d-496d-a76a-04238a0756b3"
+                    "config": {}
                 },
                 {
                     "name": "Basaran",
@@ -1595,7 +1910,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "a25059c7-1df9-4d67-aa04-238a0756b351"
+                    "config": {}
                 },
                 {
                     "name": "Caterkiller",
@@ -1624,12 +1939,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5059c71d-f96d-476a-8423-8a0756b3511a"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "2c6bdae6-12ef-45be-81a2-ca5284d18ba2"
+            "config": {}
         },
         {
             "name": "SBZ",
@@ -1661,7 +1976,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c71df96d-676a-4423-8a07-56b3511a57a1"
+                    "config": {}
                 },
                 {
                     "name": "Ball Hog",
@@ -1690,7 +2005,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "1df96d67-6a04-438a-8756-b3511a57a1e8"
+                    "config": {}
                 },
                 {
                     "name": "One-Way Barrier",
@@ -1719,7 +2034,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "f96d676a-0423-4a07-96b3-511a57a1e8dd"
+                    "config": {}
                 },
                 {
                     "name": "Switch",
@@ -1748,7 +2063,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6d676a04-238a-4756-b351-1a57a1e8ddd8"
+                    "config": {}
                 },
                 {
                     "name": "Moving Block Platform",
@@ -1777,7 +2092,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "676a0423-8a07-46b3-911a-57a1e8ddd81c"
+                    "config": {}
                 },
                 {
                     "name": "Collapsing Floor",
@@ -1806,7 +2121,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6a04238a-0756-4351-9a57-a1e8ddd81c53"
+                    "config": {}
                 },
                 {
                     "name": "Bomb",
@@ -1835,7 +2150,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "04238a07-56b3-411a-97a1-e8ddd81c539e"
+                    "config": {}
                 },
                 {
                     "name": "Orbinaut",
@@ -1864,7 +2179,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "238a0756-b351-4a57-a1e8-ddd81c539e89"
+                    "config": {}
                 },
                 {
                     "name": "Rotating Junction",
@@ -1893,7 +2208,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8a0756b3-511a-47a1-a8dd-d81c539e896a"
+                    "config": {}
                 },
                 {
                     "name": "Trapdoor/Spinning Platform",
@@ -1922,7 +2237,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "0756b351-1a57-41e8-9dd8-1c539e896a36"
+                    "config": {}
                 },
                 {
                     "name": "Vanishing Platform",
@@ -1951,7 +2266,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "56b3511a-57a1-48dd-981c-539e896a365c"
+                    "config": {}
                 },
                 {
                     "name": "Flamethrower",
@@ -1980,7 +2295,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "b3511a57-a1e8-4dd8-9c53-9e896a365cd1"
+                    "config": {}
                 },
                 {
                     "name": "Electrocuter",
@@ -2009,7 +2324,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "511a57a1-e8dd-481c-939e-896a365cd177"
+                    "config": {}
                 },
                 {
                     "name": "Girder Block",
@@ -2038,7 +2353,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "1a57a1e8-ddd8-4c53-9e89-6a365cd17768"
+                    "config": {}
                 },
                 {
                     "name": "Caterkiller",
@@ -2067,12 +2382,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "57a1e8dd-d81c-439e-896a-365cd177686c"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "59c71df9-6d67-4a04-a38a-0756b3511a57"
+            "config": {}
         },
         {
             "name": "SLZ",
@@ -2104,7 +2419,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e8ddd81c-539e-496a-b65c-d177686c6337"
+                    "config": {}
                 },
                 {
                     "name": "Swinging Platform",
@@ -2133,7 +2448,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "ddd81c53-9e89-4a36-9cd1-77686c6337c4"
+                    "config": {}
                 },
                 {
                     "name": "Platform",
@@ -2162,7 +2477,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d81c539e-896a-465c-9177-686c6337c46a"
+                    "config": {}
                 },
                 {
                     "name": "Fireball Thrower",
@@ -2191,7 +2506,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "1c539e89-6a36-4cd1-b768-6c6337c46aa9"
+                    "config": {}
                 },
                 {
                     "name": "Breakable Wall",
@@ -2220,7 +2535,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "539e896a-365c-4177-a86c-6337c46aa914"
+                    "config": {}
                 },
                 {
                     "name": "Collapsing Floor",
@@ -2249,7 +2564,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "9e896a36-5cd1-4768-ac63-37c46aa9148b"
+                    "config": {}
                 },
                 {
                     "name": "Elevator",
@@ -2278,7 +2593,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "896a365c-d177-486c-a337-c46aa9148b30"
+                    "config": {}
                 },
                 {
                     "name": "Rotating Platform",
@@ -2307,7 +2622,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6a365cd1-7768-4c63-b7c4-6aa9148b3085"
+                    "config": {}
                 },
                 {
                     "name": "Stairs",
@@ -2336,7 +2651,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "365cd177-686c-4337-846a-a9148b3085fe"
+                    "config": {}
                 },
                 {
                     "name": "Fan",
@@ -2365,7 +2680,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "5cd17768-6c63-47c4-aaa9-148b3085fe2f"
+                    "config": {}
                 },
                 {
                     "name": "Seesaw",
@@ -2394,7 +2709,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "d177686c-6337-446a-a914-8b3085fe2f64"
+                    "config": {}
                 },
                 {
                     "name": "Bomb",
@@ -2423,7 +2738,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "77686c63-37c4-4aa9-948b-3085fe2f6400"
+                    "config": {}
                 },
                 {
                     "name": "Orbinaut",
@@ -2452,12 +2767,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "686c6337-c46a-4914-8b30-85fe2f6400cd"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "a1e8ddd8-1c53-4e89-aa36-5cd177686c63"
+            "config": {}
         },
         {
             "name": "SYZ",
@@ -2489,7 +2804,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6337c46a-a914-4b30-85fe-2f6400cd250e"
+                    "config": {}
                 },
                 {
                     "name": "Platform",
@@ -2518,7 +2833,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "37c46aa9-148b-4085-be2f-6400cd250e81"
+                    "config": {}
                 },
                 {
                     "name": "Crabmeat",
@@ -2547,7 +2862,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c46aa914-8b30-45fe-af64-00cd250e813f"
+                    "config": {}
                 },
                 {
                     "name": "Buzz Bomber",
@@ -2576,7 +2891,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6aa9148b-3085-4e2f-a400-cd250e813fb4"
+                    "config": {}
                 },
                 {
                     "name": "Switch",
@@ -2605,7 +2920,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "a9148b30-85fe-4f64-80cd-250e813fb40e"
+                    "config": {}
                 },
                 {
                     "name": "Roller",
@@ -2634,7 +2949,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "148b3085-fe2f-4400-8d25-0e813fb40ef0"
+                    "config": {}
                 },
                 {
                     "name": "Bumper",
@@ -2663,7 +2978,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8b3085fe-2f64-40cd-a50e-813fb40ef06c"
+                    "config": {}
                 },
                 {
                     "name": "Yadrin",
@@ -2692,7 +3007,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3085fe2f-6400-4d25-8e81-3fb40ef06ce8"
+                    "config": {}
                 },
                 {
                     "name": "Platform",
@@ -2721,7 +3036,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "85fe2f64-00cd-450e-813f-b40ef06ce8c1"
+                    "config": {}
                 },
                 {
                     "name": "Spikeball Chain",
@@ -2750,7 +3065,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "fe2f6400-cd25-4e81-bfb4-0ef06ce8c1cf"
+                    "config": {}
                 },
                 {
                     "name": "Big Spiked Ball",
@@ -2779,7 +3094,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "2f6400cd-250e-413f-b40e-f06ce8c1cfd2"
+                    "config": {}
                 },
                 {
                     "name": "Caterkiller",
@@ -2808,12 +3123,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "6400cd25-0e81-4fb4-8ef0-6ce8c1cfd238"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "6c6337c4-6aa9-448b-b085-fe2f6400cd25"
+            "config": {}
         }
     ]
 }
