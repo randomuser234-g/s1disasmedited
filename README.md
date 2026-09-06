@@ -34,7 +34,11 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-Knuckles' glide and climbing physics are mostly from KIS2, but collision detection was ported poorly, be prepared for oddities (clip through ceilings, some walls are buggy)
+climbing on wall near crusher pushes knuckles into floor, easy clipping
+
+when sliding on floor, Knuckles animation updates before his height causing him to look like he is in the floor (visual)
+
+No spindash dust
 
 Sonic and Tails' modes can be intertwined (speeds are shared, both can be invincible, etc.)
 
