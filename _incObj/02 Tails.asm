@@ -2,7 +2,7 @@
 ; Object 02 - Tails	(placeholder, this mostly just does Sonic's code)
 ; ---------------------------------------------------------------------------
 ;top_solid_bit = 	$3E???? ; the bit to check for top solidity (either $C or $E)
-;lrb_solid_bit =		obSolid ; the bit to check for left/right/bottom solidity (either $D or $F)
+;lrb_solid_bit =		??? ; the bit to check for left/right/bottom solidity (either $D or $F)
 ;move_lock =		locktime, it's same between oil ocean slides and labyrinth
 ; Obj02:
 TailsPlayer:

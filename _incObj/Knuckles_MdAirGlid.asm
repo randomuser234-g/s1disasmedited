@@ -107,7 +107,7 @@ Knuckles_BeginClimb:
 	;tst.b	(Disable_wall_grab).w
 	;bmi.w	.fail
 
-	move.b	obSolid(a0),d5		;lrb_solid_bit
+	move.b	#$E,d5		;lrb_solid_bit
 	move.b	(v_doublejumpprop).w,d0
 	addi.b	#$40,d0
 	bpl.s	.right
@@ -119,7 +119,7 @@ Knuckles_BeginClimb:
 	or.w	d0,d1
 	bne.s	.checkFloorLeft
 
-	;addq.w	#1,obX(a0)		;no idea why this is here, removing it seems to make left facing walls work more reliably
+	addq.w	#1,obX(a0)		;no idea why this is here, removing it seems to make left facing walls work more reliably (with old code, where Sonic_HitWall was used, now proper with radius is used, this can be back)
 	bra.s	.success
 
 .right:
@@ -368,12 +368,13 @@ Knuckles_Climbing_Wall:
 	move.w	#0,obVelX(a0)
 	move.w	#0,obVelY(a0)
 
+	;obSolid being lrb_solid_bit unknown
 	;move.l	#Primary_Collision,(v_collindex).w
 	;cmpi.b	#$D,obSolid(a0)		;lrb_solid_bit
 	;beq.s	+
 	;move.l	#Secondary_Collision,(v_collindex).w
 +
-	move.b	obSolid(a0),d5	;lrb_solid_bit
+	move.b	#$E,d5		;lrb_solid_bit
 
 	; These two lines aren't in S3K.
 	move.b	#10,obHeight(a0)
@@ -401,7 +402,7 @@ Knuckles_Climbing_Wall:
 	bne.w	.notMoving
 
 	; Get Knuckles' distance from the ceiling in 'd1'.
-	move.b	obSolid(a0),d5		;lrb_solid_bit
+	move.b	#$E,d5		;lrb_solid_bit
 	move.w	obY(a0),d2
 	subq.w	#8,d2
 	move.w	obX(a0),d3
@@ -472,7 +473,7 @@ Knuckles_Climbing_Wall:
 	bne.w	Knuckles_LetGoOfWall
 
 	; Get Knuckles' distance from the floor in 'd1'.
-	move.b	#$D,d5		;top_solid_bit
+	move.b	#$D,d5		;top_solid_bit	;sonic 1 has d5 values in Sonic_HitWall and others, so those were put in
 	move.w	obY(a0),d2
 	addi.w	#9,d2
 	move.w	obX(a0),d3
@@ -674,19 +675,19 @@ Knuckles_DoLedgeClimbingAnimation:
 ;============================================================================
 ; sub_315C22:	;more sonic 2 code
 GetDistanceFromWall:
-	move.b	obSolid(a0),d5
+	move.b	#$E,d5		;lrb_solid_bit
 	btst	#0,obStatus(a0)
 	bne.s	.facingLeft
 
 ;.facingRight:
 	move.w	obX(a0),d3
-	jmp	sub_14EB4
+	jmp	CheckRightWallDist_WithRadius	;sub_14EB4
 ; ---------------------------------------------------------------------------
 ; loc_315C36:
 .facingLeft:
 	move.w	obX(a0),d3
 	subq.w	#1,d3
-	jmp	Sonic_HitWall
+	jmp	CheckLeftWallDist_WithRadius	;closest og function in s1 was Sonic_HitWall
 ; End of function GetDistanceFromWall
 
 ; ---------------------------------------------------------------------------
@@ -896,6 +897,31 @@ CheckFloorDist_WithRadius:
 	move.b	#0,d2
 	jmp	loc_14E0A
 ; End of function CheckFloorDist_WithRadius
+
+CheckRightWallDist_WithRadius:
+	move.b	obWidth(a0),d0
+	ext.w	d0
+	add.w	d0,d3
+	lea	(v_anglebuffer).w,a4
+	move.w	#16,a3
+	move.w	#0,d6
+	jsr	FindWall
+	move.b	#$C0,d2
+	jmp	loc_14E0A
+; End of function CheckRightWallDist_WithRadius
+
+CheckLeftWallDist_WithRadius:
+	move.b	obWidth(a0),d0
+	ext.w	d0
+	sub.w	d0,d3
+	eori.w	#$F,d3
+	lea	(v_anglebuffer).w,a4
+	move.w	#-16,a3
+	move.w	#$400,d6
+	jsr	FindWall
+	move.b	#$40,d2
+	jmp	loc_14E0A
+; End of function CheckLeftWallDist_WithRadius
 
 
 Knuckles_BeginGlide:
