@@ -45,6 +45,8 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 
 .tails:
 	movem.l	(sp)+,d1-d4
+	cmpi.b	#4,obRoutine(a0)	;is the block already broken?
+	beq.s	.notspinning		;if yes, don't break it again
 	move.b	(v_player2+obAnim).w,sonicAniFrame(a0) ; load Sonic's animation number
 	lea	(v_player2).w,a1
 	moveq	#p2_standing_bit,d6
@@ -71,6 +73,7 @@ sonicAniFrame = objoff_32		; Sonic's current animation number
 		bclr	#3,(v_player+obStatus).w
 		bclr	#3,(v_player2+obStatus).w
 		bclr	#3,obStatus(a0)
+		bclr	#4,obStatus(a0)
 		clr.b	obSolid(a0)
 		move.b	#1,obFrame(a0)
 		lea	(Smab_Speeds).l,a4 ; load broken fragment speed data
