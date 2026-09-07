@@ -927,6 +927,8 @@ CheckLeftWallDist_WithRadius:
 Knuckles_BeginGlide:
 	cmpi.b	#id_Transform,obAnim(a0)			; is Knuckles transforming?
 	beq.w	return_3165D2						;if yes, don't glide
+	btst	#bitUp,(v_jpadhold2).w	;is holding up?
+	bne.w	return_3165D2	;if yes, branch (work with calling tails to fly)
 	tst.b	(f_tailscarrysonic).w		;Is Knuckles holding onto Tails
 	bne.w	return_3165D2				;if yes, don't glide
 	tst.b	(f_doublejump).w

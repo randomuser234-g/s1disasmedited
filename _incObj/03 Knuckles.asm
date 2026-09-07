@@ -1488,7 +1488,7 @@ Knuckles_ResetOnFloor:
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
 		move.b	#0,jumping(a0)	; clear jump flag.
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
-		move.b	#0,(f_doublejump).w
+		clr.b	(f_doublejump).w
 		rts
 ; End of function Knuckles_ResetOnFloor
 

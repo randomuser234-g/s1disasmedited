@@ -2005,7 +2005,7 @@ Tails_ResetOnFloor:
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
 		cmpa.w	#v_player,a0	;is Tails player 1?
-		bne.w	.notplayer1	;if not, do not reset the score chain
+		bne.s	.notplayer1	;if not, do not reset the score chain
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
 .notplayer1:
 		rts

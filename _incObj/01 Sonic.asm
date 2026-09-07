@@ -1095,7 +1095,7 @@ Sonic_JumpHeight:
 		rts
 .tails:
 		jsr	Sonic_CheckGoSuper
-		;jsr	Sonic_DropDash
+		jsr	Sonic_DropDash
 		;jsr	Tails_Flight
 		rts
 
@@ -1299,9 +1299,15 @@ loc_13602:
 loc_1361E:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
+		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
+		bne.s	.skipwalk		;if yes, no rolling animation
 		bsr.w	Sonic_ResetOnFloor
 		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
+		bra.s	.afterwalk
+.skipwalk:
+		bsr.w	Sonic_ResetOnFloor
+.afterwalk:	
 		move.b	d3,d0
 		addi.b	#$20,d0
 		andi.b	#$40,d0
@@ -1367,8 +1373,15 @@ loc_136B4:
 		bpl.s	locret_136E0
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
+		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
+		bne.s	.skipwalk		;if yes, no rolling animation
 		bsr.w	Sonic_ResetOnFloor
+		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
+		bra.s	.afterwalk
+.skipwalk:
+		bsr.w	Sonic_ResetOnFloor
+.afterwalk:	
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1446,8 +1459,15 @@ loc_13772:
 		bpl.s	locret_1379E
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
+		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
+		bne.s	.skipwalk		;if yes, no walking animation
 		bsr.w	Sonic_ResetOnFloor
+		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
+		bra.s	.afterwalk
+.skipwalk:
+		bsr.w	Sonic_ResetOnFloor
+.afterwalk:	
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1463,9 +1483,9 @@ locret_1379E:
 
 
 Sonic_ResetOnFloor:
-		cmpi.w	#id_TailsPlayer,obID(a0) ; is Tails p1?
+		cmpi.b	#id_TailsPlayer,obID(a0) ; is Tails p1?
 		beq.w	Tails_ResetOnFloor		;if yes, run tails version of this code
-		cmpi.w	#id_KnucklesPlayer,obID(a0) ; is Knuckles p1?
+		cmpi.b	#id_KnucklesPlayer,obID(a0) ; is Knuckles p1?
 		bne.w	.notknuckles		;if not, run sonic's code
 		jmp	Knuckles_ResetOnFloor		;if yes, run knuckles version of this code
 .notknuckles:
@@ -1481,17 +1501,26 @@ Sonic_ResetOnFloor:
 		bclr	#1,obStatus(a0)	; clear in-air flag.
 		bclr	#4,obStatus(a0)	; clear roll-jump flag.
 		btst	#2,obStatus(a0)	; check if Sonic is in a ball state.
-		beq.s	.notball	; if not, skip.
+		beq.w	.notball	; if not, skip.
 		bclr	#2,obStatus(a0)	; clear ball flag.
 		move.b	#$13,obHeight(a0)	; set Sonic's hitbox to standing.
 		move.b	#9,obWidth(a0)
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#5,obY(a0)	; raise Sonic up 5 pixels so he's not inside the ground.
 		;jsr	Tails_HeightAfterLanding
+		bra.w	.notball
 
+.dropdash:
+		move.b	#id_Roll,obAnim(a0)
+		move.b	#3,spindash_flag(a0)
+		clr.w	(v_spindashcount).w
+		clr.b	(f_doublejump).w
+		rts
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
+		tst.b	(f_doublejump).w ;is doublejump flag set?
+		bne.s	.dropdash	;if yes, do a dropdash
 		rts
 ; End of function Sonic_ResetOnFloor
 
@@ -2057,4 +2086,6 @@ Sonic_LoadGfx:
 		jmp	(LoadDynPLC).l			; load DPLC
 .end:
 		rts					; return
+
+		include		"_incObj/Sonic DropDash 2.asm"
 ; End of function Sonic_LoadGfx

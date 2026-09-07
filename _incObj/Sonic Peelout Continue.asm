@@ -34,6 +34,9 @@ Sonic_UpdateContPeelout:
 		; unleash the charged spindash and start rolling quickly:
 	cmpi.w	#$800,obInertia(a0) ; check Sonic's inertia
 	blo.s	ContPeelout_DoNothing	; if too low, branch
+	bpl.s	.ispositive
+	move.w	#$800,obInertia(a0)
+.ispositive:
 	asl.w	#1,obInertia(a0)	;$800 * 2 gets $1000, original value when continue, just VelX to Inertia
 	tst.b	v_super			; Do we have super sonic?
 	bne.s	.SuperSpeed			; If yes, branch

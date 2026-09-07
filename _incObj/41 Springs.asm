@@ -98,6 +98,7 @@ Spring_BounceUp:
 		addq.w	#8,obY(a1)
 		move.w	spring_pow(a0),obVelY(a1) ; move Sonic upwards
 		bset	#1,obStatus(a1)
+		clr.b	spindash_flag(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#id_Spring,obAnim(a1) ; use "bouncing" animation
 		move.b	#2,obRoutine(a1)

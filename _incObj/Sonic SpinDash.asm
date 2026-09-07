@@ -1,4 +1,6 @@
 Sonic_SpinDash:
+		cmpi.b	#3,spindash_flag(a0)
+		beq.w	Sonic_DropDashZoom
 		cmpi.b	#1,(v_spindashtoggle).w	; check if spindash toggle is 1 (indicating no spindash)
 		beq.w	rts_SonicSpinDash	;if yes, do nothing
 		cmpi.b	#1,spindash_flag(a0)
