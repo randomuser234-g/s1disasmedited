@@ -456,7 +456,7 @@ v_scorelife:		ds.l	1		; points required for an extra life (JP1 only)
 			ds.b	$14		; unused
 v_flytimer:		ds.w	1		;timer until tails is tired
 v_spindashcountp2:	ds.w	1		; spindash counter but for p2 tails
-			ds.b	1		;unused
+v_dropdashtoggle:	ds.b	1		;dropdash toggle
 v_havepartner:		ds.b	1		; flag to have tails follow you
 v_spindashcount:	ds.w	1	; this is the spindash counter now, definition in Sonic Peelout2.asm
 f_levselcheat:		ds.b	1		; level select cheat flag

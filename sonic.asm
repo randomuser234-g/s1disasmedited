@@ -32,7 +32,7 @@ PaddingOptimization = 0|AllOptimizations
 
 EnableSRAM = 0
 ;	| If 1, enable SRAM support
-BackupSRAM = 1
+BackupSRAM = 0
 ;	| 0 = no saving (read-only SRAM); 1 = allow saving
 AddressSRAM = 3
 ;	| 0 = odd+even; 2 = even only; 3 = odd only
@@ -41,7 +41,7 @@ AddressSRAM = 3
 ZoneCount = 6
 ;	| Used for the zonewarning macro. Do not change, unless more zones get added.
 ;	| Discrete zones are: GHZ, LZ, MZ, SLZ, SYZ, and SBZ
-DebugBuild = 1
+DebugBuild = 0
 ;	| Instantly enable debug and level select
 ; ===========================================================================
 ; AS-specific macros and assembler settings
@@ -2865,17 +2865,17 @@ OptionText:
 		dc.b "KNUCKLES                "	;4
 		dc.b "                        "	;5
 		dc.b "PARTNER TAILS    ON-OFF "	;6
-		dc.b "TAILS FLIGHT OFF        "	;7
-		dc.b "SPINDASH OFF            "	;8
-		dc.b "PEELOUT OFF             "	;9
-		dc.b "RE-ENABLE ALL MOVES     "	;A
-		dc.b "S1 STYLE PEELOUT        "	;B
-		dc.b "CD STYLE PEELOUT        "	;C
-		dc.b "                        "	;D
-		dc.b "GO TO PAGE 2            "	;E
-		dc.b "                        "	;F
-		dc.b "-START A B C TO SELECT- "	;10
-		dc.b "ONLY 1 BONUS TOGGLEABLE "	;11
+		dc.b "DROPDASH OFF            "	;7
+		dc.b "TAILS FLIGHT OFF        "	;8
+		dc.b "SPINDASH OFF            "	;9
+		dc.b "PEELOUT OFF             "	;A
+		dc.b "RE-ENABLE ALL MOVES     "	;B
+		dc.b "S1 STYLE PEELOUT        "	;C
+		dc.b "CD STYLE PEELOUT        "	;D
+		dc.b "                        "	;E
+		dc.b "GO TO PAGE 2            "	;F
+		dc.b "                        "	;10
+		dc.b "-START A B C TO SELECT- "	;11
 		dc.b "                        "	;12
 		dc.b "START GAME              "	;13
 		dc.b "SOUND SELECT            "	;14
@@ -2914,7 +2914,7 @@ PageI:
 		dc.b "                        "
 		dc.b "                        "
 		dc.b "                        "
-		dc.b "-START A B C TO SELECT- " 
+		dc.b "                        "
 		dc.b "ONLY 1 BONUS TOGGLEABLE "
 		dc.b "                        "
 		dc.b "GO BACK                 "
