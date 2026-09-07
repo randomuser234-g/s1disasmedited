@@ -14,6 +14,8 @@
 
 -other tweaks (roll lock and speed caps removed)
 
+-drop dash by holding A/B/C in air
+
 -S1 style peelout based on the continue screen animation, about 65 frames to charge (also disables cd run animation)
 
 -A few bonus options (super sonic, water everywhere) (only one at a time)
@@ -34,6 +36,8 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
+drop dash is not sonic mania physics
+
 climbing on wall near crusher pushes knuckles into floor, easy clipping
 
 when sliding on floor, Knuckles animation updates before his height causing him to look like he is in the floor (visual)
@@ -49,6 +53,8 @@ the swing is more prone to dropping Sonic if standing at the edges
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
+
+unknown possibility of having bridges corrupt, ranging from seemingly dissapearing to game crash
 
 may be other issues I don't know
 
