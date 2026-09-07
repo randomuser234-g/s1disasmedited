@@ -10,7 +10,6 @@ Sonic_DropDash:
 		move.b	(v_jpadhold2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		beq.s	Sonic_StopDropDash		;if not, check to cancel dropdash
-		clr.b	obAngle(a0)
 		tst.b	(f_doublejump).w	;already started a dropdash?
 		bne.w	rts_SonicDropDash	;if yes, skip this code
 		move.b	#1,(f_doublejump).w		;set doublejump flag	(rest of dropdash code is sonic's object under Sonic_ResetOnFloor)
