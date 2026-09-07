@@ -371,8 +371,8 @@ HurtSonic:
 .norings:
 		tst.w	(f_debugmode).w	; is debug mode cheat on?
 		bne.w	.hasshield	; if yes, branch
-		tst.w	(f_demo).w	; is an ending sequence demo running?
-		bmi.w	.skiphasshield	; if yes,don't kill Sonic (fix softlock in credits due to dying)
+		tst.w	(f_demo).w	; is any demo running?
+		bne.w	.skiphasshield	; if yes,don't kill Sonic (fix softlock in credits due to dying)
 		tst.b	(f_timecount).w	;is time stopped?
 		beq.w	.skiphasshield	; if yes, don't die
 
@@ -385,9 +385,13 @@ HurtSonic:
 
 KillSonic:
 		tst.w	(v_debuguse).w	; is debug mode active?
-		bne.s	.dontdie	; if yes, branch
+		bne.w	.dontdie	; if yes, branch
 		cmpa.w	#v_player,a0	;did player 1 die?
 		bne.w	.dontremovesuper;if not, don't remove buffs
+		tst.w	(f_demo).w	; is any demo running?
+		beq.w	.settimer	; if not,skip this bit
+		clr.w	(v_generictimer).w	;remove the demo timer
+.settimer:
 		clr.b	(f_doublejump).w	;remove knux doublejump flag
 		move.b	#0,(v_invinc).w	; remove invincibility
 		move.b	#0,(v_shoes).w	; clear speed shoes

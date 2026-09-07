@@ -1299,15 +1299,8 @@ loc_13602:
 loc_1361E:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
-		bne.s	.skipwalk		;if yes, no rolling animation
 		bsr.w	Sonic_ResetOnFloor
-		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
-		bra.s	.afterwalk
-.skipwalk:
-		bsr.w	Sonic_ResetOnFloor
-.afterwalk:	
 		move.b	d3,d0
 		addi.b	#$20,d0
 		andi.b	#$40,d0
@@ -1373,15 +1366,8 @@ loc_136B4:
 		bpl.s	locret_136E0
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
-		bne.s	.skipwalk		;if yes, no rolling animation
 		bsr.w	Sonic_ResetOnFloor
-		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
-		bra.s	.afterwalk
-.skipwalk:
-		bsr.w	Sonic_ResetOnFloor
-.afterwalk:	
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1459,15 +1445,8 @@ loc_13772:
 		bpl.s	locret_1379E
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_doublejump).w	;is sonic doing a dropdash?
-		bne.s	.skipwalk		;if yes, no walking animation
 		bsr.w	Sonic_ResetOnFloor
-		;jsr	Sonic_StartDropDash
 		move.b	#id_Walk,obAnim(a0)
-		bra.s	.afterwalk
-.skipwalk:
-		bsr.w	Sonic_ResetOnFloor
-.afterwalk:	
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1519,8 +1498,9 @@ Sonic_ResetOnFloor:
 .notball:
 		move.b	#0,jumping(a0)	; clear jump flag.
 		move.w	#0,(v_itembonus).w	; clear enemy score chain.
-		tst.b	(f_doublejump).w ;is doublejump flag set?
-		bne.s	.dropdash	;if yes, do a dropdash
+		cmpi.b	#1,(f_doublejump).w ;is doublejump flag set?
+		beq.s	.dropdash	;if yes, do a dropdash
+		clr.b	(f_doublejump).w
 		rts
 ; End of function Sonic_ResetOnFloor
 

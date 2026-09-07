@@ -1,6 +1,6 @@
 Sonic_DropDash:
 		cmpi.b	#1,(v_dropdashtoggle).w	; check if dropdash toggle is 1 (indicating no dropdash)
-		beq.w	rts_SonicDropDash
+		beq.w	rts_SonicDropDash	;if yes, must be turned off
 		btst	#bitUp,(v_jpadhold2).w	;is holding up?
 		bne.w	rts_SonicDropDash	;if yes, branch (work with calling tails to fly)
 		tst.b	(f_tailscarrysonic).w	;is tails carrying sonic?
@@ -9,19 +9,22 @@ Sonic_DropDash:
 		beq.w	rts_SonicDropDash						;if yes, don't dropdash
 		btst	#2,obStatus(a0)		; Sonic is rolling?
 		beq.w	rts_SonicDropDash		;if not, don't dropdash
-		move.b	(v_jpadhold2).w,d0
+		cmpi.b	#1,(f_doublejump).w	;already started a dropdash?
+		beq.s	Sonic_ChkStopDropDash	;if yes, check to cancel dropdash
+		cmpi.b	#2,(f_doublejump).w	;already ended a dropdash?
+		beq.w	rts_SonicDropDash	;if yes, don't dropdash
+		move.b	(v_jpadpress2).w,d0
 		andi.b	#btnABC,d0	; is A, B or C pressed?
-		beq.s	Sonic_StopDropDash		;if not, check to cancel dropdash
-		tst.b	(f_doublejump).w	;already started a dropdash?
-		bne.w	rts_SonicDropDash	;if yes, skip this code
-		move.b	#1,(f_doublejump).w		;set doublejump flag	(rest of dropdash code is sonic's object under Sonic_ResetOnFloor)
+		beq.w	rts_SonicDropDash		;if not, check to cancel dropdash
+		move.b	#1,(f_doublejump).w		;set doublejump flag	(some of dropdash code is sonic's object under Sonic_Floor, Sonic_ResetOnFloor and Sonic_SpinDash)
 		move.w	#sfx_PeelCharge,d0
 		jmp	(QueueSound2).l
 
-Sonic_StopDropDash:
-		tst.b	(f_doublejump).w	;already started a dropdash?
-		beq.w	rts_SonicDropDash	;if yes, skip this code
-		clr.b	(f_doublejump).w	;stop a dropdash
+Sonic_ChkStopDropDash:
+		move.b	(v_jpadhold2).w,d0
+		andi.b	#btnABC,d0	; is A, B or C pressed?
+		bne.w	rts_SonicDropDash		;if yes, don't cancel
+		move.b	#2,(f_doublejump).w	;stop a dropdash
 		move.w	#sfx_PeelStop,d0
 		jmp	(QueueSound2).l
 Sonic_DropDashZoom:
@@ -34,9 +37,11 @@ Sonic_DropDashZoom:
 		beq.s	.chkright
 		cmpi.w	#-$800,obInertia(a0)
 		blt.s	.addspeedleft
+		bra.s	.dontchk
 .chkright:
 		cmpi.w	#$800,obInertia(a0)
 		bgt.s	.addspeed
+.dontchk:
 		move.w	#$800,obInertia(a0)
 		tst.b	(v_super).w
 		bne.s	.superspeed
@@ -52,16 +57,12 @@ Sonic_DropDashZoom:
 		subi.w	#$300,obInertia(a0)
 		bra.s	+
 .afteraddspeed:
-		clr.w	obVelY(a0)
 		btst	#0,obStatus(a0)
 		beq.s	+
 		neg.w	obInertia(a0)
 +
 		move.b	#id_Roll,obAnim(a0)
-		move.b	#id_Roll,obPrevAni(a0)
 		move.w	#sfx_PeelRelease,d0	; spindash zoom sound
-		jsr	(QueueSound2).l 
-		move.w	#0,spindash_counter(a0)
-		rts
+		jmp	(QueueSound2).l 
 rts_SonicDropDash:
 		rts
