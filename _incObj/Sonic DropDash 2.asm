@@ -3,6 +3,8 @@ Sonic_DropDash:
 		beq.w	rts_SonicDropDash
 		btst	#bitUp,(v_jpadhold2).w	;is holding up?
 		bne.w	rts_SonicDropDash	;if yes, branch (work with calling tails to fly)
+		tst.b	(f_tailscarrysonic).w	;is tails carrying sonic?
+		bne.w	rts_SonicDropDash	;if yes, don't perform a dropdash
 		cmpi.b	#id_Transform,obAnim(a0)			; is Sonic transforming?
 		beq.w	rts_SonicDropDash						;if yes, don't dropdash
 		btst	#2,obStatus(a0)		; Sonic is rolling?
