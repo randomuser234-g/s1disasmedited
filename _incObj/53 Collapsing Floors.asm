@@ -41,15 +41,14 @@ CFlo_Touch:	; Routine 2
 		tst.b	cflo_collapse_flag(a0)	; has Sonic touched the object?
 		beq.s	.solid		; if not, branch
 		tst.b	cflo_timedelay(a0)	; has time delay reached zero?
-		beq.w	CFlo_Fragment	; if yes, branch
+		beq.w	loc_8458		;CFlo_Fragment	; if yes, branch
 		subq.b	#1,cflo_timedelay(a0) ; subtract 1 from time
 
 .solid:
 		;bsr.s	.tstremstate
 		move.b	obStatus(a0),d0
 		andi.b	#standing_mask,d0
-		beq.s	CFlo_WalkOff
-		move.b	#4,obRoutine(a0)
+		bne.s	CFlo_Collapse
 		bra.s	CFlo_WalkOff
 .tstremstate:
 		tst.b	obSubtype(a0)
@@ -114,6 +113,8 @@ loc_8402:
 
 loc_842E:
 		move.b	#0,cflo_collapse_flag(a0)
+		tst.b	obRender(a0)		;is the ledge on screen?
+		bpl.s	CFlo_Delete		;if not, delete
 		move.b	#6,obRoutine(a0) ; run "CFlo_Display" routine
 
 locret_843A:
@@ -121,16 +122,15 @@ locret_843A:
 ; ===========================================================================
 
 CFlo_TimeZero:
-		bsr.w	ObjectFall
-		bsr.w	DisplaySprite
 		tst.b	obRender(a0)
 		bpl.s	CFlo_Delete
+		bsr.w	ObjectFall
+		bra.w	DisplaySprite
 		rts
 ; ===========================================================================
 
 CFlo_Delete:	; Routine 8
-		bsr.w	DeleteObject
-		rts
+		bra.w	DeleteObject
 ; ===========================================================================
 
 CFlo_Fragment:

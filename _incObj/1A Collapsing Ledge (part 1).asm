@@ -32,20 +32,19 @@ Ledge_Touch:	; Routine 2
 		tst.b	ledge_collapse_flag(a0)	; is ledge collapsing?
 		beq.s	.slope		; if not, branch
 		tst.b	ledge_timedelay(a0)	; has time reached zero?
-		beq.w	Ledge_Fragment	; if yes, branch
+		beq.w	loc_847A		;Ledge_Fragment	; if yes, branch
 		subq.b	#1,ledge_timedelay(a0) ; subtract 1 from time
 
 .slope:
 		move.b	obStatus(a0),d0
 		andi.b	#standing_mask,d0
-		beq.s	Ledge_WalkOff
-		move.b	#4,obRoutine(a0)
+		bne.s	Ledge_Collapse
 		bra.s	Ledge_WalkOff
-	;unused
-		move.w	#$30,d1
-		lea	(Ledge_SlopeData).l,a2
-		bsr.w	SlopeObject;_SingleCharacter
-		jmp	RememberState
+	;removed from 
+		;move.w	#$30,d1
+		;lea	(Ledge_SlopeData).l,a2
+		;bsr.w	SlopeObject;_SingleCharacter
+		;jmp	RememberState
 ; ===========================================================================
 
 Ledge_Collapse:	; Routine 4
@@ -58,7 +57,8 @@ Ledge_Collapse:	; Routine 4
 
 
 Ledge_WalkOff:	; Routine $A
-		move.w	#$30,d1
+		moveq	#0,d1
+		move.b	#$30,d1
 		lea	(Ledge_SlopeData).l,a2
 		move.w	obX(a0),d4
 		bsr.w	SlopeObject;2_SkipPlayer
@@ -95,6 +95,9 @@ loc_82D0:
 
 loc_82FC:
 		move.b	#0,ledge_collapse_flag(a0)
+		tst.b	obRender(a0)		;ledge still on screen?
+		bpl.s	Ledge_Delete		;if not, delete
+		;note if deleted before collapsed it will respawn
 		move.b	#6,obRoutine(a0) ; run "Ledge_Display" routine
 
 locret_8308:
@@ -102,13 +105,11 @@ locret_8308:
 ; ===========================================================================
 
 Ledge_TimeZero:
-		bsr.w	ObjectFall
-		bsr.w	DisplaySprite
 		tst.b	obRender(a0)
 		bpl.s	Ledge_Delete
-		rts
+		bsr.w	ObjectFall
+		bra.w	DisplaySprite
 ; ===========================================================================
 
 Ledge_Delete:	; Routine 8
-		bsr.w	DeleteObject
-		rts
+		bra.w	DeleteObject
