@@ -36,6 +36,10 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
+consistent "overflow" crash in GHz Act 3, easy to do by too fast at the middle section of the zone where those rotating spikes are 
+
+(spawn from checkpoint, go super with debug monitor for speed or keep speedshoes from earlier, keep going as fast as possible to the right without stopping, eventually near the bridge at the end of the act, CRASH, inconsistent results in debugger. If no crash, likely corrupted "badnik" with huge hitbox where one of the bridge poles would be)
+
 drop dash is not sonic mania physics
 
 climbing on wall near crusher pushes knuckles into floor, easy clipping
@@ -53,8 +57,6 @@ the swing is more prone to dropping Sonic if standing at the edges
 Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
-
-unknown possibility of having bridges corrupt, ranging from seemingly dissapearing to game crash
 
 may be other issues I don't know
 
