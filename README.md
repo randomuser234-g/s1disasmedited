@@ -36,10 +36,6 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-consistent "overflow" crash in GHz Act 3, easy to do by too fast at the middle section of the zone where those rotating spikes are 
-
-(spawn from checkpoint, go super with debug monitor for speed or keep speedshoes from earlier, keep going as fast as possible to the right without stopping, eventually near the bridge at the end of the act, CRASH, inconsistent results in debugger. If no crash, likely corrupted "badnik" with huge hitbox where one of the bridge poles would be)
-
 drop dash is not sonic mania physics
 
 climbing on wall near crusher pushes knuckles into floor, easy clipping
