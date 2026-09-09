@@ -115,7 +115,7 @@ Bri_Solid:
 	moveq	#8,d3
 	move.w	obX(a0),d4
 	bsr.w	Bri_WalkOff
-	bsr.w	DisplaySprite
+	bsr.w	DisplaySprite	;different?
 	bra.w	Bri_ChkDel
 	
 ; End of function Bri_Solid

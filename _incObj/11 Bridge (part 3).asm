@@ -2,8 +2,8 @@
 
 
 Bri_MoveSonic:
-	lsr.w	#4,d0
-	move.b	d0,(a0,d5.w)
+		lsr.w	#4,d0
+		move.b	d0,(a0,d5.w)
 		;moveq	#0,d0
 		move.b	objoff_3F(a0),d0
 		move.b	objoff_29(a0,d0.w),d0
@@ -16,6 +16,7 @@ Bri_MoveSonic:
 		move.b	obHeight(a1),d1
 		sub.w	d1,d0
 		move.w	d0,obY(a1)	; change Sonic's position on y-axis
+		moveq	#0,d4		;new
 .end:
 		rts
 ; End of function Bri_MoveSonic
