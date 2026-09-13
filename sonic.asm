@@ -2942,6 +2942,41 @@ MusicList:
 ; ---------------------------------------------------------------------------
 ; Level
 ; ---------------------------------------------------------------------------
+LifeIcon:
+		;code for loading mainplc
+		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
+		bne.s	.knucklesplc		; if not, check for Knuckles
+		tst.b	(v_megadrive).w
+		bmi.s	.tailsplc ; branch if Mega Drive is American
+		moveq	#plcid_MainMiles,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LifeIcon_WaitLoop		; branch to rest of code
+
+.tailsplc:
+		moveq	#plcid_MainTails,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LifeIcon_WaitLoop		; branch to rest of code
+	.knucklesplc:
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Knuckles)?
+		bne.s	.sonicplc		; if not, load Sonic's life icon
+		moveq	#plcid_MainKnuckles,d0	;
+		bsr.w	NewPLC		;
+		bra.s	.LifeIcon_WaitLoop		; branch to rest of code	
+
+	.sonicplc:
+		moveq	#plcid_Main,d0
+		bsr.w	NewPLC	
+
+.LifeIcon_WaitLoop:
+		move.b	#4,(v_vbla_routine).w
+		bsr.w	WaitForVBla
+		bsr.w	RunPLC
+		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
+		bne.s	.LifeIcon_WaitLoop	; if not, branch
+		rts
+		;end of code
+
+
 
 GM_Level:
 
@@ -2954,38 +2989,7 @@ GM_Level:
 Level_NoMusicFade:
 		bsr.w	ClearPLC
 		bsr.w	PaletteFadeOut
-		;code for loading mainplc
-		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
-		bne.s	.knucklesplc		; if not, check for Knuckles
-		tst.b	(v_megadrive).w
-		bmi.s	.tailsplc ; branch if Mega Drive is American
-		moveq	#plcid_MainMiles,d0	;
-		bsr.w	NewPLC		;
-		bra.s	.LevelStart_WaitLoop		; branch to rest of code
-
-.tailsplc:
-		moveq	#plcid_MainTails,d0	;
-		bsr.w	NewPLC		;
-		bra.s	.LevelStart_WaitLoop		; branch to rest of code
-	.knucklesplc:
-		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 1 (Knuckles)?
-		bne.s	.sonicplc		; if not, load Sonic's life icon
-		moveq	#plcid_MainKnuckles,d0	;
-		bsr.w	NewPLC		;
-		bra.s	.LevelStart_WaitLoop		; branch to rest of code	
-
-	.sonicplc:
-		moveq	#plcid_Main,d0
-		bsr.w	NewPLC	
-
-.LevelStart_WaitLoop:
-		move.b	#4,(v_vbla_routine).w
-		bsr.w	WaitForVBla
-		bsr.w	RunPLC
-		tst.l	(v_plc_buffer).w ; have level gfx finished decompressing?
-		bne.s	.LevelStart_WaitLoop	; if not, branch
-		;end of code
-
+		bsr.w	LifeIcon
 		tst.w	(f_demo).w	; is an ending sequence demo running?
 		bmi.s	Level_ClrRam	; if yes, branch
 		disable_ints
@@ -3004,6 +3008,7 @@ Level_NoMusicFade:
 		bsr.w	AddPLC		; load level patterns
 
 loc_37FC:
+
 		moveq	#plcid_Main2,d0
 		bsr.w	AddPLC		; load standard patterns
 
