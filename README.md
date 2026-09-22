@@ -36,7 +36,7 @@ S2 nick arcade for tails signpost, the big pose on the end screen are edited Son
 
 known issues:
 
-drop dash is not sonic mania physics
+drop dash is not sonic mania animations + unique sound effect
 
 climbing on wall near crusher pushes knuckles into floor, easy clipping
 
