@@ -64,7 +64,10 @@ Sonic_Control:	; Routine 2
 
 .ignorecontrols:
 		btst	#0,(f_playerctrl).w ; are controls locked?
-		bne.s	.ignoremodes	; if yes, branch
+		beq.s	.controlsnotlocked	;if not, branch
+		move.b	#0,(f_doublejump).w	;remove doublejump
+		bra.s	.ignoremodes		;then ignore modes
+.controlsnotlocked:
 		moveq	#0,d0
 		move.b	obStatus(a0),d0
 		andi.w	#6,d0

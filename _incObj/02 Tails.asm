@@ -94,11 +94,16 @@ Tails_Control:	; Routine 2
 		cmpa.w	#v_player,a0	;is Tails player 1?
 		bne.w	.p2checkiflocked	;if not, check p2 flag
 		btst	#0,(f_playerctrl).w ; are controls locked?
-		bne.s	.ignoremodes	; if yes, branch
-		bra.s	.checkifflying
+		beq.s	.checkifflying	;if not, branch
+		move.b	#0,(f_doublejumpp2).w
+		move.b	#0,(f_tailscarrysonic).w	;stop thinking tails is carrying sonic
+		bra.s	.ignoremodes
 .p2checkiflocked:
 		btst	#0,(f_playerctrl2).w ; are controls locked?
-		bne.s	.ignoremodes	; if yes, branch
+		beq.s	.checkifflying	; if yes, branch
+		move.b	#0,(f_doublejumpp2).w
+		move.b	#0,(f_tailscarrysonic).w	;stop thinking tails is carrying sonic
+		bra.s	.ignoremodes
 .checkifflying:
                 tst.b   (f_doublejumpp2).w                    ; is tails flying?
                 bne.s   .flying				;if yes, branch

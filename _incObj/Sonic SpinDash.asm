@@ -30,8 +30,9 @@ SpinDash_DoNothing:
 		move.w	#sfx_PeelStop,d0	; spindash zoom sound
 		jsr	(QueueSound2).l 
 		move.b	#$13,obHeight(a0)	; set Sonic's hitbox to standing.
-		jsr	TailsHeight
+		;jsr	TailsHeight
 		move.b	#9,obWidth(a0)
+		subq.w	#5,obY(a0)	; subtract the difference between Sonic's rolling and standing heights
 		clr.b	spindash_flag(a0)	; clear Spin Dash flag 
 		clr.w	spindash_counter(a0)	; clear Spin Dash counter
 		clr.w	obInertia(a0)		; kill whatever little speed we've built up

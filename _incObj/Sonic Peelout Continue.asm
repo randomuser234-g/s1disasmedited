@@ -49,7 +49,7 @@ Sonic_UpdateContPeelout:
 .Water:
 	btst	#6,obStatus(a0)	;is Sonic underwater?
 	beq.s	.skipSuperSpeed	;if not, don't slow him down
-	lsr.w	#1,obInertia(a0)	;cut Sonic's speed in half, undoing multiplication from earlier so $800 max
+	asr.w	#1,obInertia(a0)	;cut Sonic's speed in half, undoing multiplication from earlier so $800 max
 .skipSuperSpeed:
 		btst	#0,obStatus(a0)			; Are we facing left?
 		beq.s	.skipleft		; If not, branch
@@ -66,6 +66,10 @@ Sonic_ChargingContPeelout:
 		rts
 
 .buildspeedContinue:						;this chunk copied from continue screen sonic
+		tst.w	obInertia(a0)	;is the speed positive?
+		bpl.s	.dontresetspeed ;if yes, branch
+		clr.w	obInertia(a0)	;reset speed at landing
+.dontresetspeed:
 		cmpi.w	#$800,obInertia(a0) ; check Sonic's inertia
 		blo.s	.addspeedContinue	; if too low, branch. If high enough, don't add more speed
 		rts
