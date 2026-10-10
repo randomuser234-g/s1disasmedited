@@ -1,3 +1,5 @@
+CREDITS, not all code, graphics is original, much of it from sonic retro guides, other sonic games and others, credits included in "guides used sonic 1 hack.txt": 
+
 -CD Spindash Down + A until Sonic rolls fastest. About 45 frames to charge
 
 -CD Peelout Up + A until Sonic runs the fastest About 30 frames to charge
@@ -27,8 +29,6 @@
 -Eggman's traps (every monitor in the game replaced with Eggman monitor which hurts you)
 
 Options menu available by simply pressing start
-
-there are leftover comments from SCHG sonic retro as the code isn't 100% original (reused from S2 spindash and Extended Camera and Extra characters and others)
 
 note some graphics are different from usual. 
 
