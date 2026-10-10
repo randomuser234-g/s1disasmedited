@@ -1,0 +1,61 @@
+guides used
+(note there might be more)
+-extended camera			(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Extended_Camera_to_Sonic_1
+
+-extra characters: sonic 65 (was used, the old reusing obj1 is mostly gone, still TailsHeight references)	(sonic retro)
+https://info.sonicretro.org/index.php?title=Add_Extra_Characters&oldid=264398
+
+-super peel out: selbi				(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Super_Peel-Out_to_Sonic_1
+
+-flamewing ultra dma queue: selbi, robiwankenobi		(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Flamewing%27s_UltraDMAQueue_to_Sonic_1
+
+-spindash: selbi				(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Spin_Dash_to_Sonic_1_(GitHub)
+
+-extend music/sfx			(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Spin_Dash_to_Sonic_1_(Rewrite)#Extending_sound_index_for_the_Spin_Dash_SFX
+
+-optimize shield/invincibility: selbi		(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Optimize_Shield_and_Invincibility_Art
+
+-improving objectmove: redhotsonic		(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Improve_ObjectMove_subroutines
+
+-special stage jumping physics: mercury		(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Fix_the_Special_Stage_jumping_physics
+s
+-extend sprite mappings/art limit: markeyjester	(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Extend_the_Sonic_1_sprite_mappings_and_art_limit
+
+-death boundary bug fix: markeyjester	(sonic retro) (not used standalone since FixBugs has it by default)
+https://info.sonicretro.org/SCHG_How-to:Fix_the_death_boundary_bug
+
+-roll jump lock remove: selbi		(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Remove_the_Roll-Jump_Lock
+
+-speed cap remove: tweaker, puto	(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Remove_the_Speed_Cap
+
+-advanced md debugger: vladikcomper	(sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_MD_Debugger_and_Error_Handler_to_Sonic_1
+
+-how the drop dash works in mania: mainmemory (sonic retro)
+https://forums.sonicretro.org/threads/how-the-drop-dash-works-in-mania.37587/
+
+-sonic 3 sprites: selbi	(youtube) (s3 sonic sprites not implemented, still helped tails as he has 8 frames of walking)
+https://www.youtube.com/watch?v=FOBZkvYY8Do
+
+-fly and swim with tails in s2: painto (sonic retro)
+https://info.sonicretro.org/SCHG_How-to:Add_Tails%27_flying_and_swimming_to_Sonic_2
+
+sonic 1 2013 spriters resource for super sonic walking frames: doc melonhead, I-like-Sonic-91
+https://www.spriters-resource.com/mobile/sonicthehedgehogmobile/asset/63938/
+
+kis2, s2, simon wai, s3k and s3 prototype (tails and knux code, 2p collision, s2 beta music, etc)
+https://github.com/sonicretro/s2disasm
+https://github.com/sonicretro/skdisasm
+https://github.com/Filter011/s2-8XX-disasm
+https://github.com/NyperYuhgard/Sonic-3-Beta-Dissembly
