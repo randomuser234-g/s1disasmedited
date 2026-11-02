@@ -1,4 +1,4 @@
-DPLC_18d0: mappingsTable
+DPLC_a9be: mappingsTable
 	mappingsTableEntry.w	DPLC_18d0_0
 	mappingsTableEntry.w	DPLC_18d0_1
 	mappingsTableEntry.w	DPLC_18d0_2

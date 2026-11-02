@@ -1,4 +1,4 @@
-Map_4e18: mappingsTable
+Map_00a9: mappingsTable
 	mappingsTableEntry.w	Map_4e18_0
 	mappingsTableEntry.w	Map_4e18_1
 	mappingsTableEntry.w	Map_4e18_2
@@ -825,153 +825,153 @@ Map_4e18_111:	spriteHeader
 Map_4e18_111_End
 
 Map_4e18_112:	spriteHeader
- spritePiece -$14, -$1B, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$14, 5, 4, 1, $10, 0, 0, 0, 0
- spritePiece -$14, $D, 1, 1, $14, 0, 0, 0, 0
- spritePiece $C, -3, 1, 2, $15, 0, 0, 0, 0
+ spritePiece -$12, -$1B, 4, 4, 0, 0, 0, 0, 0
+ spritePiece -$12, 5, 4, 1, $10, 0, 0, 0, 0
+ spritePiece -$12, $D, 1, 1, $14, 0, 0, 0, 0
+ spritePiece $E, -3, 1, 2, $15, 0, 0, 0, 0
 Map_4e18_112_End
 
 Map_4e18_113:	spriteHeader
- spritePiece -$10, -$1A, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$10, 6, 4, 2, $C, 0, 0, 0, 0
- spritePiece 8, -$12, 1, 2, $14, 0, 0, 0, 0
+ spritePiece -$E, -$1A, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$E, 6, 4, 2, $C, 0, 0, 0, 0
+ spritePiece $A, -$12, 1, 2, $14, 0, 0, 0, 0
 Map_4e18_113_End
 
 Map_4e18_114:	spriteHeader
- spritePiece -$F, -$19, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$F, 7, 3, 2, $C, 0, 0, 0, 0
+ spritePiece -$D, -$1C, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$D, 4, 3, 2, $C, 0, 0, 0, 0
 Map_4e18_114_End
 
 Map_4e18_115:	spriteHeader
- spritePiece -$15, -3, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$D, -$1B, 3, 3, $C, 0, 0, 0, 0
- spritePiece $B, -$B, 1, 4, $15, 0, 0, 0, 0
+ spritePiece -$16, -7, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -$E, -$1F, 3, 3, $C, 0, 0, 0, 0
+ spritePiece $A, -$F, 1, 4, $15, 0, 0, 0, 0
 Map_4e18_115_End
 
 Map_4e18_116:	spriteHeader
- spritePiece -$13, -2, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$B, -$1A, 3, 3, $C, 0, 0, 0, 0
+ spritePiece -$14, -4, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -$C, -$1C, 3, 3, $C, 0, 0, 0, 0
 Map_4e18_116_End
 
 Map_4e18_117:	spriteHeader
- spritePiece -$13, -$19, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$13, 7, 4, 2, $10, 0, 0, 0, 0
+ spritePiece -$12, -$1A, 4, 4, 0, 0, 0, 0, 0
+ spritePiece -$12, 6, 4, 2, $10, 0, 0, 0, 0
 Map_4e18_117_End
 
 Map_4e18_118:	spriteHeader
- spritePiece -$16, -$15, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$1E, -$D, 1, 1, 9, 0, 0, 0, 0
- spritePiece 2, -$D, 2, 2, $A, 0, 0, 0, 0
- spritePiece -$E, 3, 2, 3, $E, 0, 0, 0, 0
+ spritePiece -$13, -$15, 3, 3, 0, 0, 0, 0, 0
+ spritePiece -$1B, -$D, 1, 1, 9, 0, 0, 0, 0
+ spritePiece 5, -$D, 2, 2, $A, 0, 0, 0, 0
+ spritePiece -$B, 3, 2, 3, $E, 0, 0, 0, 0
 Map_4e18_118_End
 
 Map_4e18_119:	spriteHeader
- spritePiece -$10, -$14, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$18, -$C, 1, 2, $C, 0, 0, 0, 0
- spritePiece 8, -4, 2, 2, $E, 0, 0, 0, 0
- spritePiece -8, $C, 2, 1, $12, 0, 0, 0, 0
+ spritePiece -$11, -$16, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$19, -$E, 1, 2, $C, 0, 0, 0, 0
+ spritePiece 7, -6, 2, 2, $E, 0, 0, 0, 0
+ spritePiece -9, $A, 2, 1, $12, 0, 0, 0, 0
 Map_4e18_119_End
 
 Map_4e18_120:	spriteHeader
- spritePiece -$1C, -$13, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$C, 5, 4, 1, $C, 0, 0, 0, 0
- spritePiece -4, $D, 2, 1, $10, 0, 0, 0, 0
- spritePiece 4, -3, 1, 1, $12, 0, 0, 0, 0
+ spritePiece -$1A, -$14, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -$A, 4, 4, 1, $C, 0, 0, 0, 0
+ spritePiece -2, $C, 2, 1, $10, 0, 0, 0, 0
+ spritePiece 6, -4, 1, 1, $12, 0, 0, 0, 0
 Map_4e18_120_End
 
 Map_4e18_121:	spriteHeader
- spritePiece -$16, -$16, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$1E, -$E, 1, 1, $C, 0, 0, 0, 0
- spritePiece 2, -$E, 2, 3, $D, 0, 0, 0, 0
- spritePiece -$E, $A, 2, 1, $13, 0, 0, 0, 0
- spritePiece -6, $12, 1, 2, $15, 0, 0, 0, 0
+ spritePiece -$16, -$17, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$1E, -$F, 1, 1, $C, 0, 0, 0, 0
+ spritePiece 2, -$F, 2, 3, $D, 0, 0, 0, 0
+ spritePiece -$E, 9, 2, 1, $13, 0, 0, 0, 0
+ spritePiece -6, $11, 1, 2, $15, 0, 0, 0, 0
 Map_4e18_121_End
 
 Map_4e18_122:	spriteHeader
- spritePiece -$1D, -$13, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$15, -$1B, 1, 1, $C, 0, 0, 0, 0
- spritePiece -$D, 5, 4, 2, $D, 0, 0, 0, 0
- spritePiece 3, -3, 2, 1, $15, 0, 0, 0, 0
+ spritePiece -$1A, -$15, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -$12, -$1D, 1, 1, $C, 0, 0, 0, 0
+ spritePiece -$A, 3, 4, 2, $D, 0, 0, 0, 0
+ spritePiece 6, -5, 2, 1, $15, 0, 0, 0, 0
 Map_4e18_122_End
 
 Map_4e18_123:	spriteHeader
- spritePiece -$1C, -$13, 4, 3, 0, 0, 0, 0, 0
- spritePiece -$C, 5, 4, 1, $C, 0, 0, 0, 0
- spritePiece -4, $D, 2, 1, $10, 0, 0, 0, 0
- spritePiece 4, -3, 1, 1, $12, 0, 0, 0, 0
+ spritePiece -$18, -$14, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -8, 4, 4, 1, $C, 0, 0, 0, 0
+ spritePiece 0, $C, 2, 1, $10, 0, 0, 0, 0
+ spritePiece 8, -4, 1, 1, $12, 0, 0, 0, 0
 Map_4e18_123_End
 
 Map_4e18_124:	spriteHeader
- spritePiece -5, -$18, 2, 4, 0, 0, 0, 0, 0
- spritePiece -$1D, -$10, 3, 4, 8, 0, 0, 0, 0
- spritePiece -5, 8, 3, 1, $14, 0, 0, 0, 0
+ spritePiece 1, -$16, 2, 4, 0, 0, 0, 0, 0
+ spritePiece -$17, -$E, 3, 4, 8, 0, 0, 0, 0
+ spritePiece 1, $A, 3, 1, $14, 0, 0, 0, 0
 Map_4e18_124_End
 
 Map_4e18_125:	spriteHeader
- spritePiece -$1C, -$E, 4, 4, 0, 0, 0, 0, 0
- spritePiece 4, -$E, 2, 4, $10, 0, 0, 0, 0
+ spritePiece -$16, -$D, 4, 4, 0, 0, 0, 0, 0
+ spritePiece $A, -$D, 2, 4, $10, 0, 0, 0, 0
 Map_4e18_125_End
 
 Map_4e18_126:	spriteHeader
- spritePiece -$1B, -$D, 4, 3, 0, 0, 0, 0, 0
- spritePiece 5, -$D, 2, 3, $C, 0, 0, 0, 0
+ spritePiece -$18, -$B, 4, 3, 0, 0, 0, 0, 0
+ spritePiece 8, -$B, 2, 3, $C, 0, 0, 0, 0
 Map_4e18_126_End
 
 Map_4e18_127:	spriteHeader
- spritePiece -$D, -$19, 4, 4, 0, 0, 0, 0, 0
- spritePiece -$1D, -$11, 2, 3, $10, 0, 0, 0, 0
- spritePiece -5, 7, 3, 1, $16, 0, 0, 0, 0
+ spritePiece -$C, -$11, 4, 4, 0, 0, 0, 0, 0
+ spritePiece -$1C, -9, 2, 3, $10, 0, 0, 0, 0
+ spritePiece -4, $F, 3, 1, $16, 0, 0, 0, 0
 Map_4e18_127_End
 
 Map_4e18_128:	spriteHeader
- spritePiece -$1C, -$C, 4, 4, 0, 0, 0, 0, 0
- spritePiece 4, -$C, 2, 4, $10, 0, 0, 0, 0
+ spritePiece -$1A, -$E, 4, 4, 0, 0, 0, 0, 0
+ spritePiece 6, -$E, 2, 4, $10, 0, 0, 0, 0
 Map_4e18_128_End
 
 Map_4e18_129:	spriteHeader
- spritePiece -$1B, -$D, 4, 4, 0, 0, 0, 0, 0
- spritePiece 5, -$D, 2, 4, $10, 0, 0, 0, 0
+ spritePiece -$16, -$C, 4, 4, 0, 0, 0, 0, 0
+ spritePiece $A, -$C, 2, 4, $10, 0, 0, 0, 0
 Map_4e18_129_End
 
 Map_4e18_130:	spriteHeader
- spritePiece -$F, -5, 3, 4, 0, 0, 0, 0, 0
- spritePiece -7, -$15, 2, 2, $C, 0, 0, 0, 0
- spritePiece 9, -5, 3, 2, $10, 0, 0, 0, 0
+ spritePiece -$14, -5, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$C, -$15, 2, 2, $C, 0, 0, 0, 0
+ spritePiece 4, -5, 3, 2, $10, 0, 0, 0, 0
 Map_4e18_130_End
 
 Map_4e18_131:	spriteHeader
- spritePiece -$10, -$B, 4, 3, 0, 0, 0, 0, 0
- spritePiece -8, $D, 2, 1, $C, 0, 0, 0, 0
- spritePiece 0, -$1B, 2, 2, $E, 0, 0, 0, 0
- spritePiece $10, -$B, 1, 2, $12, 0, 0, 0, 0
+ spritePiece -$16, -8, 4, 3, 0, 0, 0, 0, 0
+ spritePiece -$E, $10, 2, 1, $C, 0, 0, 0, 0
+ spritePiece -6, -$18, 2, 2, $E, 0, 0, 0, 0
+ spritePiece $A, -8, 1, 2, $12, 0, 0, 0, 0
 Map_4e18_131_End
 
 Map_4e18_132:	spriteHeader
- spritePiece -3, -$14, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$13, -$C, 2, 3, 9, 0, 0, 0, 0
- spritePiece -3, 4, 1, 2, $F, 0, 0, 0, 0
- spritePiece -$B, $C, 1, 2, $11, 0, 0, 0, 0
+ spritePiece -3, -$12, 3, 3, 0, 0, 0, 0, 0
+ spritePiece -$13, -$A, 2, 3, 9, 0, 0, 0, 0
+ spritePiece -3, 6, 1, 2, $F, 0, 0, 0, 0
+ spritePiece -$B, $E, 1, 2, $11, 0, 0, 0, 0
 Map_4e18_132_End
 
 Map_4e18_133:	spriteHeader
- spritePiece -$13, -3, 3, 3, 0, 0, 0, 0, 0
- spritePiece -$B, -$13, 3, 2, 9, 0, 0, 0, 0
- spritePiece -$B, $15, 1, 1, $F, 0, 0, 0, 0
- spritePiece 5, -3, 2, 2, $10, 0, 0, 0, 0
- spritePiece $15, -3, 2, 1, $14, 0, 0, 0, 0
+ spritePiece -$14, -5, 3, 3, 0, 0, 0, 0, 0
+ spritePiece -$C, -$15, 3, 2, 9, 0, 0, 0, 0
+ spritePiece -$C, $13, 1, 1, $F, 0, 0, 0, 0
+ spritePiece 4, -5, 2, 2, $10, 0, 0, 0, 0
+ spritePiece $14, -5, 2, 1, $14, 0, 0, 0, 0
 Map_4e18_133_End
 
 Map_4e18_134:	spriteHeader
- spritePiece -4, -$18, 3, 4, 0, 0, 0, 0, 0
- spritePiece -$14, -8, 2, 4, $C, 0, 0, 0, 0
- spritePiece -$1C, 8, 1, 1, $14, 0, 0, 0, 0
- spritePiece -4, 8, 1, 2, $15, 0, 0, 0, 0
+ spritePiece -2, -$18, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -$12, -8, 2, 4, $C, 0, 0, 0, 0
+ spritePiece -$1A, 8, 1, 1, $14, 0, 0, 0, 0
+ spritePiece -2, 8, 1, 2, $15, 0, 0, 0, 0
 Map_4e18_134_End
 
 Map_4e18_135:	spriteHeader
- spritePiece -$14, -8, 3, 4, 0, 0, 0, 0, 0
- spritePiece -4, -$18, 1, 2, $C, 0, 0, 0, 0
- spritePiece 4, -$10, 2, 3, $E, 0, 0, 0, 0
+ spritePiece -$11, -$B, 3, 4, 0, 0, 0, 0, 0
+ spritePiece -1, -$1B, 1, 2, $C, 0, 0, 0, 0
+ spritePiece 7, -$13, 2, 3, $E, 0, 0, 0, 0
 Map_4e18_135_End
 
 Map_4e18_136:	spriteHeader
