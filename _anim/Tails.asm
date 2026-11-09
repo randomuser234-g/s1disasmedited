@@ -51,7 +51,7 @@ ptr2_SwimUp:	dc.w TlsAni_SwimUp-Ani_Tails
 ptr2_SwimCarry:	dc.w TlsAni_SwimCarry-Ani_Tails
 ptr2_SwimTired:	dc.w TlsAni_SwimTired-Ani_Tails
 
-TlsAni_Walk:	dc.b $FF, $10, $11,	$12, $13, $14, 15, $F, $E, afEnd
+TlsAni_Walk:	dc.b $FF, $10, $11,$12, $13, $14, $15, $E, $F, afEnd
 		even
 TlsAni_Run:	dc.b $FF,  $2E,  $2F,  $30,  $31, afEnd,  afEnd, afEnd,     afEnd, afEnd
 		even
