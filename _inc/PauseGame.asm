@@ -35,8 +35,6 @@ Pause_ChkBC:
 		bne.w	Pause_SlowMo	; if yes, branch
 		btst	#bitC,(v_jpadpress1).w ; is button C pressed?
 		bne.w	Pause_SlowMo	; if yes, branch
-		jmp	Pause_ChkStart
-		rts
 
 Pause_ChkStart:
 		btst	#bitStart,(v_jpadpress1).w ; is Start button pressed?
@@ -52,28 +50,26 @@ Pause_DoNothing:
 		rts
 Pause_ChkRestart:
 		cmpi.b	#id_Special,(v_gamemode).w ; is game mode $10 (special stage)?
-		beq.w	Pause_ChkStart	; if yes, branch
+		beq.s	Pause_ChkStart	; if yes, branch
 		cmpi.b	#id_Ending,(v_gamemode).w ; is game mode $18 (ending)?
-		beq.w	Pause_ChkStart	; if yes, branch
-		btst	#bitB,(v_jpadhold1).w ; is button B pressed?
-		beq.s	Pause_ChkStart	; if not, branch
-		jsr	Pause_Restart
-		rts
+		beq.s	Pause_ChkStart	; if yes, branch
+		btst	#bitB,(v_jpadpress1).w ; is button B pressed?
+		bne.s	Pause_Restart	; if yes, branch
+		bra.s	Pause_ChkStart
 Pause_Restart:
 		cmpi.b	#1,(v_lives).w	; 0 lives?
 		beq.s	Pause_GameOver		; if yes, branch
 		subq.b	#1,(v_lives).w	; subtract 1 from number of lives
 		move.w	#1,(f_restart).w ; restart the level
 		move.w	#0,(v_lastlamp).w	; clear lamppost counter
-		jsr	Pause_EndMusic
-		rts
+		bra.s	Pause_EndMusic
+
 Pause_GameOver:
 		cmpi.b	#0,(v_continues).w ; continues?
 		bhi.s	Pause_Continue		; if yes, branch
 		move.b	#id_Title,(v_gamemode).w ; set game mode to 4 (title screen)
 		nop	
 		bra.s	Pause_EndMusic
-		rts
 Pause_Continue:
 		move.b	#id_Continue,(v_gamemode).w ; set game mode to 14 (continue)
 		nop	
