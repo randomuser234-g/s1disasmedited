@@ -54,8 +54,6 @@ Knuckles balancing on ledge is too big on VRAM, can overwrite Tails sprites
 
 ring in special stage uses a different art tile, debug doesn't know this, it uses modified location which is incorrect
 
-bug with pause death/continue (if done in water, there is no palette fade in/out, if done at the same time as nemesis graphics are loading such as eggman's graphics, cause visual corruption)
-
 may be other issues I don't know
 
 look at current commits for changes and other stuff
