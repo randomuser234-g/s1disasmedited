@@ -4020,12 +4020,14 @@ byte_4CCC:	dc.b 8,	2, 4, $FF, 2, 3, 8, $FF, 4, 2, 2, 3, 8,	$FD, 4,	2, 2, 3, 2, $
 ; ---------------------------------------------------------------------------
 
 GM_Continue:
+		bsr.w	ClearPLC		;added to prevent bug with nem graphic loading during continue (boss)
 		bsr.w	PaletteFadeOut
 		disable_ints
 		disable_display
 		lea	(vdp_control_port).l,a6
 		move.w	#$8004,(a6)	; 8 colour mode
 		move.w	#$8700,(a6)	; background colour
+		clr.b	(f_wtr_state).w		;added to prevent bug, when continue, no fade in/out
 		bsr.w	ClearScreen
 
 		clearRAM v_objspace
@@ -4034,11 +4036,9 @@ GM_Continue:
 		lea	(Nem_TitleCard).l,a0 ; load title card patterns
 		bsr.w	NemDec
 		locVRAM	ArtTile_Continue_Sonic*tile_size
-		cmpi.b	#0,(v_character).w	; is the multiple character flag set to 0 (Sonic)?
-		beq.s	.sonicpat		; if yes, load Sonic
 		cmpi.b	#1,(v_character).w	; is the multiple character flag set to 1 (Tails)?
 		beq.s	.tailspat		; if yes, load Tails
-		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 2 (Knuckles)?
+		cmpi.b	#3,(v_character).w	; is the multiple character flag set to 3 (Knuckles)?
 		beq.s	.knuxpat		; if yes, load knuckles
 
 	.sonicpat:
