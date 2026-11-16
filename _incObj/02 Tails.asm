@@ -328,6 +328,10 @@ TailsCPU_FlyingOnscreen:
 ; loc_1BBCE:
 TailsCPU_Flying_Part2:
 		move.w	(v_trackpos).w,d0
+	move.w	#$10,d1				;most tracking code from s3k hyper, this chunk added from s2 tails tracking
+	lsl.b	#2,d1				;same as above
+	addq.b	#4,d1				;end of above added
+
 		lea	(v_tracksonic).w,a1
 		sub.b	d1,d0
 		lea	(a1,d0.w),a1
@@ -466,6 +470,9 @@ TailsCPU_Normal_SonicOK:
 	rts	;otherwise do nothing
 .followsonic:
 		move.w	(v_trackpos).w,d0
+	move.w	#$10,d1				;most tracking code from s3k hyper, this chunk added from s2 tails tracking
+	lsl.b	#2,d1				;same as above
+	addq.b	#4,d1				;end of above added
 		lea	(v_tracksonic).w,a1
 		sub.b	d1,d0
 		lea	(a1,d0.w),a1

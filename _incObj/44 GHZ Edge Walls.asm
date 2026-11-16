@@ -30,7 +30,11 @@ Edge_Main:	; Routine 0
 Edge_Solid:	; Routine 2
 		move.w	#$13,d1
 		move.w	#$28,d2
-		bsr.w	Obj44_SolidWall
+		move.w	d2,d3				;sonic 2 nick arcade code start (added in)
+		addq.w	#1,d3				;
+		move.w	obX(a0),d4			;
+		bsr.w	SolidObject			;sonic 2 nick arcade code end
+		;bsr.w	Obj44_SolidWall			;original sonic 1 method
 
 Edge_Display:	; Routine 4
 	if FixBugs
