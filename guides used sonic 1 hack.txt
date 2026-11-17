@@ -58,5 +58,6 @@ kis2, s2, nick arcade, simon wai, s3k and s3 prototype (tails and knux code, 2p 
 https://github.com/sonicretro/s2disasm
 https://github.com/sonicretro/skdisasm
 https://github.com/Filter011/s2-8XX-disasm
+https://github.com/AlexField442/Sonic-2-Simon-Wai-Disassembly
 https://github.com/AlexField442/Sonic-2-Nick-Arcade-Disassembly
 https://github.com/NyperYuhgard/Sonic-3-Beta-Dissembly
