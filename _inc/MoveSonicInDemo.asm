@@ -89,6 +89,7 @@ MDemo_On:
 		addq.w	#2,(v_btnpushtime1).w
 
 .end:
+		move.w	#0,(v_jpadhold1p2).w		;stop player 2's controls during demos, tails' ai still works
 		rts
 ; End of function MoveSonicInDemo
 
