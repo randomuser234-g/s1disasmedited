@@ -229,8 +229,8 @@ Tails_Display:
 .exit:
 		rts
 ; ---------------------------------------------------------------------------
-; Tails' AI code; rather idiotic in this version, as it only really is
-; programmed to copy Sonic's inputs and make no effort to correct itself
+; Tails' AI code; similar to final Sonic 2, where he copies your inputs but
+; also adds his own inputs to keep up
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -461,13 +461,11 @@ TailsCPU_Normal_SonicOK:
 	bne.s	.nopanic					; (if not, branch)
 	move.w	#8,(v_tailscpuroutine).w	; => TailsCPU_Panic
 .nopanic:
-	cmpi.b	#id_EndSonic,(v_player).w ; does Sonic's ending object exist?
-	bne.s	.chkbigring	; if yes, don't move tails
-	rts
+
 .chkbigring:
 	tst.b	(f_bigring).w	;is sonic in a giant ring?
 	beq.w	.followsonic	;if not, find sonic
-	rts	;otherwise do nothing
+	rts	;otherwise don't follow sonic, 2p can still be used
 .followsonic:
 		move.w	(v_trackpos).w,d0
 	move.w	#$10,d1				;most tracking code from s3k hyper, this chunk added from s2 tails tracking
