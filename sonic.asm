@@ -3170,6 +3170,8 @@ Level_ChkDebug:
 Level_ChkWater:
 		move.w	#0,(v_jpadhold2).w
 		move.w	#0,(v_jpadhold1).w
+		move.w	#0,(v_jpadhold2p2).w		;added clearing p2 input
+		move.w	#0,(v_jpadhold1p2).w		;added clearing p2 input
 		cmpi.b	#1,(f_water).w	; is there water?
 		bne.s	Level_LoadObj	; if not, branch
 		move.b	#id_WaterSurface,(v_watersurface1).w ; load water surface object
