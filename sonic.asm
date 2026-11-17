@@ -4218,15 +4218,16 @@ End_LoadSonic:
 		move.w	#-$800,(v_player+obInertia).w ; set Sonic's speed
 		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
 		bne.s	.skipp2tails		;if not, skip relevant code
-;instantly despawn p2 tails
+;make tails run with sonic
 	move.w	#0,(v_tailscontrol).w
 	move.w	#0,(v_tailsrespawn).w
-	move.w	#2,(v_tailscpuroutine).w	; => TailsCPU_Spawning
-	move.b	#$81,(f_playerctrl2).w ; lock controls and disable object interaction
-	move.b	#1<<1,(v_player2+obStatus).w
-	move.w	#$4000,(v_player2+obX).w
-	move.w	#0,(v_player2+obY).w
-	move.b	#id_Fly,(v_player2+obAnim).w
+	move.w	#6,(v_tailscpuroutine).w	; => TailsCPU_Normal
+	move.b	#$0,(f_playerctrl2).w
+	move.b	#id_Walk,obAnim(a0)
+		move.b	#1,(f_lockctrlp2).w ; lock controls
+		bset	#0,(v_player2+obStatus).w ; make Tails face left
+		move.w	#(btnL<<8),(v_jpadhold2p2).w ; move Tails to the left
+		move.w	#-$800,(v_player2+obInertia).w ; set Tails speed
 .skipp2tails:
 		;move.b	#id_HUD,(v_hud).w ; load HUD object
 		jsr	(ObjPosLoad).l
@@ -4332,12 +4333,27 @@ End_SlowFade:
 End_MoveSonic:
 		move.b	(v_sonicend).w,d0
 		bne.s	End_MoveSon2
+		bsr.s	.end_MoveTails
 		cmpi.w	#$90,(v_player+obX).w ; has Sonic passed $90 on x-axis?
 		bhs.w	End_MoveSonExit	; if not, branch
-
+		
 		addq.b	#2,(v_sonicend).w
 		move.b	#1,(f_lockctrl).w ; lock player's controls
 		move.w	#(btnR<<8),(v_jpadhold2).w ; move Sonic to the right
+		rts
+;added p2 tails specific ending code
+.end_MoveTails:
+		cmpi.b	#id_TailsPlayer,(v_player2+obID)	;does p2 tails exist?
+		bne.s	.skipp2tails		;if not, skip relevant code
+		btst	#0,(v_player2+obStatus).w			;is tails facing right?
+		beq.s	.skipp2tails					;if yes, branch
+		cmpi.w	#$90,(v_player2+obX).w ; has Tails passed $70 on x-axis?
+		bhs.s	.skipp2tails	; if not, branch
+		clr.w	(v_player2+obInertia).w
+		clr.w	(v_jpadhold2p2).w 				; stop moving Tails to the right
+		move.b	#id_Wait,(v_player2+obAnim).w			;standing animation
+		bclr	#0,(v_player2+obStatus).w			;face right
+.skipp2tails:
 		rts
 ; ===========================================================================
 
