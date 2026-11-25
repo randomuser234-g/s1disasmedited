@@ -49,10 +49,8 @@ Unpause:
 Pause_DoNothing:
 		rts
 Pause_ChkRestart:
-		cmpi.b	#id_Special,(v_gamemode).w ; is game mode $10 (special stage)?
-		beq.s	Pause_ChkStart	; if yes, branch
-		cmpi.b	#id_Ending,(v_gamemode).w ; is game mode $18 (ending)?
-		beq.s	Pause_ChkStart	; if yes, branch
+		cmpi.b	#id_Level,(v_gamemode).w ; is game mode $0C (level)?
+		bne.s	Pause_ChkStart	; if not, branch
 		btst	#bitB,(v_jpadpress1).w ; is button B pressed?
 		bne.s	Pause_Restart	; if yes, branch
 		bra.s	Pause_ChkStart
