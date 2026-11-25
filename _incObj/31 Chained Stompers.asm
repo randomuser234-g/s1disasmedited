@@ -122,16 +122,30 @@ loc_B798:	; Routine 2
 		move.w	#$C,d2
 		move.w	#$D,d3
 		move.w	obX(a0),d4
-		bsr.w	SolidObject
-		;btst	#3,obStatus(a0)
-		btst	d6,obStatus(a0)
+		;bsr.w	SolidObject		;change to separate sonic tails
+		lea	(v_player).w,a1		;first check player 1
+		moveq	#p1_standing_bit,d6
+		movem.l	d1-d4,-(sp)
+		bsr.w	SolidObject_Always_SingleCharacter
+		btst	#3,obStatus(a0)		;sonic get crushed?	
+		beq.s	.tails			;if not,check for tails
+		bsr.s	.crush			;otherwise first crush sonic
+.tails:
+		movem.l	(sp)+,d1-d4
+		lea	(v_player2).w,a1
+		moveq	#p2_standing_bit,d6
+		bsr.w	SolidObject_Always_SingleCharacter
+		btst	#4,obStatus(a0)
 		beq.s	CStom_Display
+		;btst	d6,obStatus(a0)
+		;beq.s	CStom_Display
+.crush:
 		cmpi.b	#$10,objoff_32(a0)
 		bhs.s	CStom_Display
 		movea.l	a0,a2
-		cmpi.w	#4,d6		;did tails get crushed?
+		cmpi.w	#4,d6		;did tails last get crushed? will not pass if sonic is checked first
 		beq.s	.player2died	;if yes, kill tails
-		lea	(v_player).w,a0
+		lea	(v_player).w,a0	;otherwise assume sonic is crushed
 		bra.s	.decidewhodied
 .player2died:
 		lea	(v_player2).w,a0
