@@ -105,8 +105,7 @@ See_ChkSide:
 		btst	#4,obStatus(a0)	;is tails on the seesaw?
 		beq.w	.noflip		;if not, don't affect seesaw
 		lea	(v_player2).w,a1
-		;the person last gets to move seesaw, make sonic last in checking
-		bsr.s	.moveseesaw
+		bra.s	.moveseesaw
 .noflip:
 		rts
 .moveseesaw:
@@ -257,24 +256,19 @@ See_Spring:
 		move.b	d1,see_frame(a0)
 		cmp.b	obFrame(a1),d1
 		beq.s	loc_1192C
-		bclr	#3,obStatus(a1)
-		beq.s	.tails
+
 		lea	(v_player).w,a2
-		bsr.s	.seesawspringup
-		bsr.s	loc_1192C
-		bclr	#4,obStatus(a1)		;check if both were on top
-		beq.s	locret_11938
-		lea	(v_player2).w,a2
-		move.w	(v_player+obVelY).w,obVelY(a2)
-		bsr.s	.seesawtails
-		bra.s	locret_11938
+		bclr	#p1_standing_bit,obStatus(a1)	;#3,obstatus(a0)
+		beq.s	.tails				;if sonic is not on the platform, check for tails
+		bsr.s	.seesawspringup			;otherwise jump sonic up
 	
 .tails:
-		bclr	#4,obStatus(a1)
-		beq.s	loc_1192C
 		lea	(v_player2).w,a2
-		bsr.s	.seesawspringup
-		bra.s	locret_11938
+		bclr	#p2_standing_bit,obStatus(a1)	;#4,obstatus(a0)
+		beq.s	loc_1192C			;if tails is not on the platform, branch
+		bsr.s	.seesawspringup			;otherwise spring him up
+		bra.s	loc_1192C			;then clear ball y vel
+		;bra.s	locret_11938
 .seesawspringup:
 		clr.b	ob2ndRout(a1)
 		move.b	#2,obRoutine(a1)
@@ -288,8 +282,8 @@ See_Spring:
 		move.b	#id_Spring,obAnim(a2) ; change Sonic's animation to "spring" ($10)
 		move.b	#2,obRoutine(a2)
 		move.w	#sfx_Spring,d0
-		jsr	(QueueSound2).l	; play spring sound
-		rts
+		jmp	(QueueSound2).l	; play spring sound
+		;rts
 
 loc_1192C:
 		clr.w	obVelX(a0)
