@@ -443,8 +443,9 @@ off_7118:	dc.w DLE_SLZ3main-off_7118
 ; ===========================================================================
 
 DLE_SLZ3main:
-		cmpi.w	#boss_slz_x-$190,(v_screenposx).w
-		blo.s	locret_7130
+		cmpi.w	#boss_slz_x-$140,(v_screenposx).w		;change from -190 to -140 a -50 difference, 
+									;account for extended cam which can kill you
+		blo.s	locret_7130					
 		move.w	#boss_slz_y,(v_limitbtm1).w
 		addq.b	#2,(v_dle_routine).w
 
