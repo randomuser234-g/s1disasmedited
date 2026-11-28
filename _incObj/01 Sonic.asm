@@ -450,6 +450,7 @@ Sonic_ResetScr:
 loc_12FBE:
 		subq.w	#2,(v_lookshift).w ; move screen back to default
 
+;Obj01_UpdateSpeedOnGround:
 loc_12FC2:
 		move.b	(v_jpadhold2).w,d0
 		andi.b	#btnL+btnR,d0	; is left/right pressed?
@@ -457,6 +458,7 @@ loc_12FC2:
 		move.w	obInertia(a0),d0
 		beq.s	loc_12FEE
 		bmi.s	loc_12FE2
+
 		sub.w	d5,d0
 		bcc.s	loc_12FDC
 		move.w	#0,d0
@@ -608,7 +610,7 @@ loc_13104:
 		cmp.w	d6,d0
 		blt.s	loc_1310C
 		sub.w	d5,d0	; remove this frame's acceleration change
-		cmp.w	d1,d0	; compare speed with top speed
+		cmp.w	d6,d0	; compare speed with top speed
 		bge.s	loc_1310C; if speed was already greater than the maximum, branch
 		move.w	d6,d0
 

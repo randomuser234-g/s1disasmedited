@@ -1157,7 +1157,7 @@ loc_13104Dup:
 		cmp.w	d6,d0
 		blt.s	loc_1310CDup
 		sub.w	d5,d0	; remove this frame's acceleration change
-		cmp.w	d1,d0	; compare speed with top speed
+		cmp.w	d6,d0	; compare speed with top speed
 		bge.s	loc_1310CDup; if speed was already greater than the maximum, branch
 		move.w	d6,d0
 

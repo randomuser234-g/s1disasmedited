@@ -26,7 +26,7 @@ Sonic_PanCamera:
 ; These lines aren't part of the original routine; I added them myself.
 ; If you've ported the Spin Dash, uncomment the following lines of code
 ; to allow the camera to pan ahead while charging the Spin Dash:
-        tst.b    $39(a0)                    ; is sonic charging up a spin dash?
+        tst.b    spindash_flag(a0)                    ; is sonic charging up a spin dash?
         beq.s    skip                    ; if not, branch
         btst    #0,obStatus(a0)            ; check the direction that sonic is facing
         bne.s    pan_right                ; if he's facing right, pan the camera to the right
